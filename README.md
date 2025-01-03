@@ -2,7 +2,6 @@
 
 <!-- PROJECT SHIELDS -->
 [![Forks][forks-shield]][forks-url]
-
 [![Stargazers][stars-shield]][stars-url]
 <!-- PROJECT LOGO -->
 <br />
