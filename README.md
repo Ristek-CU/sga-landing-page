@@ -1,50 +1,59 @@
-# React + TypeScript + Vite
+<a id="readme-top"></a>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<!-- PROJECT SHIELDS -->
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/Universitas-Cakrawala">
+    <img src="logo.png" alt="Logo" width="200" height="200">
+  </a>
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+  <h3 align="center">Cakrawala SGA Landing Page</h3>
 
-## Expanding the ESLint configuration
+  <p align="center">
+    Public repository for the SGA Landing Page.
+    <br />
+    <br />
+  </p>
+</div>
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+<!-- ABOUT THE PROJECT -->
+## About The Project
 
-- Configure the top-level `parserOptions` property like this:
+To Be Added.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Built With
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+* [![Typescript][Typescript]][Typescript-url]
+* [![React][React.js]][React-url]
+* [![Vite][Vite]][Vite-url]
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- CONTACT -->
+## Contact
+
+Project Link: [https://github.com/Universitas-Cakrawala/sga-frontend](https://github.com/Universitas-Cakrawala/sga-frontend)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/Universitas-Cakrawala/sga-frontend.svg?style=for-the-badge
+[contributors-url]: https://github.com/Universitas-Cakrawala/sga-frontend/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/Universitas-Cakrawala/sga-frontend.svg?style=for-the-badge
+[forks-url]: https://github.com/Universitas-Cakrawala/sga-frontend/network/members
+[stars-shield]: https://img.shields.io/github/stars/Universitas-Cakrawala/sga-frontend.svg?style=for-the-badge
+[stars-url]: https://github.com/Universitas-Cakrawala/sga-frontend/stargazers
+[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[React-url]: https://reactjs.org/
+[Typescript]: https://img.shields.io/badge/Typescript-20232A?style=for-the-badge&logo=typescript
+[Typescript-url]: https://www.typescriptlang.org/
+[Vite]: https://img.shields.io/badge/Vite-20232A?style=for-the-badge&logo=vite
+[Vite-url]: https://vite.dev

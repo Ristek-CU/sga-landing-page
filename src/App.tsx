@@ -3,7 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 
 function App() {
-  const [count, setCount] = useState(0)
+	const [count, setCount] = useState(0);
 
   return (
     <main className='w-full min-h-screen grid place-items-center bg-zinc-700 text-white'>
@@ -31,4 +31,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
