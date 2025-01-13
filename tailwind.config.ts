@@ -8,7 +8,12 @@ export default {
 			sans: ["Plus Jakarta Sans Variable", ...fontFamily.sans],
 		},
 		extend: {
+			backgroundImage: {
+				"hero-pattern":
+					"url('./assets/images/hero-pattern.svg'), radial-gradient(50% 50% at 50% 0%, rgba(0, 159, 128, .4) 0%, rgba(0, 159, 128, 0.00) 100%)",
+			},
 			colors: {
+				hero: "#002F3E",
 				blue: {
 					"50": "#e6f5f9",
 					"100": "#b0e1ed",
