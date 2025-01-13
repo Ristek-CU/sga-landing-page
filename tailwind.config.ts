@@ -1,8 +1,12 @@
 import type { Config } from "tailwindcss";
+import { fontFamily } from "tailwindcss/defaultTheme";
 
 export default {
 	content: ["./index.html", "./src/**/*.{ts,tsx}"],
 	theme: {
+		fontFamily: {
+			sans: ["Plus Jakarta Sans Variable", ...fontFamily.sans],
+		},
 		extend: {
 			colors: {
 				blue: {
