@@ -4,7 +4,7 @@ import catalinaLogo from "@/assets/images/logo-catalina.png";
 
 export default function Header() {
 	return (
-		<header className="fixed top-0 left-0 z-10 w-full">
+		<header className="absolute top-0 left-0 z-10 w-full">
 			<div className="flex items-center justify-around w-full max-w-screen-xl px-10 py-10 mx-auto">
 				<div className="flex items-center gap-6">
 					<img src={sgaLogo} alt="SGA Logo" className="size-16 shrink-0" />
