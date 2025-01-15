@@ -1,5 +1,6 @@
 import HeroSection from "./components/sections/hero";
 import MissionSection from "./components/sections/mission";
+import MeetOurTeamSection from "./components/sections/meet-our-team";
 
 function App() {
 	return (
@@ -9,6 +10,8 @@ function App() {
 
 			{/* Mission Section */}
 			<MissionSection />
+			{/* Meet Our Team Section */}
+			<MeetOurTeamSection />
 		</main>
 	);
 }
