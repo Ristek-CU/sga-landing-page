@@ -1,5 +1,5 @@
-import { Badge } from "@/components/ui/badge";
 import sgaMembers from "@/assets/images/sga-members.png";
+import { Badge } from "@/components/ui/badge";
 
 export default function VisionSection() {
 	return (
