@@ -1,6 +1,6 @@
-import Button from "@/components/ui/button";
-import sgaLogo from "@/assets/images/logo-sga.png";
 import catalinaLogo from "@/assets/images/logo-catalina.png";
+import sgaLogo from "@/assets/images/logo-sga.png";
+import Button from "@/components/ui/button";
 
 export default function Header() {
 	return (

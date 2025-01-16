@@ -1,6 +1,6 @@
-import Header from "./partials/header";
 import Button from "../../ui/button";
 import Particles from "../../ui/particles";
+import Header from "./partials/header";
 
 export default function HeroSection() {
 	return (
