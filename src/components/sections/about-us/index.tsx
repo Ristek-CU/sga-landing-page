@@ -18,7 +18,7 @@ export default function AboutUsSection() {
 					kepemimpinan yang inklusif.
 				</p>
 			</div>
-			<img src={sgaMembers} className="flex-1" />
+			<img src={sgaMembers} className="flex-1 w-full h-max" />
 		</section>
 	);
 }
