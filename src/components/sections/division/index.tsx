@@ -1,10 +1,33 @@
 import { Badge } from "@/components/ui/badge";
 import sgaMembers from "@/assets/images/sga-members.png";
 import MemberCard from "./partials/member-card";
+import DivisionSelectButton from "./partials/division-select-button";
+import { useState } from "react";
+
+// TODO: Should be from API / CMS
+const divisions = [
+	"Executive",
+	"Public and Community Relations",
+	"Business And Partnership",
+	"Research and Technology",
+	"Student Advocacy and Welfare",
+	"Media and Information",
+	"Arts and Culture",
+	"Sports and Esports",
+	"Internal Organization Development",
+	"Secretary",
+	"Treasurer",
+	"Academic Affairs",
+];
 
 export default function DivisionSection() {
+	const [selectedDivision, setSelectedDivision] = useState("Executive");
+
 	return (
-		<section className="w-full h-full max-w-screen-xl gap-10 px-10 py-32 mx-auto bg-white">
+		<section
+			id="division"
+			className="w-full h-full max-w-screen-xl gap-10 px-10 py-32 mx-auto bg-white"
+		>
 			<div className="space-y-6">
 				<Badge>Division</Badge>
 				<h1 className="text-4xl font-semibold leading-tight">
@@ -14,45 +37,17 @@ export default function DivisionSection() {
 			</div>
 			<div className="flex gap-16 mt-14">
 				<div className="flex flex-col gap-7 w-80">
-					<a href="#" className="py-4 text-2xl font-bold text-green-500">
-						Executive
-					</a>
-					<a href="#" className="py-4 text-2xl font-normal text-gray-300">
-						Public and Community Relations
-					</a>
-					<a href="#" className="py-4 text-2xl font-normal text-gray-300">
-						Business And Partnership
-					</a>
-					<a href="#" className="py-4 text-2xl font-normal text-gray-300">
-						Research and Technology
-					</a>
-					<a href="#" className="py-4 text-2xl font-normal text-gray-300">
-						Student Advocacy and Welfare
-					</a>
-					<a href="#" className="py-4 text-2xl font-normal text-gray-300">
-						Media and Information
-					</a>
-					<a href="#" className="py-4 text-2xl font-normal text-gray-300">
-						Arts and Culture
-					</a>
-					<a href="#" className="py-4 text-2xl font-normal text-gray-300">
-						Sports and Esports
-					</a>
-					<a href="#" className="py-4 text-2xl font-normal text-gray-300">
-						Internal Organization Development
-					</a>
-					<a href="#" className="py-4 text-2xl font-normal text-gray-300">
-						Secretary
-					</a>
-					<a href="#" className="py-4 text-2xl font-normal text-gray-300">
-						Treasurer
-					</a>
-					<a href="#" className="py-4 text-2xl font-normal text-gray-300">
-						Academic Affairs
-					</a>
+					{divisions.map((division) => (
+						<DivisionSelectButton
+							isActive={selectedDivision === division}
+							onClick={() => setSelectedDivision(division)}
+						>
+							{division}
+						</DivisionSelectButton>
+					))}
 				</div>
-				<div className="grid items-start content-start justify-start gap-5 xl:grid-cols-3 lg:grid-cols-2">
-					{Array.from({ length: 6 }).map((_, i) => (
+				<div className="grid items-start content-start justify-start gap-5 xl:grid-cols-3 lg:grid-cols-2 max-h-[1200px] overflow-y-auto">
+					{Array.from({ length: 20 }).map((_, i) => (
 						<MemberCard
 							key={i}
 							name="Sayyid Haidar"
