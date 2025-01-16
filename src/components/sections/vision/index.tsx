@@ -8,7 +8,7 @@ export default function VisionSection() {
 			<div className="flex-1 space-y-6">
 				<Badge>Vision</Badge>
 				<h1 className="text-4xl font-semibold leading-tight">
-					Inspirasi Kepemimpinan dan Inovasi di
+					Inspirasi Kepemimpinan dan Inovasi di{" "}
 					<span className="text-green-500">Lingkungan Kampus</span>
 				</h1>
 				<p className="text-xl font-normal text-gray-300">
