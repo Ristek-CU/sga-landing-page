@@ -1,5 +1,5 @@
 import { Badge } from '@/components/ui/badge'
-import Photo from './Photo.png'
+import photoSga from "@/assets/images/photoSga.png";
 
 export default function AboutUsSection() {
     return (
@@ -11,7 +11,7 @@ export default function AboutUsSection() {
                 </h1>
                 <p className='text-gray-300'>Student Government Association (SGA) Cakrawala University adalah wadah resmi bagi mahasiswa untuk berpartisipasi dalam pengambilan keputusan yang mempengaruhi kehidupan kampus. Kami berkomitmen untuk menjadi jembatan antara mahasiswa dan pihak universitas, serta mempromosikan kepemimpinan yang inklusif.</p>
             </div>
-            <img src={Photo} />
+            <img src={photoSga} />
         </section>
     )
 }
