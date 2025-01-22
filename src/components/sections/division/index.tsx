@@ -2,26 +2,22 @@ import { Badge } from "@/components/ui/badge";
 import sgaMembers from "@/assets/images/sga-members.png";
 import MemberCard from "./partials/member-card";
 import DivisionSelectButton from "./partials/division-select-button";
-import { useState } from "react";
-
+import { useMemo, useState } from "react";
 // TODO: Should be from API / CMS
-const divisions = [
-	"Executive",
-	"Public and Community Relations",
-	"Business And Partnership",
-	"Research and Technology",
-	"Student Advocacy and Welfare",
-	"Media and Information",
-	"Arts and Culture",
-	"Sports and Esports",
-	"Internal Organization Development",
-	"Secretary",
-	"Treasurer",
-	"Academic Affairs",
-];
+import membersData from "@/lib/data/members.json";
+
+type Division = keyof typeof membersData;
 
 export default function DivisionSection() {
-	const [selectedDivision, setSelectedDivision] = useState("Executive");
+	const divisions = Object.keys(membersData) as Division[];
+
+	const [selectedDivision, setSelectedDivision] =
+		useState<Division>("Executive");
+
+	const currentMembers = useMemo(
+		() => membersData[selectedDivision],
+		[selectedDivision],
+	);
 
 	return (
 		<section
@@ -36,7 +32,7 @@ export default function DivisionSection() {
 				</h1>
 			</div>
 			<div className="flex gap-16 mt-14">
-				<div className="flex flex-col gap-7 w-80">
+				<div className="flex flex-col gap-7 w-80 shrink-0">
 					{divisions.map((division) => (
 						<DivisionSelectButton
 							isActive={selectedDivision === division}
@@ -47,11 +43,11 @@ export default function DivisionSection() {
 					))}
 				</div>
 				<div className="grid items-start content-start justify-start gap-5 xl:grid-cols-3 lg:grid-cols-2 max-h-[1200px] overflow-y-auto">
-					{Array.from({ length: 20 }).map((_, i) => (
+					{currentMembers.map(({ name, role }, i) => (
 						<MemberCard
 							key={i}
-							name="Sayyid Haidar"
-							position="President"
+							name={name}
+							position={role}
 							image={sgaMembers}
 							linkedinUrl="#"
 						/>
