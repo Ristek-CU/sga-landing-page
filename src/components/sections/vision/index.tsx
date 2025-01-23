@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 
 export default function VisionSection() {
 	return (
-		<section className="flex flex-col w-full h-full max-w-screen-xl gap-10 px-10 py-32 mx-auto bg-white lg:flex-row">
+		<section className="flex flex-col w-full h-full max-w-(--breakpoint-xl) gap-10 px-10 py-32 mx-auto bg-white lg:flex-row">
 			<img src={sgaMembers} className="flex-1 w-full h-max" />
 			<div className="flex-1 space-y-6">
 				<Badge>Vision</Badge>
