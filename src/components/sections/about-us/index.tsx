@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 
 export default function AboutUsSection() {
 	return (
-		<section className="flex flex-col w-full h-full max-w-(--breakpoint-xl) gap-10 px-10 py-32 mx-auto bg-white lg:flex-row">
+		<section className="flex flex-col w-full h-full max-w-xl gap-10 px-10 py-32 mx-auto bg-white lg:flex-row">
 			<div className="flex-1 space-y-6">
 				<Badge>About Us</Badge>
 				<h1 className="text-4xl font-semibold leading-tight">
