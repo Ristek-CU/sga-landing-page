@@ -14,7 +14,7 @@ export default function DivisionSelectButton({
 	return (
 		<button
 			className={cn(
-				"py-4 text-2xl text-left",
+				"py-4 text-xl text-left",
 				isActive === true
 					? "font-bold text-green-500"
 					: "font-normal text-gray-300",
