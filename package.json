@@ -16,6 +16,8 @@
 		"@tailwindcss/vite": "^4.0.0",
 		"class-variance-authority": "^0.7.1",
 		"clsx": "^2.1.1",
+		"embla-carousel-react": "^8.5.2",
+		"lucide-react": "^0.474.0",
 		"react": "19.0.0",
 		"react-dom": "19.0.0",
 		"tailwind-merge": "^2.6.0"
