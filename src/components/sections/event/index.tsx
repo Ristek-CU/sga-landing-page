@@ -40,11 +40,14 @@ export default function EventSection() {
 				Get to know our <span className="text-blue-500">events</span> and{" "}
 				<span className="text-green-500">participate</span> in it
 			</h2>
-			<Carousel className="w-full" setApi={setApi}>
+			<Carousel
+				className="w-full mt-10 overflow-hidden rounded-3xl"
+				setApi={setApi}
+			>
 				<CarouselContent>
 					{Array.from({ length: 5 }).map((_, index) => (
 						<CarouselItem key={index}>
-							<div className="grid w-full grid-flow-row p-12 mt-10 lg:grid-flow-col gap-9 bg-hero bg-hero-pattern rounded-3xl">
+							<div className="grid w-full grid-flow-row p-12 lg:grid-flow-col gap-9 bg-hero bg-hero-pattern rounded-3xl">
 								<img
 									src={sgaMembers}
 									alt="SGA Members"
