@@ -14,6 +14,10 @@ import sgaMembers from "@/assets/images/sga-members.png";
 
 export default function EventSection() {
 	const [api, setApi] = useState<CarouselApi>();
+	// TODO: Still placeholder data
+	const [events, setEvents] = useState(() =>
+		Array.from({ length: 5 }).map((_, index) => index),
+	);
 	const [currentEventIndex, setCurrentEventIndex] = useState(0);
 
 	useEffect(() => {
@@ -41,13 +45,13 @@ export default function EventSection() {
 				<span className="text-green-500">participate</span> in it
 			</h2>
 			<Carousel
-				className="w-full mt-10 overflow-hidden rounded-3xl"
+				className="w-full mt-10 overflow-hidden rounded-3xl !bg-hero bg-hero-pattern"
 				setApi={setApi}
 			>
 				<CarouselContent>
-					{Array.from({ length: 5 }).map((_, index) => (
+					{events.map((index) => (
 						<CarouselItem key={index}>
-							<div className="grid w-full grid-flow-row p-12 lg:grid-flow-col gap-9 bg-hero bg-hero-pattern rounded-3xl">
+							<div className="grid w-full grid-flow-row p-12 lg:grid-flow-col gap-9 rounded-3xl">
 								<img
 									src={sgaMembers}
 									alt="SGA Members"
@@ -83,7 +87,7 @@ export default function EventSection() {
 				</CarouselContent>
 			</Carousel>
 			<div className="flex justify-center gap-3 mt-5">
-				{Array.from({ length: 5 }).map((_, index) => (
+				{events.map((index) => (
 					<SlideNavigationButton
 						key={index}
 						isActive={currentEventIndex === index}
