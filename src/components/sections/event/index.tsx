@@ -15,7 +15,7 @@ import sgaMembers from "@/assets/images/sga-members.png";
 export default function EventSection() {
 	const [api, setApi] = useState<CarouselApi>();
 	// TODO: Still placeholder data
-	const [events, setEvents] = useState(() =>
+	const [events] = useState(() =>
 		Array.from({ length: 5 }).map((_, index) => index),
 	);
 	const [currentEventIndex, setCurrentEventIndex] = useState(0);
