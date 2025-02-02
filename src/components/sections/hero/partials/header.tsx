@@ -21,7 +21,12 @@ export default function Header() {
 					<a href="#">Members</a>
 					<a href="#">Partnership</a>
 				</div>
-				<Button variant="secondary">Contact Us</Button>
+				<Button
+					variant="secondary"
+					className="bg-green-100 hover:bg-green-100/90"
+				>
+					Contact Us
+				</Button>
 			</div>
 		</header>
 	);
