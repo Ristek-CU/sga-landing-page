@@ -1,16 +1,16 @@
-import { Badge } from "@/components/ui/badge";
-import sgaMembers from "@/assets/images/sga-members.png";
-import MemberCard from "./partials/member-card";
-import DivisionSelectButton from "./partials/division-select-button";
 import { useMemo, useState } from "react";
+
+import sgaMembers from "@/assets/images/sga-members.png";
+import { Badge } from "@/components/ui/badge";
 // TODO: Should be from API / CMS
 import membersData from "@/lib/data/members.json";
+import DivisionSelectButton from "./partials/division-select-button";
+import MemberCard from "./partials/member-card";
 
 type Division = keyof typeof membersData;
+const divisions = Object.keys(membersData) as Division[];
 
 export default function DivisionSection() {
-	const divisions = Object.keys(membersData) as Division[];
-
 	const [selectedDivision, setSelectedDivision] =
 		useState<Division>("Executive");
 
