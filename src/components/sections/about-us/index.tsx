@@ -6,11 +6,11 @@ export default function AboutUsSection() {
 		<section className="flex flex-col w-full h-full container gap-10 px-10 py-32 mx-auto bg-white lg:flex-row">
 			<div className="flex-1 space-y-6">
 				<Badge>About Us</Badge>
-				<h1 className="text-4xl font-semibold leading-tight">
+				<h2 className="text-4xl font-semibold leading-tight">
 					Kenali Lebih Dekat SGA{" "}
 					<span className="text-blue-500">Cakrawala University</span>
-				</h1>
-				<p className="text-gray-300 text-xl font-normal">
+				</h2>
+				<p className="text-xl font-normal text-gray-300">
 					Student Government Association (SGA) Cakrawala University adalah wadah
 					resmi bagi mahasiswa untuk berpartisipasi dalam pengambilan keputusan
 					yang mempengaruhi kehidupan kampus. Kami berkomitmen untuk menjadi
