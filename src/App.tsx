@@ -1,5 +1,6 @@
 import AboutUsSection from "./components/sections/about-us";
 import HeroSection from "./components/sections/hero";
+import JoinUsSection from "./components/sections/join-us";
 import MissionSection from "./components/sections/mission";
 import VisionSection from "./components/sections/vision";
 import MeetOurTeamSection from "./components/sections/meet-our-team";
@@ -29,6 +30,9 @@ function App() {
       
       {/* Our Partnership Section*/}
 			<OurPartnership/>
+        
+      {/* Join Us Section */}
+			<JoinUsSection />
 		</main>
 	);
 }
