@@ -7,6 +7,7 @@ import VisionSection from "./components/sections/vision";
 import MeetOurTeamSection from "./components/sections/meet-our-team";
 import EventSection from "./components/sections/event";
 import OurPartnership from "./components/sections/our-partnership";
+import TestimonySection from "./components/sections/testimony";
 
 function App() {
 	return (
@@ -34,7 +35,10 @@ function App() {
       
       {/* Our Partnership Section*/}
 			<OurPartnership/>
-        
+     
+      {/* Testimony Section */}
+			<TestimonySection />
+      
       {/* Join Us Section */}
 			<JoinUsSection />
 		</main>
