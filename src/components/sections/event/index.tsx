@@ -10,8 +10,8 @@ import {
 	CarouselContent,
 	CarouselItem,
 } from "@/components/ui/carousel";
-import { cn } from "@/lib/utils";
 import Particles from "@/components/ui/particles";
+import { cn } from "@/lib/utils";
 
 export default function EventSection() {
 	const [api, setApi] = useState<CarouselApi>();
