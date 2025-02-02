@@ -85,13 +85,13 @@ export default function EventSection() {
 							</div>
 						</CarouselItem>
 					))}
-					<Particles
-						quantity={500}
-						size={0.1}
-						staticity={50}
-						className="absolute w-full h-full overflow-clip"
-					/>
 				</CarouselContent>
+				<Particles
+					quantity={500}
+					size={0.1}
+					staticity={50}
+					className="absolute w-full h-full overflow-clip top-0"
+				/>
 			</Carousel>
 			<div className="flex justify-center gap-3 mt-5">
 				{events.map((index) => (
