@@ -2,6 +2,7 @@ import AboutUsSection from "./components/sections/about-us";
 import HeroSection from "./components/sections/hero";
 import MissionSection from "./components/sections/mission";
 import VisionSection from "./components/sections/vision";
+import MeetOurTeamSection from "./components/sections/meet-our-team";
 import EventSection from "./components/sections/event";
 
 function App() {
@@ -18,6 +19,9 @@ function App() {
 
 			{/* Mission Section */}
 			<MissionSection />
+
+			{/* Meet Our Team Section */}
+			<MeetOurTeamSection />
 
 			{/* Event Section */}
 			<EventSection />
