@@ -21,10 +21,10 @@ function App() {
 			<MissionSection />
 
 			{/* Our Partnership Section*/}
-			<OurPartnership/>
+			<OurPartnership />
 
 			{/* Join Us Section */}
-			<JoinUsSection/>
+			<JoinUsSection />
 		</main>
 	);
 }
