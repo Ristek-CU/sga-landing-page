@@ -11,6 +11,7 @@ import {
 	CarouselItem,
 } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
+import Particles from "@/components/ui/particles";
 
 export default function EventSection() {
 	const [api, setApi] = useState<CarouselApi>();
@@ -45,12 +46,12 @@ export default function EventSection() {
 				<span className="text-green-500">participate</span> in it
 			</h2>
 			<Carousel
-				className="w-full mt-10 overflow-hidden rounded-3xl !bg-hero bg-hero-pattern"
+				className="relative w-full mt-10 overflow-hidden rounded-3xl !bg-hero bg-hero-pattern"
 				setApi={setApi}
 			>
 				<CarouselContent>
 					{events.map((index) => (
-						<CarouselItem key={index}>
+						<CarouselItem key={index} className="z-[1]">
 							<div className="grid w-full grid-flow-row p-12 lg:grid-flow-col gap-9 rounded-3xl">
 								<img
 									src={sgaMembers}
@@ -84,6 +85,12 @@ export default function EventSection() {
 							</div>
 						</CarouselItem>
 					))}
+					<Particles
+						quantity={500}
+						size={0.1}
+						staticity={50}
+						className="absolute w-full h-full overflow-clip"
+					/>
 				</CarouselContent>
 			</Carousel>
 			<div className="flex justify-center gap-3 mt-5">
