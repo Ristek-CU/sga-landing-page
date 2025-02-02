@@ -4,7 +4,7 @@ export default function MeetOurTeamSection() {
 	return (
 		<section
 			id="meet-our-team"
-			className="w-full h-full max-w-screen-xl px-10 mx-auto bg-white"
+			className="w-full h-full container px-10 mx-auto bg-white"
 		>
 			<div className="relative w-full h-full overflow-hidden rounded-3xl">
 				<img

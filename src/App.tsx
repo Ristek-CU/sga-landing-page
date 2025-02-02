@@ -1,13 +1,13 @@
 import AboutUsSection from "./components/sections/about-us";
 import DivisionSection from "./components/sections/division";
+import EventSection from "./components/sections/event";
 import HeroSection from "./components/sections/hero";
 import JoinUsSection from "./components/sections/join-us";
-import MissionSection from "./components/sections/mission";
-import VisionSection from "./components/sections/vision";
 import MeetOurTeamSection from "./components/sections/meet-our-team";
-import EventSection from "./components/sections/event";
+import MissionSection from "./components/sections/mission";
 import OurPartnership from "./components/sections/our-partnership";
 import TestimonySection from "./components/sections/testimony";
+import VisionSection from "./components/sections/vision";
 
 function App() {
 	return (
@@ -27,19 +27,19 @@ function App() {
 			{/* Meet Our Team Section */}
 			<MeetOurTeamSection />
 
-      {/* Division Section */}
+			{/* Division Section */}
 			<DivisionSection />
-        
+
 			{/* Event Section */}
 			<EventSection />
-      
-      {/* Our Partnership Section*/}
-			<OurPartnership/>
-     
-      {/* Testimony Section */}
+
+			{/* Our Partnership Section*/}
+			<OurPartnership />
+
+			{/* Testimony Section */}
 			<TestimonySection />
-      
-      {/* Join Us Section */}
+
+			{/* Join Us Section */}
 			<JoinUsSection />
 		</main>
 	);

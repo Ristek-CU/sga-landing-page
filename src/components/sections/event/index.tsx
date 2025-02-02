@@ -1,16 +1,16 @@
-import { type MouseEventHandler, useEffect, useState } from "react";
 import { CalendarFoldIcon } from "lucide-react";
+import { type MouseEventHandler, useEffect, useState } from "react";
 
-import Button from "@/components/ui/button";
+import sgaMembers from "@/assets/images/sga-members.png";
 import { Badge } from "@/components/ui/badge";
+import Button from "@/components/ui/button";
 import {
 	Carousel,
+	type CarouselApi,
 	CarouselContent,
 	CarouselItem,
-	type CarouselApi,
 } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
-import sgaMembers from "@/assets/images/sga-members.png";
 
 export default function EventSection() {
 	const [api, setApi] = useState<CarouselApi>();

@@ -1,6 +1,7 @@
 import { ArrowLeftIcon } from "lucide-react";
 import type { PropsWithChildren } from "react";
 
+import sgaMembers from "@/assets/images/sga-members.png";
 import {
 	Carousel,
 	CarouselContent,
@@ -8,7 +9,6 @@ import {
 	CarouselNext,
 	CarouselPrevious,
 } from "@/components/ui/carousel";
-import sgaMembers from "@/assets/images/sga-members.png";
 
 export default function TestimonySection() {
 	return (
