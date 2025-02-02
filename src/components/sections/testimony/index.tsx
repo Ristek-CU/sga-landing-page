@@ -1,41 +1,56 @@
 import { ArrowLeftIcon } from "lucide-react";
+import type { PropsWithChildren } from "react";
 
-import Button from "@/components/ui/button";
+import {
+	Carousel,
+	CarouselContent,
+	CarouselItem,
+	CarouselNext,
+	CarouselPrevious,
+} from "@/components/ui/carousel";
 import sgaMembers from "@/assets/images/sga-members.png";
-import { PropsWithChildren } from "react";
 
 export default function TestimonySection() {
 	return (
 		<section className="container w-full h-full gap-10 px-10 mx-auto bg-white py-28">
-			<div className="flex justify-between space-y-6">
-				<h2 className="text-4xl font-semibold leading-tight">
-					<span className="block">Apa Kata Mereka</span>
-					<span className="text-blue-500">Tentang SGA?</span>
-				</h2>
-				<div className="flex gap-1.5 justify-end">
-					<Button
-						variant="ghost"
-						className="text-black transition-shadow shadow-md hover:shadow-lg size-10"
-					>
-						<ArrowLeftIcon className="size-full shrink-0" />
-					</Button>
-					<Button
-						variant="ghost"
-						className="text-black transition-shadow shadow-md hover:shadow-lg size-10"
-					>
-						<ArrowLeftIcon className="rotate-180 size-full shrink-0" />
-					</Button>
+			<Carousel>
+				<div className="flex justify-between space-y-6">
+					<h2 className="text-4xl font-semibold leading-tight">
+						<span className="block">Apa Kata Mereka</span>
+						<span className="text-blue-500">Tentang SGA?</span>
+					</h2>
+					<div className="flex gap-1.5 justify-end">
+						<CarouselPrevious
+							variant="ghost"
+							className="static translate-none text-black transition-shadow shadow-md hover:shadow-lg size-10 rounded-xl"
+						>
+							<ArrowLeftIcon className="size-full shrink-0" />
+						</CarouselPrevious>
+						<CarouselNext
+							variant="ghost"
+							className="static translate-none text-black transition-shadow shadow-md hover:shadow-lg size-10 rounded-xl"
+						>
+							<ArrowLeftIcon className="rotate-180 size-full shrink-0" />
+						</CarouselNext>
+					</div>
 				</div>
-			</div>
-			<div>
-				<Quote author="John Doe" position="CEO">
-					“During my time in RISTEK, it was a place where you can surround
-					yourself wth brilliant minds in Fasilkom CU. They literally just
-					flocked together in that small room. Therefore, I’d like to encourage
-					you to join RISTEK for the learning opportunity you may potentially
-					find by meeting these great people.”
-				</Quote>
-			</div>
+				<CarouselContent>
+					{Array.from({ length: 5 }).map((_, index) => (
+						<CarouselItem>
+							<Quote
+								author={`M. Bima Saputera ${index + 1}`}
+								position="CEO TutupJendela"
+							>
+								“During my time in RISTEK, it was a place where you can surround
+								yourself wth brilliant minds in Fasilkom CU. They literally just
+								flocked together in that small room. Therefore, I’d like to
+								encourage you to join RISTEK for the learning opportunity you
+								may potentially find by meeting these great people.”
+							</Quote>
+						</CarouselItem>
+					))}
+				</CarouselContent>
+			</Carousel>
 		</section>
 	);
 }
