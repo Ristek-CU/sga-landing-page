@@ -30,7 +30,9 @@ export default function MissionCard({ title, children }: MissionCardProps) {
 
 				<h3 className="text-2xl font-semibold text-gray-500">{title}</h3>
 			</div>
-			<p className="text-xl font-normal text-gray-300">{children}</p>
+			<p className="text-xl font-normal leading-tight text-gray-300">
+				{children}
+			</p>
 		</div>
 	);
 }

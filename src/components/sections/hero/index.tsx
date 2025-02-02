@@ -13,11 +13,11 @@ export default function HeroSection() {
 						Welcome to
 					</span>
 				</div>
-				<h1 className="grid text-6xl font-semibold leading-snug text-center">
+				<h1 className="grid text-6xl font-semibold leading-tight text-center">
 					<span>Student Government Association</span>
 					<span>Cakrawala University</span>
 				</h1>
-				<p className="text-lg font-normal text-center">
+				<p className="text-lg font-normal leading-tight text-center">
 					Mewujudkan Kepemimpinan Mahasiswa yang Progresif dan Inklusif
 				</p>
 				<div className="flex justify-center w-full gap-5 pt-8">

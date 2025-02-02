@@ -22,11 +22,11 @@ export default function DivisionSection() {
 	return (
 		<section
 			id="division"
-			className="w-full h-full container gap-10 px-10 py-32 mx-auto bg-white"
+			className="container w-full h-full gap-10 px-10 py-32 mx-auto bg-white"
 		>
 			<div className="space-y-6">
 				<Badge>Division</Badge>
-				<h1 className="text-4xl font-semibold">
+				<h1 className="text-4xl font-semibold leading-tight">
 					SGA terdiri dari berbagai divisi yang bekerja sama untuk menciptakan
 					lingkungan kampus yang dinamis dan mendukung.
 				</h1>

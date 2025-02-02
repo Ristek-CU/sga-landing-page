@@ -3,7 +3,7 @@ import MissionCard from "./partials/mission-card";
 
 export default function MissionSection() {
 	// TODO: Should be fetched from the CMS in the future
-	const missionCards = [
+	const missions = [
 		{
 			title: "Meningkatkan Komunikasi",
 			description:
@@ -22,18 +22,18 @@ export default function MissionSection() {
 	];
 
 	return (
-		<section className="flex flex-col w-full h-full container gap-10 px-10 py-32 mx-auto bg-white lg:flex-row">
+		<section className="container flex flex-col w-full h-full gap-10 px-10 py-32 mx-auto bg-white lg:flex-row">
 			<div className="flex-1 space-y-6">
 				<Badge>Mission</Badge>
-				<h2 className="text-4xl font-semibold">
+				<h2 className="text-4xl font-semibold leading-tight">
 					Kami bertujuan untuk memfasilitasi komunikasi yang{" "}
-					<span className="text-yellow-500">
+					<span className="leading-tight text-yellow-500">
 						efektif antara mahasiswa dan pihak universitas
 					</span>
 				</h2>
 			</div>
 			<div className="grid flex-1 gap-5">
-				{missionCards.map(({ title, description }, i) => (
+				{missions.map(({ title, description }, i) => (
 					<MissionCard key={i} title={title}>
 						{description}
 					</MissionCard>
