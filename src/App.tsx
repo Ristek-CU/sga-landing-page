@@ -4,6 +4,7 @@ import MissionSection from "./components/sections/mission";
 import VisionSection from "./components/sections/vision";
 import MeetOurTeamSection from "./components/sections/meet-our-team";
 import EventSection from "./components/sections/event";
+import OurPartnership from "./components/sections/our-partnership";
 
 function App() {
 	return (
@@ -25,6 +26,9 @@ function App() {
 
 			{/* Event Section */}
 			<EventSection />
+      
+      {/* Our Partnership Section*/}
+			<OurPartnership/>
 		</main>
 	);
 }
