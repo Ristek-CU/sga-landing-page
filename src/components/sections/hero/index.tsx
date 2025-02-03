@@ -1,6 +1,6 @@
+import { Badge } from "@/components/ui/badge";
 import Button from "@/components/ui/button";
 import Particles from "@/components/ui/particles";
-import { Badge } from "@/components/ui/badge";
 import Header from "./partials/header";
 
 export default function HeroSection() {

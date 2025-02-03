@@ -1,5 +1,5 @@
-import { LinkedInLogo } from "@/components/ui/icons";
 import sgaMembers from "@/assets/images/sga-members.png";
+import { LinkedInLogo } from "@/components/ui/icons";
 
 export interface MemberCardProps {
 	name: string;
