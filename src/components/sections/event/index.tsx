@@ -38,7 +38,7 @@ export default function EventSection() {
 	return (
 		<section
 			id="event"
-			className="container w-full h-full gap-10 px-10 py-32 mx-auto text-center bg-white md:flex-row"
+			className="container w-full h-full gap-10 px-5 py-32 mx-auto text-center bg-white md:flex-row"
 		>
 			<Badge>Event & Kegiatan</Badge>
 			<h2 className="mt-5 text-2xl font-semibold leading-tight xl:text-4xl">

@@ -22,7 +22,7 @@ export default function MissionSection() {
 	];
 
 	return (
-		<section className="container flex flex-col w-full h-full gap-5 px-10 py-32 mx-auto bg-white xl:gap-10 md:flex-row">
+		<section className="container flex flex-col w-full h-full gap-5 px-5 py-32 mx-auto bg-white xl:gap-10 md:flex-row">
 			<div className="flex-1 space-y-5 text-center md:text-left">
 				<Badge>Mission</Badge>
 				<h2 className="text-2xl font-semibold leading-tight xl:text-4xl">

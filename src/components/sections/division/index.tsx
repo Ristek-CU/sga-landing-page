@@ -22,7 +22,7 @@ export default function DivisionSection() {
 	return (
 		<section
 			id="division"
-			className="container w-full h-full px-10 py-32 mx-auto bg-white"
+			className="container w-full h-full px-5 py-32 mx-auto bg-white"
 		>
 			<div className="space-y-6 text-center md:text-left">
 				<Badge>Division</Badge>
