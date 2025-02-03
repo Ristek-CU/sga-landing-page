@@ -13,7 +13,7 @@ import VisionSection from "./components/sections/vision";
 function App() {
 	return (
 		<main className="grid w-full min-h-screen *:leading-[120%]">
-			{/* <HeroSection />
+			<HeroSection />
 
 			<AboutUsSection />
 
@@ -27,7 +27,7 @@ function App() {
 
 			<EventSection />
 
-			<OurPartnershipSection />*/}
+			<OurPartnershipSection />
 
 			<TestimonySection />
 
