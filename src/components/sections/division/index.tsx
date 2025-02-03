@@ -1,6 +1,5 @@
 import { useMemo, useState } from "react";
 
-import sgaMembers from "@/assets/images/sga-members.png";
 import { Badge } from "@/components/ui/badge";
 // TODO: Should be from API / CMS
 import membersData from "@/lib/data/members.json";
@@ -52,7 +51,7 @@ export default function DivisionSection() {
 							name={name}
 							position={role}
 							// TODO: This is still a placeholder image, the finished one should be unique per member
-							image={imagePath ?? sgaMembers}
+							image={imagePath}
 							linkedinUrl="#"
 						/>
 					))}
