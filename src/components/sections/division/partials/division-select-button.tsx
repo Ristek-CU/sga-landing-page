@@ -15,7 +15,7 @@ export default function DivisionSelectButton({
 	return (
 		<button
 			className={cn(
-				"cursor-pointer py-4 text-xl text-left w-max transition-colors",
+				"cursor-pointer text-[0.65rem] md:text-base xl:text-xl text-left w-max transition-colors",
 				isActive
 					? "font-bold text-green-500"
 					: "font-normal text-gray-300 hover:text-green-400",
