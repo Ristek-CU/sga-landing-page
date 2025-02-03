@@ -22,10 +22,10 @@ export default function MissionSection() {
 	];
 
 	return (
-		<section className="container flex flex-col w-full h-full gap-10 px-10 py-32 mx-auto bg-white lg:flex-row">
-			<div className="flex-1 space-y-6">
+		<section className="container flex flex-col w-full h-full gap-5 px-10 py-32 mx-auto bg-white xl:gap-10 md:flex-row">
+			<div className="flex-1 space-y-5 text-center md:text-left">
 				<Badge>Mission</Badge>
-				<h2 className="text-4xl font-semibold leading-tight">
+				<h2 className="text-2xl font-semibold leading-tight xl:text-4xl">
 					Kami bertujuan untuk memfasilitasi komunikasi yang{" "}
 					<span className="leading-tight text-yellow-500">
 						efektif antara mahasiswa dan pihak universitas

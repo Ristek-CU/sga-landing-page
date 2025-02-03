@@ -28,9 +28,11 @@ export default function MissionCard({ title, children }: MissionCardProps) {
 					/>
 				</svg>
 
-				<h3 className="text-2xl font-semibold text-gray-500">{title}</h3>
+				<h3 className="text-xl font-semibold leading-tight text-gray-500 xl:text-2xl">
+					{title}
+				</h3>
 			</div>
-			<p className="text-xl font-normal leading-tight text-gray-300">
+			<p className="text-sm font-normal leading-tight text-gray-300 xl:text-xl">
 				{children}
 			</p>
 		</div>
