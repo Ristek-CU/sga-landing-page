@@ -1,7 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Marquee } from "@/components/ui/marquee";
 
-export default function OurPartnership() {
+export default function OurPartnershipSection() {
 	return (
 		<section className="container w-full h-full gap-10 px-10 py-32 mx-auto space-y-10 text-center bg-white">
 			<div className="space-y-5">
