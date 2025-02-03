@@ -17,7 +17,7 @@ export default function MemberCard({
 	return (
 		<div className="space-y-2 h-max w-22 md:w-38 xl:w-full xl:max-w-44">
 			<img
-				className="object-cover rounded-xl aspect-square size-full"
+				className="object-cover object-top rounded-xl aspect-square size-full"
 				src={image}
 				onError={(e) => (e.currentTarget.src = sgaMembers)}
 				alt={`A formal photo of ${name}`}
