@@ -11,7 +11,7 @@ export default function VisionSection() {
 					Inspirasi Kepemimpinan dan Inovasi di{" "}
 					<span className="text-green-500">Lingkungan Kampus</span>
 				</h1>
-				<p className="text-sm font-normal text-gray-300 xl:text-xl xl:mt-10">
+				<p className="text-sm font-normal leading-tight text-gray-300 xl:text-xl xl:mt-10">
 					Menjadi pelopor dalam pengembangan kepemimpinan mahasiswa yang
 					berkelanjutan, dengan menciptakan lingkungan yang mendorong inovasi,
 					kolaborasi, dan inklusivitas. Kami berkomitmen untuk memberdayakan
