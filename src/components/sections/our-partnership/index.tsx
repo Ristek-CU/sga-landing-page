@@ -3,14 +3,14 @@ import { Marquee } from "@/components/ui/marquee";
 
 export default function OurPartnershipSection() {
 	return (
-		<section className="container w-full h-full gap-10 px-10 py-32 mx-auto space-y-10 text-center bg-white">
+		<section className="container w-full h-full gap-10 px-10 py-32 mx-auto space-y-5 text-center bg-white xl:space-y-10">
 			<div className="space-y-5">
 				<Badge>Our Partnership</Badge>
-				<h1 className="text-4xl font-semibold leading-tight">
+				<h1 className="text-2xl font-semibold leading-tight xl:text-4xl">
 					Help us achieve our mission
 				</h1>
 			</div>
-			<p className="text-gray-300 text-xl font-normal w-[822px] mx-auto leading-tight">
+			<p className="max-w-4xl mx-auto text-sm font-normal leading-tight text-gray-300 xl:text-xl">
 				SGA Cakrawala University menjalin kemitraan dengan berbagai organisasi
 				dan institusi untuk mendukung pengembangan mahasiswa dan kegiatan
 				kampus.
