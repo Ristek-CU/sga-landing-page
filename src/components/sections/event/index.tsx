@@ -38,10 +38,10 @@ export default function EventSection() {
 	return (
 		<section
 			id="event"
-			className="container w-full h-full gap-10 px-10 py-32 mx-auto text-center bg-white lg:flex-row"
+			className="container w-full h-full gap-10 px-5 py-32 mx-auto text-center bg-white md:flex-row"
 		>
 			<Badge>Event & Kegiatan</Badge>
-			<h2 className="mt-5 text-4xl font-semibold leading-tight">
+			<h2 className="mt-5 text-2xl font-semibold leading-tight xl:text-4xl">
 				Get to know our <span className="text-blue-500">events</span> and{" "}
 				<span className="text-green-500">participate</span> in it
 			</h2>
@@ -51,36 +51,32 @@ export default function EventSection() {
 			>
 				<CarouselContent>
 					{events.map((index) => (
-						<CarouselItem key={index} className="z-[1]">
-							<div className="grid w-full grid-flow-row p-12 lg:grid-flow-col gap-9 rounded-3xl">
+						<CarouselItem key={index} className="z-[1] my-auto w-0">
+							<div className="grid w-full grid-flow-row gap-5 p-9 xl:p-12 md:grid-flow-col lg:gap-9 rounded-3xl">
 								<img
 									src={sgaMembers}
 									alt="SGA Members"
-									className="h-full w-full max-w-[463px] aspect-video object-cover object-center rounded-2xl shrink-0"
+									className="h-full w-full xl:max-w-[463px] aspect-video object-cover object-center rounded-2xl shrink-0"
 								/>
-								<div className="flex flex-col justify-between h-full gap-10">
-									<div className="space-y-5 text-left">
-										<div className="group relative flex max-w-fit flex-row items-center justify-center rounded-full bg-white/10 px-5 py-1 text-sm font-medium shadow-[inset_0_-8px_10px_#8fdfff1f] backdrop-blur-sm transition-shadow duration-500 ease-out [--bg-size:300%] hover:shadow-[inset_0_-5px_10px_#8fdfff3f]">
-											<div className="absolute inset-0 block h-full w-full animate-gradient bg-gradient-to-r from-blue-300/50 via-green-300/100 to-yellow-300/100 bg-[length:var(--bg-size)_100%] p-[1px] ![mask-composite:subtract] [border-radius:inherit] [mask:linear-gradient(#fff_0_0)_content-box,linear-gradient(#fff_0_0)]" />
-											<span className="inline-block text-lg font-semibold text-center text-transparent text-max bg-gradient-to-r from-blue-300 via-green-300 to-yellow-300 bg-clip-text">
-												Workshop
-											</span>
-										</div>
+								<div className="flex flex-col items-center justify-between h-full gap-10 md:items-start">
+									<div className="flex flex-col items-center gap-5 text-center md:items-start md:text-left">
+										<Badge variant="special">Workshop</Badge>
+
 										<div className="space-y-3 text-white">
-											<h3 className="text-4xl font-bold leading-tight">
+											<h3 className="text-2xl font-bold leading-tight xl:text-4xl">
 												SGA x Cakrawala University {index + 1}
 											</h3>
-											<div className="flex items-center gap-1">
+											<div className="items-center hidden gap-1 md:flex">
 												<CalendarFoldIcon className="size-6" />
 												<p>January 2025</p>
 											</div>
 										</div>
-										<p className="leading-tight text-white">
+										<p className="text-sm leading-tight text-white md:text-base">
 											Ajang tahunan yang menghadirkan pembicara inspiratif untuk
 											membahas topik-topik kepemimpinan dan inovasi.
 										</p>
 									</div>
-									<Button className="w-max">Selengkapnya</Button>
+									<Button className="w-full max-w-48">Selengkapnya</Button>
 								</div>
 							</div>
 						</CarouselItem>
@@ -90,7 +86,7 @@ export default function EventSection() {
 					quantity={500}
 					size={0.1}
 					staticity={50}
-					className="absolute w-full h-full overflow-clip top-0"
+					className="absolute top-0 w-full h-full overflow-clip"
 				/>
 			</Carousel>
 			<div className="flex justify-center gap-3 mt-5">

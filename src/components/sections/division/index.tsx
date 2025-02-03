@@ -22,17 +22,19 @@ export default function DivisionSection() {
 	return (
 		<section
 			id="division"
-			className="container w-full h-full gap-10 px-10 py-32 mx-auto bg-white"
+			className="container w-full h-full px-5 py-32 mx-auto bg-white"
 		>
-			<div className="space-y-6">
+			<div className="space-y-6 text-center md:text-left">
 				<Badge>Division</Badge>
-				<h1 className="text-4xl font-semibold leading-tight">
-					SGA terdiri dari berbagai divisi yang bekerja sama untuk menciptakan
-					lingkungan kampus yang dinamis dan mendukung.
+				<h1 className="text-2xl font-semibold leading-tight text-center xl:text-4xl md:text-left">
+					SGA terdiri dari berbagai divisi yang bekerja sama untuk menciptakan{" "}
+					<span className="text-blue-500">
+						lingkungan kampus yang dinamis dan mendukung.
+					</span>
 				</h1>
 			</div>
-			<div className="flex gap-20 mt-14">
-				<div className="flex flex-col gap-4 w-80 shrink-0">
+			<div className="grid w-full grid-flow-col gap-5 mt-5 xl:gap-20 md:gap-10 lg:mt-14">
+				<div className="flex flex-col gap-4 xl:gap-10 w-max shrink-0">
 					{divisions.map((division) => (
 						<DivisionSelectButton
 							key={division}
@@ -43,7 +45,7 @@ export default function DivisionSection() {
 						</DivisionSelectButton>
 					))}
 				</div>
-				<div className="grid items-start content-start justify-start gap-5 xl:grid-cols-4 lg:grid-cols-2 max-h-[1200px] overflow-y-auto">
+				<div className="grid items-start content-start justify-start gap-3 lg:gap-5 grid-flow-col grid-rows-2 xl:grid-flow-row xl:grid-cols-4 xl:max-h-[1200px] overflow-y-auto overflow-x-auto w-full">
 					{currentMembers.map(({ name, role, imagePath }, i) => (
 						<MemberCard
 							key={i}

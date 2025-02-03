@@ -1,3 +1,4 @@
+import sgaMembers from "@/assets/images/sga-members.png";
 import { LinkedInLogo } from "@/components/ui/icons";
 
 export interface MemberCardProps {
@@ -14,18 +15,23 @@ export default function MemberCard({
 	image,
 }: MemberCardProps) {
 	return (
-		<div className="space-y-2 h-max max-w-44">
+		<div className="space-y-2 h-max w-22 md:w-38 xl:w-full xl:max-w-44">
 			<img
-				className="object-cover rounded-xl aspect-square size-full"
+				className="object-cover object-top rounded-xl aspect-square size-full"
 				src={image}
+				onError={(e) => (e.currentTarget.src = sgaMembers)}
 				alt={`A formal photo of ${name}`}
 			/>
 			<div className="space-y-1">
-				<h3 className="text-xl font-semibold text-gray-500">{name}</h3>
-				<p className="text-sm font-medium text-gray-200">{position}</p>
+				<h3 className="text-sm font-semibold text-gray-500 md:text-xl">
+					{name}
+				</h3>
+				<p className="text-xs font-medium text-gray-200 md:text-sm">
+					{position}
+				</p>
 				<div className="flex items-center gap-1">
 					<a className="text-gray-200" href={linkedinUrl}>
-						<LinkedInLogo className="size-5 shrink-0" />
+						<LinkedInLogo className="size-2.5 md:size-5 shrink-0" />
 					</a>
 				</div>
 			</div>
