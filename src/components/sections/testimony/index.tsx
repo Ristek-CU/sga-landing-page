@@ -36,7 +36,7 @@ export default function TestimonySection() {
 				</div>
 				<CarouselContent>
 					{Array.from({ length: 5 }).map((_, index) => (
-						<CarouselItem>
+						<CarouselItem key={index}>
 							<Quote
 								author={`M. Bima Saputera ${index + 1}`}
 								position="CEO TutupJendela"

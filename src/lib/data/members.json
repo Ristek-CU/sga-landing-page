@@ -2,69 +2,45 @@
 	"Executive": [
 		{
 			"name": "Sayyid Abdul Aziz Haidar",
-			"role": "Ketua Umum  SGA",
+			"role": "Ketua Umum SGA",
 			"division": "Executive",
-			"studentId": "24120500005",
-			"studyProgram": "Sains Data",
-			"class": "Profesional",
-			"classType": "Hybrid",
-			"contact": "08815086002",
-			"email": "sayyid.haidar@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": "sayyid.png"
 		},
 		{
 			"name": "Violetha Nazwa Simaremare",
 			"role": "Wakil Ketua Umum SGA",
 			"division": "Executive",
-			"studentId": "24110400019",
-			"studyProgram": "Sistem dan Teknologi Informasi",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "089630811457",
-			"email": "violetha.simaremare@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Tria Untari Sasmito",
 			"role": "Sekretaris Umum 1",
 			"division": "Executive",
-			"studentId": "24110400015",
-			"studyProgram": "Sistem dan Teknologi Informasi",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "085954664230",
-			"email": "tria.sasmito@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Adzril Adzim Hendrynov",
 			"role": "Sekretaris Umum 2",
 			"division": "Executive",
-			"studentId": "24110300041",
-			"studyProgram": "Ilmu Komputer",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "089523406608",
-			"email": "adzril.hendrynov@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Nayla Zahiranisa",
 			"role": "Bendahara Umum 1",
 			"division": "Executive",
-			"studentId": "24120400013",
-			"studyProgram": "Sistem dan Teknologi Informasi",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "088225747897",
-			"email": "nayla.zahiranisa@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Mohamad Restu Mutia Sena",
 			"role": "Bendahara Umum 2",
 			"division": "Executive",
-			"studentId": "24110500015",
-			"studyProgram": "Sains Data",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "085222551781",
-			"email": "mrestumutiasena@gmail.com"
+			"linkedInUrl": null,
+			"imagePath": null
 		}
 	],
 	"Academic Affairs": [
@@ -72,67 +48,43 @@
 			"name": "Khidir",
 			"role": "Ketua Divisi",
 			"division": "Academic Affairs",
-			"studentId": "24110400007",
-			"studyProgram": "Sistem dan Teknologi Informasi",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "081218584391",
-			"email": "khidhir@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Fairuz Fajri",
 			"role": "Wakil Ketua Divisi",
 			"division": "Academic Affairs",
-			"studentId": "24120300026",
-			"studyProgram": "Ilmu Komputer",
-			"class": "Professional",
-			"classType": "Full Online",
-			"contact": "085159567511",
-			"email": "fairuz.fajri@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Rafael Situmorang",
 			"role": "Anggota Divisi",
 			"division": "Academic Affairs",
-			"studentId": "24110300028",
-			"studyProgram": "Ilmu Komputer",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "089512393040",
-			"email": "rafael.situmorang@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Rusmayanti Rahayu",
 			"role": "Anggota Divisi",
 			"division": "Academic Affairs",
-			"studentId": "24110100076",
-			"studyProgram": "Bisnis Digital",
-			"class": "Reguler",
-			"classType": "Full Online",
-			"contact": "082250802070",
-			"email": "rusmayanti.rahayu@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Shabrina Rahmah",
 			"role": "Anggota Divisi",
 			"division": "Academic Affairs",
-			"studentId": "24110100022",
-			"studyProgram": "Bisnis Digital",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "085896147945",
-			"email": "shabrina.rahmah@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Yudia Ayumi Salma",
 			"role": "Anggota Divisi",
 			"division": "Academic Affairs",
-			"studentId": "24110100029",
-			"studyProgram": "Bisnis Digital",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "085891828824",
-			"email": "yudia.salma@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		}
 	],
 	"Arts and Culture": [
@@ -140,67 +92,43 @@
 			"name": "Shandi Alfatihah Farrel Farazha",
 			"role": "Ketua Divisi",
 			"division": "Arts and Culture",
-			"studentId": "24110100071",
-			"studyProgram": "Bisnis Digital",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "082111966425",
-			"email": "ffarazha@gmail.com"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Dizza Rahma Alia",
 			"role": "Wakil Ketua Divisi",
 			"division": "Arts and Culture",
-			"studentId": "24110100045",
-			"studyProgram": "Bisnis Digital",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "081281204787",
-			"email": "dizza.alia@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Nabila Zhahra Nursyamsi",
 			"role": "Sekretaris Divisi",
 			"division": "Arts and Culture",
-			"studentId": "24110400002",
-			"studyProgram": "Sistem dan Teknologi Informasi",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "081818161076",
-			"email": "nabila.nursyamsi@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Sachiko Alexandra Zaida Kendra",
 			"role": "Bendahara Divisi",
 			"division": "Arts and Culture",
-			"studentId": "24110100081",
-			"studyProgram": "Bisnis Digital",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "082114640094",
-			"email": "sachiko.kendra@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Nita Ramadani",
 			"role": "Anggota Divisi",
 			"division": "Arts and Culture",
-			"studentId": "24110200011",
-			"studyProgram": "Keuangan dan Investasi",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "085780035962",
-			"email": "nita.ramadani@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Zaskia Fairuz",
 			"role": "Anggota Divisi",
 			"division": "Arts and Culture",
-			"studentId": "",
-			"studyProgram": "Bisnis Digital",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "",
-			"email": ""
+			"linkedInUrl": null,
+			"imagePath": null
 		}
 	],
 	"Business and Partnership": [
@@ -208,78 +136,50 @@
 			"name": "Aldhie Alzanuar",
 			"role": "Ketua & Bendahara Divisi ",
 			"division": "Business and Partnership",
-			"studentId": "24110100109",
-			"studyProgram": "Bisnis Digital",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "085872320630",
-			"email": "alzanuar42@gmail.com"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Anisa Mufida Tsuroyya",
 			"role": "Wakil Ketua & Sekretaris Divisi",
 			"division": "Business and Partnership",
-			"studentId": "24110300032",
-			"studyProgram": "Ilmu Komputer",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "085880475338",
-			"email": "anisamufida26@gmail.com"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Alwi Koswara",
 			"role": "Anggota Divisi",
 			"division": "Business and Partnership",
-			"studentId": "",
-			"studyProgram": "",
-			"class": "",
-			"classType": "",
-			"contact": "",
-			"email": ""
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Aris Irhamni Apriyanto Putra ",
 			"role": "Anggota Divisi",
 			"division": "Business and Partnership",
-			"studentId": "24120100068",
-			"studyProgram": "Bisnis Digital",
-			"class": "Profesional",
-			"classType": "",
-			"contact": "082242638999",
-			"email": "aris.putra@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Muhammad Mutfi",
 			"role": "Anggota Divisi",
 			"division": "Business and Partnership",
-			"studentId": "24110400020",
-			"studyProgram": "Sistem Teknologi dan Informasi",
-			"class": "Reguler",
-			"classType": "Full Online",
-			"contact": "081770774469",
-			"email": "muhammad.mufti@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Nayla Nur Fayza",
 			"role": "Anggota Divisi",
 			"division": "Business and Partnership",
-			"studentId": "24110100028",
-			"studyProgram": "Bisnis Digital",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "085881841404",
-			"email": "nayla.fayza@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Sari Wulandari",
 			"role": "Anggota Divisi",
 			"division": "Business and Partnership",
-			"studentId": "24110100100",
-			"studyProgram": "Bisnis Digital",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "087832568584",
-			"email": "sari.wulandari@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		}
 	],
 	"Internal Organization Development": [
@@ -287,67 +187,43 @@
 			"name": "Ratu Bilqis",
 			"role": "Ketua Divisi",
 			"division": "Internal Organization Development",
-			"studentId": "24110100074",
-			"studyProgram": "Bisnis Digital",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "081219710034",
-			"email": "ratu.bilqis@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Hafiz Nur Rizki",
 			"role": "Wakil Ketua Divisi",
 			"division": "Internal Organization Development",
-			"studentId": "24110300038",
-			"studyProgram": "Ilmu Komputer",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "082123568202",
-			"email": "hafiz.rizki@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Faezal Rifvandy",
 			"role": "Sekretaris Divisi",
 			"division": "Internal Organization Development",
-			"studentId": "24110500016",
-			"studyProgram": "Sains Data",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "081119503666",
-			"email": "faezal.rifvandy@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Ade Imah",
 			"role": "Bendahara Divisi",
 			"division": "Internal Organization Development",
-			"studentId": "24110400016",
-			"studyProgram": "Sistem dan Teknologi Informasi",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "088213406152",
-			"email": "ade.imah@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Muhammad Afiq Aqhdaq",
 			"role": "Anggota Divisi",
 			"division": "Internal Organization Development",
-			"studentId": "24110300008",
-			"studyProgram": "Ilmu Komputer",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "089528480160",
-			"email": "muhammad.aqhdaq@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Reva Indita",
 			"role": "Anggota Divisi",
 			"division": "Internal Organization Development",
-			"studentId": "24110400030",
-			"studyProgram": "Sistem dan Teknologi Informasi",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "085925964084",
-			"email": "reva.indita@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		}
 	],
 	"Media and Information": [
@@ -355,100 +231,64 @@
 			"name": "Muhammad Reski",
 			"role": "Ketua Divisi",
 			"division": "Media and Information",
-			"studentId": "24110300001",
-			"studyProgram": "Ilmu Komputer",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "082136186434",
-			"email": "muhammad.reski@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Deni Trio Saputra",
 			"role": "Wakil Ketua Divisi",
 			"division": "Media and Information",
-			"studentId": "",
-			"studyProgram": "Ilmu Komputer",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "087871704303",
-			"email": "deni.saputra@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Raisby Risat Rais",
 			"role": "Sekretaris Divisi",
 			"division": "Media and Information",
-			"studentId": "24110500013",
-			"studyProgram": "Sains Data",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "081288450783",
-			"email": "raisby.rais@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Nayla Affiyah Syafini",
 			"role": "Bendahara Divisi",
 			"division": "Media and Information",
-			"studentId": "24110100033",
-			"studyProgram": "Bisnis Digital",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "082113087928",
-			"email": "nayla.syafini@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Andrew Farrelino Afdinal",
 			"role": "Anggota Divisi",
 			"division": "Media and Information",
-			"studentId": "24120100048",
-			"studyProgram": "Bisnis Digital",
-			"class": "Profesional",
-			"classType": "Hybrid",
-			"contact": "085720337580",
-			"email": "andrew.afdinal@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Mazaya Yasyfa Azzahra",
 			"role": "Anggota Divisi",
 			"division": "Media and Information",
-			"studentId": "24110100054",
-			"studyProgram": "Bisnis Digital",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "085719299204",
-			"email": "mazaya.azzahra@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Mohammad Zilan Afiat",
 			"role": "Anggota Divisi",
 			"division": "Media and Information",
-			"studentId": "24110300036",
-			"studyProgram": "Ilmu Komputer",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "0881080216381",
-			"email": "mohammad.suryaditama@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Muhammad Ariel Rizky Usman",
 			"role": "Anggota Divisi",
 			"division": "Media and Information",
-			"studentId": "24110300042",
-			"studyProgram": "Ilmu Komputer",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "085814191350",
-			"email": "muhammad.usman@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Orentscia Januiver Sitanggang",
 			"role": "Anggota Divisi",
 			"division": "Media and Information",
-			"studentId": "24110100001",
-			"studyProgram": "Bisnis Digital",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "089629819310â¬",
-			"email": "orentscia.sitanggang@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		}
 	],
 	"Public and Community Relations": [
@@ -456,78 +296,50 @@
 			"name": "Aguini Providensia Tjandra",
 			"role": "Ketua Divisi",
 			"division": "Public and Community Relations",
-			"studentId": "24130100019",
-			"studyProgram": "Bisnis Digital",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "085230083798",
-			"email": "aguini.tjandra@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Hanali Setiawati",
 			"role": "Wakil Ketua Divisi",
 			"division": "Public and Community Relations",
-			"studentId": "24110200016",
-			"studyProgram": "Keuangan dan Investasi",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "085891080600",
-			"email": "hanali.setiawati@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Ghania Hafidzat Maulana",
 			"role": "Anggota Divisi",
 			"division": "Public and Community Relations",
-			"studentId": "24110100064",
-			"studyProgram": "Bisnis Digital",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "085161392529",
-			"email": "ghania.maulana@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Jazz Khalid Matsal",
 			"role": "Anggota Divisi",
 			"division": "Public and Community Relations",
-			"studentId": "24110100047",
-			"studyProgram": "Bisnis Digital",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "081387027254",
-			"email": "jazz.matsal@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Kintharassya Gayoni",
 			"role": "Anggota Divisi",
 			"division": "Public and Community Relations",
-			"studentId": "24110100124",
-			"studyProgram": "Bisnis Digital",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "081227035836",
-			"email": "kintharassya.gayoni@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "M. Zahid",
 			"role": "Anggota Divisi",
 			"division": "Public and Community Relations",
-			"studentId": "24110100037",
-			"studyProgram": "Bisnis Digital",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "083898433544",
-			"email": "muhammad.zahid@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Nabil Alviro Ghifari Putra",
 			"role": "Anggota Divisi",
 			"division": "Public and Community Relations",
-			"studentId": "24110300037",
-			"studyProgram": "Ilmu Komputer",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "082289032131",
-			"email": "nabil.putra@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		}
 	],
 	"Research and Technology": [
@@ -535,100 +347,64 @@
 			"name": "Titanio Yudista",
 			"role": "Ketua Divisi",
 			"division": "Research and Technology",
-			"studentId": "24120300002",
-			"studyProgram": "Ilmu Komputer",
-			"class": "Professional",
-			"classType": "Hybrid",
-			"contact": "085947085164",
-			"email": "titanio.yudista@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Ahmad Zacky",
 			"role": "Wakil Ketua Divisi",
 			"division": "Research and Technology",
-			"studentId": "24110300025",
-			"studyProgram": "Ilmu Komputer",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "0895370896873",
-			"email": "ahmad.zacky@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Abdur Rozaq",
 			"role": "Anggota Divisi",
 			"division": "Research and Technology",
-			"studentId": "24120300014",
-			"studyProgram": "Ilmu Komputer",
-			"class": "Profesional",
-			"classType": "Full Online",
-			"contact": "082313982216",
-			"email": "abdur.rozaq@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Akhmad Wildan",
 			"role": "Anggota Divisi",
 			"division": "Research and Technology",
-			"studentId": "24130300003",
-			"studyProgram": "Ilmu Komputer",
-			"class": "Akselerasi",
-			"classType": "Full Online",
-			"contact": "081903915844",
-			"email": "akhmad.wildan@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Bima Turangga Bayu Pratama",
 			"role": "Anggota Divisi",
 			"division": "Research and Technology",
-			"studentId": "24110300029",
-			"studyProgram": "Ilmu Komputer",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "082145006245",
-			"email": "bima.pratama@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Dimas Nanda Putra",
 			"role": "Anggota Divisi",
 			"division": "Research and Technology",
-			"studentId": "24110100020",
-			"studyProgram": "Bisnis Digital",
-			"class": "Reguler",
-			"classType": "Full Online",
-			"contact": "0895395423271",
-			"email": "dimas.putra@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Muhamad Angga Prida Saputra",
 			"role": "Anggota Divisi",
 			"division": "Research and Technology",
-			"studentId": "24110400013",
-			"studyProgram": "Sistem dan Teknologi Informasi",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "085716067481",
-			"email": "muhamad.saputra@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Muhamad Jaya Kusuma",
 			"role": "Anggota Divisi",
 			"division": "Research and Technology",
-			"studentId": "24130400003",
-			"studyProgram": "Sistem dan Teknologi Informasi",
-			"class": "Akselerasi",
-			"classType": "Full Online",
-			"contact": "087848799145",
-			"email": "muhamad.kusuma@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Sulthan Rizal Halfa Ilmi",
 			"role": "Anggota Divisi",
 			"division": "Research and Technology",
-			"studentId": "24110300019",
-			"studyProgram": "Ilmu Komputer",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "089508385147",
-			"email": "sulthan.ilmi@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		}
 	],
 	"Sport and E-Sport": [
@@ -636,89 +412,57 @@
 			"name": "Attariq Hafidz ",
 			"role": "Ketua Divisi",
 			"division": "Sport and E-Sport",
-			"studentId": "24110100003",
-			"studyProgram": "Bisnis Digital",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "082370812995",
-			"email": "attariq.hafidz@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Dhafi Ihza Al Kahfi",
 			"role": "Wakil Ketua Divisi",
 			"division": "Sport and E-Sport",
-			"studentId": "24110300032",
-			"studyProgram": "Bisnis Digital",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "0881082299159",
-			"email": "dhafi.kahfi@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Kevin Yudansha",
 			"role": "Sekretaris Divisi",
 			"division": "Sport and E-Sport",
-			"studentId": "24110400009",
-			"studyProgram": "Sistem dan Teknologi Informasi",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "081317767503",
-			"email": "kevin.nugroho@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Frederick Zalukhu",
 			"role": "Anggota Divisi",
 			"division": "Sport and E-Sport",
-			"studentId": "24110100134",
-			"studyProgram": "Bisnis Digital",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "0895364429765",
-			"email": "frederickzalukhu13@gmail.com"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Kristian Felix Pramudito",
 			"role": "Anggota Divisi",
 			"division": "Sport and E-Sport",
-			"studentId": "24110400031",
-			"studyProgram": "Sistem dan Teknologi Informasi",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "088214577255",
-			"email": "kristian.pramudito@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Muhammad Zidan",
 			"role": "Anggota Divisi",
 			"division": "Sport and E-Sport",
-			"studentId": "24110100102",
-			"studyProgram": "Bisnis Digital",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "085697747439",
-			"email": "muhammad.zidan@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Rahma Octafiani",
 			"role": "Anggota Divisi",
 			"division": "Sport and E-Sport",
-			"studentId": "24120200005",
-			"studyProgram": "Keuangan dan Investasi",
-			"class": "Profesional",
-			"classType": "Hybrid",
-			"contact": "08568593880",
-			"email": "rahmaaovtafiani@gmail.com"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Yas Siin",
 			"role": "Anggota Divisi",
 			"division": "Sport and E-Sport",
-			"studentId": "24110300039",
-			"studyProgram": "Sains Data",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "08888902026",
-			"email": "yaa.siin@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		}
 	],
 	"Student Advocacy and Walfare": [
@@ -726,67 +470,43 @@
 			"name": "Amalia Kartika",
 			"role": "Ketua Divisi",
 			"division": "Student Advocacy and Walfare",
-			"studentId": "24110200013",
-			"studyProgram": "Keuangan dan Investasi",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "085758307706",
-			"email": "amaliakartika0225@gmail.com"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Fyqih Bayu Adjie",
 			"role": "Wakil Ketua Divisi",
 			"division": "Student Advocacy and Walfare",
-			"studentId": "24110100070",
-			"studyProgram": "Bisnis Digital",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "081210256313",
-			"email": "fyqih.adjie@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Annur Syahrin Aisyah",
 			"role": "Sekretaris Divisi",
 			"division": "Student Advocacy and Walfare",
-			"studentId": "24110500014",
-			"studyProgram": "Sains Data",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "085814569968",
-			"email": "annur.aisyah@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Andi Fauzan Hediantoro",
 			"role": "Anggota Divisi",
 			"division": "Student Advocacy and Walfare",
-			"studentId": "24110400010",
-			"studyProgram": "Sistem dan Teknologi Informasi",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "088289048433",
-			"email": "andi.hediantoro@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Samuel Christian Sitinjak",
 			"role": "Anggota Divisi",
 			"division": "Student Advocacy and Walfare",
-			"studentId": "24110500009",
-			"studyProgram": "Sains Data",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "081374052558",
-			"email": "samuel.sitinjak@cakrawala.ac.id"
+			"linkedInUrl": null,
+			"imagePath": null
 		},
 		{
 			"name": "Yunita Pratiwi",
 			"role": "Anggota Divisi",
 			"division": "Student Advocacy and Walfare",
-			"studentId": "24110400034",
-			"studyProgram": "Sistem dan Teknologi Informasi",
-			"class": "Reguler",
-			"classType": "Hybrid",
-			"contact": "088286395645",
-			"email": "yazizah781@gmail.com"
+			"linkedInUrl": null,
+			"imagePath": null
 		}
 	]
 }

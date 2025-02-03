@@ -18,7 +18,7 @@ export default function MemberCard({
 			<img
 				className="object-cover rounded-xl aspect-square size-full"
 				src={image}
-				alt="SGA Members"
+				alt={`A formal photo of ${name}`}
 			/>
 			<div className="space-y-1">
 				<h3 className="text-xl font-semibold text-gray-500">{name}</h3>

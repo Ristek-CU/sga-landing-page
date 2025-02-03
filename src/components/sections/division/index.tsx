@@ -44,13 +44,13 @@ export default function DivisionSection() {
 					))}
 				</div>
 				<div className="grid items-start content-start justify-start gap-5 xl:grid-cols-4 lg:grid-cols-2 max-h-[1200px] overflow-y-auto">
-					{currentMembers.map(({ name, role }, i) => (
+					{currentMembers.map(({ name, role, imagePath }, i) => (
 						<MemberCard
 							key={i}
 							name={name}
 							position={role}
 							// TODO: This is still a placeholder image, the finished one should be unique per member
-							image={sgaMembers}
+							image={imagePath ?? sgaMembers}
 							linkedinUrl="#"
 						/>
 					))}
