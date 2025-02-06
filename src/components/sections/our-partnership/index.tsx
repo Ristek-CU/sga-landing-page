@@ -3,7 +3,10 @@ import { Marquee } from "@/components/ui/marquee";
 
 export default function OurPartnershipSection() {
 	return (
-		<section className="container w-full h-full gap-10 px-5 py-32 mx-auto space-y-5 text-center bg-white xl:space-y-10">
+		<section
+			id="our-partnership"
+			className="container w-full h-full gap-10 px-5 py-32 mx-auto space-y-5 text-center bg-white xl:space-y-10"
+		>
 			<div className="space-y-5">
 				<Badge>Our Partnership</Badge>
 				<h1 className="text-2xl font-semibold leading-tight xl:text-4xl">

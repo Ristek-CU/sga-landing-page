@@ -10,7 +10,7 @@ import { MailIcon, MapPinIcon } from "lucide-react";
 
 export default function FooterSection() {
 	return (
-		<footer className="w-full bg-blue-50 py-12.5">
+		<footer id="footer" className="w-full bg-blue-50 py-12.5">
 			<div className="container px-5 mx-auto space-y-5">
 				<div className="flex flex-row items-center justify-center w-full gap-6 sm:justify-start">
 					<img src={sgaLogo} alt="SGA Logo" className="size-14 shrink-0" />

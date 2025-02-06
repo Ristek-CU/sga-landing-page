@@ -5,7 +5,10 @@ import Particles from "@/components/ui/particles";
 
 export default function JoinUsSection() {
 	return (
-		<section className="container w-full h-full gap-10 px-5 py-32 mx-auto bg-white">
+		<section
+			id="join-us"
+			className="container w-full h-full gap-10 px-5 py-32 mx-auto bg-white"
+		>
 			<div className="relative rounded-4xl grid grid-cols-1 md:grid-cols-2 w-full h-full md:max-h-[430px] justify-between overflow-hidden text-white bg-hero bg-hero-pattern">
 				<div className="flex flex-col justify-between p-12 gap-y-5 z-[1]">
 					<Badge variant="special">SGA is Hiring!</Badge>
