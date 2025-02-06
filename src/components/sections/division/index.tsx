@@ -32,7 +32,7 @@ export default function DivisionSection() {
 					</span>
 				</h1>
 			</div>
-			<div className="grid w-full grid-flow-col gap-5 mt-5 xl:gap-20 md:gap-10 lg:mt-14">
+			<div className="grid w-full grid-flow-row gap-5 mt-5 md:grid-flow-col xl:gap-20 md:gap-10 lg:mt-14">
 				<div className="flex flex-col gap-4 xl:gap-10 w-max shrink-0">
 					{divisions.map((division) => (
 						<DivisionSelectButton
@@ -45,12 +45,11 @@ export default function DivisionSection() {
 					))}
 				</div>
 				<div className="grid items-start content-start justify-start gap-3 lg:gap-5 grid-flow-col grid-rows-2 xl:grid-flow-row xl:grid-cols-4 xl:max-h-[1200px] overflow-y-auto overflow-x-auto w-full">
-					{currentMembers.map(({ name, role, imagePath }, i) => (
+					{currentMembers.map(({ name, role, imagePath }) => (
 						<MemberCard
-							key={i}
+							key={name}
 							name={name}
 							position={role}
-							// TODO: This is still a placeholder image, the finished one should be unique per member
 							image={imagePath}
 							linkedinUrl="#"
 						/>
