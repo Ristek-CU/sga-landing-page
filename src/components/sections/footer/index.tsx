@@ -53,7 +53,8 @@ export default function FooterSection() {
 				<div className="h-[1px] w-full bg-gray-100" />
 				<div className="flex justify-between w-full gap-2 sm:gap-10">
 					<span className="flex-1 block w-full text-xs text-gray-200 md:text-base">
-						© 2023 Cakrawala University. All Rights Reserved.
+						© {new Date().getFullYear()} Cakrawala University. All Rights
+						Reserved.
 					</span>
 					<div className="flex justify-end gap-1.5 sm:gap-5 shrink-0">
 						{/* TODO: Put real social links */}

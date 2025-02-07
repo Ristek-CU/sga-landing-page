@@ -20,6 +20,7 @@ function App() {
 		<MobileMenuContextProvider>
 			<Header />
 			<MobileMenu />
+
 			<main className="grid w-full min-h-screen">
 				<HeroSection />
 
@@ -40,9 +41,9 @@ function App() {
 				<TestimonySection />
 
 				<JoinUsSection />
-
-				<FooterSection />
 			</main>
+
+			<FooterSection />
 		</MobileMenuContextProvider>
 	);
 }
