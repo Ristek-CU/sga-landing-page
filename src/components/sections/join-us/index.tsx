@@ -7,11 +7,13 @@ export default function JoinUsSection() {
 	return (
 		<section
 			id="join-us"
-			className="container w-full h-full gap-10 px-5 py-32 mx-auto bg-white"
+			className="container w-full h-full gap-10 px-5 py-12.5 xl:pb-30 mx-auto bg-white"
 		>
 			<div className="relative rounded-4xl grid grid-cols-1 md:grid-cols-2 w-full h-full md:max-h-[430px] justify-between overflow-hidden text-white bg-hero bg-hero-pattern">
 				<div className="flex flex-col justify-between p-12 gap-y-5 z-[1]">
-					<Badge variant="special">SGA is Hiring!</Badge>
+					<Badge variant="special" className="self-center sm:self-auto">
+						SGA is Hiring!
+					</Badge>
 					<span className="flex text-3xl font-bold leading-tight xl:text-5xl">
 						It's your turn to make ideas happen.
 					</span>
@@ -55,7 +57,7 @@ export default function JoinUsSection() {
 					</Marquee>
 				</div>
 				<Particles
-					quantity={500}
+					quantity={200}
 					size={0.1}
 					staticity={50}
 					className="absolute w-full h-full overflow-clip"

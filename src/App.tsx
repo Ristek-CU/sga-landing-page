@@ -21,7 +21,7 @@ function App() {
 			<Header />
 			<MobileMenu />
 
-			<main className="grid w-full min-h-screen">
+			<main className="grid grid-flow-row w-full min-h-screen">
 				<HeroSection />
 
 				<AboutUsSection />

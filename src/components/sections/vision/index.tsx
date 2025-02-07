@@ -5,7 +5,7 @@ export default function VisionSection() {
 	return (
 		<section
 			id="vision"
-			className="container flex flex-col-reverse items-center w-full h-full px-5 py-32 mx-auto bg-white gap-x-10 gap-y-5 lg:flex-row"
+			className="container flex flex-col-reverse items-center w-full h-full px-5 mx-auto bg-white pt-25 sm:pb-25 xl:py-30 gap-x-10 gap-y-5 lg:flex-row"
 		>
 			<img src={sgaMembers} className="flex-1 w-full h-max" />
 			<div className="flex-1 space-y-5">

@@ -5,7 +5,7 @@ export default function OurPartnershipSection() {
 	return (
 		<section
 			id="our-partnership"
-			className="container w-full h-full gap-10 px-5 py-32 mx-auto space-y-5 text-center bg-white xl:space-y-10"
+			className="container w-full h-full gap-10 px-5 py-12.5 xl:py-30 mx-auto space-y-5 text-center bg-white xl:space-y-10"
 		>
 			<div className="space-y-5">
 				<Badge>Our Partnership</Badge>

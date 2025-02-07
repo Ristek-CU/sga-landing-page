@@ -17,7 +17,7 @@ export default function EventSection() {
 	const [api, setApi] = useState<CarouselApi>();
 	// TODO: Still placeholder data
 	const [events] = useState(() =>
-		Array.from({ length: 5 }).map((_, index) => index),
+		Array.from({ length: 4 }).map((_, index) => index),
 	);
 	const [currentEventIndex, setCurrentEventIndex] = useState(0);
 
@@ -38,7 +38,7 @@ export default function EventSection() {
 	return (
 		<section
 			id="event"
-			className="container w-full h-full gap-10 px-5 py-32 mx-auto text-center bg-white md:flex-row"
+			className="container w-full h-full gap-10 px-5 pt-12.5 sm:pb-12.5 mx-auto text-center bg-white md:flex-row"
 		>
 			<Badge>Event & Kegiatan</Badge>
 			<h2 className="mt-5 text-2xl font-semibold leading-tight xl:text-4xl">
@@ -83,13 +83,13 @@ export default function EventSection() {
 					))}
 				</CarouselContent>
 				<Particles
-					quantity={500}
+					quantity={200}
 					size={0.1}
 					staticity={50}
 					className="absolute top-0 w-full h-full overflow-clip"
 				/>
 			</Carousel>
-			<div className="flex justify-center gap-3 mt-5">
+			<div className="flex justify-center gap-2.5 sm:gap-3 mt-5">
 				{events.map((index) => (
 					<SlideNavigationButton
 						key={index}
@@ -117,8 +117,10 @@ function SlideNavigationButton({
 	return (
 		<Button
 			className={cn(
-				"cursor-pointer h-4 p-0 transition-all rounded-full ease-out duration-300",
-				isActive ? "bg-yellow-600 w-20" : "bg-yellow-200 w-4",
+				"cursor-pointer h-2.5 sm:h-4 p-0 transition-all rounded-full ease-out duration-300",
+				isActive
+					? "bg-yellow-600 w-12.5 sm:w-20"
+					: "bg-yellow-200 w-2.5 sm:w-4",
 			)}
 			onClick={onClick}
 		>

@@ -1,30 +1,13 @@
 import { Badge } from "@/components/ui/badge";
 import MissionCard from "./partials/mission-card";
+// TODO: Should be fetched from the CMS in the future
+import missions from "@/lib/data/missions.json";
 
 export default function MissionSection() {
-	// TODO: Should be fetched from the CMS in the future
-	const missions = [
-		{
-			title: "Meningkatkan Komunikasi",
-			description:
-				"Memfasilitasi komunikasi yang efektif antara mahasiswa dan pihak universitas untuk memastikan aspirasi mahasiswa didengar dan ditindaklanjuti.",
-		},
-		{
-			title: "Mendukung Inovasi",
-			description:
-				"Mendukung kegiatan mahasiswa yang inovatif dan kreatif untuk menciptakan lingkungan belajar yang dinamis dan inspiratif.",
-		},
-		{
-			title: "Menjamin Kesejahteraan",
-			description:
-				"Memastikan kesejahteraan mahasiswa melalui kebijakan yang adil, program dukungan, dan lingkungan yang inklusif.",
-		},
-	];
-
 	return (
 		<section
 			id="mission"
-			className="container flex flex-col w-full h-full gap-5 px-5 py-32 mx-auto bg-white xl:gap-10 md:flex-row"
+			className="container flex flex-col w-full h-full gap-5 px-5 mx-auto bg-white py-25 xl:py-30 xl:gap-10 md:flex-row"
 		>
 			<div className="flex-1 space-y-5 text-center md:text-left">
 				<Badge>Mission</Badge>

@@ -14,7 +14,7 @@ export default function TestimonySection() {
 	return (
 		<section
 			id="testimony"
-			className="container w-full h-full gap-10 px-5 mx-auto bg-white py-28"
+			className="container w-full h-full gap-10 px-5 mx-auto bg-white pt-12.5 sm:pb-12.5 xl:py-25"
 		>
 			<Carousel className="w-full max-w-none">
 				<div className="flex justify-between space-y-6">
@@ -67,14 +67,14 @@ function Quote({ author, position, children }: QuoteProps) {
 	return (
 		<div className="flex flex-col-reverse items-end justify-between sm:flex-row gap-x-5 xl:gap-x-15 gap-y-5">
 			<figure className="flex flex-col justify-between h-full gap-5 lg:h-64">
-				<blockquote className="text-base font-medium leading-tight text-gray-200 md:text-xl xl:text-2xl">
+				<blockquote className="text-base font-medium leading-tight text-center text-gray-200 md:text-xl xl:text-2xl sm:text-left">
 					{children}
 				</blockquote>
 				<figcaption className="space-y-1.5">
-					<p className="text-base font-bold leading-tight xl:text-xl">
+					<p className="text-base font-bold leading-tight text-center xl:text-xl sm:text-left">
 						{author}
 					</p>
-					<p className="text-base font-medium leading-tight text-gray-200 xl:text-xl">
+					<p className="text-base font-medium leading-tight text-center text-gray-200 xl:text-xl sm:text-left">
 						{position}
 					</p>
 				</figcaption>
