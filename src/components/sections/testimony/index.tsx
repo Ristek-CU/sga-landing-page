@@ -12,7 +12,10 @@ import {
 
 export default function TestimonySection() {
 	return (
-		<section className="container w-full h-full gap-10 px-5 mx-auto bg-white py-28">
+		<section
+			id="testimony"
+			className="container w-full h-full gap-10 px-5 mx-auto bg-white py-28"
+		>
 			<Carousel className="w-full max-w-none">
 				<div className="flex justify-between space-y-6">
 					<h2 className="text-2xl font-semibold leading-tight xl:text-4xl">

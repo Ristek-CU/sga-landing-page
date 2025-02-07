@@ -10,31 +10,41 @@ import OurPartnershipSection from "./components/sections/our-partnership";
 import TestimonySection from "./components/sections/testimony";
 import VisionSection from "./components/sections/vision";
 
+import Header from "./components/ui/header";
+import MobileMenu from "./components/ui/mobile-menu";
+
+import { MobileMenuContextProvider } from "./contexts/mobile-menu-context";
+
 function App() {
 	return (
-		<main className="grid w-full min-h-screen *:leading-[120%]">
-			<HeroSection />
+		<MobileMenuContextProvider>
+			<Header />
+			<MobileMenu />
 
-			<AboutUsSection />
+			<main className="grid w-full min-h-screen">
+				<HeroSection />
 
-			<VisionSection />
+				<AboutUsSection />
 
-			<MissionSection />
+				<VisionSection />
 
-			<MeetOurTeamSection />
+				<MissionSection />
 
-			<DivisionSection />
+				<MeetOurTeamSection />
 
-			<EventSection />
+				<DivisionSection />
 
-			<OurPartnershipSection />
+				<EventSection />
 
-			<TestimonySection />
+				<OurPartnershipSection />
 
-			<JoinUsSection />
+				<TestimonySection />
+
+				<JoinUsSection />
+			</main>
 
 			<FooterSection />
-		</main>
+		</MobileMenuContextProvider>
 	);
 }
 
