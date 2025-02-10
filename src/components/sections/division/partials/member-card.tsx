@@ -36,7 +36,7 @@ export default function MemberCard({
 					{position}
 				</p>
 				<div className="flex items-center gap-1">
-					<a className="text-gray-200" href={linkedinUrl}>
+					<a className="text-gray-200" href={linkedinUrl} target="_blank">
 						<LinkedInLogo className="size-5 shrink-0" />
 					</a>
 				</div>

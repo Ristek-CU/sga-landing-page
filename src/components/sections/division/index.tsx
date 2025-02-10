@@ -45,13 +45,13 @@ export default function DivisionSection() {
 					))}
 				</div>
 				<div className="grid items-start content-start justify-start gap-3 lg:gap-5 grid-flow-col grid-rows-2 xl:grid-flow-row xl:grid-cols-4 xl:max-h-[1200px] overflow-y-auto overflow-x-auto w-full">
-					{currentMembers.map(({ name, role, imagePath }) => (
+					{currentMembers.map(({ name, role, imagePath,linkedInUrl }) => (
 						<MemberCard
 							key={name}
 							name={name}
 							position={role}
 							image={imagePath}
-							linkedinUrl="#"
+							linkedinUrl={linkedInUrl}
 						/>
 					))}
 				</div>
