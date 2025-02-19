@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
 import { AlignJustifyIcon, XIcon } from "lucide-react";
+import { useEffect, useState } from "react";
 
-import { useMobileMenuContext } from "@/contexts/mobile-menu-context";
 import catalinaLogo from "@/assets/images/logo-catalina.png";
 import sgaLogo from "@/assets/images/logo-sga.png";
 import Button from "@/components/ui/button";
+import { useMobileMenuContext } from "@/contexts/mobile-menu-context";
 import { cn } from "@/lib/utils";
 
 export default function Header() {

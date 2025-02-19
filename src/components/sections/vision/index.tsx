@@ -15,11 +15,10 @@ export default function VisionSection() {
 					<span className="text-green-500">Lingkungan Kampus</span>
 				</h1>
 				<p className="text-sm font-normal leading-tight text-gray-300 xl:text-xl xl:mt-10">
-					Menjadi pelopor dalam pengembangan kepemimpinan mahasiswa yang
-					berkelanjutan, dengan menciptakan lingkungan yang mendorong inovasi,
-					kolaborasi, dan inklusivitas. Kami berkomitmen untuk memberdayakan
-					setiap mahasiswa agar dapat menjadi pemimpin yang berintegritas,
-					visioner, dan berkontribusi positif.
+					Menjadi inisiator dan agen inovasi yang mendukung percepatan kemajuan
+					kampus. Berkomitmen untuk mendorong mahasiswa dan institusi agar terus
+					berakselerasi, melakukan perbaikan berkelanjutan, serta bersaing,
+					bahkan melampaui kampus-kampus yang telah mapan
 				</p>
 			</div>
 		</section>
