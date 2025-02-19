@@ -1,7 +1,7 @@
 import { Badge } from "@/components/ui/badge";
-import MissionCard from "./partials/mission-card";
 // TODO: Should be fetched from the CMS in the future
 import missions from "@/lib/data/missions.json";
+import MissionCard from "./partials/mission-card";
 
 export default function MissionSection() {
 	return (
