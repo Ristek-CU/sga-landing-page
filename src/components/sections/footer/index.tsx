@@ -41,10 +41,10 @@ export default function FooterSection() {
 							<div className="flex items-start gap-3.5 max-w-125">
 								<MailIcon className="size-6 shrink-0" />
 								<a
-									href="mailto:example@email.com"
+									href="mailto:sga@cakrawala.ac.id"
 									className="text-xs leading-tight text-blue-500 md:text-base"
 								>
-									example@email.com
+									sga@cakrawala.ac.id
 								</a>
 							</div>
 						</div>

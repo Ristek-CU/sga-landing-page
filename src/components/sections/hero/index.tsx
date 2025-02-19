@@ -6,7 +6,7 @@ export default function HeroSection() {
 	return (
 		<section
 			id="hero"
-			className="relative flex flex-col w-full min-h-screen overflow-hidden text-white bg-hero bg-hero-pattern"
+			className="relative flex flex-col w-full min-h-screen overflow-hidden text-white bg-hero bg-hero-pattern bg-fixed"
 		>
 			<div className="flex flex-col items-center justify-center w-full h-full gap-4 min-h-[768px] container mx-auto px-5 z-[1]">
 				<Badge variant="special">Welcome to</Badge>
