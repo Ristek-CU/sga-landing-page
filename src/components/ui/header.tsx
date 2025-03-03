@@ -25,7 +25,7 @@ export default function Header() {
 			className={cn(
 				"transition-all duration-300 ease-out fixed top-0 left-0 z-50 w-full text-white",
 				{
-					"top-2.5 sm:top-5 px-2.5 sm:px-0": scrollY > 100,
+					"top-2.5 sm:top-5 px-2.5": scrollY > 100,
 				},
 			)}
 		>

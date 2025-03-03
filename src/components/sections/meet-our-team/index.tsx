@@ -1,4 +1,5 @@
 import sgaMembersFilter from "@/assets/images/sga-members-filter.jpg";
+import Particles from "@/components/ui/particles";
 
 export default function MeetOurTeamSection() {
 	return (
@@ -33,6 +34,12 @@ export default function MeetOurTeamSection() {
 						perubahan positif di kampus.
 					</p>
 				</div>
+				<Particles
+					quantity={300}
+					size={0.1}
+					staticity={50}
+					className="absolute w-full h-full overflow-clip z-5"
+				/>
 			</div>
 		</section>
 	);

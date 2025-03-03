@@ -46,7 +46,7 @@ export default function EventSection() {
 				<span className="text-green-500">participate</span> in it
 			</h2>
 			<Carousel
-				className="relative w-full mt-10 overflow-hidden rounded-3xl !bg-hero bg-hero-pattern"
+				className="relative w-full mt-10 overflow-hidden rounded-3xl !bg-hero bg-hero-pattern bg-fixed"
 				setApi={setApi}
 			>
 				<CarouselContent>

@@ -1,10 +1,10 @@
 import catalinaLogo from "@/assets/images/logo-catalina.png";
 import sgaLogo from "@/assets/images/logo-sga.png";
 import {
-	FacebookLogo,
+	InstagramLogo,
 	LinkedInLogo,
 	TikTokLogo,
-	YoutubeLogo,
+	XLogo,
 } from "@/components/ui/icons";
 import { MailIcon, MapPinIcon } from "lucide-react";
 
@@ -41,10 +41,10 @@ export default function FooterSection() {
 							<div className="flex items-start gap-3.5 max-w-125">
 								<MailIcon className="size-6 shrink-0" />
 								<a
-									href="mailto:example@email.com"
+									href="mailto:sga@cakrawala.ac.id"
 									className="text-xs leading-tight text-blue-500 md:text-base"
 								>
-									example@email.com
+									sga@cakrawala.ac.id
 								</a>
 							</div>
 						</div>
@@ -57,18 +57,20 @@ export default function FooterSection() {
 						Reserved.
 					</span>
 					<div className="flex justify-end gap-1.5 sm:gap-5 shrink-0">
-						{/* TODO: Put real social links */}
-						<a href="#facebook">
-							<FacebookLogo className="md:size-7.5 size-5" />
+						<a href="https://www.instagram.com/sga.cakrawala" target="_blank">
+							<InstagramLogo className="md:size-7.5 size-5 fill-[#FF0069]" />
 						</a>
-						<a href="#linkedin">
-							<LinkedInLogo className="md:size-7.5 size-5" fill="#0A66C2" />
+						<a
+							href="https://www.linkedin.com/company/sga-cakrawala-university"
+							target="_blank"
+						>
+							<LinkedInLogo className="md:size-7.5 size-5 fill-[#0A66C2]" />
 						</a>
-						<a href="#tiktok">
+						<a href="https://www.tiktok.com/@sgacakrawala" target="_blank">
 							<TikTokLogo className="md:size-7.5 size-5" />
 						</a>
-						<a href="#youtube">
-							<YoutubeLogo className="md:size-7.5 size-5" />
+						<a href="https://x.com/sga_cakrawala" target="_blank">
+							<XLogo className="md:size-7.5 size-5" />
 						</a>
 					</div>
 				</div>
