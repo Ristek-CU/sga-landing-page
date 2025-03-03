@@ -9,7 +9,8 @@
 		"format": "biome format --write .",
 		"lint": "biome lint --write .",
 		"check": "biome check --write .",
-		"preview": "vite preview"
+		"preview": "vite preview",
+		"pm2:start": "pm2 --name landing-page serve dist/ 8260"
 	},
 	"dependencies": {
 		"@fontsource-variable/plus-jakarta-sans": "^5.1.1",

@@ -1,0 +1,37 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches:
+      - development  # Ganti 'development' dengan branch yang Anda inginkan
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install sshpass
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y sshpass
+
+      - name: Deploy to server
+        run: |
+          sshpass -p "${{ secrets.SERVER_PASSWORD }}" ssh -vvv -o StrictHostKeyChecking=no -o IdentitiesOnly=yes ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} "
+            ls -la &&
+            cd /home/sga-cakrawala/htdocs/sga-landing-page &&
+            rm -rf node_modules &&
+            rm -rf dist &&
+            nvm use 22 &&
+            git checkout development &&
+            git pull &&
+            npm install &&
+            npm run build &&
+            pm2 stop landing-page &&
+            pm2 del landing-page &&
+            pm2 save &&
+            npm run pm2:start
+          "
