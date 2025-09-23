@@ -10,17 +10,22 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
+} from "../ui/form";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
-import Button from "../ui/button";
+import Button from "../ui/button.tsx";
+import ImgFile from "@/assets/images/Group.png";
+import { useState } from "react";
 
-import ImgFile from "../../../Group.png";
+type ImagePreview = {
+  file: File;
+  preview: string;
+};
 
 const FormSchema = z.object({
   nama_lengkap: z.string().optional().or(z.literal("")),
   nim: z.string().optional().or(z.literal("")),
-  nomor_telepon: z.string().optional().or(z.literal("")),
+  nomor_telpon: z.string().optional().or(z.literal("")),
   keluhan: z.string().min(5, {
     message: "Keluhan minimal 5 karakter.",
   }),
@@ -28,13 +33,11 @@ const FormSchema = z.object({
   files: z
     .array(
       z
-        .instanceof(File)
-        .refine(
-          (file) =>
-            ["image/jpeg", "image/png", "image/heic"].includes(file.type),
-          { message: "Hanya format JPG, PNG, atau HEIC yang diperbolehkan." }
-        )
-        .refine((file) => file.size <= 10 * 1024 * 1024, {
+        .file()
+        .mime(["image/jpeg", "image/png", "image/heic"], {
+          message: "Hanya format JPG, PNG, atau HEIC yang diperbolehkan.",
+        })
+        .max(10 * 1024 * 1024, {
           message: "Ukuran tiap file maksimal 10MB.",
         })
     )
@@ -43,12 +46,13 @@ const FormSchema = z.object({
 });
 
 export function InputForm() {
+  const [images, setImages] = useState<ImagePreview[]>([]);
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
       nama_lengkap: "",
       nim: "",
-      nomor_telepon: "",
+      nomor_telpon: "",
       keluhan: "",
       saran: "",
       files: [],
@@ -60,9 +64,13 @@ export function InputForm() {
       const formData = new FormData();
       formData.append("nama_lengkap", values.nama_lengkap || "");
       formData.append("nim", values.nim || "");
-      formData.append("nomor_telepon", values.nomor_telepon || "");
+      formData.append("nomor_telpon", values.nomor_telpon || "");
       formData.append("keluhan", values.keluhan);
       formData.append("saran", values.saran || "");
+
+      formData.append("status", "not started");
+      formData.append("metode_report", "online");
+      formData.append("created_by", "api_user");
 
       if (values.files && values.files.length > 0) {
         values.files.forEach((file) => {
@@ -71,10 +79,14 @@ export function InputForm() {
       }
 
       const res = await fetch(
-        "https://satgas.sga-cakrawala.org/api/documentation",
+        "https://satgas.sga-cakrawala.org/api/v1/reports",
         {
           method: "POST",
           body: formData,
+          headers: new Headers({
+            Accept: "application/json",
+            Content_Type: "multipart/form-data",
+          }),
         }
       );
 
@@ -86,7 +98,6 @@ export function InputForm() {
         description: `Keluhan berhasil tersimpan dengan id ${data.id}`,
       });
     } catch (error: any) {
-      console.error("Error KOnolll form:", error);
       toast.error("Terjadi kesalahan 🚨", {
         description: error.message,
       });
@@ -127,7 +138,7 @@ export function InputForm() {
         />
         <FormField
           control={form.control}
-          name="nomor_telepon"
+          name="nomor_telpon"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Nomor Telpon</FormLabel>
@@ -183,12 +194,7 @@ export function InputForm() {
           name="files"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>
-                Bukti Foto{" "}
-                {/* <span className="text-sm text-gray-500">
-                  (JPG, PNG, HEIC – Maks. 10MB, Maks. 5 file)
-                </span> */}
-              </FormLabel>
+              <FormLabel>Bukti Foto</FormLabel>
               <FormControl>
                 <div className="flex relative border border-blue-600 border-dashed rounded-md h-52 justify-center bg-blue-50 hover:bg-blue-100 transition cursor-pointer">
                   <Input
@@ -196,11 +202,27 @@ export function InputForm() {
                     type="file"
                     accept=".jpg,.jpeg,.png,.heic"
                     multiple
-                    onChange={(e) =>
-                      field.onChange(
-                        e.target.files ? Array.from(e.target.files) : []
-                      )
-                    }
+                    onChange={(e) => {
+                      const files = Array.from(e.target.files ?? []);
+
+                      const newImages = files.map((file) => ({
+                        file,
+                        preview: URL.createObjectURL(file),
+                      }));
+
+                      const newFiles = files;
+                      const allFiles = [...(field.value || []), ...newFiles];
+
+                      if (allFiles.length > 5) {
+                        toast.error("Maksimal 5 file gambar.", {
+                          description:
+                            "Anda telah melebihi batas maksimal unggah file gambar.",
+                        });
+                        return;
+                      }
+                      field.onChange(allFiles);
+                      setImages((prev) => [...prev, ...newImages]);
+                    }}
                     className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                   />
                   <div className="flex flex-col items-center py-10 rounded-md cursor-pointer">
@@ -209,17 +231,39 @@ export function InputForm() {
                       Drag & drop foto di sini atau pilih file Format: JPG, PNG,
                       HEIC (Maks. 10MB)
                     </label>
-                    {field.value && field.value.length > 0 && (
-                      <ul className="mt-2 list-disc pl-5 text-sm text-gray-600">
-                        {field.value.map((file, idx) => (
-                          <li key={idx}>{file.name}</li>
-                        ))}
-                      </ul>
-                    )}
+                    <div className="flex flex-wrap gap-3 w-[450px] mt-3 border border-red-500 justify-center">
+                      {images.map((img, index) => (
+                        <div
+                          key={index}
+                          className="relative w-32 h-32 border rounded overflow-hidden"
+                        >
+                          <img
+                            src={img.preview}
+                            alt={`preview-${index}`}
+                            className="object-cover w-full h-full"
+                          />
+                          <button
+                            type="button"
+                            className="absolute top-1 right-1 bg-black bg-opacity-50 text-white rounded-full w-6 h-6 flex items-center justify-center"
+                            onClick={() => {
+                              setImages((prev) =>
+                                prev.filter((_, i) => i !== index)
+                              );
+
+                              const updatedFiles = (field.value || []).filter(
+                                (_, i) => i !== index
+                              );
+                              field.onChange(updatedFiles);
+                            }}
+                          >
+                            ✕
+                          </button>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </FormControl>
-
               <FormMessage />
             </FormItem>
           )}
@@ -228,14 +272,14 @@ export function InputForm() {
           <Button
             type="button"
             variant="outline"
-            className="border-2 border-red-400 hover:bg-red-600 py-3.5 px-14 text-black hover:text-white"
+            className="border-2 border-red-400 hover:bg-red-600 py-3.5 px-14 text-black hover:text-white cursor-pointer"
             onClick={() => form.reset()}
           >
             Reset
           </Button>
           <Button
             type="submit"
-            className="border-2 border-yellow-400 hover:bg-yellow-500 bg-white py-3.5 px-14 text-black hover:text-white"
+            className="border-2 border-yellow-400 hover:bg-yellow-500 bg-white py-3.5 px-14 text-black hover:text-white cursor-pointer"
           >
             Submit
           </Button>
