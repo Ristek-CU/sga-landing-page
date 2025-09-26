@@ -209,7 +209,7 @@ export default function ReportingForm() {
 						<FormItem>
 							<FormLabel>Bukti Foto</FormLabel>
 							<FormControl>
-								<div className="flex p-5 relative justify-center bg-blue-50 rounded-md border border-blue-600 border-dashed transition cursor-pointer hover:bg-blue-100">
+								<div className="flex p-5 relative justify-center bg-blue-50 rounded-md border-2 border-blue-600 border-dashed transition cursor-pointer hover:bg-blue-100/70">
 									<Input
 										id="buktiFotoInput"
 										type="file"
@@ -235,8 +235,11 @@ export default function ReportingForm() {
 
 									<div className="flex flex-col size-full items-center py-10 rounded-md cursor-pointer">
 										<img src={imageIcon} className="w-12 h-12 mb-2.5" />
-										<span className="sm:text-base text-sm text-center">
-											Pilih file Format: JPG, PNG, HEIC (Maks. 10MB)
+										<span className="sm:text-base text-sm text-center text-blue-700">
+											Drag and drop atau klik disini untuk memilih gambar
+										</span>
+										<span className="sm:text-sm text-xs text-center">
+											Format: JPG, PNG, HEIC (Maks. 10MB)
 										</span>
 										<div className="flex flex-wrap justify-center gap-2 w-full h-full mt-3 z-10">
 											{images?.map((file, index) => (
