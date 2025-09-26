@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 
-import ImgFile from "@/assets/images/group.png";
+import imageIcon from "@/assets/images/group.png";
 import CancelIcon from "@/components/ui/cancel.tsx";
 import Button from "../ui/button.tsx";
 import {
@@ -121,7 +121,7 @@ export default function ReportingForm() {
 		<Form {...form}>
 			<form
 				onSubmit={form.handleSubmit(onSubmit)}
-				className="px-64 py-16 space-y-6 w-full"
+				className="py-16 space-y-6 w-full"
 			>
 				<FormField
 					control={form.control}
@@ -209,7 +209,7 @@ export default function ReportingForm() {
 						<FormItem>
 							<FormLabel>Bukti Foto</FormLabel>
 							<FormControl>
-								<div className="flex relative justify-center h-52 bg-blue-50 rounded-md border border-blue-600 border-dashed transition cursor-pointer hover:bg-blue-100">
+								<div className="flex p-5 relative justify-center bg-blue-50 rounded-md border border-blue-600 border-dashed transition cursor-pointer hover:bg-blue-100">
 									<Input
 										id="buktiFotoInput"
 										type="file"
@@ -233,24 +233,24 @@ export default function ReportingForm() {
 										className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
 									/>
 
-									<div className="flex flex-col items-center py-10 rounded-md cursor-pointer">
-										<img src={ImgFile} className="w-12 h-12 mb-2.5" />
-										<label htmlFor="buktiFotoInput">
+									<div className="flex flex-col size-full items-center py-10 rounded-md cursor-pointer">
+										<img src={imageIcon} className="w-12 h-12 mb-2.5" />
+										<span className="sm:text-base text-sm text-center">
 											Pilih file Format: JPG, PNG, HEIC (Maks. 10MB)
-										</label>
-										<div className="flex flex-wrap justify-center gap-2 w-[1200px] mt-3 z-10">
+										</span>
+										<div className="flex flex-wrap justify-center gap-2 w-full h-full mt-3 z-10">
 											{images?.map((file, index) => (
 												<div
 													key={index}
-													className="flex justify-between items-center px-3 py-2 bg-white rounded-md border shadow-sm max-w-fit w-3xs"
+													className="flex justify-between items-center px-3 py-2 bg-white rounded-md border shadow-sm sm:max-w-fit w-full"
 												>
 													<div className="flex items-center gap-2 max-w-[220px] overflow-hidden">
 														<img
-															src={ImgFile}
+															src={imageIcon}
 															alt="default-icon"
 															className="w-5 h-5 shrink-0"
 														/>
-														<span className="text-sm">
+														<span className="sm:text-sm text-xs">
 															{formatFileName(file.name)}
 														</span>
 													</div>
@@ -281,8 +281,8 @@ export default function ReportingForm() {
 					<Button
 						type="button"
 						disabled={form.formState.isSubmitting || !form.formState.isDirty}
-						variant="outline"
-						className="border-2 border-red-400 hover:border-red-600 hover:bg-red-600 py-3.5 px-14 text-black hover:text-white cursor-pointer"
+						variant="destructive-outline"
+						className="py-3.5 px-14"
 						onClick={() => form.reset()}
 					>
 						Reset
@@ -290,7 +290,7 @@ export default function ReportingForm() {
 					<Button
 						type="submit"
 						disabled={form.formState.isSubmitting || !form.formState.isDirty}
-						className="border-2 border-yellow-400 hover:border-yellow-500 hover:bg-yellow-500 bg-white py-3.5 px-14 text-black hover:text-white cursor-pointer"
+						className="py-3.5 px-14"
 					>
 						Submit
 					</Button>

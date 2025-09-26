@@ -5,9 +5,9 @@ export default function ReportingPage() {
 	return (
 		<>
 			<div className="relative flex flex-col w-full min-h-auto overflow-hidden text-white bg-hero bg-hero-pattern bg-fixed">
-				<div className="flex flex-col items-center justify-center gap-4  container mx-auto px-5 z-[1]">
-					<h1 className="grid pt-52 pb-15 text-3xl font-semibold leading-tight text-center md:text-5xl xl:text-5xl">
-						<span>Form Pengaduan Mahasiswa</span>
+				<div className="flex flex-col items-center justify-center gap-4 container mx-auto px-5 z-[1]">
+					<h1 className="sm:pt-52 pt-36 pb-15 text-3xl font-semibold leading-tight text-center md:text-5xl xl:text-5xl">
+						Form Pengaduan Mahasiswa
 					</h1>
 				</div>
 				<Particles
@@ -17,7 +17,7 @@ export default function ReportingPage() {
 					className="absolute w-full h-full overflow-clip"
 				/>
 			</div>
-			<main>
+			<main className="flex flex-col items-center justify-center gap-4 container mx-auto px-5">
 				<ReportingForm />
 			</main>
 		</>
