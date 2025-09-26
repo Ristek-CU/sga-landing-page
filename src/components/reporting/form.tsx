@@ -80,7 +80,6 @@ export default function ReportingForm() {
 					body: formData,
 					headers: new Headers({
 						Accept: "application/json",
-						Content_Type: "multipart/form-data",
 					}),
 				}).then((res) => {
 					if (!res.ok) throw new Error("Gagal menyimpan data");
