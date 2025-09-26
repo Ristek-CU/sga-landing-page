@@ -10,17 +10,13 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../ui/form";
-import { Input } from "../ui/input";
-import { Textarea } from "../ui/textarea";
-import Button from "../ui/button.tsx";
+} from "../components/ui/form.tsx";
+import { Input } from "../components/ui/input.tsx";
+import { Textarea } from "../components/ui/textarea.tsx";
+import Button from "../components/ui/button.tsx";
 import ImgFile from "@/assets/images/Group.png";
 import { useState } from "react";
-
-type ImagePreview = {
-  file: File;
-  preview: string;
-};
+import CancelIcon from "@/components/ui/cancel.tsx";
 
 const FormSchema = z.object({
   nama_lengkap: z.string().optional().or(z.literal("")),
@@ -46,7 +42,8 @@ const FormSchema = z.object({
 });
 
 export function InputForm() {
-  const [images, setImages] = useState<ImagePreview[]>([]);
+  const [images, setImages] = useState<File[]>([]);
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -92,17 +89,24 @@ export function InputForm() {
 
       if (!res.ok) throw new Error("Gagal menyimpan data");
 
-      const data = await res.json();
-
       toast.success("Data berhasil dikirim 🎉", {
-        description: `Keluhan berhasil tersimpan dengan id ${data.id}`,
+        description: `Keluhan berhasil tersimpan`,
+        duration: 2000,
       });
+      form.reset();
+      setImages([]);
     } catch (error: any) {
       toast.error("Terjadi kesalahan 🚨", {
         description: error.message,
+        duration: 2000,
       });
     }
   }
+  const formatFileName = (name: string, maxLength = 20) => {
+    if (name.length <= maxLength) return name;
+    const ext = name.split(".").pop();
+    return name.slice(0, maxLength - ext!.length - 3) + "..." + ext;
+  };
 
   return (
     <Form {...form}>
@@ -204,59 +208,59 @@ export function InputForm() {
                     multiple
                     onChange={(e) => {
                       const files = Array.from(e.target.files ?? []);
-
-                      const newImages = files.map((file) => ({
-                        file,
-                        preview: URL.createObjectURL(file),
-                      }));
-
-                      const newFiles = files;
-                      const allFiles = [...(field.value || []), ...newFiles];
+                      const allFiles = [...(field.value || []), ...files];
 
                       if (allFiles.length > 5) {
                         toast.error("Maksimal 5 file gambar.", {
                           description:
                             "Anda telah melebihi batas maksimal unggah file gambar.",
+                          duration: 2000,
                         });
                         return;
                       }
+
                       field.onChange(allFiles);
-                      setImages((prev) => [...prev, ...newImages]);
+                      setImages(allFiles);
                     }}
                     className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                   />
+
                   <div className="flex flex-col items-center py-10 rounded-md cursor-pointer">
                     <img src={ImgFile} className="w-12 h-12 mb-2.5" />
                     <label htmlFor="buktiFotoInput">
-                      Drag & drop foto di sini atau pilih file Format: JPG, PNG,
-                      HEIC (Maks. 10MB)
+                      Pilih file Format: JPG, PNG, HEIC (Maks. 10MB)
                     </label>
-                    <div className="flex flex-wrap gap-3 w-[450px] mt-3 border border-red-500 justify-center">
-                      {images.map((img, index) => (
+                    <div className="flex flex-wrap justify-center gap-2 w-[1200px] mt-3 z-10">
+                      {images.map((file, index) => (
                         <div
                           key={index}
-                          className="relative w-32 h-32 border rounded overflow-hidden"
+                          className="flex items-center justify-between max-w-fit border w-3xs px-3 py-2 rounded-md bg-white shadow-sm"
                         >
-                          <img
-                            src={img.preview}
-                            alt={`preview-${index}`}
-                            className="object-cover w-full h-full"
-                          />
+                          <div className="flex items-center gap-2 max-w-[220px] overflow-hidden">
+                            <img
+                              src={ImgFile}
+                              alt="default-icon"
+                              className="w-5 h-5 shrink-0"
+                            />
+                            <span className="text-sm">
+                              {formatFileName(file.name)}
+                            </span>
+                          </div>
+
                           <button
                             type="button"
-                            className="absolute top-1 right-1 bg-black bg-opacity-50 text-white rounded-full w-6 h-6 flex items-center justify-center"
+                            className="text-red-500 text-sm hover:underline cursor-pointer"
                             onClick={() => {
                               setImages((prev) =>
                                 prev.filter((_, i) => i !== index)
                               );
-
                               const updatedFiles = (field.value || []).filter(
                                 (_, i) => i !== index
                               );
                               field.onChange(updatedFiles);
                             }}
                           >
-                            ✕
+                            <CancelIcon />
                           </button>
                         </div>
                       ))}
@@ -273,7 +277,10 @@ export function InputForm() {
             type="button"
             variant="outline"
             className="border-2 border-red-400 hover:bg-red-600 py-3.5 px-14 text-black hover:text-white cursor-pointer"
-            onClick={() => form.reset()}
+            onClick={() => {
+              form.reset();
+              setImages([]);
+            }}
           >
             Reset
           </Button>

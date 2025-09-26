@@ -1,4 +1,4 @@
-import { InputForm } from "@/components/page/form-input";
+import { InputForm } from "@/page/form-input";
 import Particles from "@/components/ui/particles";
 
 export default function ReportingPage() {
