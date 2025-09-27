@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/icons";
 import { MailIcon, MapPinIcon } from "lucide-react";
 
-export default function FooterSection() {
+export default function Footer() {
 	return (
 		<footer id="footer" className="w-full bg-blue-50 py-12.5">
 			<div className="container px-5 mx-auto space-y-5">

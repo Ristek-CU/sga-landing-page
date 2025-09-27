@@ -18,17 +18,20 @@ export default function MobileMenu() {
 				isMobileMenuOpen ? "translate-x-0" : "translate-x-full not-sr-only",
 			)}
 		>
-			<a href="#about-us" onClick={onLinkClick}>
+			<a href="/#about-us" onClick={onLinkClick}>
 				About Us
 			</a>
-			<a href="#vision" onClick={onLinkClick}>
+			<a href="/#vision" onClick={onLinkClick}>
 				Vision & Mission
 			</a>
-			<a href="#division" onClick={onLinkClick}>
+			<a href="/#division" onClick={onLinkClick}>
 				Members
 			</a>
-			<a href="#our-partnership" onClick={onLinkClick}>
+			<a href="/#our-partnership" onClick={onLinkClick}>
 				Partnership
+			</a>
+			<a href="/student-voice" onClick={onLinkClick}>
+				Student Voice
 			</a>
 			<Button
 				variant="secondary"

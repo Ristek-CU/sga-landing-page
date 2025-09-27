@@ -1,5 +1,6 @@
 import { AlignJustifyIcon, XIcon } from "lucide-react";
 import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router";
 
 import catalinaLogo from "@/assets/images/logo-catalina.png";
 import sgaLogo from "@/assets/images/logo-sga.png";
@@ -8,6 +9,7 @@ import { useMobileMenuContext } from "@/contexts/mobile-menu-context";
 import { cn } from "@/lib/utils";
 
 export default function Header() {
+	const { pathname } = useLocation();
 	const { isMobileMenuOpen, toggleMobileMenu } = useMobileMenuContext();
 	const [scrollY, setScrollY] = useState(() => window.scrollY);
 
@@ -19,6 +21,8 @@ export default function Header() {
 		window.addEventListener("scroll", handleScroll);
 		return () => window.removeEventListener("scroll", handleScroll);
 	}, []);
+
+	const HashLink = pathname === "/" ? "a" : Link;
 
 	return (
 		<header
@@ -37,7 +41,11 @@ export default function Header() {
 						: "py-10 px-5",
 				)}
 			>
-				<a href="#hero" className="flex items-center gap-4 sm:gap-6">
+				<HashLink
+					to="/#hero"
+					href="/#hero"
+					className="flex items-center gap-4 sm:gap-6"
+				>
 					<img
 						src={sgaLogo}
 						alt="SGA Logo"
@@ -49,12 +57,21 @@ export default function Header() {
 						alt="Catalina Logo"
 						className="size-10 sm:size-14 shrink-0"
 					/>
-				</a>
+				</HashLink>
 				<div className="items-center justify-center flex-1 hidden gap-10 lg:flex">
-					<a href="#about-us">About Us</a>
-					<a href="#vision">Vision & Mission</a>
-					<a href="#division">Members</a>
-					<a href="#our-partnership">Partnership</a>
+					<HashLink to="/#about-us" href="/#about-us">
+						About Us
+					</HashLink>
+					<HashLink to="/#vision" href="/#vision">
+						Vision & Mission
+					</HashLink>
+					<HashLink to="/#division" href="/#division">
+						Members
+					</HashLink>
+					<HashLink to="/#our-partnership" href="/#our-partnership">
+						Partnership
+					</HashLink>
+					<Link to="/student-voice">Student Voice</Link>
 				</div>
 				<Button
 					variant="secondary"

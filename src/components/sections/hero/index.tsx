@@ -10,7 +10,6 @@ export default function HeroSection() {
 		>
 			<div className="flex flex-col items-center justify-center w-full h-full gap-4 min-h-[768px] container mx-auto px-5 z-[1]">
 				<Badge variant="special">Welcome to</Badge>
-
 				<h1 className="grid text-3xl font-semibold leading-tight text-center md:text-5xl xl:text-6xl">
 					<span>Student Government Association</span>
 					<span>Cakrawala University</span>
