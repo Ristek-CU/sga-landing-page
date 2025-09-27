@@ -3,36 +3,8 @@
 import * as AlertDialogPrimitive from "@radix-ui/react-alert-dialog";
 import * as React from "react";
 
-import Button, { buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-
-export default function AlertDialogDemo() {
-	return (
-		<AlertDialog>
-			<Button className="cursor-pointer border-2 border-red-400 bg-white py-3.5 px-14 rounded-lg hover:bg-red-600 hover:text-white transition">
-				Reset
-			</Button>
-			<AlertDialogTrigger asChild>
-				<Button className="border-2 border-yellow-400 hover:bg-amber-500 hover:text-white transition py-3.5 px-14 rounded-lg cursor-pointer bg-white">
-					Submit
-				</Button>
-			</AlertDialogTrigger>
-			<AlertDialogContent>
-				<AlertDialogHeader>
-					<AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-					<AlertDialogDescription>
-						This action cannot be undone. This will permanently delete your
-						account and remove your data from our servers.
-					</AlertDialogDescription>
-				</AlertDialogHeader>
-				<AlertDialogFooter>
-					<AlertDialogCancel>Cancel</AlertDialogCancel>
-					<AlertDialogAction>Continue</AlertDialogAction>
-				</AlertDialogFooter>
-			</AlertDialogContent>
-		</AlertDialog>
-	);
-}
 
 function AlertDialog({
 	...props
