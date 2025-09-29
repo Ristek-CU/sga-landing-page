@@ -154,7 +154,7 @@ export default function ReportingForm() {
           name="nomor_telpon"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Nomor Telpon</FormLabel>
+              <FormLabel>Nomor Telpon / WhatsApp</FormLabel>
               <FormControl>
                 <Input
                   placeholder="Silahkan masukan Nomor Telpon / WhatsApp Anda"
