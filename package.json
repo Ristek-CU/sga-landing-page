@@ -1,6 +1,10 @@
 {
 	"name": "sga-frontend",
 	"private": true,
+	"author": {
+		"email": "ristek.sga@cakrawala.ac.id",
+		"name": "Research and Technology Division"
+	},
 	"version": "0.0.0",
 	"type": "module",
 	"scripts": {
