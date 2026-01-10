@@ -1,0 +1,22 @@
+services:
+  catalina-landing-page:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: catalina-landing-page:latest
+    container_name: catalina-landing-page
+    restart: unless-stopped
+    ports:
+      - "8225:8225"
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8225"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    networks:
+      - catalina-network
+
+networks:
+  catalina-network:
+    driver: bridge

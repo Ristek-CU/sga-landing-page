@@ -1,0 +1,80 @@
+name: Deploy with Docker (Catalina)
+
+on:
+  push:
+    branches:
+      - catalina-cabinet
+  workflow_dispatch:
+
+env:
+  DEPLOY_DIR: /root/website/sga-cakrawala.org
+  CONTAINER_NAME: catalina-landing-page
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install sshpass
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y sshpass
+
+      - name: Deploy to server
+        run: |
+          sshpass -p "${{ secrets.SERVER_PASSWORD }}" ssh -o StrictHostKeyChecking=no \
+            ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} << 'ENDSSH'
+            
+            # Set variables
+            DEPLOY_DIR="/root/website/sga-cakrawala.org"
+            CONTAINER_NAME="catalina-landing-page"
+            
+            # Navigate to deploy directory
+            cd $DEPLOY_DIR
+            
+            # Pull latest changes
+            echo "Pulling latest changes..."
+            git fetch --all
+            git reset --hard origin/catalina-cabinet
+            
+            # Stop existing container (if any)
+            echo "Stopping existing container..."
+            docker compose down --remove-orphans || true
+            
+            # Build and start new container
+            echo "Building and starting container..."
+            docker compose up -d --build
+            
+            # Clean up old images
+            echo "Cleaning up old images..."
+            docker image prune -f
+            
+            # Show container status
+            echo "Container status:"
+            docker compose ps
+            
+            echo "Deployment completed successfully!"
+          ENDSSH
+
+      - name: Verify deployment
+        run: |
+          sshpass -p "${{ secrets.SERVER_PASSWORD }}" ssh -o StrictHostKeyChecking=no \
+            ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} << 'ENDSSH'
+            
+            # Wait for container to be healthy
+            echo "Waiting for container to start..."
+            sleep 10
+            
+            # Check container is running
+            if docker ps | grep -q catalina-landing-page; then
+              echo "✅ Container is running"
+              docker logs --tail 20 catalina-landing-page
+            else
+              echo "❌ Container is not running"
+              docker logs catalina-landing-page
+              exit 1
+            fi
+          ENDSSH
