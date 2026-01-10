@@ -10,6 +10,39 @@ import {
 	CarouselPrevious,
 } from "@/components/ui/carousel";
 
+const testimonies = [
+	{
+		author: "Ahmad Zacky",
+		position: "RISTEK Deputy Head",
+		quote:
+			"SGA Cakrawala has given me the opportunity to grow not only technically, but also in leadership and collaboration. The experience here is invaluable and has shaped me into a better person.",
+	},
+	{
+		author: "Sayyid Haidar",
+		position: "SGA President",
+		quote:
+			"Being part of SGA Cakrawala is a great honor. This organization is not just about achievements, but also about building a solid and supportive community. Let's keep moving forward together!",
+	},
+	{
+		author: "Khidhir",
+		position: "Academic Affairs Head",
+		quote:
+			"At SGA Cakrawala, I found an environment that encourages innovation and continuous learning. Every member has the opportunity to contribute and make a real impact in our academic community.",
+	},
+	{
+		author: "Sulthan Rizal",
+		position: "RISTEK Member",
+		quote:
+			"Joining RISTEK at SGA Cakrawala was the best decision I've ever made. I'm surrounded by inspiring people who are always ready to share knowledge and experiences. This is the perfect place to grow.",
+	},
+	{
+		author: "Bima Turangga Bayu",
+		position: "RISTEK Member",
+		quote:
+			"During my time in RISTEK, it was a place where you can surround yourself with brilliant minds in Fasilkom CU. They literally just flocked together in that small room. Therefore, I'd like to encourage you to join RISTEK for the learning opportunity you may potentially find by meeting these great people.",
+	},
+];
+
 export default function TestimonySection() {
 	return (
 		<section
@@ -38,17 +71,10 @@ export default function TestimonySection() {
 					</div>
 				</div>
 				<CarouselContent>
-					{Array.from({ length: 5 }).map((_, index) => (
+					{testimonies.map((testimony, index) => (
 						<CarouselItem key={index} className="w-0">
-							<Quote
-								author={`M. Bima Saputera ${index + 1}`}
-								position="CEO TutupJendela"
-							>
-								“During my time in RISTEK, it was a place where you can surround
-								yourself wth brilliant minds in Fasilkom CU. They literally just
-								flocked together in that small room. Therefore, I’d like to
-								encourage you to join RISTEK for the learning opportunity you
-								may potentially find by meeting these great people.”
+							<Quote author={testimony.author} position={testimony.position}>
+								"{testimony.quote}"
 							</Quote>
 						</CarouselItem>
 					))}
