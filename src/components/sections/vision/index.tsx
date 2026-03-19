@@ -1,26 +1,42 @@
-import sgaMembers from "@/assets/images/sga-members.png";
-import { Badge } from "@/components/ui/badge";
+import VisionIllustration from "@/assets/images/vision.svg";
 
-export default function VisionSection() {
-	return (
-		<section
-			id="vision"
-			className="container flex flex-col-reverse items-center w-full h-full px-5 mx-auto bg-white pt-25 sm:pb-25 xl:py-30 gap-x-10 gap-y-5 lg:flex-row"
-		>
-			<img src={sgaMembers} className="flex-1 w-full h-max" />
-			<div className="flex-1 space-y-5">
-				<Badge>Vision</Badge>
-				<h1 className="text-2xl font-semibold leading-tight xl:text-4xl">
-					Inspirasi Kepemimpinan dan Inovasi di{" "}
-					<span className="text-green-500">Lingkungan Kampus</span>
-				</h1>
-				<p className="text-sm font-normal leading-tight text-gray-300 xl:text-xl xl:mt-10">
-					Menjadi inisiator dan agen inovasi yang mendukung percepatan kemajuan
-					kampus. Berkomitmen untuk mendorong mahasiswa dan institusi agar terus
-					berakselerasi, melakukan perbaikan berkelanjutan, serta bersaing,
-					bahkan melampaui kampus-kampus yang telah mapan
-				</p>
-			</div>
-		</section>
-	);
-}
+const VisionSection = () => {
+  return (
+    <section id="vision" className="py-20 px-4 max-w-7xl mx-auto">
+      <div className="flex flex-col md:flex-row items-center gap-12 lg:gap-20">
+        {/*ilustrasi */}
+        <div className="w-full md:w-1/2 flex justify-center">
+          <img
+            src={VisionIllustration}
+            alt="Vision Illustration"
+            className="w-full max-w-md h-auto object-contain"
+          />
+        </div>
+
+        {/*teks konten */}
+        <div className="w-full md:w-1/2 text-left">
+          <div className="mb-6">
+            <span className="px-5 py-1.5 border border-[#EAB308] text-[#EAB308] rounded-full text-xs font-bold uppercase tracking-widest">
+              Vision
+            </span>
+          </div>
+
+          {/* header*/}
+          <h2 className="text-3xl md:text-5xl font-bold text-[#004751] leading-tight">
+            Ekosistem Kampus Yang <br />
+            <span className="text-[#EAB308]">Sinergis dan Suportif</span>
+          </h2>
+
+          {/* deskripsi */}
+          <p className="mt-6 text-gray-600 text-lg leading-relaxed">
+            Mewujudkan ekosistem kampus yang sinergis dan suportif,
+            memberdayakan mahasiswa menjadi insan yang kompeten, tangguh, dan
+            siap berkarya.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default VisionSection;
