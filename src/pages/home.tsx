@@ -11,7 +11,7 @@ import VisionSection from "@/components/sections/vision";
 
 export default function HomePage() {
 	return (
-		<main className="grid grid-flow-row w-full min-h-screen">
+		<main className="flex flex-col w-full min-h-screen overflow-hidden max-w-[100vw]">
 			<HeroSection />
 			<AboutUsSection />
 			<VisionSection />
