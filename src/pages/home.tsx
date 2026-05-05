@@ -3,7 +3,7 @@ import DivisionSection from "@/components/sections/division";
 import EventSection from "@/components/sections/event";
 import HeroSection from "@/components/sections/hero";
 import JoinUsSection from "@/components/sections/join-us";
-import MeetOurTeamSection from "@/components/sections/meet-our-team";
+// import MeetOurTeamSection from "@/components/sections/meet-our-team";
 import MissionSection from "@/components/sections/mission";
 import OurPartnershipSection from "@/components/sections/our-partnership";
 import TestimonySection from "@/components/sections/testimony";
@@ -16,7 +16,7 @@ export default function HomePage() {
 			<AboutUsSection />
 			<VisionSection />
 			<MissionSection />
-			<MeetOurTeamSection />
+			{/* <MeetOurTeamSection /> */}
 			<DivisionSection />
 			<EventSection />
 			<OurPartnershipSection />

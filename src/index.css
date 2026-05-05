@@ -6,11 +6,9 @@
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
   --background-image-hero-pattern: url('./assets/images/hero-pattern.svg'),
-    radial-gradient(
-      50% 50% at 50% 0%,
+    radial-gradient(50% 50% at 50% 0%,
       rgba(0, 159, 128, 0.4) 0%,
-      rgba(0, 159, 128, 0) 100%
-    );
+      rgba(0, 159, 128, 0) 100%);
 
   --color-hero: #002f3e;
 
@@ -67,6 +65,7 @@
     0% {
       transform: translateX(0);
     }
+
     100% {
       transform: translateX(calc(-100% - var(--gap)));
     }
@@ -76,6 +75,7 @@
     0% {
       transform: translateY(0);
     }
+
     100% {
       transform: translateY(calc(-100% - var(--gap)));
     }
@@ -91,6 +91,7 @@
   color utility to any element that depends on these defaults.
 */
 @layer base {
+
   *,
   ::after,
   ::before,
@@ -98,4 +99,18 @@
   ::file-selector-button {
     border-color: var(--color-gray-200, currentColor);
   }
+}
+
+/* Menyembunyikan scrollbar untuk Chrome, Safari, dan Opera */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Menyembunyikan scrollbar untuk IE, Edge, dan Firefox */
+html,
+body {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
