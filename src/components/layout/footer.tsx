@@ -1,83 +1,98 @@
 import logo from "@/assets/images/logo-cakrawala.png";
+import arvanaLogo from "@/assets/images/Logo-Arvana.png";
 import {
-	InstagramLogo,
-	LinkedInLogo,
-	TikTokLogo,
-	XLogo,
+    InstagramLogo,
+    LinkedInLogo,
+    TikTokLogo,
+    XLogo,
 } from "@/components/ui/icons";
 import { MapPinIcon } from "lucide-react";
 
 export default function Footer() {
-	return (
-		<footer id="footer" className="w-full bg-[#06455B] text-[#F4F4F4]">
-			<div className="container px-5 mx-auto py-8 lg:pt-[43px] lg:pb-[44px] flex flex-col gap-10 lg:gap-[72px]">
-				<div className="flex flex-col lg:flex-row justify-between w-full gap-10 lg:gap-5">
-					{/* Left Section */}
-					<div className="flex flex-col gap-5 lg:gap-6 w-full lg:max-w-2xl items-center lg:items-start text-center lg:text-left">
-						<div className="flex flex-row items-center justify-center lg:justify-start gap-4 lg:gap-6">
-							<img src={logo} alt="Cakrawala Logo" className="w-[64px] h-[64px] lg:w-[88px] lg:h-[88px] object-contain shrink-0" />
-							<div className="w-[2px] h-[64px] lg:h-[88px] bg-[#CEAE65]" />
-							<img
-								src={logo}
-								alt="Cakrawala Logo"
-								className="w-[64px] h-[64px] lg:w-[88px] lg:h-[88px] object-contain shrink-0"
-							/>
-						</div>
-						<p className="text-[#F4F4F4] text-[15px] sm:text-base lg:text-[18px] leading-[1.6] px-2 lg:px-0 max-w-sm lg:max-w-none">
-							Student Government Association (SGA) Cakrawala University adalah
-							wadah resmi bagi mahasiswa untuk berpartisipasi dalam pengambilan
-							keputusan yang mempengaruhi kehidupan kampus.
-						</p>
-					</div>
+    return (
+        <footer id="footer" className="w-full bg-[#06455B] text-[#F4F4F4] border-t border-white/5">
+            <div className="container px-6 mx-auto py-10 lg:pt-[43px] lg:pb-[44px] flex flex-col gap-8 lg:gap-[72px]">
+                
+                <div className="flex flex-col lg:flex-row justify-between w-full gap-8 lg:gap-5">
+                    
+                    {/* Left Section - Branding */}
+                    <div className="flex flex-col gap-5 lg:gap-6 w-full lg:max-w-2xl items-start">
+                        {/* Logo Group */}
+                        <div className="flex flex-row items-center gap-3 lg:gap-6">
+                            <img 
+                                src={logo} 
+                                alt="Cakrawala Logo" 
+                                className="w-[48px] h-[48px] lg:w-[88px] lg:h-[88px] object-contain shrink-0" 
+                            />
+                            {/* Garis Vertikal Emas */}
+                            <div className="w-[1.5px] h-[40px] lg:h-[88px] bg-[#CEAE65]" />
+                            <img
+                                src={arvanaLogo}
+                                alt="Arvana Logo"
+                                className="w-[48px] h-[48px] lg:w-[88px] lg:h-[88px] object-contain shrink-0"
+                            />
+                        </div>
+                        
+                        <p className="text-[#F4F4F4]/90 text-[14px] lg:text-[18px] leading-relaxed max-w-[320px] lg:max-w-[550px]">
+                            Student Government Association (SGA) Cakrawala University adalah
+                            wadah resmi bagi mahasiswa untuk berpartisipasi dalam pengambilan
+                            keputusan yang mempengaruhi kehidupan kampus.
+                        </p>
+                    </div>
 
-					{/* Right Section */}
-					<div className="flex flex-col gap-5 lg:gap-4 w-full lg:max-w-[420px] items-center lg:items-end mt-4 lg:mt-0">
-						<iframe 
-							src="https://maps.google.com/maps?q=Cakrawala%20University,%20Jakarta&t=&z=13&ie=UTF8&iwloc=&output=embed" 
-							className="w-full sm:w-[365px] h-[160px] rounded-lg border-0 shadow-sm" 
-							allowFullScreen 
-							loading="lazy" 
-							referrerPolicy="no-referrer-when-downgrade"
-						></iframe>
-						<div className="flex items-start gap-4 w-full sm:w-[365px] bg-[#0A5C75]/40 lg:bg-transparent p-4 lg:p-0 rounded-xl text-left border border-white/10 lg:border-none">
-							<MapPinIcon className="size-6 shrink-0 text-[#CEAE65]" />
-							<address className="text-[#F4F4F4] text-[13px] sm:text-sm lg:text-base leading-relaxed not-italic">
-								Jl. Kemang Timur No.1, RT.14/RW.8, Pejaten Bar.,Ps. Minggu,
-								Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12510
-							</address>
-						</div>
-					</div>
-				</div>
+                    {/* Right Section - Location & Map */}
+                    <div className="flex flex-col gap-4 w-full lg:max-w-[400px] items-start lg:items-end">
+                        {/* Map Container */}
+                        <div className="w-full sm:w-[365px] h-[140px] lg:h-[160px] overflow-hidden rounded-xl shadow-lg border border-white/10">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.024765620641!2d106.824247075874!3d-6.260468993728157!2m3!1f0!2f0!3f0!3m2!1i1024!2i1024!4f13.1!3m3!1m2!1s0x2e69f3d9b4b9b9b9%3A0x1b1b1b1b1b1b1b1b!2sJl.%20Kemang%20Timur%20No.1!5e0!3m2!1sid!2sid!4v1715000000000!5m2!1sid!2sid" 
+                                className="w-full h-full border-0 grayscale-[10%]" 
+                                allowFullScreen 
+                                loading="lazy" 
+                                referrerPolicy="no-referrer-when-downgrade"
+                            ></iframe>
+                        </div>
+                        
+                        {/* Address */}
+                        <div className="flex items-start gap-3 w-full sm:w-[365px] mt-2">
+                            <MapPinIcon className="size-5 lg:size-6 shrink-0 text-[#CEAE65]" />
+                            <address className="text-[#F4F4F4]/80 text-[13px] lg:text-base leading-snug not-italic">
+                                Jl. Kemang Timur No.1, RT.14/RW.8, Pejaten Bar., Ps. Minggu,
+                                Jakarta Selatan, DKI Jakarta 12510
+                            </address>
+                        </div>
+                    </div>
+                </div>
 
-				<div className="flex flex-col w-full gap-5">
-					{/* Separator Line */}
-					<div className="w-full h-[1px] bg-white/20" />
+                <div className="flex flex-col w-full gap-6">
+                    {/* Separator Line - Warna Emas Sesuai Gambar */}
+                    <div className="w-full h-[1.5px] bg-[#CEAE65]/60" />
 
-					{/* Bottom Section */}
-					<div className="flex flex-col-reverse sm:flex-row justify-between w-full gap-4 items-center">
-						<span className="flex-1 block w-full text-sm lg:text-base text-[#F4F4F4] sm:text-left text-center">
-							© 2026 Cakrawala University. All Rights Reserved.
-						</span>
-						<div className="flex justify-center sm:justify-end gap-5 shrink-0">
-							<a href="https://www.instagram.com/sga.cakrawala" target="_blank" rel="noreferrer" className="hover:opacity-80 transition-opacity">
-								<InstagramLogo className="size-6 fill-[#CEAE65]" />
-							</a>
-							<a
-								href="https://www.linkedin.com/company/sga-cakrawala-university"
-								target="_blank" rel="noreferrer" className="hover:opacity-80 transition-opacity"
-							>
-								<LinkedInLogo className="size-6 fill-[#CEAE65]" />
-							</a>
-							<a href="https://www.tiktok.com/@sgacakrawala" target="_blank" rel="noreferrer" className="hover:opacity-80 transition-opacity">
-								<TikTokLogo className="size-6 fill-[#CEAE65] text-[#CEAE65]" />
-							</a>
-							<a href="https://x.com/sga_cakrawala" target="_blank" rel="noreferrer" className="hover:opacity-80 transition-opacity">
-								<XLogo className="size-6 fill-[#CEAE65]" />
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</footer>
-	);
+                    {/* Bottom Section */}
+                    <div className="flex flex-col-reverse md:flex-row justify-between w-full gap-6 items-center">
+                        {/* Copyright */}
+                        <span className="text-[12px] lg:text-[15px] text-[#F4F4F4]/70 text-center md:text-left font-medium">
+                            © 2026 Cakrawala University. <br className="block md:hidden" /> All Rights Reserved.
+                        </span>
+                        
+                        {/* Social Media - Warna Emas & Efek Hover */}
+                        <div className="flex justify-center md:justify-end gap-6 shrink-0">
+                            <a href="https://www.instagram.com/sga.cakrawala" target="_blank" rel="noreferrer" className="group">
+                                <InstagramLogo className="size-[24px] lg:size-7 fill-[#CEAE65] group-hover:fill-[#EBC05F] transition-all transform group-hover:scale-110" />
+                            </a>
+                            <a href="https://www.linkedin.com/company/sga-cakrawala-university" target="_blank" rel="noreferrer" className="group">
+                                <LinkedInLogo className="size-[24px] lg:size-7 fill-[#CEAE65] group-hover:fill-[#EBC05F] transition-all transform group-hover:scale-110" />
+                            </a>
+                            <a href="https://www.tiktok.com/@sgacakrawala" target="_blank" rel="noreferrer" className="group">
+                                <TikTokLogo className="size-[24px] lg:size-7 fill-[#CEAE65] group-hover:fill-[#EBC05F] transition-all transform group-hover:scale-110" />
+                            </a>
+                            <a href="https://x.com/sga_cakrawala" target="_blank" rel="noreferrer" className="group">
+                                <XLogo className="size-[24px] lg:size-7 fill-[#CEAE65] group-hover:fill-[#EBC05F] transition-all transform group-hover:scale-110" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    );
 }

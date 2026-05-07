@@ -3,6 +3,7 @@ import CoordinationIcon from "../../../assets/images/coordination.svg";
 import CapacityIcon from "../../../assets/images/capacity.svg";
 import CareerPreparedIcon from "../../../assets/images/careerprepared.svg";
 import CollaborationIcon from "../../../assets/images/collaboration.svg";
+import { Badge } from "@/components/ui/badge"; 
 
 const missionData = [
   {
@@ -49,15 +50,17 @@ const missionData = [
 
 const MissionSection = () => {
   return (
-    <section id="mission" className="py-16 px-4">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex justify-center mb-10">
-          <span className="px-5 py-1.5 border border-[#EAB308] text-[#EAB308] rounded-full text-xs font-bold uppercase tracking-widest">
-            Mission
-          </span>
+    // Penyesuaian padding agar seragam dengan section Vision
+    <section id="mission" className="py-16 md:py-20 px-5 max-w-7xl mx-auto">
+      <div className="flex flex-col w-full h-full">
+        
+        <div className="flex justify-center mb-8 md:mb-12">
+          {/* 2. Menggunakan komponen Badge */}
+          <Badge variant="special">Mission</Badge>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* 3. Penambahan sm:grid-cols-2 dan penyesuaian gap untuk mobile */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5 md:gap-6">
           {missionData.map((item, index) => (
             <MissionCard
               key={index}
@@ -67,6 +70,7 @@ const MissionSection = () => {
             />
           ))}
         </div>
+        
       </div>
     </section>
   );

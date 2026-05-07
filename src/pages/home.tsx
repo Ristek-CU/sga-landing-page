@@ -2,11 +2,11 @@ import AboutUsSection from "@/components/sections/about-us";
 import DivisionSection from "@/components/sections/division";
 import EventSection from "@/components/sections/event";
 import HeroSection from "@/components/sections/hero";
-import JoinUsSection from "@/components/sections/join-us";
+// import JoinUsSection from "@/components/sections/join-us";
 // import MeetOurTeamSection from "@/components/sections/meet-our-team";
 import MissionSection from "@/components/sections/mission";
-import OurPartnershipSection from "@/components/sections/our-partnership";
-import TestimonySection from "@/components/sections/testimony";
+// import OurPartnershipSection from "@/components/sections/our-partnership";
+// import TestimonySection from "@/components/sections/testimony";
 import VisionSection from "@/components/sections/vision";
 
 export default function HomePage() {
@@ -19,9 +19,9 @@ export default function HomePage() {
 			{/* <MeetOurTeamSection /> */}
 			<DivisionSection />
 			<EventSection />
-			<OurPartnershipSection />
-			<TestimonySection />
-			<JoinUsSection />
+			{/* <OurPartnershipSection /> */}
+			{/* <TestimonySection /> */}
+			{/* <JoinUsSection /> */}
 		</main>
 	);
 }

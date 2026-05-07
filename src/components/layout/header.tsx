@@ -2,7 +2,7 @@ import { AlignJustifyIcon, XIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router";
 
-import catalinaLogo from "@/assets/images/logo-catalina.png";
+import arvanaLogo from "@/assets/images/Logo-Arvana.png";
 import sgaLogo from "@/assets/images/logo-sga.png";
 import Button from "@/components/ui/button";
 import { useMobileMenuContext } from "@/contexts/mobile-menu-context";
@@ -52,8 +52,8 @@ export default function Header() {
 					/>
 					<div className="w-[1px] h-8 sm:h-10 bg-white/30" />
 					<img
-						src={catalinaLogo}
-						alt="Catalina Logo"
+						src={arvanaLogo}
+						alt="Arvana Logo"
 						className={cn(
 							"shrink-0 object-contain transition-all duration-500 ease-in-out",
 							scrollY > 50 ? "size-9 sm:size-10" : "size-10 sm:size-12"
