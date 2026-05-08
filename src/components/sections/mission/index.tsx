@@ -1,79 +1,30 @@
-import { MissionCard } from "./partials/mission-card";
-import CoordinationIcon from "../../../assets/images/coordination.svg";
-import CapacityIcon from "../../../assets/images/capacity.svg";
-import CareerPreparedIcon from "../../../assets/images/careerprepared.svg";
-import CollaborationIcon from "../../../assets/images/collaboration.svg";
-import { Badge } from "@/components/ui/badge"; 
+import { Badge } from "@/components/ui/badge";
+// TODO: Should be fetched from the CMS in the future
+import missions from "@/lib/data/missions.json";
+import MissionCard from "./partials/mission-card";
 
-const missionData = [
-  {
-    title: "Coordination",
-    description:
-      "Jembatan Mahasiswa & Kampus untuk Efisiensi Waktu, Sinkronisasi Belajar, dan Komunikasi Dua Arah",
-    icon: (
-      <img
-        src={CoordinationIcon}
-        alt="Coordination"
-        className="w-full h-full"
-      />
-    ),
-  },
-  {
-    title: "Capacity",
-    description: "Meningkatkan skill & ketahanan belajar mahasiswa",
-    icon: <img src={CapacityIcon} alt="Capacity" className="w-full h-full" />,
-  },
-  {
-    title: "Career Prepared",
-    description: "1 (Kuliah) + 3 (Lomba, Organisasi, dan Intern)",
-    icon: (
-      <img
-        src={CareerPreparedIcon}
-        alt="Career Prepared"
-        className="w-full h-full"
-      />
-    ),
-  },
-  {
-    title: "Collaboration",
-    description:
-      "Memperluas akses pengalaman & jejaring lewat mitra luar kampus",
-    icon: (
-      <img
-        src={CollaborationIcon}
-        alt="Collaboration"
-        className="w-full h-full"
-      />
-    ),
-  },
-];
-
-const MissionSection = () => {
-  return (
-    // Penyesuaian padding agar seragam dengan section Vision
-    <section id="mission" className="py-16 md:py-20 px-5 max-w-7xl mx-auto">
-      <div className="flex flex-col w-full h-full">
-        
-        <div className="flex justify-center mb-8 md:mb-12">
-          {/* 2. Menggunakan komponen Badge */}
-          <Badge variant="special">Mission</Badge>
-        </div>
-
-        {/* 3. Penambahan sm:grid-cols-2 dan penyesuaian gap untuk mobile */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5 md:gap-6">
-          {missionData.map((item, index) => (
-            <MissionCard
-              key={index}
-              title={item.title}
-              description={item.description}
-              icon={item.icon}
-            />
-          ))}
-        </div>
-        
-      </div>
-    </section>
-  );
-};
-
-export default MissionSection;
+export default function MissionSection() {
+	return (
+		<section
+			id="mission"
+			className="container flex flex-col w-full h-full gap-5 px-5 mx-auto bg-white py-25 xl:py-30 xl:gap-10 md:flex-row"
+		>
+			<div className="flex-1 space-y-5 text-center md:text-left">
+				<Badge>Mission</Badge>
+				<h2 className="text-2xl font-semibold leading-tight xl:text-4xl">
+					Kami bertujuan untuk memfasilitasi komunikasi yang{" "}
+					<span className="leading-tight text-yellow-500">
+						efektif antara mahasiswa dan pihak universitas
+					</span>
+				</h2>
+			</div>
+			<div className="grid flex-1 gap-5">
+				{missions.map(({ title, description }, i) => (
+					<MissionCard key={i} title={title}>
+						{description}
+					</MissionCard>
+				))}
+			</div>
+		</section>
+	);
+}

@@ -14,7 +14,7 @@ export default function MobileMenu() {
 	return (
 		<nav
 			className={cn(
-				"fixed top-0 right-0 pt-24 px-5 flex flex-col gap-y-10 w-full h-full min-h-screen text-white transition-transform duration-500 ease-out bg-[rgb(6,69,91)]/95 backdrop-blur-xl z-40 sm:pt-32 lg:hidden overflow-y-auto",
+				"fixed top-0 right-0 pt-30 px-5 flex flex-col gap-y-10 w-full h-full min-h-screen gap-5 text-white transition-transform duration-500 ease-out bg-blue-900/70 backdrop-blur-lg z-25 sm:pt-40 lg:hidden",
 				isMobileMenuOpen ? "translate-x-0" : "translate-x-full not-sr-only",
 			)}
 		>
