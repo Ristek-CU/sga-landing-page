@@ -21,11 +21,7 @@
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
   --background-image-hero-pattern:
-    url("/src/assets/images/hero-pattern.svg"),
-    radial-gradient(
-      50% 50% at 50% 0%,
-      rgba(0, 159, 128, 0.4) 0%,
-      rgba(0, 159, 128, 0) 100%);
+    url("/src/assets/images/hero-pattern.webp");
 
   --color-hero: #08444A;
 

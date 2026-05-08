@@ -45,7 +45,7 @@ export default function HeroSection() {
             </div>
 
             <Particles
-                quantity={450}
+                quantity={120}
                 size={0.4}
                 staticity={40}
                 className="absolute w-full h-full overflow-clip opacity-80 z-0 pointer-events-none"

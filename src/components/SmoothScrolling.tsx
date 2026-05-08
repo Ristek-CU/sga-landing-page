@@ -1,30 +1,36 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import Lenis from "lenis";
 
 export default function SmoothScrolling({ children }: { children: React.ReactNode }) {
+    const lenisRef = useRef<Lenis | null>(null);
+
     useEffect(() => {
-        // Inisialisasi Lenis
         const lenis = new Lenis({
-            duration: 1.2, // Mengatur seberapa lama/halus scrollnya (default 1.2)
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Gaya efek perlambatannya
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             orientation: "vertical",
             gestureOrientation: "vertical",
-            smoothWheel: true, // Halus saat pakai scroll wheel mouse
+            smoothWheel: true,
         });
+        lenisRef.current = lenis;
 
-        // Menghubungkan Lenis dengan Request Animation Frame bawaan browser
+        // Use rAF loop with proper cleanup
+        let rafId: number;
         function raf(time: number) {
             lenis.raf(time);
-            requestAnimationFrame(raf);
+            rafId = requestAnimationFrame(raf);
         }
+        rafId = requestAnimationFrame(raf);
 
-        requestAnimationFrame(raf);
-
-        // Membersihkan Lenis saat komponen dilepas (unmount)
         return () => {
+            cancelAnimationFrame(rafId);
             lenis.destroy();
         };
     }, []);
 
-    return <>{children}</>;
+    return (
+        <div style={{ willChange: "scroll-position" }}>
+            {children}
+        </div>
+    );
 }

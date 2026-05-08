@@ -1,5 +1,5 @@
 // Import gambar-gambar Anda di sini
-import sgaMembers from "@/assets/images/sga-members.png";
+import sgaMembers from "@/assets/images/sga-members.webp";
 
 export default function AboutUsSection() {
 	return (
