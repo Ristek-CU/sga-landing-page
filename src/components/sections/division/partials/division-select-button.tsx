@@ -1,4 +1,5 @@
 import type { PropsWithChildren } from "react";
+
 import { cn } from "@/lib/utils";
 
 export interface DivisionSelectButtonProps extends PropsWithChildren {
@@ -14,10 +15,10 @@ export default function DivisionSelectButton({
 	return (
 		<button
 			className={cn(
-				"cursor-pointer text-sm md:text-base text-left transition-colors whitespace-nowrap",
+				"cursor-pointer text-[0.65rem] md:text-base xl:text-xl text-left w-max transition-colors",
 				isActive
-					? "font-bold text-[#D4B254]"
-					: "font-normal text-white hover:text-gray-300",
+					? "font-bold text-green-500"
+					: "font-normal text-gray-300 hover:text-green-400",
 			)}
 			onClick={onClick}
 		>
