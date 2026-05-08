@@ -96,7 +96,7 @@ export default function DivisionSection() {
                                 <MemberCard
                                     name={name}
                                     position={role}
-                                    image={imagePath}
+                                    image={imagePath ?? null}
                                     linkedinUrl={linkedInUrl}
                                 />
                             </div>
