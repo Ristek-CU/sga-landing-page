@@ -207,4 +207,7 @@ export default function Footer() {
         </footer>
     );
 }
+<<<<<<< HEAD
 >>>>>>> df38789 (Halaman EventPage New)
+=======
+>>>>>>> 0bebab2 (feat: refine landing page layout and visual consistency)
