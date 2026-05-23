@@ -24,11 +24,19 @@
 		"embla-carousel-react": "^8.5.2",
 		"framer-motion": "^12.36.0",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		"lenis": "^1.3.23",
 =======
 		"gsap": "^3.15.0",
 		"lenis": "^1.3.18",
 >>>>>>> 3ae916c (feat: add UKM landing page and detail routes)
+=======
+		"gsap": "^3.15.0",
+		"lenis": "^1.3.18",
+=======
+		"lenis": "^1.3.23",
+>>>>>>> 91a4853 (feat: add ICD and ADVO member photos)
+>>>>>>> 636fdcb (feat: add ICD and ADVO member photos)
 		"lucide-react": "^0.474.0",
 		"react": "19.0.0",
 		"react-dom": "19.0.0",
