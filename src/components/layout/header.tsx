@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router";
 
 import arvanaLogo from "@/assets/images/Logo-Arvana.png";
-import sgaLogo from "@/assets/images/logo-sga.webp";
+import sgaLogo from "@/assets/images/Logomark.webp";
 import Button from "@/components/ui/button";
 import { useMobileMenuContext } from "@/contexts/mobile-menu-context";
 import { cn } from "@/lib/utils";
