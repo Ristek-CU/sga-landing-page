@@ -1,435 +1,711 @@
-{
-	"Executive": [
+{ 
+	"Executive Board": [
 		{
-			"name": "Sayyid Abdul Aziz Haidar",
-			"role": "Ketua Umum SGA",
-			"division": "Executive",
-			"linkedInUrl": "https://www.linkedin.com/in/sayyid-haidar",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/CORE%20TEAM/SQUARE/1.png"
+			"name": "Aguini Providensia Tjandra",
+			"role": "President",
+			"division": "Executive Board",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/BPH/Anguini.png"
 		},
 		{
-			"name": "Violetha Nazwa Simaremare",
-			"role": "Wakil Ketua Umum SGA",
-			"division": "Executive",
-			"linkedInUrl": "https://www.linkedin.com/in/violetha-nazwa",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/CORE%20TEAM/SQUARE/6.png"
+			"name": "Aldridge Mika Gunawan",
+			"role": "Vice President",
+			"division": "Executive Board",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/BPH/Aldridge%20Mika%20Gunawan.png"
 		},
 		{
-			"name": "Adzril Adzim Hendrynov",
-			"role": "Sekretaris Umum",
-			"division": "Executive",
-			"linkedInUrl": "https://www.linkedin.com/in/adzril-adzim/",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/CORE%20TEAM/SQUARE/5.png"
+			"name": "Firaas Andaru Athaa Ramadhan",
+			"role": "Controller",
+			"division": "Executive Board",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/BPH/Firaas%20Andaru%20Athaa%20Ramadhan.png"
 		},
 		{
-			"name": "Nayla Zahiranisa",
-			"role": "Bendahara Umum 1",
-			"division": "Executive",
-			"linkedInUrl": "https://www.linkedin.com/in/nayla-zahiranisa",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/CORE%20TEAM/SQUARE/3.png"
+			"name": "Vania",
+			"role": "Controller",
+			"division": "Executive Board",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/BPH/Vania.png"
 		},
 		{
-			"name": "Mohamad Restu Mutia Sena",
-			"role": "Bendahara Umum 2",
-			"division": "Executive",
-			"linkedInUrl": "https://www.linkedin.com/in/mohamad-restu-mutia-sena",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/CORE%20TEAM/SQUARE/4.png"
+			"name": "Vincensius Anthony",
+			"role": "Controller",
+			"division": "Executive Board",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/BPH/Vincensius%20Anthony.png"
+		},
+		{
+			"name": "NYSSA MUTIARA SYAKIEB",
+			"role": "Controller",
+			"division": "Executive Board",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/BPH/NYSSA%20MUTIARA%20SYAKIEB.png"
+		},
+		{
+			"name": "Marshelinda Rukmana",
+			"role": "Secretary",
+			"division": "Executive Board",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/BPH/Marshelinda%20Rukmana.png"
+		},
+		{
+			"name": "Raihan Firdaus Hadi Saputra",
+			"role": "Secretary",
+			"division": "Executive Board",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/BPH/Raihan%20Firdaus%20Hadi%20Saputra.png"
+		},
+		{
+			"name": "Fatimah Tri Lestari",
+			"role": "Treasurer",
+			"division": "Executive Board",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/BPH/Fatimah%20Tri%20Lestari.png"
+		},
+		{
+			"name": "Atikah Nurfatkiyah",
+			"role": "Treasurer",
+			"division": "Executive Board",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/BPH/Atikah%20Nurfatkiyah.png"
 		}
 	],
-	"Academic Affairs": [
+	"Media And Information": [
 		{
-			"name": "Khidhir",
-			"role": "Ketua Divisi",
-			"division": "Academic Affairs",
-			"linkedInUrl": "https://www.linkedin.com/in/khidhirz/",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/ACADEMIC%20AFFAIRS/SQUARE/50.png"
+			"name": "Dita Wilia Wardah",
+			"role": "Head",
+			"division": "Media And Information",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/MEDIA/Dita%20Wilia%20Wardah.png"
 		},
 		{
-			"name": "Fairuz Fajri",
-			"role": "Wakil Ketua Divisi",
-			"division": "Academic Affairs",
-			"linkedInUrl": "https://www.linkedin.com/in/fairuzfajri/",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/ACADEMIC%20AFFAIRS/SQUARE/375.png"
+			"name": "Estrella Illda Meisya",
+			"role": "Deputy Head",
+			"division": "Media And Information",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/MEDIA/Estrella%20Illda%20Meisya.png"
 		},
 		{
-			"name": "Shabrina Rahmah",
-			"role": "Sekretaris Divisi",
-			"division": "Academic Affairs",
-			"linkedInUrl": "https://www.linkedin.com/in/shabrina-rahmah-5572b4342?utm_source=s",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/ACADEMIC%20AFFAIRS/SQUARE/68.png"
+			"name": "Anisa Ayu Listiani",
+			"role": "Secretary",
+			"division": "Media And Information",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/MEDIA/Anisa%20Ayu%20Listiani.png"
 		},
 		{
-			"name": "Rusmayanti Rahayu",
-			"role": "Bendahara Divisi",
-			"division": "Academic Affairs",
-			"linkedInUrl": "https://www.linkedin.com/in/rusmayanti-rahayu",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/ACADEMIC%20AFFAIRS/SQUARE/347.png"
+			"name": "Aulia Ajeng Ramadhani",
+			"role": "Treasurer",
+			"division": "Media And Information",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/MEDIA/Aulia%20Ajeng%20Ramadhani.png"
 		},
 		{
-			"name": "Rafael Situmorang",
-			"role": "Anggota Divisi",
-			"division": "Academic Affairs",
-			"linkedInUrl": "https://www.linkedin.com/in/rafael-situmorang-228a80266",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/ACADEMIC%20AFFAIRS/SQUARE/382.png"
+			"name": "Thoriq Bhima Filiandro",
+			"role": "Staff",
+			"division": "Media And Information",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/MEDIA/Thoriq%20Bhima%20Filiandro.png"
 		},
 		{
-			"name": "Yudia Ayumi Salma",
-			"role": "Anggota Divisi",
-			"division": "Academic Affairs",
-			"linkedInUrl": "https://www.linkedin.com/in/ayumisalma/",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/ACADEMIC%20AFFAIRS/SQUARE/56.png"
+			"name": "Sharon Rizkia Gagola",
+			"role": "Staff",
+			"division": "Media And Information",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/MEDIA/Sharon%20Rizkia%20Gagola.png"
+		},
+		{
+			"name": "M. Fazril",
+			"role": "Staff",
+			"division": "Media And Information",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/MEDIA/M.%20Fazril.png"
+		},
+		{
+			"name": "Royhan Sidqi Almutta Ali",
+			"role": "Staff",
+			"division": "Media And Information",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/MEDIA/Royhan%20Sidqi%20Almutta%20Ali.png"
+		},
+		{
+			"name": "Katharina Ayesha Lintang March",
+			"role": "Staff",
+			"division": "Media And Information",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/MEDIA/Katharina%20Ayesha%20Lintang%20Marchariyalya.png"
+		},
+		{
+			"name": "Aisha Omar Hussen Alamodi",
+			"role": "Staff",
+			"division": "Media And Information",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/MEDIA/Aisha%20Omar%20Hussen%20Alamodi.png"
+		},
+		{
+			"name": "Dian Monik Rosita",
+			"role": "Staff",
+			"division": "Media And Information",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/MEDIA/Dian%20Monik%20Rosita.png"
+		},
+		{
+			"name": "Linggar Fahlevi",
+			"role": "Staff",
+			"division": "Media And Information",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/MEDIA/Linggar%20Fahlevi.png"
+		},
+		{
+			"name": "Farlencia Kayla Anggraeni",
+			"role": "Staff",
+			"division": "Media And Information",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/MEDIA/Farlencia%20Kayla%20Anggraeni.png"
+		},
+		{
+			"name": "Nailendra Noeza Sahira",
+			"role": "Staff",
+			"division": "Media And Information",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/MEDIA/Nailendra%20Noeza%20Sahira.png"
 		}
 	],
-	"Arts and Culture": [
+	"Research And Technology": [
 		{
-			"name": "Shandi Alfatihah Farrel Farazha",
-			"role": "Ketua Divisi",
-			"division": "Arts and Culture",
-			"linkedInUrl": "https://www.linkedin.com/in/shandi-alfatihah-farrel-farazha-87774a34a/",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/ART%20AND%20CULTURE/SQUARE/82.png"
+			"name": "Yaa Siin",
+			"role": "Head",
+			"division": "Research And Technology",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/RISTEK/Yaa%20Siin.png"
 		},
 		{
-			"name": "Dizza Rahma Alia",
-			"role": "Wakil Ketua Divisi",
-			"division": "Arts and Culture",
-			"linkedInUrl": "https://www.linkedin.com/in/dizzalia",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/ART%20AND%20CULTURE/SQUARE/90.png"
+			"name": "Andi Fauzan",
+			"role": "Deputy Head",
+			"division": "Research And Technology",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/RISTEK/Andi%20Fauzan.png"
 		},
 		{
-			"name": "Sachiko Alexandra Zaida Kendra",
-			"role": "Bendahara Divisi",
-			"division": "Arts and Culture",
-			"linkedInUrl": "https://www.linkedin.com/in/sachiko-alexandra-19134934a",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/ART%20AND%20CULTURE/SQUARE/86.png"
+			"name": "Qonita Putri Amalia Firdausah",
+			"role": "Secretary",
+			"division": "Research And Technology",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/RISTEK/Qonita%20Putri%20Amalia%20Firdausah.png"
 		},
 		{
-			"name": "Nita Ramadani",
-			"role": "Anggota Divisi",
-			"division": "Arts and Culture",
-			"linkedInUrl": "https://www.linkedin.com/in/nita-ramadani",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/ART%20AND%20CULTURE/SQUARE/94.png"
+			"name": "Kanaya Anantani Syafikri",
+			"role": "Treasurer",
+			"division": "Research And Technology",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/RISTEK/Kanaya%20Anantani%20Syafikri.png"
 		},
 		{
-			"name": "Zaskia Fairuz",
-			"role": "Anggota Divisi",
-			"division": "Arts and Culture",
-			"linkedInUrl": "https://www.linkedin.com/in/zaskia-nisrina-42512234a/",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/ART%20AND%20CULTURE/SQUARE/103.png"
+			"name": "Robby Fabian",
+			"role": "Staff",
+			"division": "Research And Technology",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/RISTEK/Robby%20Fabian.png"
+		},
+		{
+			"name": "Muhamad Rizki",
+			"role": "Staff",
+			"division": "Research And Technology",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/RISTEK/Muhamad%20Rizki.png"
+		},
+		{
+			"name": "Ivander Daniel Napitupulu",
+			"role": "Staff",
+			"division": "Research And Technology",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/RISTEK/Ivander%20Daniel%20Napitupulu.png"
+		},
+		{
+			"name": "Muhammad Salman Firdaus",
+			"role": "Staff",
+			"division": "Research And Technology",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/RISTEK/Muhammad%20Salman%20Firdaus.png"
+		},
+		{
+			"name": "Mohamad Rafli Ramadhan",
+			"role": "Staff",
+			"division": "Research And Technology",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/RISTEK/Mohamad%20Rafli%20Ramadhan.png"
+		},
+		{
+			"name": "Faza Qinthoro",
+			"role": "Staff",
+			"division": "Research And Technology",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/RISTEK/Faza%20Qinthoro.png"
+		},
+		{
+			"name": "Novendy Farhanudin",
+			"role": "Staff",
+			"division": "Research And Technology",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/RISTEK/Novendy%20Farhanudin.png"
+		},
+		{
+			"name": "Satrio Lehandika Putra",
+			"role": "Staff",
+			"division": "Research And Technology",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/RISTEK/Satrio%20Lehandika%20Putra.png"
+		},
+		{
+			"name": "Leroy Christopher Gerson",
+			"role": "Staff",
+			"division": "Research And Technology",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/RISTEK/Leroy%20Christopher%20Gerson.png"
 		}
 	],
-	"Business and Partnership": [
+	"Public And Community Relations": [
 		{
-			"name": "Anisa Mufida Tsuroyya",
-			"role": "Ketua Divisi",
-			"division": "Business and Partnership",
-			"linkedInUrl": "https://www.linkedin.com/in/anisamufida26",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/BUSINESS%20AND%20PARTNERSHIP/SQUARE/108.png"
+			"name": "Herlangga Sapoetra",
+			"role": "Head",
+			"division": "Public And Community Relations",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/farhandev/sga-members/PUBLIC%20AND%20COMMUNITY%20RELATIONS/1.png"
 		},
 		{
-			"name": "Sari Wulandari",
-			"role": "Wakil Ketua Divisi",
-			"division": "Business and Partnership",
-			"linkedInUrl": "https://www.linkedin.com/in/sari-wulandari24/",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/BUSINESS%20AND%20PARTNERSHIP/SQUARE/360.png"
+			"name": "Sahrul",
+			"role": "Deputy Head",
+			"division": "Public And Community Relations",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/farhandev/sga-members/PUBLIC%20AND%20COMMUNITY%20RELATIONS/2.png"
 		},
 		{
-			"name": "Aris Irhamni Apriyanto Putra ",
-			"role": "Anggota Divisi",
-			"division": "Business and Partnership",
-			"linkedInUrl": "https://www.linkedin.com/in/aris-irhamni",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/BUSINESS%20AND%20PARTNERSHIP/SQUARE/366.png"
+			"name": "Iqbal Azhari Pasaribu",
+			"role": "Secretary",
+			"division": "Public And Community Relations",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/farhandev/sga-members/PUBLIC%20AND%20COMMUNITY%20RELATIONS/3.png"
 		},
 		{
-			"name": "Nayla Nur Fayza",
-			"role": "Anggota Divisi",
-			"division": "Business and Partnership",
-			"linkedInUrl": "https://www.linkedin.com/in/naylafayza",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/BUSINESS%20AND%20PARTNERSHIP/SQUARE/115.png"
+			"name": "Az Zahra Nabila",
+			"role": "Treasurer",
+			"division": "Public And Community Relations",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/farhandev/sga-members/PUBLIC%20AND%20COMMUNITY%20RELATIONS/4.png"
 		},
 		{
-			"name": "Samuel Christian Sitinjak",
-			"role": "Anggota Divisi",
-			"division": "Business and Partnership",
-			"linkedInUrl": "https://www.linkedin.com/in/samuel-sitinjak-225a08332",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/STUDENT%20ADVOCACY%20AND%20WALFARE/SQUARE/320.png"
+			"name": "Thalita Nurul Fauzan",
+			"role": "Staff",
+			"division": "Public And Community Relations",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/farhandev/sga-members/PUBLIC%20AND%20COMMUNITY%20RELATIONS/5.png"
 		},
 		{
-			"name": "Marsya Gunawan",
-			"role": "Anggota Divisi",
-			"division": "Business and Partnership",
-			"linkedInUrl": "https://www.linkedin.com/in/marsya-gunawan-3b10792ba?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-			"imagePath": "https://ik.imagekit.io/rugefx/sga-members/BUSINESS%20AND%20PARTNERSHIP/WhatsApp_Image_2025-10-21_at_15.34.03-removebg-preview.png?updatedAt=1761180841715"
+			"name": "Orentscia Januiver S",
+			"role": "Staff",
+			"division": "Public And Community Relations",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/farhandev/sga-members/PUBLIC%20AND%20COMMUNITY%20RELATIONS/6.png"
 		},
 		{
-			"name": "Alyasa Pradipta Haikal Waluyo",
-			"role": "Anggota Divisi",
-			"division": "Business and Partnership",
-			"linkedInUrl": "https://www.linkedin.com/in/alyasa-pradipta-haikal/",
-			"imagePath": "https://ik.imagekit.io/rugefx/sga-members/BUSINESS%20AND%20PARTNERSHIP/WhatsApp_Image_2025-10-23_at_07.51.09-removebg-preview.png?updatedAt=1761180881343"
-		}
-	],
-	"Internal Organization Development": [
-		{
-			"name": "Ratu Bilqis",
-			"role": "Ketua Divisi",
-			"division": "Internal Organization Development",
-			"linkedInUrl": "https://www.linkedin.com/in/ratu-bilqis",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/INTERNAL%20ORGANIZE%20DEVELOPMENT/SQUARE/162.png"
-		},
-		{
-			"name": "Hafiz Nur Rizki",
-			"role": "Wakil Ketua Divisi",
-			"division": "Internal Organization Development",
-			"linkedInUrl": "https://www.linkedin.com/in/hafiznrizki/",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/INTERNAL%20ORGANIZE%20DEVELOPMENT/SQUARE/158.png"
-		},
-		{
-			"name": "Faezal Rifvandy",
-			"role": "Sekretaris Divisi",
-			"division": "Internal Organization Development",
-			"linkedInUrl": "https://www.linkedin.com/in/faezalrifvandy/",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/INTERNAL%20ORGANIZE%20DEVELOPMENT/SQUARE/153.png"
-		},
-		{
-			"name": "Ade Imah",
-			"role": "Bendahara Divisi",
-			"division": "Internal Organization Development",
-			"linkedInUrl": "https://www.linkedin.com/in/adee-imah/",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/INTERNAL%20ORGANIZE%20DEVELOPMENT/SQUARE/149.png"
+			"name": "Muhammad Aurel Luneto",
+			"role": "Staff",
+			"division": "Public And Community Relations",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/farhandev/sga-members/PUBLIC%20AND%20COMMUNITY%20RELATIONS/7.png"
 		},
 		{
 			"name": "Muhammad Afiq Aqhdaq",
-			"role": "Anggota Divisi",
-			"division": "Internal Organization Development",
-			"linkedInUrl": "https://www.linkedin.com/in/muhammad-afiq-aqhdaq/",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/INTERNAL%20ORGANIZE%20DEVELOPMENT/SQUARE/167.png"
+			"role": "Staff",
+			"division": "Public And Community Relations",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/farhandev/sga-members/PUBLIC%20AND%20COMMUNITY%20RELATIONS/8.png"
 		},
 		{
-			"name": "Reva Indita",
-			"role": "Anggota Divisi",
-			"division": "Internal Organization Development",
-			"linkedInUrl": "https://www.linkedin.com/in/reva-indita-/",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/INTERNAL%20ORGANIZE%20DEVELOPMENT/SQUARE/145.png"
+			"name": "Kayla Azwa Nasifa",
+			"role": "Staff",
+			"division": "Public And Community Relations",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/farhandev/sga-members/PUBLIC%20AND%20COMMUNITY%20RELATIONS/9.png"
+		},
+		{
+			"name": "Melsiano Rafi Anggara",
+			"role": "Staff",
+			"division": "Public And Community Relations",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/farhandev/sga-members/PUBLIC%20AND%20COMMUNITY%20RELATIONS/10.png"
+		},
+		{
+			"name": "Refa Maharani Imaniar",
+			"role": "Staff",
+			"division": "Public And Community Relations",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/farhandev/sga-members/PUBLIC%20AND%20COMMUNITY%20RELATIONS/11.png"
+		},
+		{
+			"name": "Ursulla Ningtyas Kirey",
+			"role": "Staff",
+			"division": "Public And Community Relations",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/farhandev/sga-members/PUBLIC%20AND%20COMMUNITY%20RELATIONS/12.png"
+		},
+		{
+			"name": "Zahir Ali Izzaturrahman",
+			"role": "Staff",
+			"division": "Public And Community Relations",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/farhandev/sga-members/PUBLIC%20AND%20COMMUNITY%20RELATIONS/13.png"
+		},
+		{
+			"name": "Diva Almadea Vasya",
+			"role": "Staff",
+			"division": "Public And Community Relations",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/farhandev/sga-members/PUBLIC%20AND%20COMMUNITY%20RELATIONS/14.png"
 		}
-	],
-	"Media and Information": [
+  ],
+  "UKM Development": [
 		{
-			"name": "Deni Trio Saputra",
-			"role": "Ketua Divisi",
-			"division": "Media and Information",
-			"linkedInUrl": "https://www.linkedin.com/in/deni-trio-saputra-451075276/",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/MEDIA%20AND%20INFORMATION/SQUARE/175.png"
-		},
-		{
-			"name": "Mohammad Zilan Afiat",
-			"role": "Wakil Ketua Divisi",
-			"division": "Media and Information",
-			"linkedInUrl": "https://www.linkedin.com/in/mohammad-zilan-1aa9102a3/",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/MEDIA%20AND%20INFORMATION/SQUARE/169.png"
-		},
-		{
-			"name": "Mazaya Yasyfa Azzahra",
-			"role": "Sekretaris Divisi",
-			"division": "Media and Information",
-			"linkedInUrl": "https://www.linkedin.com/in/mazaya-yasyfa-58242334a",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/MEDIA%20AND%20INFORMATION/SQUARE/220.png"
+			"name": "Sachiko Alexandra Zaida Kendra",
+			"role": "Head",
+			"division": "UKM Development",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/farhandev/sga-members/UKM%20DEVELOPMENT/1.png"
 		},
 		{
 			"name": "Nayla Affiyah Syafini",
-			"role": "Bendahara Divisi",
-			"division": "Media and Information",
-			"linkedInUrl": "https://www.linkedin.com/in/nayla-affiyah-syafini-5b7b1334a?",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/MEDIA%20AND%20INFORMATION/SQUARE/192.png"
+			"role": "Deputy Head",
+			"division": "UKM Development",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/farhandev/sga-members/UKM%20DEVELOPMENT/2.png"
 		},
 		{
-			"name": "Andrew Farrelino Afdinal",
-			"role": "Anggota Divisi",
-			"division": "Media and Information",
-			"linkedInUrl": "https://linkedin.com/in/andrew-farrelino-579880280",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/MEDIA%20AND%20INFORMATION/SQUARE/206.png"
+			"name": "Askia Fazila Pasha",
+			"role": "Secretary",
+			"division": "UKM Development",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/farhandev/sga-members/UKM%20DEVELOPMENT/3.png"
 		},
 		{
-			"name": "Muhammad Ariel Rizky Usman",
-			"role": "Anggota Divisi",
-			"division": "Media and Information",
-			"linkedInUrl": "https://www.linkedin.com/in/muhammad-ariel-6545702a5",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/MEDIA%20AND%20INFORMATION/SQUARE/201.png"
+			"name": "Nasywa Najiyah",
+			"role": "Treasurer",
+			"division": "UKM Development",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/farhandev/sga-members/UKM%20DEVELOPMENT/4.png"
 		},
 		{
-			"name": "Orentscia Januiver Sitanggang",
-			"role": "Anggota Divisi",
-			"division": "Media and Information",
-			"linkedInUrl": "https://www.linkedin.com/in/orentscia-januiver-6b0b9429a",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/MEDIA%20AND%20INFORMATION/SQUARE/168.png"
+			"name": "Tasyel Triajanisya",
+			"role": "Staff",
+			"division": "UKM Development",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/farhandev/sga-members/UKM%20DEVELOPMENT/5.png"
 		},
 		{
-			"name": "Raisby Risat Rais",
-			"role": "Anggota Divisi",
-			"division": "Media and Information",
-			"linkedInUrl": "https://www.linkedin.com/in/raisby-rais-980753271",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/MEDIA%20AND%20INFORMATION/SQUARE/184.png"
+			"name": "Aileen Alvina Fahrudin",
+			"role": "Staff",
+			"division": "UKM Development",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/farhandev/sga-members/UKM%20DEVELOPMENT/6.png"
+		},
+		{
+			"name": "Muhammad Saiful Rohim",
+			"role": "Staff",
+			"division": "UKM Development",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/farhandev/sga-members/UKM%20DEVELOPMENT/7.png"
+		},
+		{
+			"name": "Alfhie Marsya Ayudannie",
+			"role": "Staff",
+			"division": "UKM Development",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/farhandev/sga-members/UKM%20DEVELOPMENT/8.png"
 		}
-	],
-	"Public and Community Relations": [
+  ],
+  "Business And Partnership": [
 		{
-			"name": "Aguini Providensia Tjandra",
-			"role": "Ketua Divisi",
-			"division": "Public and Community Relations",
+			"name": "Rakha Ariya Pratama",
+			"role": "Head",
+			"division": "Business And Partnership",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/farhandev/sga-members/BUSINESS%20AND%20PARTNERSHIP/1.png"
+		},
+		{
+			"name": "Muhammad Rakah Yansyah",
+			"role": "Deputy Head",
+			"division": "Business And Partnership",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/farhandev/sga-members/BUSINESS%20AND%20PARTNERSHIP/2.png"
+		},
+		{
+			"name": "Rahmadsyah Firdaus",
+			"role": "Secretary",
+			"division": "Business And Partnership",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/farhandev/sga-members/BUSINESS%20AND%20PARTNERSHIP/3.png"
+		},
+		{
+			"name": "Muhammad Luthfie Alfathin",
+			"role": "Staff",
+			"division": "Business And Partnership",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/farhandev/sga-members/BUSINESS%20AND%20PARTNERSHIP/4.png"
+		},
+		{
+			"name": "Farrel Abda Aghazka",
+			"role": "Staff",
+			"division": "Business And Partnership",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/farhandev/sga-members/BUSINESS%20AND%20PARTNERSHIP/5.png"
+		},
+		{
+			"name": "Fityah Najwa S.",
+			"role": "Staff",
+			"division": "Business And Partnership",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/farhandev/sga-members/BUSINESS%20AND%20PARTNERSHIP/6.png"
+		},
+		{
+			"name": "Adelaide Dione Griselda Kean",
+			"role": "Staff",
+			"division": "Business And Partnership",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/farhandev/sga-members/BUSINESS%20AND%20PARTNERSHIP/7.png"
+		},
+		{
+			"name": "Adinda Azka. F",
+			"role": "Staff",
+			"division": "Business And Partnership",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/farhandev/sga-members/BUSINESS%20AND%20PARTNERSHIP/8.png"
+		},
+		{
+			"name": "Muhammad Radja Fadhlurrohman",
+			"role": "Staff",
+			"division": "Business And Partnership",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/farhandev/sga-members/BUSINESS%20AND%20PARTNERSHIP/9.png"
+		},
+		{
+			"name": "Aris Irhamni A. P",
+			"role": "Staff",
+			"division": "Business And Partnership",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/farhandev/sga-members/BUSINESS%20AND%20PARTNERSHIP/10.png"
+		},
+		{
+			"name": "Laudya Pricilla Putri",
+			"role": "Staff",
+			"division": "Business And Partnership",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/farhandev/sga-members/BUSINESS%20AND%20PARTNERSHIP/11.png"
+		},
+		{
+			"name": "Vanesa Delova",
+			"role": "Staff",
+			"division": "Business And Partnership",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/farhandev/sga-members/BUSINESS%20AND%20PARTNERSHIP/12.png"
+		},
+		{
+			"name": "Abdullah Ahzam",
+			"role": "Staff",
+			"division": "Business And Partnership",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/farhandev/sga-members/BUSINESS%20AND%20PARTNERSHIP/13.png"
+		},
+		{
+			"name": "Aulia Barokah Khaerani",
+			"role": "Staff",
+			"division": "Business And Partnership",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/farhandev/sga-members/BUSINESS%20AND%20PARTNERSHIP/14.png"
+		},
+		{
+			"name": "Xaverius Pinontoan",
+			"role": "Staff",
+			"division": "Business And Partnership",
+			"linkedInUrl": "https://www.linkedin.com/in/",
+			"imagePath": "https://ik.imagekit.io/farhandev/sga-members/BUSINESS%20AND%20PARTNERSHIP/15.png"
+		}
+  ],
+	"Intellectual And Career Development": [
+		{
+			"name": "Uswatun Hasanah",
+			"role": "Head",
+			"division": "Intelectual And Career Development",
 			"linkedInUrl": "https://www.linkedin.com/in/aguini-providensia-tjandra-109826342",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/PUBLIC%20RELATION/SQUARE/256.png"
+			"imagePath": "https://ik.imagekit.io/gkjx3vjvi/Intelectual%20And%20Career%20Development/1.png"
 		},
 		{
-			"name": "Hanali Setiawati",
-			"role": "Wakil Ketua Divisi",
-			"division": "Public and Community Relations",
+			"name": "Yuda Sandika",
+			"role": "Deputy Head",
+			"division": "Intelectual And Career Development",
 			"linkedInUrl": "https://www.linkedin.com/in/hanalistwti/",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/PUBLIC%20RELATION/SQUARE/271.png"
+			"imagePath": "https://ik.imagekit.io/gkjx3vjvi/Intelectual%20And%20Career%20Development/2.png"
 		},
 		{
-			"name": "Muhammad Zahid",
-			"role": "Sekretaris Divisi",
-			"division": "Public and Community Relations",
+			"name": "Alya Mutiara Lattifa",
+			"role": "Secretary",
+			"division": "Intelectual And Career Development",
 			"linkedInUrl": "https://www.linkedin.com/in/muhammad-zahid-209765321/",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/PUBLIC%20RELATION/SQUARE/267.png"
+			"imagePath": "https://ik.imagekit.io/gkjx3vjvi/Intelectual%20And%20Career%20Development/3.png"
 		},
 		{
-			"name": "Kintharassya Gayoni",
-			"role": "Bendahara Divisi",
-			"division": "Public and Community Relations",
+			"name": "Wandasari Tunggul Hadi Kusumo Astuti",
+			"role": "Treasurer",
+			"division": "Intelectual And Career Development",
 			"linkedInUrl": "https://linkedin.com/in/kintharassya-gayoni-923532347",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/PUBLIC%20RELATION/SQUARE/259.png"
+			"imagePath": "https://ik.imagekit.io/gkjx3vjvi/Intelectual%20And%20Career%20Development/4.png"
 		},
 		{
-			"name": "Jazz Khalid Matsal",
-			"role": "Anggota Divisi",
-			"division": "Public and Community Relations",
+			"name": "Nadhif Ravi Prathama",
+			"role": "Staff",
+			"division": "Intelectual And Career Development",
 			"linkedInUrl": "https://www.linkedin.com/in/jazz-khalid-matsal-a86559322",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/PUBLIC%20RELATION/SQUARE/247.png"
+			"imagePath":"https://ik.imagekit.io/gkjx3vjvi/Intelectual%20And%20Career%20Development/5.png"
 		},
 		{
-			"name": "Nabil Alviro Ghifari Putra",
-			"role": "Anggota Divisi",
+			"name": "Azka Abdillah",
+			"role": "Staff",
 			"division": "Public and Community Relations",
 			"linkedInUrl": "https://www.linkedin.com/in/nabil-alviro-b8992634a",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/PUBLIC%20RELATION/SQUARE/263.png"
+			"imagePath": "https://ik.imagekit.io/gkjx3vjvi/Intelectual%20And%20Career%20Development/6.png"
+		},
+		{
+			"name": "Nadia Katerina",
+			"role": "Staff",
+			"division": "Intelectual And Career Development",
+			"linkedInUrl": "https://www.linkedin.com/in/jazz-khalid-matsal-a86559322",
+			"imagePath": "https://ik.imagekit.io/gkjx3vjvi/Intelectual%20And%20Career%20Development/7.png"
+		},
+		{
+			"name": "Yusuf Nugroho",
+			"role": "Staff",
+			"division": "Intelectual And Career Development",
+			"linkedInUrl": "https://www.linkedin.com/in/jazz-khalid-matsal-a86559322",
+			"imagePath": "https://ik.imagekit.io/gkjx3vjvi/Intelectual%20And%20Career%20Development/8.png"
+		},
+		{
+			"name": "Defa Luna",
+			"role": "Staff",
+			"division": "Intelectual And Career Development",
+			"linkedInUrl": "https://www.linkedin.com/in/jazz-khalid-matsal-a86559322",
+			"imagePath": "https://ik.imagekit.io/gkjx3vjvi/Intelectual%20And%20Career%20Development/9.png"
+		},
+		{
+			"name": "Tiara Putri Ramadhani",
+			"role": "Staff",
+			"division": "Intelectual And Career Development",
+			"linkedInUrl": "https://www.linkedin.com/in/jazz-khalid-matsal-a86559322",
+			"imagePath": "https://ik.imagekit.io/gkjx3vjvi/Intelectual%20And%20Career%20Development/10.png"
+		},
+		{
+			"name": "Yolanda Viviani",
+			"role": "Staff",
+			"division": "Intelectual And Career Development",
+			"linkedInUrl": "https://www.linkedin.com/in/jazz-khalid-matsal-a86559322",
+			"imagePath": "https://ik.imagekit.io/gkjx3vjvi/Intelectual%20And%20Career%20Development/11.png"
+		},
+		{
+			"name": "Nabila Aprilia",
+			"role": "Staff",
+			"division": "Intelectual And Career Development",
+			"linkedInUrl": "https://www.linkedin.com/in/jazz-khalid-matsal-a86559322",
+			"imagePath": "https://ik.imagekit.io/gkjx3vjvi/Intelectual%20And%20Career%20Development/12.png"
+		},
+		{
+			"name": "Stepanus Teo",
+			"role": "Staff",
+			"division": "Intelectual And Career Development",
+			"linkedInUrl": "https://www.linkedin.com/in/jazz-khalid-matsal-a86559322",
+			"imagePath": "https://ik.imagekit.io/gkjx3vjvi/Intelectual%20And%20Career%20Development/13.png"
+		},
+		{
+			"name": "Murni Agustina Andini",
+			"role": "Staff",
+			"division": "Intelectual And Career Development",
+			"linkedInUrl": "https://www.linkedin.com/in/jazz-khalid-matsal-a86559322",
+			"imagePath": "https://ik.imagekit.io/gkjx3vjvi/Intelectual%20And%20Career%20Development/14.png"
 		}
 	],
-	"Research and Technology": [
+	"Student Advocacy And Welfare": [
 		{
-			"name": "Titanio Yudista",
-			"role": "Ketua Divisi",
-			"division": "Research and Technology",
+			"name": "Abubakar Adib",
+			"role": "Head",
+			"division": "Student Advocay And Welfare",
 			"linkedInUrl": "https://www.linkedin.com/in/titanio-yudista-153b79192/",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/RESEARCH%20AND%20TECHNOLOGY/SQUARE/284.png"
+			"imagePath": "https://ik.imagekit.io/gkjx3vjvi/Student%20Advocacy%20And%20Welfare/1.png"
 		},
 		{
-			"name": "Ahmad Zacky",
-			"role": "Wakil Ketua Divisi",
-			"division": "Research and Technology",
+			"name": "Sevilla Naeoko Lathiifah",
+			"role": "Deputy Head",
+			"division": "Student Advocay And Welfare",
 			"linkedInUrl": "https://www.linkedin.com/in/rugefx/",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/RESEARCH%20AND%20TECHNOLOGY/SQUARE/280.png"
+			"imagePath": "https://ik.imagekit.io/gkjx3vjvi/Student%20Advocacy%20And%20Welfare/2.png"
 		},
 		{
-			"name": "Sulthan Rizal Halfa Ilmi",
-			"role": "Anggota Divisi",
-			"division": "Research and Technology",
+			"name": "Jauzaa Gina Nabilla",
+			"role": "Secretary",
+			"division": "Student Advocay And Welfare",
 			"linkedInUrl": "https://www.linkedin.com/in/sulthan-rizal-halfa-ilmi/",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/RESEARCH%20AND%20TECHNOLOGY/SQUARE/277.png"
+			"imagePath": "https://ik.imagekit.io/gkjx3vjvi/Student%20Advocacy%20And%20Welfare/3.png"
 		},
 		{
-			"name": "Abdur Rozaq",
-			"role": "Anggota Divisi",
-			"division": "Research and Technology",
+			"name": "Zaskia Claudya Yasmin",
+			"role": "Treasurer",
+			"division": "Student Advocay And Welfare",
 			"linkedInUrl": "https://www.linkedin.com/in/dev-rozaq/",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/RESEARCH%20AND%20TECHNOLOGY/SQUARE/383.png"
+			"imagePath": "https://ik.imagekit.io/gkjx3vjvi/Student%20Advocacy%20And%20Welfare/4.png"
 		},
 		{
-			"name": "Akhmad Wildan",
-			"role": "Anggota Divisi",
-			"division": "Research and Technology",
+			"name": "Farhan Athalla Azis",
+			"role": "Staff",
+			"division": "Student Advocay And Welfare",
 			"linkedInUrl": "https://www.linkedin.com/in/akhmad-wildan-452a4b203/",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/RESEARCH%20AND%20TECHNOLOGY/SQUARE/342.png"
+			"imagePath": "https://ik.imagekit.io/gkjx3vjvi/Student%20Advocacy%20And%20Welfare/5.png"
 		},
 		{
-			"name": "Bima Turangga Bayu Pratama",
-			"role": "Anggota Divisi",
-			"division": "Research and Technology",
+			"name": "Ainun Kholishah",
+			"role": "Staff",
+			"division": "Student Advocay And Welfare",
 			"linkedInUrl": "https://www.linkedin.com/in/bimaturangga/",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/RESEARCH%20AND%20TECHNOLOGY/SQUARE/299.png"
+			"imagePath": "https://ik.imagekit.io/gkjx3vjvi/Student%20Advocacy%20And%20Welfare/6.png"
 		},
 		{
-			"name": "Dimas Nanda Putra",
-			"role": "Anggota Divisi",
-			"division": "Research and Technology",
+			"name": "Rifqi Khairan Kamal",
+			"role": "Staff",
+			"division": "Student Advocay And Welfare",
 			"linkedInUrl": "https://www.linkedin.com/in/dimas-nanda-putra/",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/RESEARCH%20AND%20TECHNOLOGY/SQUARE/384.png"
+			"imagePath": "https://ik.imagekit.io/gkjx3vjvi/Student%20Advocacy%20And%20Welfare/7.png"
 		},
 		{
-			"name": "Muhamad Angga Prida Saputra",
-			"role": "Anggota Divisi",
-			"division": "Research and Technology",
+			"name": "Andhika Putri Lestari",
+			"role": "Staff",
+			"division": "Student Advocay And Welfare",
 			"linkedInUrl": "https://www.linkedin.com/in/mhmdanggasaputra/",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/RESEARCH%20AND%20TECHNOLOGY/SQUARE/337.png"
+			"imagePath": "https://ik.imagekit.io/gkjx3vjvi/Student%20Advocacy%20And%20Welfare/8.png"
 		},
 		{
-			"name": "Muhamad Jaya Kusuma",
-			"role": "Anggota Divisi",
-			"division": "Research and Technology",
+			"name": "Diva Nabilla",
+			"role": "Staff",
+			"division": "Student Advocay And Welfare",
 			"linkedInUrl": "https://linkedin.com/in/mjaya69703",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/RESEARCH%20AND%20TECHNOLOGY/SQUARE/338.png"
+			"imagePath": "https://ik.imagekit.io/gkjx3vjvi/Student%20Advocacy%20And%20Welfare/9.png"
 		},
 		{
-			"name": "Andi Fauzan Hediantoro",
+			"name": "Moh. Rama Saputra",
 			"role": "Anggota Divisi",
-			"division": "Research and Technology",
+			"division": "Student Advocay And Welfare",
 			"linkedInUrl": "https://www.linkedin.com/in/andi-fauzan-a449a7284",
-			"imagePath": "https://ik.imagekit.io/rugefx/sga-members/RESEARCH%20AND%20TECHNOLOGY/WhatsApp%20Image%202025-10-21%20at%2009.42.09.jpeg?updatedAt=1761014543615"
-		}
-	],
-	"Sport and E-Sport": [
-		{
-			"name": "Attariq Hafidz ",
-			"role": "Ketua Divisi",
-			"division": "Sport and E-Sport",
-			"linkedInUrl": "https://www.linkedin.com/in/attariq-hafidz-b77ab134a",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/SPORT%20AND%20E%20SPORT/SQUARE/320.png"
+			"imagePath": "https://ik.imagekit.io/gkjx3vjvi/Student%20Advocacy%20And%20Welfare/10.png"
 		},
 		{
-			"name": "Dhafi Ihza Al Kahfi",
-			"role": "Wakil Ketua Divisi",
-			"division": "Sport and E-Sport",
-			"linkedInUrl": "https://www.linkedin.com/in/dhafi-ihza-b21b842b4",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/SPORT%20AND%20E%20SPORT/SQUARE/385.png"
-		},
-		{
-			"name": "Kevin Yudansha",
-			"role": "Sekretaris Divisi",
-			"division": "Sport and E-Sport",
-			"linkedInUrl": "https://www.linkedin.com/in/kevin-yudansha-aryadhi-nugroho-1b35a3257",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/SPORT%20AND%20E%20SPORT/SQUARE/374.png"
-		},
-		{
-			"name": "Kristian Felix Pramudito",
-			"role": "Anggota Divisi",
-			"division": "Sport and E-Sport",
-			"linkedInUrl": "https://www.linkedin.com/in/kristianfelixx",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/SPORT%20AND%20E%20SPORT/SQUARE/315.png"
-		},
-		{
-			"name": "Yaa Siin",
-			"role": "Anggota Divisi",
-			"division": "Sport and E-Sport",
-			"linkedInUrl": "https://www.linkedin.com/in/ysiin/",
-			"imagePath": "https://ik.imagekit.io/rugefx/tr:h-400/sga-members/SPORT%20AND%20E%20SPORT/SQUARE/307.png"
-		}
-	],
-	"Student Advocacy and Walfare": [
-		{
-			"name": "Nanda Fadila",
-			"role": "Anggota Divisi",
-			"division": "Student Advocacy and Walfare",
-			"linkedInUrl": "https://www.linkedin.com/in/nanda-fadila-921b612b3",
-			"imagePath": "https://ik.imagekit.io/rugefx/sga-members/STUDENT%20ADVOCACY%20AND%20WALFARE/WhatsApp_Image_2025-10-23_at_09.25.30-removebg-preview.png?updatedAt=1761186480309"
+			"name": "Mohammad Thareq Ziyad",
+			"role": "Staff",
+			"division": "Student Advocay And Welfare",
+			"linkedInUrl": "https://linkedin.com/in/mjaya69703",
+			"imagePath": "https://ik.imagekit.io/gkjx3vjvi/Student%20Advocacy%20And%20Welfare/11.png"
 		}
 	]
 }
