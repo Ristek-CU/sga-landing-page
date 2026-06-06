@@ -1,72 +1,72 @@
 { 
-	"Badan Pengurus Harian": [
+	"Executive Board": [
 		{
 			"name": "Aguini Providensia Tjandra",
 			"role": "President",
-			"division": "Badan Pengurus Harian",
+			"division": "Executive Board",
 			"linkedInUrl": "https://www.linkedin.com/in/",
 			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/BPH/Anguini.png"
 		},
 		{
 			"name": "Aldridge Mika Gunawan",
 			"role": "Vice President",
-			"division": "Badan Pengurus Harian",
+			"division": "Executive Board",
 			"linkedInUrl": "https://www.linkedin.com/in/",
 			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/BPH/Aldridge%20Mika%20Gunawan.png"
 		},
 		{
 			"name": "Firaas Andaru Athaa Ramadhan",
 			"role": "Controller",
-			"division": "Badan Pengurus Harian",
+			"division": "Executive Board",
 			"linkedInUrl": "https://www.linkedin.com/in/",
 			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/BPH/Firaas%20Andaru%20Athaa%20Ramadhan.png"
 		},
 		{
 			"name": "Vania",
 			"role": "Controller",
-			"division": "Badan Pengurus Harian",
+			"division": "Executive Board",
 			"linkedInUrl": "https://www.linkedin.com/in/",
 			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/BPH/Vania.png"
 		},
 		{
 			"name": "Vincensius Anthony",
 			"role": "Controller",
-			"division": "Badan Pengurus Harian",
+			"division": "Executive Board",
 			"linkedInUrl": "https://www.linkedin.com/in/",
 			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/BPH/Vincensius%20Anthony.png"
 		},
 		{
 			"name": "NYSSA MUTIARA SYAKIEB",
 			"role": "Controller",
-			"division": "Badan Pengurus Harian",
+			"division": "Executive Board",
 			"linkedInUrl": "https://www.linkedin.com/in/",
 			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/BPH/NYSSA%20MUTIARA%20SYAKIEB.png"
 		},
 		{
 			"name": "Marshelinda Rukmana",
 			"role": "Secretary",
-			"division": "Badan Pengurus Harian",
+			"division": "Executive Board",
 			"linkedInUrl": "https://www.linkedin.com/in/",
 			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/BPH/Marshelinda%20Rukmana.png"
 		},
 		{
 			"name": "Raihan Firdaus Hadi Saputra",
 			"role": "Secretary",
-			"division": "Badan Pengurus Harian",
+			"division": "Executive Board",
 			"linkedInUrl": "https://www.linkedin.com/in/",
 			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/BPH/Raihan%20Firdaus%20Hadi%20Saputra.png"
 		},
 		{
 			"name": "Fatimah Tri Lestari",
 			"role": "Treasurer",
-			"division": "Badan Pengurus Harian",
+			"division": "Executive Board",
 			"linkedInUrl": "https://www.linkedin.com/in/",
 			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/BPH/Fatimah%20Tri%20Lestari.png"
 		},
 		{
 			"name": "Atikah Nurfatkiyah",
 			"role": "Treasurer",
-			"division": "Badan Pengurus Harian",
+			"division": "Executive Board",
 			"linkedInUrl": "https://www.linkedin.com/in/",
 			"imagePath": "https://ik.imagekit.io/me3dns7q6/SGA-Photo/BPH/Atikah%20Nurfatkiyah.png"
 		}
@@ -527,13 +527,6 @@
 			"division": "Business And Partnership",
 			"linkedInUrl": "https://www.linkedin.com/in/",
 			"imagePath": "https://ik.imagekit.io/farhandev/sga-members/BUSINESS%20AND%20PARTNERSHIP/15.png"
-		},
-		{
-			"name": "Muhammad Syafi'i",
-			"role": "Staff",
-			"division": "Business And Partnership",
-			"linkedInUrl": "https://www.linkedin.com/in/",
-			"imagePath": "https://ik.imagekit.io/farhandev/sga-members/BUSINESS%20AND%20PARTNERSHIP/"
 		}
   ],
 	"Intellectual And Career Development": [

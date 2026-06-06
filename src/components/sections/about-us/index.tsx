@@ -1,5 +1,7 @@
 // Import gambar-gambar Anda di sini
-import sgaMembers from "@/assets/images/sga-members.webp";
+import sgaAbout1 from "@/assets/images/sga-about-1.jpg";
+import sgaAbout2 from "@/assets/images/sga-about-2.jpg";
+import sgaAbout3 from "@/assets/images/sga-about-3.jpg";
 
 export default function AboutUsSection() {
 	return (
@@ -39,17 +41,17 @@ export default function AboutUsSection() {
 					<div className="flex justify-center flex-1 w-full mt-0 pt-0 lg:justify-end xl:justify-center">
 						<div className="relative w-full max-w-[450px] xl:max-w-[500px] h-[350px] sm:h-[400px] xl:h-[450px]">
 							<img
-								src={sgaMembers}
+								src={sgaAbout1}
 								alt="SGA Activity 1"
 								className="absolute top-[0%] left-[5%] w-[55%] h-[60%] object-cover rounded-2xl shadow-lg -rotate-6 z-10 transition-all duration-300 hover:z-40 hover:scale-105 cursor-pointer"
 							/>
 							<img
-								src={sgaMembers}
+								src={sgaAbout2}
 								alt="SGA Activity 2"
 								className="absolute top-[10%] right-[0%] w-[50%] h-[55%] object-cover rounded-2xl shadow-lg rotate-6 z-20 transition-all duration-300 hover:z-40 hover:scale-105 cursor-pointer"
 							/>
 							<img
-								src={sgaMembers}
+								src={sgaAbout3}
 								alt="SGA Activity 3"
 								className="absolute bottom-[5%] left-[15%] w-[70%] h-[50%] object-cover rounded-2xl shadow-2xl -rotate-2 z-30 transition-all duration-300 hover:z-40 hover:scale-105 cursor-pointer"
 							/>

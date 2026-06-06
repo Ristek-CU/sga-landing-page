@@ -10,7 +10,7 @@ type Division = keyof typeof membersData;
 const divisions = Object.keys(membersData) as Division[];
 
 export default function DivisionSection() {
-    const [selectedDivision, setSelectedDivision] = useState<Division>("Badan Pengurus Harian");
+    const [selectedDivision, setSelectedDivision] = useState<Division>("Executive Board");
 
     const currentMembers = useMemo(
         () => membersData[selectedDivision],
