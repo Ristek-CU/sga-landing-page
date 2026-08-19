@@ -66,6 +66,7 @@ export default function StepByStepGuide({
 
 	return (
 		<section
+			id="tentang"
 			ref={sectionRef}
 			className={cn(
 				"w-full bg-white py-14 px-4 sm:px-8 lg:px-40 flex flex-col items-center gap-6 overflow-hidden",

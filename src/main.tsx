@@ -28,11 +28,11 @@ const router = createBrowserRouter([
 				path: "/student-voice",
 				element: <ReportingPage />,
 			},
-			{
-				path: "/ukm",
-				element: <UkmPage />,
-			},
 		],
+	},
+	{
+		path: "/ukm",
+		element: <UkmPage />,
 	},
 	{
 		path: "/ukm/:id",

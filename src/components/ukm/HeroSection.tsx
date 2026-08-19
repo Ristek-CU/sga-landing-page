@@ -118,6 +118,7 @@ export default function HeroSection() {
 
 	return (
 		<section
+			id="beranda"
 			ref={containerRef}
 			className={cn(
 				"relative flex items-center overflow-hidden",
