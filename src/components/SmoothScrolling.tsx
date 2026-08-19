@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import Lenis from "lenis";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default function SmoothScrolling({ children }: { children: React.ReactNode }) {
     const lenisRef = useRef<Lenis | null>(null);
@@ -13,6 +14,9 @@ export default function SmoothScrolling({ children }: { children: React.ReactNod
             smoothWheel: true,
         });
         lenisRef.current = lenis;
+
+        // Sinkronkan scroll Lenis ke ScrollTrigger GSAP (untuk animasi UKM)
+        lenis.on("scroll", ScrollTrigger.update);
 
         // Use rAF loop with proper cleanup
         let rafId: number;

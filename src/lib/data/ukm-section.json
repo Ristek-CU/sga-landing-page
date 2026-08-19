@@ -1,0 +1,485 @@
+[
+  {
+    "id": "english-club",
+    "name": "English Club",
+    "category": "Akademik & Pengembangan Keilmuan",
+    "categoryBadge": "Akademik & Pengembangan Keilmuan",
+    "members": "20+ Anggota",
+    "logoSvg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z\"></path><line x1=\"9\" y1=\"9\" x2=\"15\" y2=\"9\"></line><line x1=\"9\" y1=\"13\" x2=\"13\" y2=\"13\"></line></svg>",
+    "image": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80",
+    "shortDesc": "English Club merupakan Unit Kegiatan Mahasiswa yang berfokus pada pengembangan kemampuan berbahasa Inggris, speech, debate, dan public speaking.",
+    "vision": "Menjadi pusat keunggulan pengembangan literasi dan komunikasi bahasa Inggris mahasiswa di tingkat internasional.",
+    "mission": [
+      "Menyelenggarakan kelas percakapan dan debat bahasa Inggris secara teratur.",
+      "Mengikuti kompetisi National University Debating Championship (NUDC).",
+      "Mengadakan workshop penulisan esai dan jurnal internasional."
+    ],
+    "programs": [
+      {
+        "name": "Cakrawala Debate Championship (CDC)",
+        "period": "Tahunan (Oktober)",
+        "category": "Kompetisi Utama",
+        "desc": "Turnamen debat bahasa Inggris tingkat nasional antar perguruan tinggi se-Indonesia."
+      },
+      {
+        "name": "Weekly Speech & Conversation Club",
+        "period": "Mingguan (Jumat)",
+        "category": "Latihan Rutin",
+        "desc": "Sesi latihan percakapan interaktif, public speaking, dan pemantapan TOEFL preparation."
+      },
+      {
+        "name": "International Academic Essay Workshop",
+        "period": "Semesteran",
+        "category": "Workshop & Edukasi",
+        "desc": "Pelatihan kepenulisan esai ilmiah dan paper bahasa Inggris bersama pembicara luar negeri."
+      }
+    ],
+    "documentations": [
+      {
+        "id": 1,
+        "image": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800&q=80",
+        "title": "Cakrawala Debate Championship 2025",
+        "description": "Suasana babak grand final kompetisi debat bahasa Inggris tingkat nasional yang diikuti oleh 32 tim perwakilan perguruan tinggi.",
+        "date": "15 Oktober 2025"
+      },
+      {
+        "id": 2,
+        "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80",
+        "title": "Weekly Public Speaking Practice",
+        "description": "Sesi latihan mingguan rutin untuk peningkatan kepercayaan diri berbicara di depan umum serta simulasi tes TOEFL.",
+        "date": "22 November 2025"
+      },
+      {
+        "id": 3,
+        "image": "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80",
+        "title": "International Academic Essay Workshop",
+        "description": "Pelatihan penyusunan esai ilmiah bereputasi internasional bersama pemateri dan akademisi dari luar negeri.",
+        "date": "10 Desember 2025"
+      }
+    ],
+    "management": [
+      { "role": "Ketua UKM", "name": "Sarah Jessica", "division": "BPH Utama", "avatar": "SJ" },
+      { "role": "Wakil Ketua", "name": "David Miller", "division": "BPH Utama", "avatar": "DM" },
+      { "role": "Kadiv Debate & Speech", "name": "Amanda Rawles", "division": "Divisi Keahlian", "avatar": "AR" },
+      { "role": "Kadiv Public Relations", "name": "Kevin Sanjaya", "division": "Divisi Humas", "avatar": "KS" }
+    ],
+    "instagram": "https://instagram.com/englishclub_cakrawala",
+    "phone": "+6281234567890",
+    "whatsapp": "https://wa.me/6281234567890",
+    "registrationUrl": "https://forms.google.com/example-english-club"
+  },
+  {
+    "id": "robotic",
+    "name": "Robotic",
+    "category": "Akademik & Pengembangan Keilmuan",
+    "categoryBadge": "Akademik & Pengembangan Keilmuan",
+    "members": "20+ Anggota",
+    "logoSvg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"11\" width=\"18\" height=\"10\" rx=\"2\"></rect><circle cx=\"12\" cy=\"5\" r=\"2\"></circle><path d=\"M12 7v4\"></path><line x1=\"8\" y1=\"16\" x2=\"8\" y2=\"16.01\"></line><line x1=\"16\" y1=\"16\" x2=\"16\" y2=\"16.01\"></line></svg>",
+    "image": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80",
+    "shortDesc": "UKM Robotic merupakan komunitas riset dan teknologi mahasiswa yang berfokus pada otomasi, embedded system, dan kecerdasan buatan.",
+    "vision": "Menciptakan inovasi teknologi robotika terdepan yang berdaya saing global dan bermanfaat bagi masyarakat.",
+    "mission": [
+      "Mengembangkan riset di bidang embedded system, AI, dan otomatisasi.",
+      "Mewakili kampus dalam Kontes Robot Indonesia (KRI) dan turnamen internasional.",
+      "Mengadakan workshop pemrograman hardware secara berkala."
+    ],
+    "programs": [
+      {
+        "name": "Robofest & Automation Expo",
+        "period": "Tahunan (November)",
+        "category": "Pameran & Lomba",
+        "desc": "Pameran robotika hasil karya mahasiswa dan kompetisi Line Follower tingkat SMA & Universitas."
+      },
+      {
+        "name": "Embedded System & Microcontroller Bootcamp",
+        "period": "Semesteran",
+        "category": "Bootcamp Training",
+        "desc": "Pelatihan intensif IoT, mikrokontroler Arduino/ESP32, dan desain PCB hardware."
+      },
+      {
+        "name": "KRI Simulation & Prototype Testing",
+        "period": "Triwulan",
+        "category": "Riset & Inovasi",
+        "desc": "Uji coba dan pengujian performa robot riset sebagai persiapan Kontes Robot Indonesia."
+      }
+    ],
+    "documentations": [
+      {
+        "id": 1,
+        "image": "https://images.unsplash.com/photo-1561557944-6e7860d1a7eb?auto=format&fit=crop&w=800&q=80",
+        "title": "Robofest & Automation Expo 2025",
+        "description": "Pameran inovasi robotika hasil karya anggota UKM dan kompetisi Line Follower tingkat universitas.",
+        "date": "12 November 2025"
+      },
+      {
+        "id": 2,
+        "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80",
+        "title": "Microcontroller Bootcamp Practice",
+        "description": "Sesi praktik langsung perakitan sensor IoT dan pemrograman mikrokontroler ESP32 bagi anggota baru.",
+        "date": "18 Januari 2026"
+      },
+      {
+        "id": 3,
+        "image": "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80",
+        "title": "Uji Coba Prototype Robot KRI 2026",
+        "description": "Simulasi pergerakan dan respon algoritma kecerdasan buatan pada robot riset KRI di lab hardware.",
+        "date": "05 Februari 2026"
+      }
+    ],
+    "management": [
+      { "role": "Ketua UKM", "name": "Budi Santoso", "division": "BPH Utama", "avatar": "BS" },
+      { "role": "Wakil Ketua", "name": "Citra Kirana", "division": "BPH Utama", "avatar": "CK" },
+      { "role": "Kadiv Hardware & Electronics", "name": "Ahmad Rizky", "division": "Divisi Riset", "avatar": "AR" },
+      { "role": "Kadiv Software & AI Algorithm", "name": "Fian Pratama", "division": "Divisi Software", "avatar": "FP" }
+    ],
+    "instagram": "https://instagram.com/robotic_cakrawala",
+    "phone": "+6281298765432",
+    "whatsapp": "https://wa.me/6281298765432",
+    "registrationUrl": "https://forms.google.com/example-robotic"
+  },
+  {
+    "id": "kelompok-studi-pasar-modal",
+    "name": "Kelompok Studi Pasar Modal",
+    "category": "Akademik & Pengembangan Keilmuan",
+    "categoryBadge": "Akademik & Pengembangan Keilmuan",
+    "members": "20+ Anggota",
+    "logoSvg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"12\" y1=\"1\" x2=\"12\" y2=\"23\"></line><path d=\"M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6\"></path></svg>",
+    "image": "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&w=800&q=80",
+    "shortDesc": "KSPM Universitas Cakrawala adalah wadah edukasi literasi keuangan, analisa investasi saham, dan pasar modal bagi mahasiswa.",
+    "vision": "Meningkatkan inklusi keuangan dan literasi investasi saham serta pasar modal di kalangan generasi muda.",
+    "mission": [
+      "Mengadakan edukasi pasar modal dan sekolah pasar modal secara gratis.",
+      "Pelatihan analisis teknikal dan fundamental saham.",
+      "Kompetisi trading simulasi antar universitas."
+    ],
+    "programs": [
+      {
+        "name": "Sekolah Pasar Modal (SPM) Level 1 & 2",
+        "period": "Bulanan",
+        "category": "Edukasi Resmi",
+        "desc": "Kerjasama dengan BEI & Sekuritas untuk pembukaan rekening efek dan literasi saham."
+      },
+      {
+        "name": "Cakrawala Stock Trading Championship",
+        "period": "Tahunan (Agustus)",
+        "category": "Kompetisi Trading",
+        "desc": "Kompetisi simulasi trading saham real-time berhadiah modal investasi modal usaha."
+      },
+      {
+        "name": "Daily Market Analysis & Capital Discussion",
+        "period": "Mingguan",
+        "category": "Kajian Inovatif",
+        "desc": "Diskusi mingguan bedah laporan keuangan emiten dan proyeksi tren IHSG."
+      }
+    ],
+    "documentations": [
+      {
+        "id": 1,
+        "image": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80",
+        "title": "Sekolah Pasar Modal Level 1 Bersama BEI",
+        "description": "Edukasi inklusi keuangan dan pembukaan rekening efek secara gratis yang bekerja sama dengan Bursa Efek Indonesia.",
+        "date": "20 September 2025"
+      },
+      {
+        "id": 2,
+        "image": "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&w=800&q=80",
+        "title": "Cakrawala Stock Trading Championship 2025",
+        "description": "Kompetisi simulasi trading saham secara real-time yang memperebutkan total hadiah puluhan juta rupiah.",
+        "date": "14 Agustus 2025"
+      },
+      {
+        "id": 3,
+        "image": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80",
+        "title": "Bedah Laporan Keuangan Emiten IHSG",
+        "description": "Diskusi mingguan bersama analis senior membahas proyeksi sektor pasar modal Indonesia.",
+        "date": "10 Januari 2026"
+      }
+    ],
+    "management": [
+      { "role": "Ketua UKM", "name": "Rian Ardianto", "division": "BPH Utama", "avatar": "RA" },
+      { "role": "Wakil Ketua", "name": "Dewi Lestari", "division": "BPH Utama", "avatar": "DL" },
+      { "role": "Kadiv Edukasi & SPM", "name": "Siti Nurhaliza", "division": "Divisi Edukasi", "avatar": "SN" },
+      { "role": "Kadiv Analisis & Riset Stock", "name": "Bagus Setiawan", "division": "Divisi Analisis", "avatar": "BS" }
+    ],
+    "instagram": "https://instagram.com/kspm_cakrawala",
+    "phone": "+6281345678901",
+    "whatsapp": "https://wa.me/6281345678901",
+    "registrationUrl": "https://forms.google.com/example-kspm"
+  },
+  {
+    "id": "cakrawala-business-club",
+    "name": "Cakrawala Business Club",
+    "category": "Akademik & Pengembangan Keilmuan",
+    "categoryBadge": "Akademik & Pengembangan Keilmuan",
+    "members": "20+ Anggota",
+    "logoSvg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z\"></path><line x1=\"12\" y1=\"11\" x2=\"12\" y2=\"17\"></line><line x1=\"9\" y1=\"14\" x2=\"15\" y2=\"14\"></line></svg>",
+    "image": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=800&q=80",
+    "shortDesc": "Cakrawala Business Club merupakan komunitas inkubasi wirausaha muda untuk mengembangkan startup dan ide bisnis kreatif.",
+    "vision": "Menciptakan wirausahawan muda yang inovatif, berdampak, dan memiliki daya saing bisnis tinggi.",
+    "mission": [
+      "Mengembangkan ide bisnis dan pitching kompetisi startup.",
+      "Mentoring bersama praktisi dan pengusaha sukses.",
+      "Penyelenggaraan Expo Kewirausahaan Kampus."
+    ],
+    "programs": [
+      {
+        "name": "Cakrawala Business Plan & Startup Pitching",
+        "period": "Tahunan (Mei)",
+        "category": "Kompetisi Venture",
+        "desc": "Kompetisi proposal rencana bisnis dan sesi pitching di depan angel investor & mentor."
+      },
+      {
+        "name": "Startup Incubator & Pitch Deck Clinic",
+        "period": "Bulanan",
+        "category": "Mentoring Business",
+        "desc": "Klinik bimbingan membuat model bisnis (BMC), validasi pasar, dan penyusunan pitch deck."
+      },
+      {
+        "name": "Entrepreneur Campus Expo",
+        "period": "Semesteran",
+        "category": "Pameran Produksi",
+        "desc": "Bazar dan pameran produk wirausaha karya mahasiswa Universitas Cakrawala."
+      }
+    ],
+    "documentations": [
+      {
+        "id": 1,
+        "image": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=800&q=80",
+        "title": "Startup Pitching & Investment Day",
+        "description": "Sesi presentasi produk startup karya mahasiswa di hadapan venture capital dan angel investor.",
+        "date": "20 Mei 2025"
+      },
+      {
+        "id": 2,
+        "image": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80",
+        "title": "Pitch Deck & BMC Mentoring Clinic",
+        "description": "Sesi klinik pembuatan Business Model Canvas (BMC) bersama para mentor dan praktisi bisnis.",
+        "date": "15 November 2025"
+      },
+      {
+        "id": 3,
+        "image": "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=800&q=80",
+        "title": "Entrepreneur Campus Expo 2025",
+        "description": "Bazar dan pameran puluhan produk inovasi wirausaha karya mahasiswa Universitas Cakrawala.",
+        "date": "05 Desember 2025"
+      }
+    ],
+    "management": [
+      { "role": "Ketua UKM", "name": "Fajar Pratama", "division": "BPH Utama", "avatar": "FP" },
+      { "role": "Wakil Ketua", "name": "Rina Nose", "division": "BPH Utama", "avatar": "RN" },
+      { "role": "Kadiv Incubator & Pitching", "name": "Nadia Utami", "division": "Divisi Startup", "avatar": "NU" },
+      { "role": "Kadiv Partnership & Funding", "name": "Reza Rahadian", "division": "Divisi Eksternal", "avatar": "RR" }
+    ],
+    "instagram": "https://instagram.com/cbc_cakrawala",
+    "phone": "+6281456789012",
+    "whatsapp": "https://wa.me/6281456789012",
+    "registrationUrl": "https://forms.google.com/example-cbc"
+  },
+  {
+    "id": "aksara",
+    "name": "Aksara",
+    "category": "Seni, Budaya & Kreativitas",
+    "categoryBadge": "Seni, Budaya & Kreativitas",
+    "members": "20+ Anggota",
+    "logoSvg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 19l7-7 3 3-7 7-3-3z\"></path><path d=\"M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z\"></path><path d=\"M2 2l7.586 7.586\"></path><circle cx=\"11\" cy=\"11\" r=\"2\"></circle></svg>",
+    "image": "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=800&q=80",
+    "shortDesc": "Aksara adalah UKM pengembangan karya literasi, penulisan kreatif, antologi puisi, esai, dan jurnalistik mahasiswa.",
+    "vision": "Mewadahi kreativitas penulisan sastra, puisi, esai, dan karya seni tulis mahasiswa Universitas Cakrawala.",
+    "mission": [
+      "Menerbitkan buletin sastra dan antologi puisi mahasiswa secara berkala.",
+      "Mengadakan bedah buku dan diskusi karya sastra.",
+      "Workshop kepenulisan kreatif dan jurnalistik."
+    ],
+    "programs": [
+      {
+        "name": "Penerbitan Antologi Puisi & Buletin Aksara",
+        "period": "Semesteran",
+        "category": "Publikasi Karya",
+        "desc": "Penerbitan majalah sastra kampus dan kumpulan karya puisi cetak/digital mahasiswa."
+      },
+      {
+        "name": "Bedah Buku & Diskusi Literasi Nusantara",
+        "period": "Bulanan",
+        "category": "Kajian Sastra",
+        "desc": "Sesi apresiasi tulisan sastrawan nasional dan ulasan karya cipta anggota UKM."
+      },
+      {
+        "name": "Creative & Journalistic Writing Class",
+        "period": "Tahunan",
+        "category": "Workshop Kepenulisan",
+        "desc": "Pelatihan teknik penulisan opini publik, esai pop, dan liputan jurnalistik."
+      }
+    ],
+    "documentations": [
+      {
+        "id": 1,
+        "image": "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=800&q=80",
+        "title": "Peluncuran Buku Antologi Puisi Aksara",
+        "description": "Acara peresmian penerbitan buku antologi puisi cetak dan majalah sastra edisi khusus mahasiswa.",
+        "date": "18 November 2025"
+      },
+      {
+        "id": 2,
+        "image": "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=800&q=80",
+        "title": "Bedah Buku Sastra Nusantara",
+        "description": "Diskusi hangat apresiasi karya sastra dan penulisan cerpen bersama penulis sastra nasional.",
+        "date": "12 Januari 2026"
+      },
+      {
+        "id": 3,
+        "image": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=800&q=80",
+        "title": "Journalistic Writing & Reporting Class",
+        "description": "Pelatihan teknik pembuatan esai populer, penulisan berita, serta etika jurnalistik media kampus.",
+        "date": "02 Februari 2026"
+      }
+    ],
+    "management": [
+      { "role": "Ketua UKM", "name": "Maya Saphira", "division": "BPH Utama", "avatar": "MS" },
+      { "role": "Wakil Ketua", "name": "Bima Arya", "division": "BPH Utama", "avatar": "BA" },
+      { "role": "Redaktur Utama", "name": "Ananda Badudu", "division": "Divisi Redaksi", "avatar": "AB" },
+      { "role": "Kadiv Puisi & Cerpen", "name": "Tara Basro", "division": "Divisi Kreatif", "avatar": "TB" }
+    ],
+    "instagram": "https://instagram.com/aksara_cakrawala",
+    "phone": "+6281567890123",
+    "whatsapp": "https://wa.me/6281567890123",
+    "registrationUrl": "https://forms.google.com/example-aksara"
+  },
+  {
+    "id": "cakraphonic",
+    "name": "Cakraphonic",
+    "category": "Seni, Budaya & Kreativitas",
+    "categoryBadge": "Seni, Budaya & Kreativitas",
+    "members": "20+ Anggota",
+    "logoSvg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M9 18V5l12-2v13\"></path><circle cx=\"6\" cy=\"18\" r=\"3\"></circle><circle cx=\"18\" cy=\"16\" r=\"3\"></circle></svg>",
+    "image": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80",
+    "shortDesc": "Cakraphonic merupakan Unit Kegiatan Mahasiswa di bidang musik yang menjadi wadah ekspresi bakat bermusik, band, vokal, dan audio production.",
+    "vision": "Menjadi wadah utama pengembangan potensi seni musik mahasiswa yang kreatif, inovatif, dan berprestasi di tingkat nasional.",
+    "mission": [
+      "Menyelenggarakan latihan rutin vokal, band, dan produksi musik.",
+      "Mengikuti perlombaan seni suara dan musik antar universitas.",
+      "Menyelenggarakan Konser Tahunan StudentSocieties Festival."
+    ],
+    "programs": [
+      {
+        "name": "Konser Musik StudentSocieties Fest",
+        "period": "Tahunan (Desember)",
+        "category": "Konser Utama",
+        "desc": "Pegelaran musik akbar mempersembahkan penampilan grup band dan vokal terbaik kampus."
+      },
+      {
+        "name": "Campus Acoustic & Jamming Night",
+        "period": "Mingguan (Rabu Night)",
+        "category": "Latihan & Panggung",
+        "desc": "Sesi latihan terbuka dan pertunjukan musik akustik santai di area amphitheater."
+      },
+      {
+        "name": "Digital Audio Recording Workshop",
+        "period": "Bulanan",
+        "category": "Workshop Audio",
+        "desc": "Pelatihan pembuatan aransemen, recording studio, mixing, dan produksi musik digital."
+      }
+    ],
+    "documentations": [
+      {
+        "id": 1,
+        "image": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80",
+        "title": "Konser StudentSocieties Fest 2025",
+        "description": "Penampilan puncak kolaborasi grup band dan vokal terbaik kampus dalam festival musik akbar tahunan.",
+        "date": "20 Desember 2025"
+      },
+      {
+        "id": 2,
+        "image": "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=800&q=80",
+        "title": "Campus Acoustic & Jamming Session",
+        "description": "Pertunjukan musik akustik santai mingguan sebagai wadah mengasah ekspresi panggung mahasiswa.",
+        "date": "14 Januari 2026"
+      },
+      {
+        "id": 3,
+        "image": "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=800&q=80",
+        "title": "Digital Audio Recording & Mixing Class",
+        "description": "Pelatihan pembuatan aransemen musik digital, teknik rekaman studio, hingga proses mixing & mastering.",
+        "date": "08 Februari 2026"
+      }
+    ],
+    "management": [
+      { "role": "Ketua UKM", "name": "Rian Ardianto", "division": "BPH Utama", "avatar": "RA" },
+      { "role": "Wakil Ketua", "name": "Siti Nurhaliza", "division": "BPH Utama", "avatar": "SN" },
+      { "role": "Kadiv Production & Sound", "name": "Dimas Anggara", "division": "Divisi Musik", "avatar": "DA" },
+      { "role": "Kadiv Event & Show management", "name": "Gita Gutawa", "division": "Divisi Acara", "avatar": "GG" }
+    ],
+    "instagram": "https://instagram.com/cakraphonic",
+    "phone": "+6281678901234",
+    "whatsapp": "https://wa.me/6281678901234",
+    "registrationUrl": "https://forms.google.com/example-cakraphonic"
+  },
+  {
+    "id": "arunika-motion",
+    "name": "Arunika Motion",
+    "category": "Seni, Budaya & Kreativitas",
+    "categoryBadge": "Seni, Budaya & Kreativitas",
+    "members": "20+ Anggota",
+    "logoSvg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"></polygon></svg>",
+    "image": "https://images.unsplash.com/photo-1547153760-18fc86324498?auto=format&fit=crop&w=800&q=80",
+    "shortDesc": "Arunika Motion merupakan komunitas tari tradisional dan modern dance yang penuh semangat seni serta kreativitas pertunjukan.",
+    "vision": "Menjadi wadah pengekspresian seni tari tradisional dan modern yang memukau serta melestarikan budaya bangsa.",
+    "mission": [
+      "Latihan rutin koreografi tari tradisional dan modern dance.",
+      "Pementasan dalam berbagai acara resmi kampus dan festival luar kampus.",
+      "Workshop teknik tari bersama koreografer profesional."
+    ],
+    "programs": [
+      {
+        "name": "Arunika Motion Annual Dance Showcase",
+        "period": "Tahunan (September)",
+        "category": "Pementasan Seni",
+        "desc": "Pementasan tari kolosal memperpadukan tarian tradisional nusantara dan modern hip-hop."
+      },
+      {
+        "name": "Routine Choreography & Flexibility Practice",
+        "period": "2x Seminggu",
+        "category": "Latihan Fisik & Tari",
+        "desc": "Latihan intensif ketahanan fisik, olah tubuh, penguasaan koreografi baru."
+      },
+      {
+        "name": "Dance Masterclass with Guest Choreographer",
+        "period": "Semesteran",
+        "category": "Workshop Professional",
+        "desc": "Workshop eksplorasi koreografi dan ekspresi seni tari bersama koreografer nasional."
+      }
+    ],
+    "documentations": [
+      {
+        "id": 1,
+        "image": "https://images.unsplash.com/photo-1547153760-18fc86324498?auto=format&fit=crop&w=800&q=80",
+        "title": "Annual Dance Showcase 2025",
+        "description": "Pagelaran tari memukau perpaduan antara gerakan tari tradisional Nusantara dengan modern dance.",
+        "date": "25 September 2025"
+      },
+      {
+        "id": 2,
+        "image": "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=800&q=80",
+        "title": "Routine Choreography Practice",
+        "description": "Latihan ketahanan fisik, olah tubuh, dan sinkronisasi gerakan untuk persiapan pementasan baru.",
+        "date": "10 November 2025"
+      },
+      {
+        "id": 3,
+        "image": "https://images.unsplash.com/photo-1518834107812-67b0b7c58434?auto=format&fit=crop&w=800&q=80",
+        "title": "Masterclass with Guest Choreographer",
+        "description": "Sesi pemantapan ekspresi panggung dan eksplorasi koreografi bersama koreografer profesional.",
+        "date": "20 Januari 2026"
+      }
+    ],
+    "management": [
+      { "role": "Ketua UKM", "name": "Arunika Lestari", "division": "BPH Utama", "avatar": "AL" },
+      { "role": "Wakil Ketua", "name": "Gilang Dirga", "division": "BPH Utama", "avatar": "GD" },
+      { "role": "Koreografer Utama", "name": "Bella Safitri", "division": "Divisi Artistik", "avatar": "BS" },
+      { "role": "Kadiv Modern Dance", "name": "Chika Jessica", "division": "Divisi Tari", "avatar": "CJ" }
+    ],
+    "instagram": "https://instagram.com/arunikamotion",
+    "phone": "+6281789012345",
+    "whatsapp": "https://wa.me/6281789012345",
+    "registrationUrl": "https://forms.google.com/example-arunika"
+  }
+]

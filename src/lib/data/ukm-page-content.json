@@ -1,0 +1,24 @@
+{
+  "hero": {
+    "tagline": "Halo Cakranians!",
+    "title": "Temukan UKM yang Sesuai dengan Minatmu.",
+    "highlightText": "UKM",
+    "description": "Jelajahi berbagai UKM resmi Universitas Cakrawala, pelajari setiap kegiatannya, dan temukan komunitas yang mendukung perkembanganmu selama berkuliah.",
+    "ctaText": "Jelajahi UKM",
+    "ctaLink": "#eksplorasi",
+    "images": [
+      "https://ik.imagekit.io/me3dns7q6/SGA-Photo/FOTO-DUMMY/abstral-official-fnYHoNUJUNQ-unsplash.jpg",
+      "https://ik.imagekit.io/me3dns7q6/SGA-Photo/FOTO-DUMMY/gabriel-federa-wYfVnWI0XT4-unsplash.jpg",
+      "https://ik.imagekit.io/me3dns7q6/SGA-Photo/FOTO-DUMMY/anne-nygard-x07ELaNFt34-unsplash.jpg",
+      "https://ik.imagekit.io/me3dns7q6/SGA-Photo/FOTO-DUMMY/jelleke-vanooteghem-6NUlOHM40w8-unsplash.jpg",
+      "https://ik.imagekit.io/me3dns7q6/SGA-Photo/FOTO-DUMMY/antenna-cw-cj_nFa14-unsplash.jpg"
+    ],
+    "imageBgColors": [
+      "#EFE5CC", 
+      "#CCA154", 
+      "#BFA050", 
+      "#E5BA43", 
+      "#8E7B44"
+    ]
+  }
+}
