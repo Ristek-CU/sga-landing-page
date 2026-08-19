@@ -120,7 +120,7 @@ export default function UKMCard({ ukm, className }: UKMCardProps) {
 				</div>
 
 				<Link
-					to={`/ukm/${ukm.id}`}
+					to={`/student-societes/${ukm.id}`}
 					className={cn(
 						"bg-[#08333e] hover:bg-[#06262e] active:scale-95 text-white text-xs font-semibold",
 						"px-4 py-2 rounded-lg transition-all duration-150 shadow-sm inline-block text-center",

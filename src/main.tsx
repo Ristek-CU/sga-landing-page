@@ -31,11 +31,11 @@ const router = createBrowserRouter([
 		],
 	},
 	{
-		path: "/ukm",
+		path: "/student-societes",
 		element: <UkmPage />,
 	},
 	{
-		path: "/ukm/:id",
+		path: "/student-societes/:id",
 		element: <UKMDetailPage />,
 	},
 ]);

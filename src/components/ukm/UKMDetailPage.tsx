@@ -40,7 +40,7 @@ export default function UKMDetailPage() {
 					telah dihapus.
 				</p>
 				<Link
-					to="/ukm"
+					to="/student-societes"
 					className={cn(
 						"px-6 py-2.5 rounded-xl shadow-md transition-all",
 						"bg-[#08333e] hover:bg-[#06262e] text-white text-xs font-bold",
@@ -89,7 +89,7 @@ export default function UKMDetailPage() {
 
 				<div className="absolute top-6 left-4 sm:left-8 lg:left-12 z-10">
 					<Link
-						to="/ukm"
+						to="/student-societes"
 						className={cn(
 							"inline-flex items-center gap-2 px-4 py-2 rounded-full transition-all shadow-lg",
 							"bg-black/40 hover:bg-black/70 border border-white/20 backdrop-blur-md",
