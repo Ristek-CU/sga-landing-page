@@ -99,9 +99,6 @@ export default function Header() {
 					>
 						Student Voice
 					</Link>
-					<Link to="/ukm" className="hover:text-[#D4B254] transition-colors duration-300">
-						UKM
-					</Link>
 				</div>
 
 				<Button
