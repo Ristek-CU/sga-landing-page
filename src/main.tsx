@@ -1,4 +1,4 @@
-import { StrictMode } from "react";
+import { StrictMode, lazy } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router";
 
@@ -10,7 +10,10 @@ import AppLayout from "./components/layout/index.tsx";
 import { MobileMenuContextProvider } from "./contexts/mobile-menu-context.tsx";
 
 import HomePage from "./pages/home.tsx";
-import ReportingPage from "./pages/reporting.tsx";
+import UkmPage from "./pages/ukm.tsx";
+import UKMDetailPage from "./components/ukm/UKMDetailPage";
+
+const ReportingPage = lazy(() => import("./pages/reporting.tsx"));
 
 const router = createBrowserRouter([
 	{
@@ -26,6 +29,14 @@ const router = createBrowserRouter([
 				element: <ReportingPage />,
 			},
 		],
+	},
+	{
+		path: "/student-societes",
+		element: <UkmPage />,
+	},
+	{
+		path: "/student-societes/:id",
+		element: <UKMDetailPage />,
 	},
 ]);
 

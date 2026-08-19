@@ -1,7 +1,7 @@
 import { ArrowLeftIcon } from "lucide-react";
 import type { PropsWithChildren } from "react";
 
-import sgaMembers from "@/assets/images/sga-members.png";
+import sgaMembers from "@/assets/images/sga-members.webp";
 import {
 	Carousel,
 	CarouselContent,
