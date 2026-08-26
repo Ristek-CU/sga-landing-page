@@ -18,7 +18,6 @@
 		"@radix-ui/react-alert-dialog": "^1.1.15",
 		"@radix-ui/react-label": "^2.1.7",
 		"@radix-ui/react-slot": "^1.2.3",
-		"@tailwindcss/vite": "^4.0.0",
 		"class-variance-authority": "^0.7.1",
 		"clsx": "^2.1.1",
 		"embla-carousel-react": "^8.5.2",
@@ -29,7 +28,7 @@
 		"react": "19.0.0",
 		"react-dom": "19.0.0",
 		"react-hook-form": "^7.62.0",
-		"react-router": "^7.9.2",
+		"react-router": "^7.18.0",
 		"sonner": "^2.0.7",
 		"tailwind-merge": "^2.6.0",
 		"zod": "^4.1.9"
@@ -39,10 +38,11 @@
 		"@types/node": "^22.10.5",
 		"@types/react": "19.0.4",
 		"@types/react-dom": "19.0.2",
-		"@vitejs/plugin-react": "^4.3.4",
+		"@tailwindcss/vite": "^4.3.3",
+		"@vitejs/plugin-react": "^4.7.0",
 		"globals": "^15.14.0",
-		"tailwindcss": "^4.0.0",
+		"tailwindcss": "^4.3.3",
 		"typescript": "~5.6.2",
-		"vite": "^6.0.5"
+		"vite": "^6.4.3"
 	}
 }
