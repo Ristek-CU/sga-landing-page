@@ -1,9 +1,0 @@
-packages:
-  - '.'
-
-allowBuilds:
-  '@biomejs/biome': true
-  esbuild: true
-
-overrides:
-  yaml: ^2.8.3
