@@ -23,6 +23,7 @@ interface CampaignField {
 	label: string;
 	description: string | null;
 	type: FieldType;
+	hint?: string;
 	required: boolean;
 	options: string[];
 }
@@ -42,6 +43,19 @@ interface ApiError {
 }
 
 const campaignCache = new Map<string, Campaign>();
+
+const fieldTypeHelp: Record<FieldType, string> = {
+	short_text: "Isi dengan jawaban singkat dan langsung pada inti pertanyaan.",
+	paragraph: "Jelaskan jawaban secara lengkap. Maksimal 10.000 karakter.",
+	email: "Masukkan alamat email aktif, contoh: nama@email.com.",
+	number: "Masukkan angka saja.",
+	multiple_choice: "Pilih satu jawaban yang paling sesuai.",
+	checkboxes: "Kamu dapat memilih lebih dari satu jawaban.",
+	dropdown: "Buka daftar lalu pilih satu jawaban.",
+	linear_scale: "Pilih satu angka pada skala yang tersedia.",
+	date: "Pilih tanggal melalui kalender atau masukkan tanggal yang valid.",
+	file: "Unggah maksimal 5 file, masing-masing maksimal 10MB.",
+};
 
 const apiBase = (
 	import.meta.env.VITE_ADVOCATION_API_URL || "https://satgas.sga-cakrawala.org"
@@ -240,6 +254,13 @@ export default function ReportingForm() {
 											{field.description}
 										</p>
 									)}
+									<p
+										id={`field_${field.id}_help`}
+										className={`mt-1.5 break-words text-xs leading-5 [overflow-wrap:anywhere] ${field.type === "number" ? "font-medium text-red-600" : "text-slate-500"}`}
+									>
+										{field.type === "number" ? "* " : ""}
+										{field.hint || fieldTypeHelp[field.type]}
+									</p>
 									<div className="mt-4">
 										<DynamicField field={field} />
 									</div>
@@ -291,6 +312,7 @@ export default function ReportingForm() {
 
 function DynamicField({ field }: { field: CampaignField }) {
 	const name = `field_${field.id}`;
+	const describedBy = `${name}_help`;
 	if (field.type === "paragraph")
 		return (
 			<Textarea
@@ -298,11 +320,13 @@ function DynamicField({ field }: { field: CampaignField }) {
 				name={name}
 				required={field.required}
 				maxLength={10000}
+				aria-describedby={describedBy}
 				className="min-h-32 resize-y"
 				placeholder="Tulis jawaban kamu"
 			/>
 		);
-	if (["short_text", "email", "number", "date"].includes(field.type))
+	if (["short_text", "email", "number", "date"].includes(field.type)) {
+		const isNumber = field.type === "number";
 		return (
 			<Input
 				id={name}
@@ -310,17 +334,40 @@ function DynamicField({ field }: { field: CampaignField }) {
 				required={field.required}
 				maxLength={field.type === "short_text" ? 500 : undefined}
 				type={field.type === "short_text" ? "text" : field.type}
+				inputMode={isNumber ? "decimal" : undefined}
+				step={isNumber ? "any" : undefined}
+				aria-describedby={describedBy}
+				onInvalid={
+					isNumber
+						? (event) => {
+								if (event.currentTarget.validity.badInput) {
+									event.currentTarget.setCustomValidity("Masukkan angka saja.");
+								}
+							}
+						: undefined
+				}
+				onInput={
+					isNumber
+						? (event) => event.currentTarget.setCustomValidity("")
+						: undefined
+				}
 				placeholder={
-					field.type === "email" ? "nama@email.com" : "Tulis jawaban kamu"
+					field.type === "email"
+						? "nama@email.com"
+						: isNumber
+							? "Contoh: 10"
+							: "Tulis jawaban kamu"
 				}
 			/>
 		);
+	}
 	if (field.type === "dropdown")
 		return (
 			<select
 				id={name}
 				name={name}
 				required={field.required}
+				aria-describedby={describedBy}
 				defaultValue=""
 				className="h-11 w-full rounded-md border border-slate-300 bg-white px-3 text-sm focus:border-[#CEAE65] focus:outline-none"
 			>
@@ -350,6 +397,7 @@ function DynamicField({ field }: { field: CampaignField }) {
 					name={name}
 					required={field.required}
 					type="file"
+					aria-describedby={describedBy}
 					multiple
 					className="sr-only"
 					accept=".jpg,.jpeg,.png,.gif,.webp,.pdf,.doc,.docx,.xls,.xlsx"
@@ -359,6 +407,8 @@ function DynamicField({ field }: { field: CampaignField }) {
 	const inputType = field.type === "checkboxes" ? "checkbox" : "radio";
 	return (
 		<div
+			role="group"
+			aria-describedby={describedBy}
 			className={
 				field.type === "linear_scale" ? "flex flex-wrap gap-3" : "space-y-3"
 			}
@@ -369,6 +419,7 @@ function DynamicField({ field }: { field: CampaignField }) {
 					className="flex cursor-pointer items-center gap-3 rounded-xl border border-slate-200 px-4 py-3 text-sm transition hover:border-[#CEAE65] hover:bg-amber-50/40"
 				>
 					<input
+						id={`${name}_${index}`}
 						type={inputType}
 						name={name}
 						value={option}
