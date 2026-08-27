@@ -60,10 +60,12 @@ const Particles: React.FC<ParticlesProps> = ({
 	const circles = useRef<Circle[]>([]);
 	const mouse = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
 	const canvasSize = useRef<{ w: number; h: number }>({ w: 0, h: 0 });
-	const dpr = typeof window !== "undefined" ? Math.min(window.devicePixelRatio, 2) : 1;
+	const dpr =
+		typeof window !== "undefined" ? Math.min(window.devicePixelRatio, 2) : 1;
 	const rafID = useRef<number | null>(null);
 	const resizeTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 	const isVisible = useRef(true);
+	const reduceMotion = useRef(false);
 	const rgb = hexToRgb(color);
 
 	const circleParams = useCallback((): Circle => {
@@ -88,21 +90,24 @@ const Particles: React.FC<ParticlesProps> = ({
 		};
 	}, [size]);
 
-	const drawCircle = useCallback((circle: Circle, update = false) => {
-		if (context.current) {
-			const { x, y, translateX, translateY, size: s, alpha } = circle;
-			context.current.translate(translateX, translateY);
-			context.current.beginPath();
-			context.current.arc(x, y, s, 0, 2 * Math.PI);
-			context.current.fillStyle = `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, ${alpha})`;
-			context.current.fill();
-			context.current.setTransform(dpr, 0, 0, dpr, 0, 0);
+	const drawCircle = useCallback(
+		(circle: Circle, update = false) => {
+			if (context.current) {
+				const { x, y, translateX, translateY, size: s, alpha } = circle;
+				context.current.translate(translateX, translateY);
+				context.current.beginPath();
+				context.current.arc(x, y, s, 0, 2 * Math.PI);
+				context.current.fillStyle = `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, ${alpha})`;
+				context.current.fill();
+				context.current.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-			if (!update) {
-				circles.current.push(circle);
+				if (!update) {
+					circles.current.push(circle);
+				}
 			}
-		}
-	}, [rgb, dpr]);
+		},
+		[rgb, dpr],
+	);
 
 	const clearContext = useCallback(() => {
 		if (context.current) {
@@ -115,19 +120,27 @@ const Particles: React.FC<ParticlesProps> = ({
 		}
 	}, []);
 
-	const remapValue = useCallback((
-		value: number,
-		start1: number,
-		end1: number,
-		start2: number,
-		end2: number,
-	): number => {
-		const remapped =
-			((value - start1) * (end2 - start2)) / (end1 - start1) + start2;
-		return remapped > 0 ? remapped : 0;
-	}, []);
+	const remapValue = useCallback(
+		(
+			value: number,
+			start1: number,
+			end1: number,
+			start2: number,
+			end2: number,
+		): number => {
+			const remapped =
+				((value - start1) * (end2 - start2)) / (end1 - start1) + start2;
+			return remapped > 0 ? remapped : 0;
+		},
+		[],
+	);
 
 	const animate = useCallback(() => {
+		if (reduceMotion.current) {
+			clearContext();
+			for (const circle of circles.current) drawCircle(circle, true);
+			return;
+		}
 		if (!isVisible.current) {
 			rafID.current = window.requestAnimationFrame(animate);
 			return;
@@ -180,7 +193,16 @@ const Particles: React.FC<ParticlesProps> = ({
 			}
 		}
 		rafID.current = window.requestAnimationFrame(animate);
-	}, [clearContext, remapValue, drawCircle, circleParams, staticity, ease, vx, vy]);
+	}, [
+		clearContext,
+		remapValue,
+		drawCircle,
+		circleParams,
+		staticity,
+		ease,
+		vx,
+		vy,
+	]);
 
 	const resizeCanvas = useCallback(() => {
 		if (canvasContainerRef.current && canvasRef.current && context.current) {
@@ -195,14 +217,24 @@ const Particles: React.FC<ParticlesProps> = ({
 
 			circles.current = [];
 			clearContext();
-			for (let i = 0; i < quantity; i++) {
+			const effectiveQuantity =
+				canvasSize.current.w < 640
+					? Math.min(quantity, 120)
+					: canvasSize.current.w < 1024
+						? Math.min(quantity, 300)
+						: quantity;
+			for (let i = 0; i < effectiveQuantity; i++) {
 				const circle = circleParams();
+				if (reduceMotion.current) circle.alpha = circle.targetAlpha;
 				drawCircle(circle);
 			}
 		}
 	}, [dpr, quantity, circleParams, drawCircle, clearContext]);
 
 	useEffect(() => {
+		reduceMotion.current = window.matchMedia(
+			"(prefers-reduced-motion: reduce)",
+		).matches;
 		if (canvasRef.current) {
 			context.current = canvasRef.current.getContext("2d");
 		}
@@ -243,7 +275,7 @@ const Particles: React.FC<ParticlesProps> = ({
 			([entry]) => {
 				isVisible.current = entry.isIntersecting;
 			},
-			{ threshold: 0 }
+			{ threshold: 0 },
 		);
 
 		if (canvasContainerRef.current) {

@@ -28,7 +28,7 @@ export default function Header() {
 	const HashLink = pathname === "/" ? "a" : Link;
 
 	return (
-		<header className="pointer-events-none fixed inset-x-0 top-0 z-50 flex w-full justify-center px-2 pt-[env(safe-area-inset-top)] transition-all sm:px-0">
+		<header className="pointer-events-none fixed left-0 top-0 z-50 flex w-[100dvw] max-w-[100dvw] justify-center px-2 pt-[env(safe-area-inset-top)] transition-all sm:px-0">
 			<div
 				className={cn(
 					"pointer-events-auto flex w-full origin-top transform-gpu items-center justify-between border text-white antialiased backface-hidden transition-all duration-500 ease-in-out",
@@ -118,14 +118,14 @@ export default function Header() {
 				>
 					<AlignJustifyIcon
 						className={cn(
-							"absolute inset-0 m-auto size-6 opacity-0 transition-all duration-300 ease-out -translate-x-10",
-							{ "opacity-100 translate-x-0": !isMobileMenuOpen },
+							"absolute inset-0 m-auto size-6 scale-75 rotate-90 opacity-0 transition-all duration-300 ease-out",
+							{ "scale-100 rotate-0 opacity-100": !isMobileMenuOpen },
 						)}
 					/>
 					<XIcon
 						className={cn(
-							"absolute inset-0 m-auto size-6 opacity-0 transition-all duration-300 ease-out translate-x-10",
-							{ "opacity-100 translate-x-0": isMobileMenuOpen },
+							"absolute inset-0 m-auto size-6 scale-75 -rotate-90 opacity-0 transition-all duration-300 ease-out",
+							{ "scale-100 rotate-0 opacity-100": isMobileMenuOpen },
 						)}
 					/>
 				</Button>
