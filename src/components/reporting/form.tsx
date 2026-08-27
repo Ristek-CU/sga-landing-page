@@ -75,10 +75,15 @@ export default function ReportingForm() {
 		const controller = new AbortController();
 		let active = true;
 		const cachedCampaign = campaignCache.get(campaignSlug);
+		setSuccessMessage("");
+		setErrors({});
+		setLoadError("");
+		setFormKey(0);
 		if (cachedCampaign) {
 			setCampaign(cachedCampaign);
 			setLoading(false);
 		} else {
+			setCampaign(null);
 			setLoading(true);
 		}
 		fetch(`${apiBase}/api/v1/campaigns/${encodeURIComponent(campaignSlug)}`, {
