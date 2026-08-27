@@ -40,6 +40,8 @@ interface ApiError {
 	errors?: Record<string, string[]>;
 }
 
+const campaignCache = new Map<string, Campaign>();
+
 const apiBase = (
 	import.meta.env.VITE_ADVOCATION_API_URL || "https://satgas.sga-cakrawala.org"
 ).replace(/\/$/, "");
@@ -52,8 +54,12 @@ export default function ReportingForm() {
 			"student-voice",
 		[],
 	);
-	const [campaign, setCampaign] = useState<Campaign | null>(null);
-	const [loading, setLoading] = useState(true);
+	const [campaign, setCampaign] = useState<Campaign | null>(
+		() => campaignCache.get(campaignSlug) ?? null,
+	);
+	const [loading, setLoading] = useState(
+		() => !campaignCache.has(campaignSlug),
+	);
 	const [submitting, setSubmitting] = useState(false);
 	const [loadError, setLoadError] = useState("");
 	const [errors, setErrors] = useState<Record<string, string[]>>({});
@@ -62,7 +68,14 @@ export default function ReportingForm() {
 
 	useEffect(() => {
 		const controller = new AbortController();
-		setLoading(true);
+		let active = true;
+		const cachedCampaign = campaignCache.get(campaignSlug);
+		if (cachedCampaign) {
+			setCampaign(cachedCampaign);
+			setLoading(false);
+		} else {
+			setLoading(true);
+		}
 		fetch(`${apiBase}/api/v1/campaigns/${encodeURIComponent(campaignSlug)}`, {
 			headers: { Accept: "application/json" },
 			signal: controller.signal,
@@ -71,18 +84,26 @@ export default function ReportingForm() {
 				const payload = await response.json();
 				if (!response.ok)
 					throw new Error(payload.message || "Form belum tersedia.");
+				if (!active) return;
+				campaignCache.set(campaignSlug, payload.data);
 				setCampaign(payload.data);
 				setLoadError("");
 			})
 			.catch((error: unknown) => {
 				if (error instanceof DOMException && error.name === "AbortError")
 					return;
+				if (!active) return;
 				setLoadError(
 					error instanceof Error ? error.message : "Form gagal dimuat.",
 				);
 			})
-			.finally(() => setLoading(false));
-		return () => controller.abort();
+			.finally(() => {
+				if (active) setLoading(false);
+			});
+		return () => {
+			active = false;
+			controller.abort();
+		};
 	}, [campaignSlug]);
 
 	const submit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -143,18 +164,18 @@ export default function ReportingForm() {
 		);
 
 	return (
-		<div className="w-full py-12 md:py-16">
+		<div className="min-w-0 w-full max-w-full py-12 motion-safe:animate-[form-reveal_420ms_cubic-bezier(0.22,1,0.36,1)] md:py-16">
 			<div className="mb-8 overflow-hidden rounded-3xl border border-[#CEAE65]/30 bg-white shadow-[0_20px_60px_-30px_rgba(6,69,91,0.35)]">
 				<div className="h-2 bg-[#CEAE65]" />
 				<div className="p-6 md:p-9">
 					<p className="text-xs font-bold uppercase tracking-[0.22em] text-[#9A7C35]">
 						Student Voice
 					</p>
-					<h2 className="mt-2 text-2xl font-semibold text-[#06455B] md:text-3xl">
+					<h2 className="mt-2 break-words text-2xl font-semibold text-[#06455B] [overflow-wrap:anywhere] md:text-3xl">
 						{campaign.title}
 					</h2>
 					{campaign.description && (
-						<p className="mt-3 max-w-3xl whitespace-pre-line text-sm leading-6 text-slate-600 md:text-base">
+						<p className="mt-3 max-w-3xl whitespace-pre-line break-words text-sm leading-6 text-slate-600 [overflow-wrap:anywhere] md:text-base">
 							{campaign.description}
 						</p>
 					)}
@@ -173,18 +194,22 @@ export default function ReportingForm() {
 					compact
 				/>
 			) : (
-				<form key={formKey} onSubmit={submit} className="space-y-5">
+				<form
+					key={formKey}
+					onSubmit={submit}
+					className="min-w-0 max-w-full space-y-5"
+				>
 					<input
 						name="_website"
 						tabIndex={-1}
 						autoComplete="off"
-						className="absolute -left-[9999px] size-px opacity-0"
+						className="pointer-events-none fixed left-0 top-0 -z-10 size-px opacity-0"
 						aria-hidden="true"
 					/>
 					{campaign.fields.map((field, index) => (
 						<div
 							key={field.id}
-							className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition focus-within:border-[#CEAE65] focus-within:shadow-md md:p-7"
+							className="min-w-0 max-w-full rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition focus-within:border-[#CEAE65] focus-within:shadow-md md:p-7"
 						>
 							<div className="flex gap-3">
 								<span className="mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-full bg-[#06455B]/8 text-xs font-semibold text-[#06455B]">
@@ -192,7 +217,7 @@ export default function ReportingForm() {
 								</span>
 								<div className="min-w-0 flex-1">
 									<label
-										className="text-sm font-semibold text-slate-900 md:text-base"
+										className="break-words text-sm font-semibold text-slate-900 [overflow-wrap:anywhere] md:text-base"
 										htmlFor={`field_${field.id}`}
 									>
 										{field.label}
@@ -201,7 +226,7 @@ export default function ReportingForm() {
 										)}
 									</label>
 									{field.description && (
-										<p className="mt-1 text-sm text-slate-500">
+										<p className="mt-1 break-words text-sm text-slate-500 [overflow-wrap:anywhere]">
 											{field.description}
 										</p>
 									)}
@@ -310,7 +335,7 @@ function DynamicField({ field }: { field: CampaignField }) {
 						Maks. 5 file, masing-masing 10MB
 					</small>
 				</span>
-				<Input
+				<input
 					id={name}
 					name={name}
 					required={field.required}
@@ -340,7 +365,9 @@ function DynamicField({ field }: { field: CampaignField }) {
 						required={field.required && inputType === "radio" && index === 0}
 						className="size-4 accent-[#06455B]"
 					/>
-					{option}
+					<span className="min-w-0 break-words [overflow-wrap:anywhere]">
+						{option}
+					</span>
 				</label>
 			))}
 		</div>
@@ -349,9 +376,37 @@ function DynamicField({ field }: { field: CampaignField }) {
 
 function LoadingState() {
 	return (
-		<div className="flex min-h-72 items-center justify-center py-16 text-[#06455B]">
-			<LoaderCircle className="mr-3 size-6 animate-spin" />
-			<span>Memuat form Student Voice...</span>
+		<div
+			className="w-full max-w-full py-12 md:py-16"
+			role="status"
+			aria-label="Memuat form Student Voice"
+		>
+			<div className="overflow-hidden rounded-3xl border border-[#CEAE65]/20 bg-white shadow-sm">
+				<div className="h-2 bg-[#CEAE65]/70" />
+				<div className="space-y-4 p-6 md:p-9">
+					<div className="h-3 w-28 animate-pulse rounded-full bg-[#CEAE65]/25" />
+					<div className="h-8 w-3/4 animate-pulse rounded-lg bg-[#06455B]/10" />
+					<div className="h-4 w-full animate-pulse rounded bg-slate-100" />
+					<div className="h-4 w-2/3 animate-pulse rounded bg-slate-100" />
+				</div>
+			</div>
+			<div className="mt-5 space-y-5">
+				{[0, 1, 2].map((item) => (
+					<div
+						key={item}
+						className="rounded-2xl border border-slate-200 bg-white p-5 md:p-7"
+					>
+						<div className="flex gap-3">
+							<div className="size-7 shrink-0 animate-pulse rounded-full bg-[#06455B]/10" />
+							<div className="min-w-0 flex-1 space-y-4">
+								<div className="h-4 w-1/2 animate-pulse rounded bg-slate-200" />
+								<div className="h-11 w-full animate-pulse rounded-lg bg-slate-100" />
+							</div>
+						</div>
+					</div>
+				))}
+			</div>
+			<span className="sr-only">Memuat form Student Voice...</span>
 		</div>
 	);
 }

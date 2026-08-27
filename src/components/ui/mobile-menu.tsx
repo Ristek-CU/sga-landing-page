@@ -52,7 +52,7 @@ export default function MobileMenu() {
 			aria-label="Navigasi utama"
 			aria-hidden={!isMobileMenuOpen}
 			className={cn(
-				"fixed inset-0 z-40 h-[100dvh] w-full overflow-y-auto overscroll-contain bg-[#06455B]/98 text-white backdrop-blur-xl transition-[opacity,visibility] duration-300 ease-out lg:hidden",
+				"fixed left-0 top-0 z-40 h-[100dvh] w-[100dvw] max-w-[100dvw] overflow-x-hidden overflow-y-auto overscroll-contain bg-[#06455B]/98 text-white backdrop-blur-xl transition-[opacity,visibility] duration-300 ease-out lg:hidden",
 				isMobileMenuOpen
 					? "visible opacity-100"
 					: "pointer-events-none invisible opacity-0",

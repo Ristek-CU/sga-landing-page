@@ -1,40 +1,43 @@
-import { useEffect, useRef } from "react";
-import Lenis from "lenis";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Lenis from "lenis";
+import { useEffect, useRef } from "react";
 
-export default function SmoothScrolling({ children }: { children: React.ReactNode }) {
-    const lenisRef = useRef<Lenis | null>(null);
+export default function SmoothScrolling({
+	children,
+}: { children: React.ReactNode }) {
+	const lenisRef = useRef<Lenis | null>(null);
 
-    useEffect(() => {
-        const lenis = new Lenis({
-            duration: 1.2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            orientation: "vertical",
-            gestureOrientation: "vertical",
-            smoothWheel: true,
-        });
-        lenisRef.current = lenis;
+	useEffect(() => {
+		const prefersNativeScroll =
+			window.matchMedia("(pointer: coarse)").matches ||
+			window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+		if (prefersNativeScroll) return;
 
-        // Sinkronkan scroll Lenis ke ScrollTrigger GSAP (untuk animasi UKM)
-        lenis.on("scroll", ScrollTrigger.update);
+		const lenis = new Lenis({
+			duration: 1.2,
+			easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+			orientation: "vertical",
+			gestureOrientation: "vertical",
+			smoothWheel: true,
+		});
+		lenisRef.current = lenis;
 
-        // Use rAF loop with proper cleanup
-        let rafId: number;
-        function raf(time: number) {
-            lenis.raf(time);
-            rafId = requestAnimationFrame(raf);
-        }
-        rafId = requestAnimationFrame(raf);
+		// Sinkronkan scroll Lenis ke ScrollTrigger GSAP (untuk animasi UKM)
+		lenis.on("scroll", ScrollTrigger.update);
 
-        return () => {
-            cancelAnimationFrame(rafId);
-            lenis.destroy();
-        };
-    }, []);
+		// Use rAF loop with proper cleanup
+		let rafId: number;
+		function raf(time: number) {
+			lenis.raf(time);
+			rafId = requestAnimationFrame(raf);
+		}
+		rafId = requestAnimationFrame(raf);
 
-    return (
-        <div style={{ willChange: "scroll-position" }}>
-            {children}
-        </div>
-    );
+		return () => {
+			cancelAnimationFrame(rafId);
+			lenis.destroy();
+		};
+	}, []);
+
+	return <div style={{ willChange: "scroll-position" }}>{children}</div>;
 }
