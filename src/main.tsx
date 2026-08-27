@@ -7,11 +7,11 @@ import "@fontsource-variable/plus-jakarta-sans/wght-italic.css";
 import "./index.css";
 
 import AppLayout from "./components/layout/index.tsx";
+import UKMDetailPage from "./components/ukm/UKMDetailPage";
 import { MobileMenuContextProvider } from "./contexts/mobile-menu-context.tsx";
 
 import HomePage from "./pages/home.tsx";
 import UkmPage from "./pages/ukm.tsx";
-import UKMDetailPage from "./components/ukm/UKMDetailPage";
 
 const ReportingPage = lazy(() => import("./pages/reporting.tsx"));
 
@@ -26,6 +26,10 @@ const router = createBrowserRouter([
 			},
 			{
 				path: "/student-voice",
+				element: <ReportingPage />,
+			},
+			{
+				path: "/student-voice/:campaignSlug",
 				element: <ReportingPage />,
 			},
 		],

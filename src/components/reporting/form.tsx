@@ -1,5 +1,6 @@
 import { CheckCircle2, FileUp, LoaderCircle, RefreshCw } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
+import { useParams } from "react-router";
 import { toast } from "sonner";
 
 import Button from "../ui/button.tsx";
@@ -47,12 +48,16 @@ const apiBase = (
 ).replace(/\/$/, "");
 
 export default function ReportingForm() {
+	const { campaignSlug: routeCampaignSlug } = useParams<{
+		campaignSlug?: string;
+	}>();
 	const campaignSlug = useMemo(
 		() =>
+			routeCampaignSlug ||
 			new URLSearchParams(window.location.search).get("campaign") ||
 			import.meta.env.VITE_STUDENT_VOICE_CAMPAIGN ||
 			"student-voice",
-		[],
+		[routeCampaignSlug],
 	);
 	const [campaign, setCampaign] = useState<Campaign | null>(
 		() => campaignCache.get(campaignSlug) ?? null,
