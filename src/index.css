@@ -122,8 +122,17 @@
 /* Menyembunyikan scrollbar untuk IE, Edge, dan Firefox */
 html,
 body {
+	width: 100%;
+	max-width: 100%;
+	overflow-x: clip;
   -ms-overflow-style: none;
   /* IE and Edge */
   scrollbar-width: none;
   /* Firefox */
+}
+
+#root {
+	width: 100%;
+	max-width: 100%;
+	overflow-x: clip;
 }

@@ -28,40 +28,59 @@ export default function Header() {
 	const HashLink = pathname === "/" ? "a" : Link;
 
 	return (
-		<header className="fixed top-0 left-0 z-50 w-full flex justify-center pointer-events-none transition-all">
+		<header className="pointer-events-none fixed inset-x-0 top-0 z-50 flex w-full justify-center px-2 pt-[env(safe-area-inset-top)] transition-all sm:px-0">
 			<div
 				className={cn(
+<<<<<<< HEAD
 					"pointer-events-auto flex items-center justify-between w-full text-white transition-all duration-500 ease-in-out border origin-top transform-gpu backface-hidden antialiased drop-shadow-[0_2px_5px_rgba(6,69,91,0.55)]",
 					scrollY > 50
 						? "max-w-[calc(100%-2rem)] lg:max-w-6xl mt-4 lg:mt-6 bg-white/10 backdrop-blur-xl border-white/30 shadow-[0_14px_40px_rgba(6,69,91,0.38)] py-3 px-6 lg:px-8 rounded-full"
 						: "max-w-6xl mt-0 bg-transparent border-transparent py-6 px-6 lg:px-0 rounded-none",
+=======
+					"pointer-events-auto flex w-full origin-top transform-gpu items-center justify-between border text-white antialiased backface-hidden transition-all duration-500 ease-in-out",
+					scrollY > 50
+						? "mt-2 max-w-[calc(100%-0.5rem)] rounded-full border-white/20 bg-[#0f3d44]/88 px-3 py-2.5 shadow-2xl backdrop-blur-md sm:mt-4 sm:max-w-[95%] sm:px-5 sm:py-3 lg:mt-6 lg:max-w-5xl lg:px-10"
+						: "mt-0 max-w-7xl rounded-none border-transparent bg-transparent px-2 py-4 sm:px-6 sm:py-6 lg:px-10",
+>>>>>>> 57a0e0e (fix: keep mobile navigation within viewport)
 				)}
 			>
 				<HashLink
 					to="/#hero"
 					href="/#hero"
-					className="flex items-center gap-4 sm:gap-6"
+					className="flex min-w-0 items-center gap-2.5 sm:gap-6"
 				>
 					<img
 						src={sgaLogo}
 						alt="SGA Logo"
 						className={cn(
 							"shrink-0 object-contain transition-all duration-500 ease-in-out",
+<<<<<<< HEAD
 							scrollY > 50 ? "size-9 sm:size-10" : "size-10 sm:size-12",
+=======
+							scrollY > 50 ? "size-8 sm:size-10" : "size-9 sm:size-12",
+>>>>>>> 57a0e0e (fix: keep mobile navigation within viewport)
 						)}
 					/>
-					<div className="w-[1px] h-8 sm:h-10 bg-white/30" />
+					<div className="h-7 w-px shrink-0 bg-white/30 sm:h-10" />
 					<img
 						src={arvanaLogo}
 						alt="Arvana Logo"
 						className={cn(
 							"shrink-0 object-contain transition-all duration-500 ease-in-out",
+<<<<<<< HEAD
 							scrollY > 50 ? "size-9 sm:size-10" : "size-10 sm:size-12",
+=======
+							scrollY > 50 ? "size-8 sm:size-10" : "size-9 sm:size-12",
+>>>>>>> 57a0e0e (fix: keep mobile navigation within viewport)
 						)}
 					/>
 				</HashLink>
 
+<<<<<<< HEAD
 				<div className="items-center justify-center flex-1 hidden gap-5 xl:gap-7 lg:flex text-base font-semibold transform-gpu backface-hidden whitespace-nowrap">
+=======
+				<div className="items-center justify-center flex-1 hidden gap-8 lg:flex text-sm font-medium transform-gpu backface-hidden">
+>>>>>>> 57a0e0e (fix: keep mobile navigation within viewport)
 					<HashLink
 						to="/#about-us"
 						href="/#about-us"
@@ -110,8 +129,11 @@ export default function Header() {
 
 				<Button
 					variant="secondary"
-					className="relative overflow-hidden bg-[#D4B254] text-white size-10 hover:bg-[#c29f45] shrink-0 lg:hidden rounded-full border-none"
+					className="relative size-10 shrink-0 overflow-hidden rounded-full border-none bg-[#D4B254] p-0 text-white hover:bg-[#c29f45] lg:hidden"
 					onClick={toggleMobileMenu}
+					aria-label={isMobileMenuOpen ? "Tutup navigasi" : "Buka navigasi"}
+					aria-controls="mobile-navigation"
+					aria-expanded={isMobileMenuOpen}
 				>
 					<AlignJustifyIcon
 						className={cn(
