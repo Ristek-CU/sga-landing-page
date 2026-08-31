@@ -5,23 +5,33 @@ import { defineConfig } from "vite";
 
 // https://vite.dev/config/
 export default defineConfig({
-	plugins: [react(), tailwindcss()],
-	resolve: {
-		alias: {
-			"@": resolve(__dirname, "./src"),
-		},
-	},
-	build: {
-		rollupOptions: {
-			output: {
-				manualChunks: {
-					"vendor-react": ["react", "react-dom", "react-router"],
-					"vendor-framer": ["framer-motion"],
-					"vendor-ui": ["embla-carousel-react", "lucide-react", "sonner"],
-					"vendor-form": ["react-hook-form", "@hookform/resolvers", "zod"],
-				},
-			},
-		},
-		chunkSizeWarningLimit: 300,
-	},
+  plugins: [react(), tailwindcss()],
+  resolve: {
+    alias: {
+      "@": resolve(__dirname, "./src"),
+    },
+  },
+  server: {
+    proxy: {
+      "/api-landing": {
+        target: "https://superapp.sga-cakrawala.org",
+        changeOrigin: true,
+        secure: false, // Menghindari kendala validasi SSL saat development
+        rewrite: (path) => path.replace(/^\/api-landing/, ""),
+      },
+    },
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          "vendor-react": ["react", "react-dom", "react-router"],
+          "vendor-framer": ["framer-motion"],
+          "vendor-ui": ["embla-carousel-react", "lucide-react", "sonner"],
+          "vendor-form": ["react-hook-form", "@hookform/resolvers", "zod"],
+        },
+      },
+    },
+    chunkSizeWarningLimit: 300,
+  },
 });
