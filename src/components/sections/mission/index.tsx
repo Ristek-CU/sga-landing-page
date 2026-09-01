@@ -4,7 +4,6 @@ import CoordinationIcon from "../../../assets/images/coordination.svg";
 import CapacityIcon from "../../../assets/images/capacity.svg";
 import CareerPreparedIcon from "../../../assets/images/careerprepared.svg";
 import CollaborationIcon from "../../../assets/images/collaboration.svg";
-import { Badge } from "@/components/ui/badge";
 
 // Import service API dari landing.ts
 import { getLandingData } from "@/lib/services/landing";
@@ -78,8 +77,11 @@ const MissionSection = () => {
   return (
     <section id="mission" className="py-16 md:py-20 px-5 max-w-7xl mx-auto">
       <div className="flex flex-col w-full h-full">
+        {/* Badge disamakan dengan gaya VisionSection */}
         <div className="flex justify-center mb-8 md:mb-12">
-          <Badge variant="special">Mission</Badge>
+          <span className="inline-block px-5 py-1.5 border border-[#EAB308] text-[#EAB308] rounded-full text-xs font-bold uppercase tracking-widest">
+            Mission
+          </span>
         </div>
 
         {/* State Loading / Error / Konten Utama */}
