@@ -1,12 +1,8 @@
 export interface ProgramKerja {
-	name?: string;
-	title?: string;
+	name: string;
 	desc: string;
 	period?: string;
-	schedule?: string;
-	time?: string;
 	category?: string;
-	badge?: string;
 }
 
 export interface PengurusUKM {
@@ -17,10 +13,10 @@ export interface PengurusUKM {
 }
 
 export interface UKMDocumentation {
-	id?: string | number;
-	image?: string;
-	title?: string;
-	description?: string;
+	id: string | number;
+	image: string;
+	title: string;
+	description: string;
 	date?: string;
 }
 
@@ -38,16 +34,9 @@ export interface UKMItem {
 	documentations: UKMDocumentation[];
 	categoryBadge?: string;
 	logoSvg?: string;
-	instagram?: string;
+	logoUrl?: string;
+	bannerUrl?: string;
 	instagramUrl?: string;
-	phone?: string;
 	whatsapp?: string;
 	registrationUrl?: string;
-	// Optional aliases kept for forward-compat with richer CMS data later.
-	fullDesc?: string;
-	bannerUrl?: string;
-	logoUrl?: string;
-	membersCount?: string | number;
-	registerUrl?: string;
-	contactPhone?: string;
 }

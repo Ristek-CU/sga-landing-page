@@ -6,6 +6,7 @@ import arvanaLogo from "@/assets/images/Logo-Arvana.png";
 import sgaLogo from "@/assets/images/Logomark.webp";
 import Button from "@/components/ui/button";
 import { useMobileMenuContext } from "@/contexts/mobile-menu-context";
+import { MAIN_NAV_LINKS } from "@/lib/navigation";
 import { cn } from "@/lib/utils";
 
 export default function Header() {
@@ -15,7 +16,6 @@ export default function Header() {
 
 	useEffect(() => {
 		const handleScroll = () => {
-			// Gunakan requestAnimationFrame agar performa scroll lebih ringan
 			window.requestAnimationFrame(() => {
 				setScrollY(window.scrollY);
 			});
@@ -62,43 +62,29 @@ export default function Header() {
 				</HashLink>
 
 				<div className="items-center justify-center flex-1 hidden gap-8 lg:flex text-sm font-medium transform-gpu backface-hidden">
-					<HashLink
-						to="/#about-us"
-						href="/#about-us"
-						className="hover:text-[#D4B254] transition-colors duration-300"
-					>
-						About Us
-					</HashLink>
-					<HashLink
-						to="/#vision"
-						href="/#vision"
-						className="hover:text-[#D4B254] transition-colors duration-300"
-					>
-						Vision & Mission
-					</HashLink>
-					<HashLink
-						to="/#division"
-						href="/#division"
-						className="hover:text-[#D4B254] transition-colors duration-300"
-					>
-						Members
-					</HashLink>
-					{/* <HashLink to="/#our-partnership" href="/#our-partnership" className="hover:text-[#D4B254] transition-colors duration-300">
-						Partnership
-					</HashLink> */}
-					<HashLink
-						to="/#event"
-						href="/#event"
-						className="hover:text-[#D4B254] transition-colors duration-300"
-					>
-						Event
-					</HashLink>
-					<Link
-						to="/student-voice"
-						className="hover:text-[#D4B254] transition-colors duration-300"
-					>
-						Student Voice
-					</Link>
+					{MAIN_NAV_LINKS.map((item) => {
+						if (item.isRoute) {
+							return (
+								<Link
+									key={item.to}
+									to={item.to}
+									className="hover:text-[#D4B254] transition-colors duration-300"
+								>
+									{item.label}
+								</Link>
+							);
+						}
+						return (
+							<HashLink
+								key={item.to}
+								to={item.to}
+								href={item.href}
+								className="hover:text-[#D4B254] transition-colors duration-300"
+							>
+								{item.label}
+							</HashLink>
+						);
+					})}
 				</div>
 
 				<Button

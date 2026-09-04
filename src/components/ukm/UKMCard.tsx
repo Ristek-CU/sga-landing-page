@@ -16,9 +16,9 @@ export default function UKMCard({ ukm, className }: UKMCardProps) {
 		"https://via.placeholder.com/600x400?text=No+Image";
 	const logoUrl = ukm.logoUrl || ukm.image;
 	const logoSvg = ukm.logoSvg;
-	const memberText = ukm.members || ukm.membersCount;
-	const categoryText = ukm.category || ukm.categoryBadge;
-	const instagramLink = ukm.instagramUrl || ukm.instagram;
+	const memberText = ukm.members;
+	const categoryText = ukm.categoryBadge || ukm.category;
+	const instagramLink = ukm.instagramUrl;
 
 	return (
 		<div
@@ -96,7 +96,7 @@ export default function UKMCard({ ukm, className }: UKMCardProps) {
 					</div>
 
 					<p className="text-xs text-slate-500 mt-3 line-clamp-2 leading-relaxed">
-						{ukm.shortDesc || ukm.fullDesc || "Belum ada deskripsi singkat."}
+						{ukm.shortDesc || "Belum ada deskripsi singkat."}
 					</p>
 				</div>
 			</div>

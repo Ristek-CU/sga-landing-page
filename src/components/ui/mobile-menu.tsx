@@ -3,6 +3,7 @@ import { useCallback, useEffect } from "react";
 import { useLocation } from "react-router";
 
 import { useMobileMenuContext } from "@/contexts/mobile-menu-context";
+import { MAIN_NAV_LINKS } from "@/lib/navigation";
 import { cn } from "@/lib/utils";
 import Button from "./button";
 
@@ -38,14 +39,6 @@ export default function MobileMenu() {
 		};
 	}, [isMobileMenuOpen, setIsMobileMenuOpen]);
 
-	const links = [
-		{ label: "About Us", href: "/#about-us" },
-		{ label: "Vision & Mission", href: "/#vision" },
-		{ label: "Members", href: "/#division" },
-		{ label: "Event", href: "/#event" },
-		{ label: "Student Voice", href: "/student-voice" },
-	];
-
 	return (
 		<nav
 			id="mobile-navigation"
@@ -67,7 +60,7 @@ export default function MobileMenu() {
 					Explore Cakrawala
 				</p>
 				<div className="relative mt-5 divide-y divide-white/12 border-y border-white/12">
-					{links.map((link, index) => {
+					{MAIN_NAV_LINKS.map((link, index) => {
 						const isActive =
 							link.href === "/student-voice" && pathname === "/student-voice";
 						return (
