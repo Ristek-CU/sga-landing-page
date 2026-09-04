@@ -6,60 +6,14 @@ import { toast } from "sonner";
 import Button from "../ui/button.tsx";
 import { Input } from "../ui/input.tsx";
 import { Textarea } from "../ui/textarea.tsx";
-
-type FieldType =
-	| "short_text"
-	| "paragraph"
-	| "email"
-	| "number"
-	| "multiple_choice"
-	| "checkboxes"
-	| "dropdown"
-	| "linear_scale"
-	| "date"
-	| "file";
-interface CampaignField {
-	id: number;
-	label: string;
-	description: string | null;
-	type: FieldType;
-	hint?: string;
-	required: boolean;
-	options: string[];
-}
-interface Campaign {
-	slug: string;
-	title: string;
-	description: string | null;
-	status: string;
-	isOpen: boolean;
-	opensAt: string | null;
-	closesAt: string | null;
-	fields: CampaignField[];
-}
-interface ApiError {
-	message?: string;
-	errors?: Record<string, string[]>;
-}
-
-const campaignCache = new Map<string, Campaign>();
-
-const fieldTypeHelp: Record<FieldType, string> = {
-	short_text: "Isi dengan jawaban singkat dan langsung pada inti pertanyaan.",
-	paragraph: "Jelaskan jawaban secara lengkap. Maksimal 10.000 karakter.",
-	email: "Masukkan alamat email aktif, contoh: nama@email.com.",
-	number: "Masukkan angka saja.",
-	multiple_choice: "Pilih satu jawaban yang paling sesuai.",
-	checkboxes: "Kamu dapat memilih lebih dari satu jawaban.",
-	dropdown: "Buka daftar lalu pilih satu jawaban.",
-	linear_scale: "Pilih satu angka pada skala yang tersedia.",
-	date: "Pilih tanggal melalui kalender atau masukkan tanggal yang valid.",
-	file: "Unggah maksimal 5 file, masing-masing maksimal 10MB.",
-};
-
-const apiBase = (
-	import.meta.env.VITE_ADVOCATION_API_URL || "https://satgas.sga-cakrawala.org"
-).replace(/\/$/, "");
+import {
+	type Campaign,
+	type CampaignField,
+	fetchCampaign,
+	fieldTypeHelp,
+	getCachedCampaign,
+	submitCampaignResponse,
+} from "@/lib/student-voice";
 
 export default function ReportingForm() {
 	const { campaignSlug: routeCampaignSlug } = useParams<{
@@ -73,12 +27,10 @@ export default function ReportingForm() {
 			"student-voice",
 		[routeCampaignSlug],
 	);
-	const [campaign, setCampaign] = useState<Campaign | null>(
-		() => campaignCache.get(campaignSlug) ?? null,
+	const [campaign, setCampaign] = useState<Campaign | null>(() =>
+		getCachedCampaign(campaignSlug),
 	);
-	const [loading, setLoading] = useState(
-		() => !campaignCache.has(campaignSlug),
-	);
+	const [loading, setLoading] = useState(() => !getCachedCampaign(campaignSlug));
 	const [submitting, setSubmitting] = useState(false);
 	const [loadError, setLoadError] = useState("");
 	const [errors, setErrors] = useState<Record<string, string[]>>({});
@@ -88,7 +40,7 @@ export default function ReportingForm() {
 	useEffect(() => {
 		const controller = new AbortController();
 		let active = true;
-		const cachedCampaign = campaignCache.get(campaignSlug);
+		const cachedCampaign = getCachedCampaign(campaignSlug);
 		setSuccessMessage("");
 		setErrors({});
 		setLoadError("");
@@ -100,22 +52,15 @@ export default function ReportingForm() {
 			setCampaign(null);
 			setLoading(true);
 		}
-		fetch(`${apiBase}/api/v1/campaigns/${encodeURIComponent(campaignSlug)}`, {
-			headers: { Accept: "application/json" },
-			signal: controller.signal,
-		})
-			.then(async (response) => {
-				const payload = await response.json();
-				if (!response.ok)
-					throw new Error(payload.message || "Form belum tersedia.");
+
+		fetchCampaign(campaignSlug, controller.signal)
+			.then((data) => {
 				if (!active) return;
-				campaignCache.set(campaignSlug, payload.data);
-				setCampaign(payload.data);
+				setCampaign(data);
 				setLoadError("");
 			})
 			.catch((error: unknown) => {
-				if (error instanceof DOMException && error.name === "AbortError")
-					return;
+				if (error instanceof DOMException && error.name === "AbortError") return;
 				if (!active) return;
 				setLoadError(
 					error instanceof Error ? error.message : "Form gagal dimuat.",
@@ -124,6 +69,7 @@ export default function ReportingForm() {
 			.finally(() => {
 				if (active) setLoading(false);
 			});
+
 		return () => {
 			active = false;
 			controller.abort();
@@ -135,25 +81,21 @@ export default function ReportingForm() {
 		if (!campaign || !campaign.isOpen || submitting) return;
 		setSubmitting(true);
 		setErrors({});
+
 		try {
-			const response = await fetch(
-				`${apiBase}/api/v1/campaigns/${encodeURIComponent(campaign.slug)}`,
-				{
-					method: "POST",
-					headers: { Accept: "application/json" },
-					body: new FormData(event.currentTarget),
-				},
+			const result = await submitCampaignResponse(
+				campaign.slug,
+				new FormData(event.currentTarget),
 			);
-			const payload = (await response.json()) as ApiError;
-			if (!response.ok) {
-				setErrors(payload.errors ?? {});
-				throw new Error(payload.message || "Respons belum tersimpan.");
-			}
-			setSuccessMessage(
-				payload.message || "Respons kamu sudah diterima. Terima kasih!",
-			);
+			setSuccessMessage(result.message);
 			window.scrollTo({ top: 0, behavior: "smooth" });
-		} catch (error) {
+		} catch (error: unknown) {
+			const typedError = error as Error & {
+				errors?: Record<string, string[]>;
+			};
+			if (typedError.errors) {
+				setErrors(typedError.errors);
+			}
 			toast.error("Respons belum terkirim", {
 				description:
 					error instanceof Error ? error.message : "Silakan coba lagi.",
@@ -413,17 +355,17 @@ function DynamicField({ field }: { field: CampaignField }) {
 				field.type === "linear_scale" ? "flex flex-wrap gap-3" : "space-y-3"
 			}
 		>
-			{field.options.map((option, index) => (
+			{field.options.map((option, optionIndex) => (
 				<label
 					key={option}
 					className="flex cursor-pointer items-center gap-3 rounded-xl border border-slate-200 px-4 py-3 text-sm transition hover:border-[#CEAE65] hover:bg-amber-50/40"
 				>
 					<input
-						id={`${name}_${index}`}
+						id={`${name}_${optionIndex}`}
 						type={inputType}
 						name={name}
 						value={option}
-						required={field.required && inputType === "radio" && index === 0}
+						required={field.required && inputType === "radio" && optionIndex === 0}
 						className="size-4 accent-[#06455B]"
 					/>
 					<span className="min-w-0 break-words [overflow-wrap:anywhere]">
@@ -452,9 +394,9 @@ function LoadingState() {
 				</div>
 			</div>
 			<div className="mt-5 space-y-5">
-				{[0, 1, 2].map((item) => (
+				{[0, 1, 2].map((i) => (
 					<div
-						key={item}
+						key={i}
 						className="rounded-2xl border border-slate-200 bg-white p-5 md:p-7"
 					>
 						<div className="flex gap-3">
@@ -471,10 +413,14 @@ function LoadingState() {
 		</div>
 	);
 }
+
 function UnavailableState({
 	message,
 	compact = false,
-}: { message: string; compact?: boolean }) {
+}: {
+	message: string;
+	compact?: boolean;
+}) {
 	return (
 		<div
 			className={`${compact ? "my-4" : "my-16"} rounded-2xl border border-amber-200 bg-amber-50 p-8 text-center`}

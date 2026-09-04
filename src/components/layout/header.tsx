@@ -6,6 +6,7 @@ import arvanaLogo from "@/assets/images/Logo-Arvana.png";
 import sgaLogo from "@/assets/images/Logomark.webp";
 import Button from "@/components/ui/button";
 import { useMobileMenuContext } from "@/contexts/mobile-menu-context";
+import { MAIN_NAV_LINKS } from "@/lib/navigation";
 import { cn } from "@/lib/utils";
 
 export default function Header() {
@@ -15,7 +16,6 @@ export default function Header() {
 
 	useEffect(() => {
 		const handleScroll = () => {
-			// Gunakan requestAnimationFrame agar performa scroll lebih ringan
 			window.requestAnimationFrame(() => {
 				setScrollY(window.scrollY);
 			});
@@ -80,6 +80,7 @@ export default function Header() {
 				<div className="items-center justify-center flex-1 hidden gap-5 xl:gap-7 lg:flex text-base font-semibold transform-gpu backface-hidden whitespace-nowrap">
 =======
 				<div className="items-center justify-center flex-1 hidden gap-8 lg:flex text-sm font-medium transform-gpu backface-hidden">
+<<<<<<< HEAD
 >>>>>>> 57a0e0e (fix: keep mobile navigation within viewport)
 					<HashLink
 						to="/#about-us"
@@ -118,6 +119,31 @@ export default function Header() {
 					>
 						Student Voice
 					</Link>
+=======
+					{MAIN_NAV_LINKS.map((item) => {
+						if (item.isRoute) {
+							return (
+								<Link
+									key={item.to}
+									to={item.to}
+									className="hover:text-[#D4B254] transition-colors duration-300"
+								>
+									{item.label}
+								</Link>
+							);
+						}
+						return (
+							<HashLink
+								key={item.to}
+								to={item.to}
+								href={item.href}
+								className="hover:text-[#D4B254] transition-colors duration-300"
+							>
+								{item.label}
+							</HashLink>
+						);
+					})}
+>>>>>>> e4a4463 (refactor: deepen architecture across Student Voice, UKM catalog, and navigation)
 				</div>
 
 				<Button

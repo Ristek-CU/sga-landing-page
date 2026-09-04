@@ -6,12 +6,12 @@ import ukmsData from "@/lib/data/ukm-section.json";
 import ukmCategoriesData from "@/lib/data/ukm-categories.json";
 import type { UKMItem } from "@/types/ukm";
 import { cn } from "@/lib/utils";
-import { filterUkms, processCategories } from "@/lib/ukm-utils";
+import { filterUkms, normalizeUKMList, processCategories } from "@/lib/ukm-utils";
 import UKMCard from "./UKMCard";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const ukmItems = ukmsData as unknown as UKMItem[];
+const ukmItems: UKMItem[] = normalizeUKMList(ukmsData as unknown[]);
 
 export default function UKMSection() {
 	const [categories] = useState<string[]>(() =>

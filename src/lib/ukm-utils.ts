@@ -1,4 +1,4 @@
-import type { UKMItem } from "@/types/ukm";
+import type { ProgramKerja, UKMDocumentation, UKMItem } from "@/types/ukm";
 
 /**
  * Utility Highlight Text Parsing
@@ -63,14 +63,6 @@ export function filterUkms(
 	});
 }
 
-export interface DocumentationItem {
-	id?: string | number;
-	image?: string;
-	title?: string;
-	description?: string;
-	date?: string;
-}
-
 export function isImageUrl(url?: string): boolean {
 	if (!url) return false;
 	return (
@@ -92,7 +84,77 @@ export function getInitials(name?: string, avatarInitials?: string): string {
 		.toUpperCase();
 }
 
-export function normalizeDocumentations(rawDocs: unknown): DocumentationItem[] {
+/**
+ * Normalizes a raw UKM record into a canonical UKMItem.
+ * Resolves legacy aliases at ingestion time so UI callers have a single clean shape.
+ */
+export function normalizeUKMItem(raw: Record<string, unknown>): UKMItem {
+	const rawPrograms = Array.isArray(raw.programs) ? raw.programs : [];
+	const programs: ProgramKerja[] = rawPrograms.map(
+		(p: Record<string, unknown>) => ({
+			name: String(p.name || p.title || "Program Kerja"),
+			desc: String(p.desc || ""),
+			period: (p.period || p.schedule || p.time) as string | undefined,
+			category: (p.category || p.badge) as string | undefined,
+		}),
+	);
+
+	const rawManagement = Array.isArray(raw.management) ? raw.management : [];
+	const management = rawManagement.map((m: Record<string, unknown>) => ({
+		name: String(m.name || "Pengurus"),
+		role: String(m.role || ""),
+		avatar: m.avatar as string | undefined,
+		division: m.division as string | undefined,
+	}));
+
+	const rawDocs = raw.documentations || raw.documentation;
+	const documentations = normalizeDocumentations(rawDocs);
+
+	const whatsappNumber =
+		raw.whatsapp || raw.phone || raw.contactPhone;
+	const whatsapp =
+		typeof whatsappNumber === "string" || typeof whatsappNumber === "number"
+			? String(whatsappNumber)
+			: undefined;
+
+	const instagramUrl = (raw.instagramUrl || raw.instagram) as
+		| string
+		| undefined;
+
+	const registrationUrl = (raw.registrationUrl || raw.registerUrl) as
+		| string
+		| undefined;
+
+	return {
+		id: (raw.id as string | number) ?? "",
+		name: String(raw.name || ""),
+		category: String(raw.category || ""),
+		shortDesc: String(raw.shortDesc || raw.fullDesc || ""),
+		vision: String(raw.vision || ""),
+		mission: Array.isArray(raw.mission) ? (raw.mission as string[]) : [],
+		image: String(
+			raw.image || raw.bannerUrl || "https://via.placeholder.com/1200x500?text=No+Image",
+		),
+		bannerUrl: (raw.bannerUrl || raw.image) as string | undefined,
+		members: String(raw.members || raw.membersCount || ""),
+		programs,
+		management,
+		documentations,
+		categoryBadge: (raw.categoryBadge || raw.category) as string | undefined,
+		logoSvg: raw.logoSvg as string | undefined,
+		logoUrl: raw.logoUrl as string | undefined,
+		instagramUrl,
+		whatsapp,
+		registrationUrl,
+	};
+}
+
+export function normalizeUKMList(rawList: unknown[]): UKMItem[] {
+	if (!Array.isArray(rawList)) return [];
+	return rawList.map((item) => normalizeUKMItem(item as Record<string, unknown>));
+}
+
+export function normalizeDocumentations(rawDocs: unknown): UKMDocumentation[] {
 	if (!Array.isArray(rawDocs)) return [];
 
 	return rawDocs.map((item: unknown, idx: number) => {
@@ -105,9 +167,9 @@ export function normalizeDocumentations(rawDocs: unknown): DocumentationItem[] {
 				date: "",
 			};
 		}
-		const d = item as Record<string, unknown>;
+		const d = (item as Record<string, unknown>) || {};
 		return {
-			id: (d.id as string | number | undefined) || idx,
+			id: (d.id as string | number | undefined) ?? idx,
 			image:
 				(d.image as string | undefined) ||
 				(d.url as string | undefined) ||
