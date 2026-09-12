@@ -16,7 +16,9 @@ export const FieldTypeSchema = z.enum([
 export type FieldType = z.infer<typeof FieldTypeSchema>;
 
 export const CampaignFieldSchema = z.object({
-	id: z.number(),
+	// AdvocationDashboard pakai number (Prisma autoincrement); SGA CMS Hub pakai
+	// uuidv7 string — terima keduanya karena field_<id> hanya dipakai sebagai nama.
+	id: z.union([z.number(), z.string()]),
 	label: z.string(),
 	description: z.string().nullable().default(null),
 	type: FieldTypeSchema,
