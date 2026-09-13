@@ -5,6 +5,7 @@ import { RouterProvider, createBrowserRouter } from "react-router";
 import "@fontsource-variable/plus-jakarta-sans/wght.css";
 import "@fontsource-variable/plus-jakarta-sans/wght-italic.css";
 import "./index.css";
+import { Toaster } from "sonner";
 
 import AppLayout from "./components/layout/index.tsx";
 import UKMDetailPage from "./components/ukm/UKMDetailPage";
@@ -28,11 +29,19 @@ const router = createBrowserRouter([
 				path: "/student-voice",
 				element: <ReportingPage />,
 			},
-			{
-				path: "/student-voice/:campaignSlug",
-				element: <ReportingPage />,
-			},
 		],
+	},
+	{
+		// Halaman isi form: standalone tanpa navigasi (mirip /lapor di dashboard
+		// Advocation) — link dibagikan dari CMS Hub, bukan dari menu situs.
+		// Toaster tetap dipasang karena ReportingForm memakai toast.
+		path: "/student-voice/:campaignSlug",
+		element: (
+			<>
+				<Toaster position="top-center" />
+				<ReportingPage />
+			</>
+		),
 	},
 	{
 		path: "/student-societes",
