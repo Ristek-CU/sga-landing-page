@@ -129,18 +129,51 @@ export default function ReportingForm() {
 			</div>
 		);
 
+	// Campaign form (ada slug di route) pakai header ala Google Forms: strip
+	// navy vertikal kiri + nama divisi pengumpul. Student Voice (tanpa slug)
+	// tetap tampilan lama.
+	const isCampaignRoute = !!routeCampaignSlug;
+
 	return (
 		<div className="min-w-0 w-full max-w-full py-12 motion-safe:animate-[form-reveal_420ms_cubic-bezier(0.22,1,0.36,1)] md:py-16">
-			<div className="mb-8 overflow-hidden rounded-3xl border border-[#CEAE65]/30 bg-white shadow-[0_20px_60px_-30px_rgba(6,69,91,0.35)]">
-				<div className="h-2 bg-[#CEAE65]" />
-				<div className="p-6 md:p-9">
-					<p className="text-xs font-bold uppercase tracking-[0.22em] text-[#9A7C35]">
-						Student Voice
-					</p>
-					<h2 className="mt-2 break-words text-2xl font-semibold text-[#06455B] [overflow-wrap:anywhere] md:text-3xl">
+			<div
+				className={`mb-8 overflow-hidden border bg-white ${isCampaignRoute ? "rounded-2xl border-slate-200 shadow-[0_16px_48px_-24px_rgba(6,69,91,0.3)] md:flex" : "rounded-3xl border-[#CEAE65]/30 shadow-[0_20px_60px_-30px_rgba(6,69,91,0.35)]"}`}
+			>
+				{isCampaignRoute ? (
+					<div className="flex w-full shrink-0 flex-col justify-between bg-[#06455B] p-6 text-white md:w-64 md:p-7">
+						<div>
+							<p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#CEAE65]">
+								Form Campaign
+							</p>
+							<h2 className="mt-2 break-words text-xl font-semibold leading-snug [overflow-wrap:anywhere] md:text-2xl">
+								{campaign.title}
+							</h2>
+							{campaign.description && (
+								<p className="mt-3 line-clamp-4 break-words text-xs leading-5 text-white/70 [overflow-wrap:anywhere]">
+									{campaign.description}
+								</p>
+							)}
+						</div>
+						<p className="mt-6 hidden items-center gap-2 text-[11px] text-white/60 md:flex">
+							<CheckCircle2 className="size-3.5 text-[#CEAE65]" />
+							Respons tercatat aman
+						</p>
+					</div>
+				) : (
+					<div className="h-2 bg-[#CEAE65]" />
+				)}
+				<div className={isCampaignRoute ? "flex-1 p-6 md:p-9" : "p-6 md:p-9"}>
+					{!isCampaignRoute && (
+						<p className="text-xs font-bold uppercase tracking-[0.22em] text-[#9A7C35]">
+							Student Voice
+						</p>
+					)}
+					<h2
+						className={`mt-2 break-words text-2xl font-semibold text-[#06455B] [overflow-wrap:anywhere] md:text-3xl ${isCampaignRoute ? "sr-only" : ""}`}
+					>
 						{campaign.title}
 					</h2>
-					{campaign.description && (
+					{!isCampaignRoute && campaign.description && (
 						<p className="mt-3 max-w-3xl whitespace-pre-line break-words text-sm leading-6 text-slate-600 [overflow-wrap:anywhere] md:text-base">
 							{campaign.description}
 						</p>
@@ -228,8 +261,9 @@ export default function ReportingForm() {
 					))}
 					<div className="flex flex-col-reverse items-stretch justify-between gap-4 pt-2 sm:flex-row sm:items-center">
 						<p className="max-w-xl text-xs leading-5 text-slate-500">
-							Respons dikirim langsung ke sistem Advocation SGA dan hanya dapat
-							diakses oleh pengelola yang terautentikasi.
+							{isCampaignRoute
+								? "Respons dikirim langsung ke sistem SGA Cakrawala dan hanya dapat diakses oleh pengelola yang terautentikasi."
+								: "Respons dikirim langsung ke sistem Advocation SGA dan hanya dapat diakses oleh pengelola yang terautentikasi."}
 						</p>
 						<Button
 							type="submit"
