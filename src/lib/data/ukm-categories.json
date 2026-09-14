@@ -1,0 +1,5 @@
+[
+  { "id": "all", "name": "Semua" },
+  { "id": "akademik", "name": "Akademik & Pengembangan Keilmuan" },
+  { "id": "seni", "name": "Seni, Budaya & Kreativitas" }
+]

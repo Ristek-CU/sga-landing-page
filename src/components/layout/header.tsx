@@ -2,10 +2,11 @@ import { AlignJustifyIcon, XIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router";
 
-import catalinaLogo from "@/assets/images/logo-catalina.png";
-import sgaLogo from "@/assets/images/logo-sga.png";
+import arvanaLogo from "@/assets/images/Logo-Arvana.png";
+import sgaLogo from "@/assets/images/Logomark.webp";
 import Button from "@/components/ui/button";
 import { useMobileMenuContext } from "@/contexts/mobile-menu-context";
+import { MAIN_NAV_LINKS } from "@/lib/navigation";
 import { cn } from "@/lib/utils";
 
 export default function Header() {
@@ -15,7 +16,9 @@ export default function Header() {
 
 	useEffect(() => {
 		const handleScroll = () => {
-			setScrollY(window.scrollY);
+			window.requestAnimationFrame(() => {
+				setScrollY(window.scrollY);
+			});
 		};
 
 		window.addEventListener("scroll", handleScroll);
@@ -25,79 +28,90 @@ export default function Header() {
 	const HashLink = pathname === "/" ? "a" : Link;
 
 	return (
-		<header
-			className={cn(
-				"transition-all duration-300 ease-out fixed top-0 left-0 z-50 w-full text-white",
-				{
-					"top-2.5 sm:top-5 px-2.5": scrollY > 100,
-				},
-			)}
-		>
+		<header className="pointer-events-none fixed left-0 top-0 z-50 flex w-[100dvw] max-w-[100dvw] justify-center px-2 pt-[env(safe-area-inset-top)] transition-all sm:px-0">
 			<div
 				className={cn(
-					"transition-all duration-300 ease-out container flex items-center justify-between w-full mx-auto",
-					scrollY > 100
-						? "bg-blue-900/70 shadow-md hover:shadow-lg hover:bg-blue-900/90 backdrop-blur-md py-3 px-6 sm:py-5 rounded-xl sm:rounded-3xl sm:px-10"
-						: "py-10 px-5",
+					"pointer-events-auto flex w-full origin-top transform-gpu items-center justify-between border text-white antialiased backface-hidden transition-all duration-500 ease-in-out",
+					scrollY > 50
+						? "mt-2 max-w-[calc(100%-0.5rem)] rounded-full border-white/20 bg-[#0f3d44]/88 px-3 py-2.5 shadow-2xl backdrop-blur-md sm:mt-4 sm:max-w-[95%] sm:px-5 sm:py-3 lg:mt-6 lg:max-w-5xl lg:px-10"
+						: "mt-0 max-w-7xl rounded-none border-transparent bg-transparent px-2 py-4 sm:px-6 sm:py-6 lg:px-10",
 				)}
 			>
 				<HashLink
 					to="/#hero"
 					href="/#hero"
-					className="flex items-center gap-4 sm:gap-6"
+					className="flex min-w-0 items-center gap-2.5 sm:gap-6"
 				>
 					<img
 						src={sgaLogo}
 						alt="SGA Logo"
-						className="size-10 sm:size-14 shrink-0"
+						className={cn(
+							"shrink-0 object-contain transition-all duration-500 ease-in-out",
+							scrollY > 50 ? "size-8 sm:size-10" : "size-9 sm:size-12",
+						)}
 					/>
-					<div className="w-[1px] h-10 sm:h-14 bg-gray-50" />
+					<div className="h-7 w-px shrink-0 bg-white/30 sm:h-10" />
 					<img
-						src={catalinaLogo}
-						alt="Catalina Logo"
-						className="size-10 sm:size-14 shrink-0"
+						src={arvanaLogo}
+						alt="Arvana Logo"
+						className={cn(
+							"shrink-0 object-contain transition-all duration-500 ease-in-out",
+							scrollY > 50 ? "size-8 sm:size-10" : "size-9 sm:size-12",
+						)}
 					/>
 				</HashLink>
-				<div className="items-center justify-center flex-1 hidden gap-10 lg:flex">
-					<HashLink to="/#about-us" href="/#about-us">
-						About Us
-					</HashLink>
-					<HashLink to="/#vision" href="/#vision">
-						Vision & Mission
-					</HashLink>
-					<HashLink to="/#division" href="/#division">
-						Members
-					</HashLink>
-					<HashLink to="/#our-partnership" href="/#our-partnership">
-						Partnership
-					</HashLink>
-					<Link to="/student-voice">Student Voice</Link>
+
+				<div className="items-center justify-center flex-1 hidden gap-8 lg:flex text-sm font-medium transform-gpu backface-hidden">
+					{MAIN_NAV_LINKS.map((item) => {
+						if (item.isRoute) {
+							return (
+								<Link
+									key={item.to}
+									to={item.to}
+									className="hover:text-[#D4B254] transition-colors duration-300"
+								>
+									{item.label}
+								</Link>
+							);
+						}
+						return (
+							<HashLink
+								key={item.to}
+								to={item.to}
+								href={item.href}
+								className="hover:text-[#D4B254] transition-colors duration-300"
+							>
+								{item.label}
+							</HashLink>
+						);
+					})}
 				</div>
+
 				<Button
 					variant="secondary"
-					className="hidden bg-green-100 hover:bg-green-100/90 lg:block"
+					className="hidden lg:block bg-[#D4B254] hover:bg-[#c29f45] text-white border-none rounded-full px-8 py-2 transition-all font-medium"
 				>
-					Contact Us
+					Contact us
 				</Button>
+
 				<Button
 					variant="secondary"
-					className="relative overflow-hidden bg-green-100 size-10 hover:bg-green-100/90 shrink-0 lg:hidden"
+					className="relative size-10 shrink-0 overflow-hidden rounded-full border-none bg-[#D4B254] p-0 text-white hover:bg-[#c29f45] lg:hidden"
 					onClick={toggleMobileMenu}
+					aria-label={isMobileMenuOpen ? "Tutup navigasi" : "Buka navigasi"}
+					aria-controls="mobile-navigation"
+					aria-expanded={isMobileMenuOpen}
 				>
 					<AlignJustifyIcon
 						className={cn(
-							"absolute inset-0 m-auto size-7 opacity-0 transition-all duration-300 ease-out -translate-x-10",
-							{
-								"opacity-100 translate-x-0": !isMobileMenuOpen,
-							},
+							"absolute inset-0 m-auto size-6 scale-75 rotate-90 opacity-0 transition-all duration-300 ease-out",
+							{ "scale-100 rotate-0 opacity-100": !isMobileMenuOpen },
 						)}
 					/>
 					<XIcon
 						className={cn(
-							"absolute inset-0 m-auto size-7 opacity-0 transition-all duration-300 ease-out translate-x-10",
-							{
-								"opacity-100 translate-x-0": isMobileMenuOpen,
-							},
+							"absolute inset-0 m-auto size-6 scale-75 -rotate-90 opacity-0 transition-all duration-300 ease-out",
+							{ "scale-100 rotate-0 opacity-100": isMobileMenuOpen },
 						)}
 					/>
 				</Button>
