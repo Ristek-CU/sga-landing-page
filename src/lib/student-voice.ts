@@ -37,6 +37,12 @@ export const CampaignSchema = z.object({
 	isOpen: z.boolean(),
 	opensAt: z.string().nullable().default(null),
 	closesAt: z.string().nullable().default(null),
+	// Warna background halaman form — dikontrol admin di CMS Hub. Optional agar
+	// campaign lama dari backend advo (tanpa field ini) tetap valid.
+	backgroundColor: z
+		.string()
+		.regex(/^#[0-9a-fA-F]{6}$/)
+		.optional(),
 	fields: z.array(CampaignFieldSchema).default([]),
 });
 
@@ -103,7 +109,10 @@ export async function fetchCampaign(
 	let notFound = true;
 	let lastMessage = "Form belum tersedia.";
 	for (const url of endpoints(slug)) {
-		const res = await fetch(url, { headers: { Accept: "application/json" }, signal });
+		const res = await fetch(url, {
+			headers: { Accept: "application/json" },
+			signal,
+		});
 		const payload = await res.json().catch(() => null);
 		if (res.ok) {
 			const parsed = CampaignSchema.safeParse(payload?.data);
@@ -137,17 +146,22 @@ export async function submitCampaignResponse(
 		const payload = (await res.json().catch(() => null)) as ApiError | null;
 		if (res.ok) {
 			return {
-				message: payload?.message || "Respons kamu sudah diterima. Terima kasih!",
+				message:
+					payload?.message || "Respons kamu sudah diterima. Terima kasih!",
 			};
 		}
 		if (res.status === 422 || res.status === 409) {
-			const err = new Error(payload?.message || "Respons belum tersimpan.") as Error & {
+			const err = new Error(
+				payload?.message || "Respons belum tersimpan.",
+			) as Error & {
 				errors?: Record<string, string[]>;
 			};
 			err.errors = payload?.errors;
 			throw err; // form ketemu, validasi/tutup — jangan coba backend lain
 		}
-		lastError = new Error(payload?.message || "Respons belum tersimpan.") as Error & {
+		lastError = new Error(
+			payload?.message || "Respons belum tersimpan.",
+		) as Error & {
 			errors?: Record<string, string[]>;
 		};
 		lastError.errors = payload?.errors;

@@ -44,6 +44,18 @@ const router = createBrowserRouter([
 		),
 	},
 	{
+		// Form reguler CMS Hub hidup di root domain: sga-cakrawala.org/<slug>.
+		// Static routes (/student-voice, /student-societes) dideklarasi lebih dulu
+		// sehingga menang; path ini hanya menangkap slug form yang tersisa.
+		path: "/:formSlug",
+		element: (
+			<>
+				<Toaster position="top-center" />
+				<ReportingPage />
+			</>
+		),
+	},
+	{
 		path: "/student-societes",
 		element: <UkmPage />,
 	},

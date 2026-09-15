@@ -3,9 +3,6 @@ import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router";
 import { toast } from "sonner";
 
-import Button from "../ui/button.tsx";
-import { Input } from "../ui/input.tsx";
-import { Textarea } from "../ui/textarea.tsx";
 import {
 	type Campaign,
 	type CampaignField,
@@ -14,23 +11,35 @@ import {
 	getCachedCampaign,
 	submitCampaignResponse,
 } from "@/lib/student-voice";
+import Button from "../ui/button.tsx";
+import { Input } from "../ui/input.tsx";
+import { Textarea } from "../ui/textarea.tsx";
 
-export default function ReportingForm() {
+export default function ReportingForm({
+	formSlug,
+}: {
+	// Slug eksplisit dari FormShell (route /:slug form reguler). Kosong = route
+	// lama: /student-voice tanpa slug atau ?campaign= di query.
+	formSlug?: string;
+} = {}) {
 	const { campaignSlug: routeCampaignSlug } = useParams<{
 		campaignSlug?: string;
 	}>();
 	const campaignSlug = useMemo(
 		() =>
+			formSlug ||
 			routeCampaignSlug ||
 			new URLSearchParams(window.location.search).get("campaign") ||
 			import.meta.env.VITE_STUDENT_VOICE_CAMPAIGN ||
 			"student-voice",
-		[routeCampaignSlug],
+		[formSlug, routeCampaignSlug],
 	);
 	const [campaign, setCampaign] = useState<Campaign | null>(() =>
 		getCachedCampaign(campaignSlug),
 	);
-	const [loading, setLoading] = useState(() => !getCachedCampaign(campaignSlug));
+	const [loading, setLoading] = useState(
+		() => !getCachedCampaign(campaignSlug),
+	);
 	const [submitting, setSubmitting] = useState(false);
 	const [loadError, setLoadError] = useState("");
 	const [errors, setErrors] = useState<Record<string, string[]>>({});
@@ -60,7 +69,8 @@ export default function ReportingForm() {
 				setLoadError("");
 			})
 			.catch((error: unknown) => {
-				if (error instanceof DOMException && error.name === "AbortError") return;
+				if (error instanceof DOMException && error.name === "AbortError")
+					return;
 				if (!active) return;
 				setLoadError(
 					error instanceof Error ? error.message : "Form gagal dimuat.",
@@ -399,7 +409,9 @@ function DynamicField({ field }: { field: CampaignField }) {
 						type={inputType}
 						name={name}
 						value={option}
-						required={field.required && inputType === "radio" && optionIndex === 0}
+						required={
+							field.required && inputType === "radio" && optionIndex === 0
+						}
 						className="size-4 accent-[#06455B]"
 					/>
 					<span className="min-w-0 break-words [overflow-wrap:anywhere]">
