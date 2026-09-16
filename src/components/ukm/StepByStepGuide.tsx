@@ -2,11 +2,8 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef } from "react";
 
+import { DEFAULT_GUIDE_STEPS, type GuideStep } from "@/lib/ukm-utils";
 import { cn } from "@/lib/utils";
-import {
-	DEFAULT_GUIDE_STEPS,
-	type GuideStep,
-} from "@/lib/ukm-utils";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -75,12 +72,12 @@ export default function StepByStepGuide({
 		>
 			<div className="text-center w-full flex flex-col gap-2">
 				<h2 className="gsap-step-header text-2xl md:text-3xl font-extrabold text-[#171717]">
-					Kalo mau bikin <span className="text-[#13495A]">UKM</span> baru
-					gimana sih caranya?
+					Kalo mau bikin <span className="text-[#13495A]">UKM</span> baru gimana
+					sih caranya?
 				</h2>
 				<p className="gsap-step-header text-sm md:text-base text-[#404040]">
-					Nah kalo dari Student Societies sendiri sih ada {steps.length}{" "}
-					langkah dulu, ini dia langkah-langkahnya :
+					Nah kalo dari Student Societies sendiri sih ada {steps.length} langkah
+					dulu, ini dia langkah-langkahnya :
 				</p>
 			</div>
 

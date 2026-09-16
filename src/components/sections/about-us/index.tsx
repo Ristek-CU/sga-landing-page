@@ -11,7 +11,6 @@ export default function AboutUsSection() {
 		>
 			{/* KUNCI PERBAIKAN: max-w-7xl dihapus di sini, kembali ke container murni */}
 			<div className="container flex flex-col items-center w-full h-full px-5 mx-auto">
-
 				<div className="flex justify-center w-full mb-10 lg:mb-12">
 					<span className="px-6 py-2 text-sm font-semibold tracking-wider text-[#D4B254] border-2 border-[#D4B254] rounded-full bg-white shadow-sm">
 						About Us
@@ -20,20 +19,18 @@ export default function AboutUsSection() {
 
 				{/* Konten */}
 				<div className="flex flex-col items-start w-full lg:flex-row gap-x-12 lg:gap-x-16 gap-y-16">
-
 					<div className="flex flex-col flex-1 w-full space-y-6 lg:space-y-8">
-
 						<h2 className="mt-0 text-3xl font-bold leading-tight md:text-4xl lg:text-4xl xl:text-5xl text-[#0f3d44]">
 							Kenali Lebih Dekat <br className="hidden lg:block" />
 							<span className="text-[#D4B254]">SGA Cakrawala University</span>
 						</h2>
 
 						<p className="text-base font-normal leading-relaxed text-justify text-gray-700 md:text-lg lg:text-lg xl:text-xl">
-							Student Government Association (SGA) Cakrawala University adalah wadah
-							resmi bagi mahasiswa untuk berpartisipasi dalam pengambilan keputusan
-							yang mempengaruhi kehidupan kampus. Kami berkomitmen untuk menjadi
-							jembatan antara mahasiswa dan pihak universitas, serta mempromosikan
-							kepemimpinan yang inklusif.
+							Student Government Association (SGA) Cakrawala University adalah
+							wadah resmi bagi mahasiswa untuk berpartisipasi dalam pengambilan
+							keputusan yang mempengaruhi kehidupan kampus. Kami berkomitmen
+							untuk menjadi jembatan antara mahasiswa dan pihak universitas,
+							serta mempromosikan kepemimpinan yang inklusif.
 						</p>
 					</div>
 
@@ -57,7 +54,6 @@ export default function AboutUsSection() {
 							/>
 						</div>
 					</div>
-
 				</div>
 			</div>
 		</section>

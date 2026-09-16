@@ -1,8 +1,8 @@
 import { Link } from "react-router";
 
-import type { UKMItem } from "@/types/ukm";
-import { cn } from "@/lib/utils";
 import { getInitials, isImageUrl } from "@/lib/ukm-utils";
+import { cn } from "@/lib/utils";
+import type { UKMItem } from "@/types/ukm";
 
 interface UKMCardProps {
 	ukm: UKMItem;

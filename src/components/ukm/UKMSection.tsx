@@ -2,11 +2,15 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useMemo, useRef, useState } from "react";
 
-import ukmsData from "@/lib/data/ukm-section.json";
 import ukmCategoriesData from "@/lib/data/ukm-categories.json";
-import type { UKMItem } from "@/types/ukm";
+import ukmsData from "@/lib/data/ukm-section.json";
+import {
+	filterUkms,
+	normalizeUKMList,
+	processCategories,
+} from "@/lib/ukm-utils";
 import { cn } from "@/lib/utils";
-import { filterUkms, normalizeUKMList, processCategories } from "@/lib/ukm-utils";
+import type { UKMItem } from "@/types/ukm";
 import UKMCard from "./UKMCard";
 
 gsap.registerPlugin(ScrollTrigger);

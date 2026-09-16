@@ -3,11 +3,8 @@ import { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router";
 
 import ukmsData from "@/lib/data/ukm-section.json";
+import { formatWhatsappLink, normalizeUKMList } from "@/lib/ukm-utils";
 import { cn } from "@/lib/utils";
-import {
-	formatWhatsappLink,
-	normalizeUKMList,
-} from "@/lib/ukm-utils";
 
 type TabType = "info" | "programs" | "documentation" | "management";
 
@@ -38,8 +35,8 @@ export default function UKMDetailPage() {
 					UKM Tidak Ditemukan
 				</h2>
 				<p className="text-sm text-slate-500 mb-6 max-w-md">
-					Data Unit Kegiatan Mahasiswa yang Anda cari tidak tersedia atau
-					telah dihapus.
+					Data Unit Kegiatan Mahasiswa yang Anda cari tidak tersedia atau telah
+					dihapus.
 				</p>
 				<Link
 					to="/student-societes"
@@ -81,7 +78,11 @@ export default function UKMDetailPage() {
 		<div className="min-h-screen bg-slate-50 flex flex-col w-full">
 			{/* HERO BANNER */}
 			<div className="relative w-full h-[320px] sm:h-[420px] lg:h-[480px] bg-slate-900 shrink-0">
-				<img src={banner} alt={ukm.name} className="w-full h-full object-cover" />
+				<img
+					src={banner}
+					alt={ukm.name}
+					className="w-full h-full object-cover"
+				/>
 				<div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-black/30" />
 
 				<div className="absolute top-6 left-4 sm:left-8 lg:left-12 z-10">
