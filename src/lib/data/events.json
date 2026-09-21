@@ -1,0 +1,68 @@
+[
+  {
+    "id": "1",
+    "title": "Cakrawala Festival",
+    "status": "completed",
+    "membersCount": "20+ Anggota",
+    "description": "Cakraphonic merupakan unit kegiatan Mahasiswa di bidang musik yang menjadi wadah ekspresi seni.",
+    "imageUrl": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=800&auto=format&fit=crop",
+    "logoUrl": "https://api.dicebear.com/7.x/identicon/svg?seed=cakra1",
+    "instagramUrl": "https://instagram.com",
+    "tiktokUrl": "https://tiktok.com"
+  },
+  {
+    "id": "2",
+    "title": "Cakrawala Arena",
+    "status": "ongoing",
+    "membersCount": "20+ Anggota",
+    "description": "Cakraphonic merupakan unit kegiatan Mahasiswa di bidang musik yang menjadi wadah ekspresi seni.",
+    "imageUrl": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=800&auto=format&fit=crop",
+    "logoUrl": "https://api.dicebear.com/7.x/identicon/svg?seed=cakra2",
+    "instagramUrl": "https://instagram.com",
+    "tiktokUrl": "https://tiktok.com"
+  },
+  {
+    "id": "3",
+    "title": "Cakraphonic",
+    "status": "completed",
+    "membersCount": "20+ Anggota",
+    "description": "Cakraphonic merupakan unit kegiatan Mahasiswa di bidang musik yang menjadi wadah ekspresi seni.",
+    "imageUrl": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=800&auto=format&fit=crop",
+    "logoUrl": "https://api.dicebear.com/7.x/identicon/svg?seed=cakra3",
+    "instagramUrl": "https://instagram.com",
+    "tiktokUrl": "https://tiktok.com"
+  },
+  {
+    "id": "4",
+    "title": "Cakrawala Camp",
+    "status": "ongoing",
+    "membersCount": "20+ Anggota",
+    "description": "Cakraphonic merupakan unit kegiatan Mahasiswa di bidang musik yang menjadi wadah ekspresi seni.",
+    "imageUrl": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=800&auto=format&fit=crop",
+    "logoUrl": "https://api.dicebear.com/7.x/identicon/svg?seed=cakra4",
+    "instagramUrl": "https://instagram.com",
+    "tiktokUrl": "https://tiktok.com"
+  },
+  {
+    "id": "5",
+    "title": "Cakrawala Fair",
+    "status": "completed",
+    "membersCount": "20+ Anggota",
+    "description": "Cakraphonic merupakan unit kegiatan Mahasiswa di bidang musik yang menjadi wadah ekspresi seni.",
+    "imageUrl": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=800&auto=format&fit=crop",
+    "logoUrl": "https://api.dicebear.com/7.x/identicon/svg?seed=cakra5",
+    "instagramUrl": "https://instagram.com",
+    "tiktokUrl": "https://tiktok.com"
+  },
+  {
+    "id": "6",
+    "title": "Coming Soon Event",
+    "status": "coming_soon",
+    "membersCount": "20+ Anggota",
+    "description": "Cakraphonic merupakan unit kegiatan Mahasiswa di bidang musik yang menjadi wadah ekspresi seni.",
+    "imageUrl": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=800&auto=format&fit=crop",
+    "logoUrl": "https://api.dicebear.com/7.x/identicon/svg?seed=cakra6",
+    "instagramUrl": "https://instagram.com",
+    "tiktokUrl": "https://tiktok.com"
+  }
+]
