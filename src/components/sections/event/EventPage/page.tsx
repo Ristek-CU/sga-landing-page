@@ -5,6 +5,9 @@ import { Users, Calendar } from "lucide-react";
 import Particles from "@/components/ui/particles";
 import heroPattern from "@/assets/images/hero-pattern.webp";
 
+//Import Calendar
+import CalendarSection from "@/components/sections/calendar";
+
 // Import Data Statis dari lib/data/events.json
 import eventsData from "@/lib/data/events.json";
 
@@ -260,6 +263,11 @@ export default function EventPage() {
                 </div>
               </button>
             </div>
+
+            {/* KALENDER */}
+          <div className="mt-8 flex justify-center w-full">
+            <CalendarSection />
+          </div>
 
           </div>
         </section>

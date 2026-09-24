@@ -561,13 +561,19 @@ import { ArrowRightIcon, ClockIcon, FlagIcon } from "lucide-react";
 //     );
 // }
 
+<<<<<<< HEAD
 >>>>>>> df38789 (Halaman EventPage New)
+=======
+// 
+
+
+>>>>>>> ce2ce3c (Page event & kegiatan, dan calendar)
 import React from "react";
-import { useNavigate } from "react-router"; 
-import Button from "@/components/ui/button";
-import { Calendar, ArrowRight, Sparkles } from "lucide-react";
+
+import ticketBg from "../../../assets/images/ticketevet-bg.png";
 
 export default function EventSection() {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	const [emblaRef] = useEmblaCarousel({ loop: false, dragFree: true });
 
@@ -1087,50 +1093,92 @@ export default function EventSection() {
 }
 =======
   const navigate = useNavigate();
+=======
+  const handleNavigate = () => {
+    window.location.href = "/events";
+  };
+>>>>>>> ce2ce3c (Page event & kegiatan, dan calendar)
 
   return (
-    <section className="py-16 sm:py-20 px-4 bg-gradient-to-b from-[#063A4C] to-[#0A5C75] text-white relative overflow-hidden">
-      <div className="container mx-auto max-w-4xl text-center relative z-10">
+    <section className="w-full bg-[#F8F9FA] py-16 px-4 flex flex-col items-center justify-center font-['Plus_Jakarta_Sans',sans-serif]">
+      {/* 1. Header Section */}
+      <div className="flex flex-col items-center text-center max-w-4xl mb-10">
         
-        {/* Badge Sub-title */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 mb-4 backdrop-blur-sm shadow-sm">
-          <Sparkles className="w-4 h-4 text-[#CEAE65]" />
-          <span className="text-xs sm:text-sm font-semibold text-[#CEAE65] tracking-wide">
-            Agenda & Kegiatan
+        {/* Badge 'Event & Kegiatan' */}
+        <div className="flex justify-center mb-8">
+              <div className="inline-flex items-center justify-center p-[2px] rounded-[30px] bg-gradient-to-r from-[#CEAE65] to-[#685833] shadow-sm">
+                <div className="px-[30px] py-[6px] rounded-[28px] bg-white flex items-center justify-center gap-[10px]">
+                  <span className="text-[#CEAE65] font-semibold text-sm sm:text-base">
+                    Event & Kegiatan
+                  </span>
+                </div>
+              </div>
+            </div>
+
+        {/* Title Teks Utama */}
+        <h2 className="text-2xl sm:text-[37px] font-semibold text-[#093B4C] leading-[40px] sm:leading-[48px] tracking-[0%] max-w-[1235px]">
+          An experience beyond the ordinary. Be part of something truly
+          <span className="font-italianno font-normal text-[#DDA835] text-5xl sm:text-[80px] leading-[60px] sm:leading-[66px] -mt-1 sm:-mt-2 block">
+            remarkable
           </span>
-        </div>
-
-        {/* Judul Section */}
-        <h2 className="text-3xl sm:text-5xl font-extrabold mb-4 tracking-tight text-white drop-shadow-md">
-          Event & Kegiatan SGA
         </h2>
+      </div>
 
-        {/* Deskripsi Singkat */}
-        <p className="text-white/80 max-w-2xl mx-auto mb-8 text-sm sm:text-lg leading-relaxed">
-          Temukan berbagai event seru, festival, seminar, dan kompetisi mendatang maupun yang telah terlaksana bersama kami.
-        </p>
+      {/* 2. Container Tiket Utama */}
+      <div className="relative w-full max-w-[980px] ml-50 aspect-[760/260] drop-shadow-2xl transition-transform hover:scale-[1.01] duration-300">
+        
+        {/* Layer Gambar Background Tiket */}
+        <img
+          src={ticketBg}
+          alt="SGA Event Ticket"
+          className="absolute inset-0 w-full h-full object-contain pointer-events-none z-0"
+        />
 
-        {/* 1 Tombol Utama Pindah ke EventPage */}
-        <div className="flex justify-center items-center">
-          <Button
-            onClick={() => navigate("/events")}
-            className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-[#CEAE65] hover:bg-[#b89a55] text-[#063A4C] font-bold text-base sm:text-lg transition-all duration-300 transform hover:scale-105 shadow-xl border-none cursor-pointer"
-          >
-            <Calendar className="w-5 h-5 text-[#063A4C]" />
-            <span>Lihat Semua Event & Kegiatan</span>
-            <ArrowRight className="w-5 h-5 text-[#063A4C]" />
-          </Button>
+        {/* Content Container */}
+        <div className="relative z-10 w-full h-full flex">
+          
+          {/* SISI KIRI: Terbatas hanya sampai sebelum garis putus-putus (w-[68%]) */}
+          {/* Padding bottom (pb-8 sm:pb-10) memastikan tombol terangkat masuk ke dalam area hijau */}
+          <div className="w-[78%] h-full pt-6 sm:pt-8 pl-6 sm:pl-8 pr-3 sm:pr-5 pb-8 sm:pb-22 flex flex-col justify-between box-border">
+            
+            {/* Teks Informasi Tiket */}
+            <div className="pl-6 pt-6 space-y-1">
+              <h3 className="text-lg sm:text-2xl md:text-[32px] font-bold text-white tracking-wide">
+                Eksplorasi <span className="text-[#E3AF35]">Event</span>
+              </h3>
+              <p className="text-xs sm:text-base md:text-[20px] font-semibold text-[#E3AF35]">
+                Student Government Association
+              </p>
+              <p className="text-[11px] sm:text-sm md:text-[17px] font-medium text-white/90">
+                Cakrawala University
+              </p>
+            </div>
+
+            {/* Tombol Discover Now (Aman di dalam area hijau & kiri garis putus-putus) */}
+            <div className="w-full">
+              <button
+                onClick={handleNavigate}
+                className="w-[87%] ml-4 h-9 sm:h-[44px] bg-[#EEBA41] hover:bg-[#D4A230] text-white font-bold text-xs sm:text-sm md:text-base rounded-xl shadow-md transition-all duration-200 active:scale-[0.98] cursor-pointer flex items-center justify-center"
+              >
+                Discover Now
+              </button>
+            </div>
+
+          </div>
+
+          {/* SISI KANAN: Area setelah garis putus-putus (32%) */}
+          <div className="w-[32%] h-full" />
         </div>
 
       </div>
-
-      {/* Elemen Dekorasi Background */}
-      <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-[#CEAE65]/10 rounded-full blur-2xl pointer-events-none" />
-      <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#EBC05F]/10 rounded-full blur-2xl pointer-events-none" />
     </section>
   );
+<<<<<<< HEAD
 }
 <<<<<<< HEAD
 >>>>>>> df38789 (Halaman EventPage New)
 =======
 >>>>>>> 0bebab2 (feat: refine landing page layout and visual consistency)
+=======
+}
+>>>>>>> ce2ce3c (Page event & kegiatan, dan calendar)
