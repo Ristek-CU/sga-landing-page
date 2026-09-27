@@ -555,7 +555,6 @@
 //     );
 // }
 
-import React from "react";
 import { useNavigate } from "react-router"; 
 import Button from "@/components/ui/button";
 import { Calendar, ArrowRight, Sparkles } from "lucide-react";
