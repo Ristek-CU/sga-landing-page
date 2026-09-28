@@ -1,4 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Italianno&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
+
 
 @font-face {
   font-family: 'Planet Kosmos';
@@ -146,4 +148,88 @@ body {
 		opacity: 1;
 		transform: translateY(0);
 	}
+}
+
+/* Custom Style React-Calendar Sesuai Figma SGA */
+.custom-sga-calendar {
+  background: transparent !important;
+  font-family: inherit;
+}
+
+/* Header Navigasi Bulan (September 2026) */
+.custom-sga-calendar .react-calendar__navigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.custom-sga-calendar .react-calendar__navigation__label {
+  background-color: #003B46 !important;
+  color: white !important;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.4rem 1.2rem;
+  border-radius: 0.5rem;
+  flex-grow: 0 !important;
+}
+
+.custom-sga-calendar .react-calendar__navigation button:not(.react-calendar__navigation__label) {
+  color: #003B46;
+  font-weight: bold;
+  font-size: 1.1rem;
+  min-width: 32px;
+}
+
+/* Header Hari (Mo, Tu, We, Th, Fr, Sa, Su) */
+.custom-sga-calendar .react-calendar__month-view__weekdays {
+  color: #9CA3AF;
+  font-weight: 500;
+  font-size: 0.85rem;
+  text-decoration: none !important;
+  margin-bottom: 0.5rem;
+}
+
+.custom-sga-calendar .react-calendar__month-view__weekdays__weekday abbr {
+  text-decoration: none !important;
+}
+
+/* Hari Sabtu & Minggu Berwarna Emas/Kuning */
+.custom-sga-calendar .react-calendar__month-view__weekdays__weekday:nth-child(6),
+.custom-sga-calendar .react-calendar__month-view__weekdays__weekday:nth-child(7),
+.custom-sga-calendar .react-calendar__month-view__days__button:nth-child(7n),
+.custom-sga-calendar .react-calendar__month-view__days__button:nth-child(7n-1) {
+  color: #EBC05F !important;
+}
+
+/* Tile Tanggal Biasa */
+.custom-sga-calendar .react-calendar__tile {
+  padding: 0.5rem 0;
+  font-size: 0.875rem;
+  color: #374151;
+  border-radius: 0.5rem;
+}
+
+.custom-sga-calendar .react-calendar__tile:enabled:hover {
+  background-color: #F3F4F6;
+}
+
+/* Tanggal Yang Sedang Dipilih (Selected) */
+.custom-sga-calendar .react-calendar__tile--active {
+  background: #003B46 !important;
+  color: white !important;
+  border-radius: 0.5rem;
+  font-weight: 600;
+}
+
+/* Tanggal Hari Ini */
+.custom-sga-calendar .react-calendar__tile--now {
+  background: #E5E7EB;
+  border-radius: 0.5rem;
+}
+
+
+
+.font-italianno {
+  font-family: 'Italianno', cursive;
 }
