@@ -15,6 +15,7 @@ import HomePage from "./pages/home.tsx";
 import UkmPage from "./pages/ukm.tsx";
 
 // 1. TAMBAHKAN IMPORT EventPage DI SINI:
+import EventDetailPage from "./components/sections/event/EventDetail/page.tsx";
 import EventPage from "./components/sections/event/EventPage/page.tsx";
 
 const ReportingPage = lazy(() => import("./pages/reporting.tsx"));
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
     ],
   },
   {
+    path: "/events/:id",
+    element: <EventDetailPage />,
+  },
+  {
     path: "/student-voice/:campaignSlug",
     element: (
       <>
@@ -53,7 +58,7 @@ const router = createBrowserRouter([
     element: <UkmPage />,
   },
   {
-    path: "/student-[#0A5C75]/:id",
+    path: "/student-societes/:id",
     element: <UKMDetailPage />,
   },
 ]);
