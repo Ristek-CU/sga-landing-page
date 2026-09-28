@@ -1,9 +1,9 @@
+import { useNavigate } from "react-router";
+
 import ticketBg from "@/assets/images/ticketevet-bg.png";
 
 export default function EventSection() {
-	const handleNavigate = () => {
-		window.location.href = "/events";
-	};
+	const navigate = useNavigate();
 
 	return (
 		<section className="flex w-full flex-col items-center justify-center bg-[#F8F9FA] px-4 py-16 font-['Plus_Jakarta_Sans',sans-serif]">
@@ -50,7 +50,7 @@ export default function EventSection() {
 						<div className="w-full">
 							<button
 								type="button"
-								onClick={handleNavigate}
+								onClick={() => navigate("/events")}
 								className="ml-4 flex h-9 w-[87%] cursor-pointer items-center justify-center rounded-xl bg-[#EEBA41] text-xs font-bold text-white shadow-md transition-all duration-200 hover:bg-[#D4A230] active:scale-[0.98] sm:h-[44px] sm:text-sm md:text-base"
 							>
 								Discover Now

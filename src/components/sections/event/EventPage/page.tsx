@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Users, Calendar } from "lucide-react";
+import { Link } from "react-router";
 
 // Import Particles & Background Asset
 import Particles from "@/components/ui/particles";
@@ -234,16 +235,21 @@ export default function EventPage() {
                                 </a>
                               </div>
 
-                              <button
-                                disabled={isComingSoon}
-                                className={`px-4 py-2 rounded-lg text-xs font-semibold transition-all shadow-sm ${
-                                  isComingSoon
-                                    ? "bg-slate-200 text-slate-400 cursor-not-allowed"
-                                    : "bg-[#0B3B4F] hover:bg-[#062c3b] text-white cursor-pointer active:scale-95"
-                                }`}
-                              >
-                                Discover Event
-                              </button>
+                              {isComingSoon ? (
+                                <button
+                                  disabled
+                                  className="px-4 py-2 rounded-lg text-xs font-semibold transition-all shadow-sm bg-slate-200 text-slate-400 cursor-not-allowed"
+                                >
+                                  Discover Event
+                                </button>
+                              ) : (
+                                <Link
+                                  to={`/events/${event.id}`}
+                                  className="px-4 py-2 rounded-lg text-xs font-semibold transition-all shadow-sm bg-[#0B3B4F] hover:bg-[#062c3b] text-white cursor-pointer active:scale-95"
+                                >
+                                  Discover Event
+                                </Link>
+                              )}
                             </div>
                           </div>
                         </div>
