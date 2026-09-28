@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Users, Calendar } from "lucide-react";
 
 // Import Particles & Background Asset

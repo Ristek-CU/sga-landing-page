@@ -31,17 +31,10 @@ export default function Header() {
 		<header className="pointer-events-none fixed left-0 top-0 z-50 flex w-[100dvw] max-w-[100dvw] justify-center px-2 pt-[env(safe-area-inset-top)] transition-all sm:px-0">
 			<div
 				className={cn(
-<<<<<<< HEAD
-					"pointer-events-auto flex items-center justify-between w-full text-white transition-all duration-500 ease-in-out border origin-top transform-gpu backface-hidden antialiased drop-shadow-[0_2px_5px_rgba(6,69,91,0.55)]",
-					scrollY > 50
-						? "max-w-[calc(100%-2rem)] lg:max-w-6xl mt-4 lg:mt-6 bg-white/10 backdrop-blur-xl border-white/30 shadow-[0_14px_40px_rgba(6,69,91,0.38)] py-3 px-6 lg:px-8 rounded-full"
-						: "max-w-6xl mt-0 bg-transparent border-transparent py-6 px-6 lg:px-0 rounded-none",
-=======
 					"pointer-events-auto flex w-full origin-top transform-gpu items-center justify-between border text-white antialiased backface-hidden transition-all duration-500 ease-in-out",
 					scrollY > 50
 						? "mt-2 max-w-[calc(100%-0.5rem)] rounded-full border-white/20 bg-[#0f3d44]/88 px-3 py-2.5 shadow-2xl backdrop-blur-md sm:mt-4 sm:max-w-[95%] sm:px-5 sm:py-3 lg:mt-6 lg:max-w-5xl lg:px-10"
 						: "mt-0 max-w-7xl rounded-none border-transparent bg-transparent px-2 py-4 sm:px-6 sm:py-6 lg:px-10",
->>>>>>> 57a0e0e (fix: keep mobile navigation within viewport)
 				)}
 			>
 				<HashLink
@@ -54,11 +47,7 @@ export default function Header() {
 						alt="SGA Logo"
 						className={cn(
 							"shrink-0 object-contain transition-all duration-500 ease-in-out",
-<<<<<<< HEAD
-							scrollY > 50 ? "size-9 sm:size-10" : "size-10 sm:size-12",
-=======
 							scrollY > 50 ? "size-8 sm:size-10" : "size-9 sm:size-12",
->>>>>>> 57a0e0e (fix: keep mobile navigation within viewport)
 						)}
 					/>
 					<div className="h-7 w-px shrink-0 bg-white/30 sm:h-10" />
@@ -67,59 +56,12 @@ export default function Header() {
 						alt="Arvana Logo"
 						className={cn(
 							"shrink-0 object-contain transition-all duration-500 ease-in-out",
-<<<<<<< HEAD
-							scrollY > 50 ? "size-9 sm:size-10" : "size-10 sm:size-12",
-=======
 							scrollY > 50 ? "size-8 sm:size-10" : "size-9 sm:size-12",
->>>>>>> 57a0e0e (fix: keep mobile navigation within viewport)
 						)}
 					/>
 				</HashLink>
 
-<<<<<<< HEAD
-				<div className="items-center justify-center flex-1 hidden gap-5 xl:gap-7 lg:flex text-base font-semibold transform-gpu backface-hidden whitespace-nowrap">
-=======
 				<div className="items-center justify-center flex-1 hidden gap-8 lg:flex text-sm font-medium transform-gpu backface-hidden">
-<<<<<<< HEAD
->>>>>>> 57a0e0e (fix: keep mobile navigation within viewport)
-					<HashLink
-						to="/#about-us"
-						href="/#about-us"
-						className="hover:text-[#D4B254] transition-colors duration-300"
-					>
-						About Us
-					</HashLink>
-					<HashLink
-						to="/#vision"
-						href="/#vision"
-						className="hover:text-[#D4B254] transition-colors duration-300"
-					>
-						Vision & Mission
-					</HashLink>
-					<HashLink
-						to="/#division"
-						href="/#division"
-						className="hover:text-[#D4B254] transition-colors duration-300"
-					>
-						Members
-					</HashLink>
-					{/* <HashLink to="/#our-partnership" href="/#our-partnership" className="hover:text-[#D4B254] transition-colors duration-300">
-						Partnership
-					</HashLink> */}
-					<HashLink
-						to="/#event"
-						href="/#event"
-						className="hover:text-[#D4B254] transition-colors duration-300"
-					>
-						Event
-					</HashLink>
-					<Link
-						to="/student-voice"
-						className="hover:text-[#D4B254] transition-colors duration-300"
-					>
-						Student Voice
-					</Link>
-=======
 					{MAIN_NAV_LINKS.map((item) => {
 						if (item.isRoute) {
 							return (
@@ -143,7 +85,6 @@ export default function Header() {
 							</HashLink>
 						);
 					})}
->>>>>>> e4a4463 (refactor: deepen architecture across Student Voice, UKM catalog, and navigation)
 				</div>
 
 				<Button

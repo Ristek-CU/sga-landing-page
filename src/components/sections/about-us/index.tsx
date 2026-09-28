@@ -3,7 +3,6 @@ import SectionLabel from "@/components/ui/section-label";
 import sgaAbout1 from "@/assets/images/sga-about-1.jpg";
 import sgaAbout2 from "@/assets/images/sga-about-2.jpg";
 import sgaAbout3 from "@/assets/images/sga-about-3.jpg";
-import SectionLabel from "@/components/ui/section-label"; // atau sesuaikan dengan lokasi komponen SectionLabel kamu
 
 export default function AboutUsSection() {
 	return (
