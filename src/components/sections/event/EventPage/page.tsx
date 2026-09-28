@@ -1,283 +1,236 @@
-import { useState, useEffect } from "react";
-import { Users, Calendar } from "lucide-react";
+import { ArrowLeftIcon, CalendarDays, Users } from "lucide-react";
 import { Link } from "react-router";
 
-// Import Particles & Background Asset
-import Particles from "@/components/ui/particles";
 import heroPattern from "@/assets/images/hero-pattern.webp";
-
-//Import Calendar
 import CalendarSection from "@/components/sections/calendar";
-
-// Import Data Statis dari lib/data/events.json
+import Particles from "@/components/ui/particles";
 import eventsData from "@/lib/data/events.json";
+import type { LandingEvent } from "@/lib/landing-api";
 
-// Tipe Data Event
-export type EventStatus = "completed" | "ongoing" | "coming_soon";
+type EventJsonItem = (typeof eventsData)[number];
 
-export interface EventItem {
-  id: string;
-  title: string;
-  status: EventStatus;
-  membersCount: string;
-  description: string;
-  imageUrl: string;
-  logoUrl?: string;
-  instagramUrl?: string;
-  tiktokUrl?: string;
+const statusConfig: Record<string, { label: string; bg: string }> = {
+	completed: { label: "Completed", bg: "bg-[#F06A6A]" },
+	ongoing: { label: "On Going", bg: "bg-[#CEAE65]" },
+	coming_soon: { label: "Coming Soon", bg: "bg-[#72D5F6]" },
+};
+
+/** Map event.json item → LandingEvent so CalendarSection stays compatible */
+function toLandingEvent(e: EventJsonItem): LandingEvent {
+	return {
+		id: e.id,
+		name: e.title,
+		description: e.description,
+		start_date: e.date === "Coming Soon" ? null : e.date,
+		end_date: null,
+		location: e.location,
+		status: e.status,
+		logo_path: e.imageUrl,
+		registration_link: e.registrationUrl ?? null,
+	};
+}
+
+function InstagramIcon({ className }: { className?: string }) {
+	return (
+		<svg viewBox="0 0 24 24" fill="currentColor" className={className}>
+			<path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Zm5.25-2.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z" />
+		</svg>
+	);
+}
+
+function TiktokIcon({ className }: { className?: string }) {
+	return (
+		<svg viewBox="0 0 24 24" fill="currentColor" className={className}>
+			<path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5c-1.43 0-2.59-1.16-2.59-2.59a2.59 2.59 0 0 1 2.59-2.59c.28 0 .55.04.81.13V9.73a5.62 5.62 0 0 0-.81-.06c-3.13 0-5.68 2.55-5.68 5.68 0 3.13 2.55 5.68 5.68 5.68 3.13 0 5.68-2.55 5.68-5.68V9.41a7.29 7.29 0 0 0 4.27 1.37V7.7a4.28 4.28 0 0 1-3.15-1.88Z" />
+		</svg>
+	);
+}
+
+function EventCard({ event }: { event: EventJsonItem }) {
+	const isComingSoon = event.status === "coming_soon";
+	const image = event.imageUrl || heroPattern;
+	const logo = event.logoUrl || heroPattern;
+	const status = statusConfig[event.status] ?? statusConfig.coming_soon;
+
+	return (
+		<article className="relative flex flex-col overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-md transition-all hover:-translate-y-1 hover:shadow-xl">
+			{/* Coming Soon overlay */}
+			{isComingSoon && (
+				<div className="absolute inset-0 z-20 flex items-center justify-center bg-white/40 backdrop-blur-sm">
+					<span className="rounded-full bg-[#72D5F6] px-8 py-3 text-lg font-bold tracking-wide text-white shadow-lg sm:text-xl">
+						Coming Soon
+					</span>
+				</div>
+			)}
+
+			<div className={`flex flex-1 flex-col ${isComingSoon ? "opacity-40 blur-[2px]" : ""}`}>
+				{/* Image + Status Badge */}
+				<div className="relative h-44 w-full overflow-hidden bg-slate-200">
+					<img
+						src={image}
+						alt={event.title}
+						className="h-full w-full object-cover"
+					/>
+					<span
+						className={`absolute left-3 top-3 rounded-full px-4 py-1 text-[11px] font-bold text-white shadow ${status.bg}`}
+					>
+						{status.label}
+					</span>
+				</div>
+
+				{/* Card Body */}
+				<div className="flex flex-1 flex-col px-5 pb-5 pt-4">
+					{/* Logo + Title + Members Row */}
+					<div className="flex items-start gap-3">
+						<div className="flex size-11 shrink-0 items-center justify-center overflow-hidden rounded-[10px] border border-slate-100 bg-slate-50">
+							<img
+								src={logo}
+								alt={`${event.title} logo`}
+								className="h-full w-full object-cover"
+							/>
+						</div>
+						<div className="flex flex-col pt-0.5">
+							<h2 className="line-clamp-1 text-sm font-extrabold leading-snug text-[#333333]">
+								{event.title}
+							</h2>
+							<div className="mt-1 flex items-center gap-1.5 text-[11px] font-medium text-slate-500">
+								<Users className="size-3.5 shrink-0 text-slate-500" />
+								<span>{event.membersCount}</span>
+							</div>
+						</div>
+					</div>
+
+					{/* Description */}
+					<p className="mt-3.5 line-clamp-2 text-xs leading-relaxed text-slate-500">
+						{event.description || "Informasi acara belum tersedia."}
+					</p>
+
+					{/* Bottom: Social Icons + Discover Button */}
+					<div className="mt-auto flex items-center justify-between pt-5">
+						<div className="flex items-center gap-2.5">
+							{event.instagramUrl && (
+								<a
+									href={event.instagramUrl}
+									target="_blank"
+									rel="noreferrer"
+									className="text-slate-500 transition-colors hover:text-[#E1306C]"
+									aria-label="Instagram"
+								>
+									<InstagramIcon className="size-4.5" />
+								</a>
+							)}
+							{event.tiktokUrl && (
+								<a
+									href={event.tiktokUrl}
+									target="_blank"
+									rel="noreferrer"
+									className="text-slate-500 transition-colors hover:text-black"
+									aria-label="TikTok"
+								>
+									<TiktokIcon className="size-4.5" />
+								</a>
+							)}
+						</div>
+
+						<Link
+							to={`/events/${event.id}`}
+							className="inline-flex items-center justify-center rounded-lg bg-[#0B3B4F] px-4 py-2 text-xs font-bold text-white shadow-sm transition hover:bg-[#062c3b] active:scale-[0.98]"
+						>
+							Discover Event
+						</Link>
+					</div>
+				</div>
+			</div>
+		</article>
+	);
 }
 
 export default function EventPage() {
-  const [events, setEvents] = useState<EventItem[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+	const events: EventJsonItem[] = eventsData;
 
-  // Simulasi Fetch API menggunakan data JSON
-  useEffect(() => {
-    const fetchEvents = async () => {
-      setIsLoading(true);
-      try {
-        await new Promise((resolve) => setTimeout(resolve, 400));
-        setEvents(eventsData as EventItem[]);
-      } catch (error) {
-        console.error("Gagal mengambil data event:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+	const bgImageUrl =
+		typeof heroPattern === "string"
+			? heroPattern
+			: (heroPattern as { src: string }).src;
 
-    fetchEvents();
-  }, []);
+	// Convert to LandingEvent[] for CalendarSection compatibility
+	const landingEvents: LandingEvent[] = events.map(toLandingEvent);
 
-  // Penanganan path image
-  const bgImageUrl = typeof heroPattern === "string" ? heroPattern : (heroPattern as { src: string }).src;
+	return (
+		<div className="relative min-h-screen bg-[#F8FAFC] font-sans">
+			{/* Back Button */}
+			<Link
+				to="/#event"
+				className="absolute left-5 top-5 z-20 inline-flex items-center gap-2 rounded-full bg-[#06455B]/90 px-4 py-2 text-sm font-bold text-[#20BEE4] shadow-lg ring-1 ring-white/10 backdrop-blur transition hover:bg-[#07556D] sm:left-8 sm:top-7 sm:text-base"
+			>
+				<ArrowLeftIcon className="size-5" />
+				Kembali
+			</Link>
 
-  return (
-    <div className="min-h-screen bg-[#F8FAFC] font-sans relative">
-      
-      {/* Effect Paralax */}
-      <div 
-        className="sticky top-0 h-[420px] w-full bg-[#07303F] bg-cover bg-center bg-no-repeat overflow-hidden z-0"
-        style={{ backgroundImage: `url(${bgImageUrl})` }}
-      >
-        <Particles
-          className="absolute inset-0 z-0 pointer-events-none"
-          quantity={80}
-          ease={80}
-          color="#EBC05F"
-          refresh={false}
-        />
-      </div>
+			<div
+				className="sticky top-0 z-0 h-[420px] w-full overflow-hidden bg-[#07303F] bg-cover bg-center bg-no-repeat"
+				style={{ backgroundImage: `url(${bgImageUrl})` }}
+			>
+				<Particles
+					className="pointer-events-none absolute inset-0 z-0"
+					quantity={80}
+					ease={80}
+					color="#EBC05F"
+					refresh={false}
+				/>
+			</div>
 
-      {/* ================= 2. FOREGROUND CONTENT ================= */}
-      <div className="relative z-10 -mt-[420px]">
-        
-        {/* HERO TEXT SECTION */}
-        <section className="h-[420px] pt-24 pb-12 px-4 text-center flex flex-col justify-center items-center">
-          <div className="max-w-5xl mx-auto flex flex-col items-center">
-            {/* Heading Hero dengan Warna #F4F4F4 dan Accent #EBC05F dari Figma */}
-            <h1 className="text-3xl sm:text-5xl lg:text-[69px] font-bold tracking-tight mb-4 text-[#F4F4F4] leading-tight lg:leading-[82px] max-w-4xl drop-shadow-md">
-              Eksplorasi{" "}
-              <span className="text-[#EBC05F]">
-                Event Student Government Association
-              </span>
-            </h1>
+			<div className="relative z-10 -mt-[420px]">
+				<section className="flex h-[420px] flex-col items-center justify-center px-4 pb-12 pt-24 text-center">
+					<div className="mx-auto flex max-w-5xl flex-col items-center">
+						<h1 className="mb-4 max-w-4xl text-3xl font-bold leading-tight tracking-tight text-[#F4F4F4] drop-shadow-md sm:text-5xl lg:text-[69px] lg:leading-[82px]">
+							Eksplorasi{" "}
+							<span className="text-[#EBC05F]">Event Student Government Association</span>
+						</h1>
+						<p className="max-w-2xl text-xs leading-relaxed text-[#F4F4F4]/80 drop-shadow sm:text-sm lg:text-base">
+							Temukan event terbaru dari{" "}
+							<span className="font-medium text-[#EBC05F]"> SGA Cakrawala University</span>.
+						</p>
+					</div>
+				</section>
 
-            {/* Paragraph Hero */}
-            <p className="text-[#F4F4F4]/80 text-xs sm:text-sm lg:text-base max-w-2xl leading-relaxed drop-shadow">
-              Temukan berbagai Unit Kegiatan Mahasiswa di{" "}
-              <span className="text-[#EBC05F] font-medium">
-                Universitas Cakrawala
-              </span>{" "}
-              dan bergabunglah dengan komunitas yang mendukung minat, relasi, serta
-              pengembangan dirimu.
-            </p>
-          </div>
-        </section>
+				<section className="bg-[#F8FAFC] pb-24 pt-8 shadow-[0_-15px_30px_rgba(0,0,0,0.12)]">
+					<div className="mx-auto max-w-6xl px-4 sm:px-6">
+						<div className="mb-8 flex justify-center">
+							<div className="rounded-[30px] bg-gradient-to-r from-[#CEAE65] to-[#685833] p-[2px] shadow-sm">
+								<div className="rounded-[28px] bg-white px-[30px] py-[6px] text-sm font-semibold text-[#CEAE65] sm:text-base">
+									Events
+								</div>
+							</div>
+						</div>
 
-        {/* SECTION BOTTOM GRID */}
-        <section className="bg-[#F8FAFC] pt-8 pb-24 shadow-[0_-15px_30px_rgba(0,0,0,0.12)]">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6">
-            
-            {/* Tag Badge "Events" */}
-            <div className="flex justify-center mb-8">
-              <div className="inline-flex items-center justify-center p-[2px] rounded-[30px] bg-gradient-to-r from-[#CEAE65] to-[#685833] shadow-sm">
-                <div className="px-[30px] py-[6px] rounded-[28px] bg-white flex items-center justify-center gap-[10px]">
-                  <span className="text-[#CEAE65] font-semibold text-sm sm:text-base">
-                    Events
-                  </span>
-                </div>
-              </div>
-            </div>
+						<div className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
+							{events.map((event) => (
+								<EventCard key={event.id} event={event} />
+							))}
+						</div>
 
-            {/* Grid Card Event */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-              {isLoading
-                ? // Skeleton Loading State
-                  Array.from({ length: 6 }).map((_, index) => (
-                    <div
-                      key={index}
-                      className="bg-white rounded-2xl shadow-md border border-slate-100 overflow-hidden h-[380px] animate-pulse p-4 flex flex-col justify-between"
-                    >
-                      <div className="bg-slate-200 h-48 rounded-xl w-full" />
-                      <div className="space-y-2 mt-4">
-                        <div className="bg-slate-200 h-5 w-3/4 rounded" />
-                        <div className="bg-slate-200 h-4 w-full rounded" />
-                      </div>
-                      <div className="flex justify-between items-center mt-4">
-                        <div className="bg-slate-200 h-6 w-16 rounded" />
-                        <div className="bg-slate-200 h-8 w-24 rounded-lg" />
-                      </div>
-                    </div>
-                  ))
-                : // Render Cards
-                  events.map((event) => {
-                    const isComingSoon = event.status === "coming_soon";
+						{events.length === 0 && (
+							<p className="py-8 text-center text-sm text-slate-500">
+								Belum ada event yang tersedia.
+							</p>
+						)}
 
-                    return (
-                      <div
-                        key={event.id}
-                        className="bg-white rounded-2xl shadow-md border border-slate-100 overflow-hidden flex flex-col relative transition-all hover:shadow-xl hover:-translate-y-1"
-                      >
-                        {/* Overlay Khusus Coming Soon */}
-                        {isComingSoon && (
-                          <div className="absolute inset-0 bg-white/20 backdrop-blur-[1px] z-20 flex items-center justify-center p-4">
-                            <div className="bg-[#72D5F6] text-white font-bold text-base sm:text-lg px-7 py-2.5 rounded-full shadow-lg border border-white/60 tracking-wide">
-                              Coming Soon
-                            </div>
-                          </div>
-                        )}
+						<div className="mt-12 flex justify-center">
+							<div className="inline-flex items-center gap-[10px] rounded-[28px] bg-white px-[30px] py-[6px]">
+								<CalendarDays className="size-4 text-[#CEAE65]" />
+								<span className="text-sm font-semibold text-[#CEAE65] sm:text-base">
+									Calendar
+								</span>
+							</div>
+						</div>
 
-                        {/* Wrapper Isi Card */}
-                        <div
-                          className={`flex-1 flex flex-col transition-all duration-300 ${
-                            isComingSoon ? "opacity-50 blur-[1px] select-none pointer-events-none" : ""
-                          }`}
-                        >
-                          {/* Gambar / Banner Card */}
-                          <div className="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-200">
-                            <img
-                              src={event.imageUrl}
-                              alt={event.title}
-                              className="w-full h-full object-cover"
-                            />
-
-                            {/* Badge Status Completed / On Going */}
-                            {!isComingSoon && (
-                              <div className="absolute top-3 left-3 z-10">
-                                {event.status === "completed" && (
-                                  <span className="bg-[#E85050] text-white text-[11px] font-semibold px-3 py-1 rounded-md shadow-sm">
-                                    Completed
-                                  </span>
-                                )}
-                                {event.status === "ongoing" && (
-                                  <span className="bg-[#EBC05F] text-white text-[11px] font-semibold px-3 py-1 rounded-md shadow-sm">
-                                    On Going
-                                  </span>
-                                )}
-                              </div>
-                            )}
-                          </div>
-
-                          {/* Body Content Card */}
-                          <div className="p-5 flex-1 flex flex-col justify-between">
-                            <div>
-                              {/* Avatar Logo, Title & Members */}
-                              <div className="flex items-start justify-between gap-2 mb-2">
-                                <div className="flex items-center gap-2">
-                                  <div className="w-8 h-8 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center overflow-hidden shrink-0">
-                                    <img
-                                      src={
-                                        event.logoUrl ||
-                                        "https://api.dicebear.com/7.x/identicon/svg?seed=cakra"
-                                      }
-                                      alt="logo"
-                                      className="w-full h-full object-cover"
-                                    />
-                                  </div>
-                                  <h3 className="font-bold text-slate-800 text-base sm:text-lg leading-snug line-clamp-1">
-                                    {event.title}
-                                  </h3>
-                                </div>
-
-                                {/* Member Counter */}
-                                <div className="flex items-center gap-1 text-slate-500 text-xs shrink-0 mt-1">
-                                  <Users className="w-3.5 h-3.5 text-slate-400" />
-                                  <span>{event.membersCount}</span>
-                                </div>
-                              </div>
-
-                              {/* Description */}
-                              <p className="text-slate-500 text-xs leading-relaxed line-clamp-2 my-3">
-                                {event.description}
-                              </p>
-                            </div>
-
-                            {/* Card Footer: Social Icons & Action Button */}
-                            <div className="pt-3 border-t border-slate-100 flex items-center justify-between mt-2">
-                              <div className="flex items-center gap-2.5 text-slate-600">
-                                <a
-                                  href={event.instagramUrl || "#"}
-                                  className="hover:text-[#063A4C] transition-colors"
-                                  aria-label="Instagram"
-                                >
-                                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-                                  </svg>
-                                </a>
-                                <a
-                                  href={event.tiktokUrl || "#"}
-                                  className="hover:text-[#063A4C] transition-colors"
-                                  aria-label="TikTok"
-                                >
-                                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                                    <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.28-2.6.72-5.22 2.64-6.92 1.47-1.32 3.48-2.02 5.48-1.87v4.11c-.96-.13-1.96.11-2.73.68-.9.63-1.45 1.68-1.42 2.78.01 1.02.53 1.99 1.38 2.53.86.56 1.97.64 2.89.24 1.01-.42 1.73-1.38 1.83-2.47.07-2.32.02-4.63.03-6.95V0l-.02.02z" />
-                                  </svg>
-                                </a>
-                              </div>
-
-                              {isComingSoon ? (
-                                <button
-                                  disabled
-                                  className="px-4 py-2 rounded-lg text-xs font-semibold transition-all shadow-sm bg-slate-200 text-slate-400 cursor-not-allowed"
-                                >
-                                  Discover Event
-                                </button>
-                              ) : (
-                                <Link
-                                  to={`/events/${event.id}`}
-                                  className="px-4 py-2 rounded-lg text-xs font-semibold transition-all shadow-sm bg-[#0B3B4F] hover:bg-[#062c3b] text-white cursor-pointer active:scale-95"
-                                >
-                                  Discover Event
-                                </Link>
-                              )}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
-            </div>
-
-            {/* Tombol "Calendar" */}
-            <div className="flex justify-center mt-12">
-              <button className="inline-flex items-center justify-center p-[2px] rounded-[30px] bg-gradient-to-r from-[#CEAE65] to-[#685833] hover:opacity-95 transition-all cursor-pointer shadow-sm">
-                <div className="px-[30px] py-[6px] rounded-[28px] bg-white flex items-center justify-center gap-[10px]">
-                  <Calendar className="w-4 h-4 text-[#CEAE65]" />
-                  <span className="text-[#CEAE65] font-semibold text-sm sm:text-base">
-                    Calendar
-                  </span>
-                </div>
-              </button>
-            </div>
-
-            {/* KALENDER */}
-          <div className="mt-8 flex justify-center w-full">
-            <CalendarSection />
-          </div>
-
-          </div>
-        </section>
-      </div>
-    </div>
-  );
+						<div className="mt-8 flex w-full justify-center">
+							<CalendarSection events={landingEvents} />
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	);
 }

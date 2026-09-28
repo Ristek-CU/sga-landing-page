@@ -6,7 +6,7 @@ export default function EventSection() {
 	const navigate = useNavigate();
 
 	return (
-		<section className="flex w-full flex-col items-center justify-center bg-[#F8F9FA] px-4 py-16 font-['Plus_Jakarta_Sans',sans-serif]">
+		<section id="event" className="flex w-full flex-col items-center justify-center bg-[#F8F9FA] px-4 py-16 font-['Plus_Jakarta_Sans',sans-serif]">
 			<div className="mb-10 flex max-w-4xl flex-col items-center text-center">
 				<div className="mb-8 flex justify-center">
 					<div className="inline-flex items-center justify-center rounded-[30px] bg-gradient-to-r from-[#CEAE65] to-[#685833] p-[2px] shadow-sm">
@@ -26,7 +26,7 @@ export default function EventSection() {
 				</h2>
 			</div>
 
-			<div className="relative ml-50 aspect-[760/260] w-full max-w-[980px] drop-shadow-2xl transition-transform duration-300 hover:scale-[1.01]">
+			<div className="relative mx-auto aspect-[760/260] w-full max-w-[980px] drop-shadow-2xl transition-transform duration-300 hover:scale-[1.01]">
 				<img
 					src={ticketBg}
 					alt="SGA Event Ticket"
@@ -34,24 +34,25 @@ export default function EventSection() {
 				/>
 
 				<div className="relative z-10 flex h-full w-full">
-					<div className="box-border flex h-full w-[78%] flex-col justify-between pb-8 pl-6 pr-3 pt-6 sm:pb-22 sm:pl-8 sm:pr-5 sm:pt-8">
-						<div className="space-y-1 pl-6 pt-6">
-							<h3 className="text-lg font-bold tracking-wide text-white sm:text-2xl md:text-[32px]">
+					{/* Left Section (Ticket Body) */}
+					<div className="box-border flex h-full w-[74%] flex-col justify-center px-[4%] sm:px-[6%]">
+						<div className="space-y-[2px] sm:space-y-1 pl-[2%]">
+							<h3 className="text-[11px] font-bold tracking-wide text-white sm:text-2xl md:text-[32px]">
 								Eksplorasi <span className="text-[#E3AF35]">Event</span>
 							</h3>
-							<p className="text-xs font-semibold text-[#E3AF35] sm:text-base md:text-[20px]">
+							<p className="text-[9px] font-semibold text-[#E3AF35] sm:text-base md:text-[20px]">
 								Student Government Association
 							</p>
-							<p className="text-[11px] font-medium text-white/90 sm:text-sm md:text-[17px]">
+							<p className="text-[8px] font-medium text-white/90 sm:text-sm md:text-[17px]">
 								Cakrawala University
 							</p>
 						</div>
 
-						<div className="w-full">
+						<div className="mt-[6%] sm:mt-[10%] w-full">
 							<button
 								type="button"
 								onClick={() => navigate("/events")}
-								className="ml-4 flex h-9 w-[87%] cursor-pointer items-center justify-center rounded-xl bg-[#EEBA41] text-xs font-bold text-white shadow-md transition-all duration-200 hover:bg-[#D4A230] active:scale-[0.98] sm:h-[44px] sm:text-sm md:text-base"
+								className="ml-[2%] flex h-[26px] sm:h-10 md:h-12 w-[85%] cursor-pointer items-center justify-center rounded-[4px] sm:rounded-xl bg-[#EEBA41] text-[9px] sm:text-sm md:text-base font-bold text-white shadow-md transition-all duration-200 hover:bg-[#D4A230] active:scale-[0.98]"
 							>
 								Discover Now
 							</button>

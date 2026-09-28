@@ -14,10 +14,11 @@ export default function DivisionSelectButton({
 	return (
 		<button
 			className={cn(
-				"cursor-pointer text-sm md:text-base text-left transition-colors whitespace-nowrap",
+				"cursor-pointer text-xs md:text-base text-center lg:text-left transition-colors whitespace-nowrap",
+				"rounded-full px-4 py-2 lg:px-0 lg:py-0 lg:rounded-none lg:bg-transparent", // Tag styling for mobile
 				isActive
-					? "font-bold text-[#D4B254]"
-					: "font-normal text-white hover:text-gray-300",
+					? "bg-[#D4B254] text-[#0f3d44] font-bold lg:bg-transparent lg:text-[#D4B254]"
+					: "bg-white/10 text-white font-normal hover:bg-white/20 lg:bg-transparent lg:hover:text-gray-300 lg:hover:bg-transparent",
 			)}
 			onClick={onClick}
 		>

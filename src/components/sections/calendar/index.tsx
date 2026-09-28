@@ -1,16 +1,10 @@
 import { useState, useRef, useEffect } from "react";
+import type { LandingEvent } from "@/lib/landing-api";
 
 interface EventItem {
   date: string; // YYYY-MM-DD
   title: string;
 }
-
-const eventsList: EventItem[] = [
-  { date: "2026-09-11", title: "PKKMB Utama SGA" },
-  { date: "2026-09-24", title: "Workshop Ristek Division" },
-  { date: "2026-10-05", title: "Rapat Anggota SGA" },
-  { date: "2026-11-12", title: "Evaluasi SGA" },
-];
 
 const months = [
   "January", "February", "March", "April", "May", "June",
@@ -28,9 +22,9 @@ function getWeekNumber(date: Date) {
   return Math.ceil((((d.getTime() - yearStart.getTime()) / 86400000) + 1) / 7);
 }
 
-export default function CalendarSection() {
-  const [currentYear, setCurrentYear] = useState<number>(2026);
-  const [currentMonthIndex, setCurrentMonthIndex] = useState<number>(3); // April
+export default function CalendarSection({ events }: { events: LandingEvent[] }) {
+  const [currentYear, setCurrentYear] = useState<number>(() => new Date().getFullYear());
+  const [currentMonthIndex, setCurrentMonthIndex] = useState<number>(() => new Date().getMonth());
   const [selectedDateStr, setSelectedDateStr] = useState<string | null>(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -70,6 +64,15 @@ export default function CalendarSection() {
     setSelectedDateStr(null);
     setIsDropdownOpen(false);
   };
+
+  const eventsList: EventItem[] = events.flatMap((event) => {
+    if (!event.start_date) return [];
+    const date = new Date(event.start_date);
+    if (Number.isNaN(date.getTime())) return [];
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return [{ date: `${date.getFullYear()}-${month}-${day}`, title: event.name }];
+  });
 
   // Logika pembuatan Grid 7 Hari yang Presisi
   const generateMonthGrid = () => {

@@ -1,21 +1,68 @@
 import heroPattern from "@/assets/images/sga-pattern.webp";
 import { Badge } from "@/components/ui/badge";
 import Particles from "@/components/ui/particles";
-import membersData from "@/lib/data/members.json";
-import { useMemo, useRef, useState } from "react";
+import { fetchLandingContent, type LandingDivision } from "@/lib/landing-api";
+import { useEffect, useRef, useState } from "react";
 import DivisionSelectButton from "./partials/division-select-button";
 import MemberCard from "./partials/member-card";
 
-type Division = keyof typeof membersData;
-const divisions = Object.keys(membersData) as Division[];
+const divisionOrder = [
+	"Executive Board",
+	"Media And Information",
+	"Research And Technology",
+	"Public And Community Relations",
+	"UKM Development",
+	"Business And Partnership",
+	"Intellectual And Career Development",
+	"Student Advocacy And Welfare",
+];
 
 export default function DivisionSection() {
-    const [selectedDivision, setSelectedDivision] = useState<Division>("Executive Board");
+	const [divisions, setDivisions] = useState<LandingDivision[]>([]);
+	const [selectedDivision, setSelectedDivision] = useState(divisionOrder[0]);
+	const [isLoading, setIsLoading] = useState(true);
+	const [loadError, setLoadError] = useState("");
+	const currentMembers = divisions.find(
+		(division) => division.division_name === selectedDivision,
+	)?.members ?? [];
 
-	const currentMembers = useMemo(
-		() => membersData[selectedDivision],
-		[selectedDivision],
-	);
+	useEffect(() => {
+		let active = true;
+		fetchLandingContent()
+			.then(({ members }) => {
+				if (!active) return;
+				const byName = new Map(
+					members.map((division) => [division.division_name, division]),
+				);
+				setDivisions(
+					divisionOrder.flatMap((name) => {
+						const division = byName.get(name);
+						return division
+							? [{
+								...division,
+								members: [...division.members].sort(
+									(a, b) => (a.role?.hierarchy_level ?? 0) - (b.role?.hierarchy_level ?? 0),
+								),
+							}]
+							: [];
+					}),
+				);
+			})
+			.catch((error: unknown) => {
+				if (active) {
+					setLoadError(
+						error instanceof Error ? error.message : "Gagal memuat anggota.",
+					);
+				}
+			})
+			.finally(() => {
+				if (active) setIsLoading(false);
+			});
+
+		return () => {
+			active = false;
+		};
+	}, []);
 
 	const scrollRef = useRef<HTMLDivElement>(null);
 	const [isDragging, setIsDragging] = useState(false);
@@ -72,24 +119,24 @@ export default function DivisionSection() {
 					</Badge>
 				</div>
 
-				{/* Layout: flex-row (Menu Kiri, Card Kanan) */}
-				<div className="flex flex-row w-full gap-x-4 lg:gap-x-16 gap-y-10 items-stretch">
-					{/* Sidebar Menu Divisi (Kiri) */}
-					<div className="flex flex-col gap-4 w-28 sm:w-32 lg:w-64 shrink-0 h-[340px] lg:h-auto overflow-y-auto lg:overflow-visible pb-4 lg:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-						<div className="flex flex-col gap-3 lg:gap-6 w-full px-1">
+				{/* Layout: flex-col on mobile (Tags on top), flex-row on desktop (Sidebar left) */}
+				<div className="flex flex-col lg:flex-row w-full gap-x-4 lg:gap-x-16 gap-y-8 lg:gap-y-10 items-stretch">
+					{/* Sidebar Menu Divisi */}
+					<div className="flex flex-row lg:flex-col gap-3 w-full lg:w-64 shrink-0 overflow-x-auto lg:overflow-visible pb-2 lg:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+						<div className="flex flex-row lg:flex-col gap-3 lg:gap-6 w-max lg:w-full px-1">
 							{divisions.map((division) => (
 								<DivisionSelectButton
-									key={division}
-									isActive={selectedDivision === division}
-									onClick={() => setSelectedDivision(division)}
+									key={division.division_id}
+									isActive={selectedDivision === division.division_name}
+									onClick={() => setSelectedDivision(division.division_name)}
 								>
-									{division}
+									{division.division_name}
 								</DivisionSelectButton>
 							))}
 						</div>
 					</div>
 
-					{/* Area Card Member (Kanan) */}
+					{/* Area Card Member (Kanan/Bawah) */}
 					<div
 						ref={scrollRef}
 						onMouseDown={handleMouseDown}
@@ -98,16 +145,18 @@ export default function DivisionSection() {
 						onMouseMove={handleMouseMove}
 						className={`flex flex-row flex-1 w-full gap-4 lg:gap-6 pb-8 pl-1 overflow-x-auto select-none [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] ${isDragging ? "cursor-grabbing snap-none" : "cursor-grab snap-x snap-mandatory"}`}
 					>
-						{currentMembers.map(({ name, role, imagePath, linkedInUrl }) => (
+						{isLoading && <p role="status" className="text-white">Memuat anggota...</p>}
+						{loadError && <p role="alert" className="text-white">{loadError}</p>}
+						{currentMembers.map((member) => (
 							<div
-								key={name}
+								key={member.id}
 								className="shrink-0 snap-start w-[160px] sm:w-[240px] lg:w-auto h-[320px] lg:h-full"
 							>
 								<MemberCard
-									name={name}
-									position={role}
-									image={imagePath ?? null}
-									linkedinUrl={linkedInUrl}
+									name={member.fullname}
+									position={member.role?.name ?? "Anggota"}
+									image={member.image_path}
+									linkedinUrl={member.linkedin_url ?? "https://www.linkedin.com/"}
 								/>
 							</div>
 						))}

@@ -25,6 +25,8 @@ export default function Header() {
 		return () => window.removeEventListener("scroll", handleScroll);
 	}, []);
 
+	if (pathname.startsWith("/events")) return null;
+
 	const HashLink = pathname === "/" ? "a" : Link;
 
 	return (
