@@ -108,6 +108,12 @@ export default function EventDetailPage() {
 		};
 	}, [slug]);
 
+	// Halaman ini di luar AppLayout (tanpa Lenis) — scroll manual ke atas saat
+	// ganti event/pindah ke sini.
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, [slug]);
+
 	if (loading) {
 		return (
 			<div className="flex min-h-screen items-center justify-center bg-[#F4F4F4] text-sm text-[#06455B]/60">

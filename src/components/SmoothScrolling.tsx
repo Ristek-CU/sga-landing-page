@@ -1,11 +1,13 @@
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 import { useEffect, useRef } from "react";
+import { useLocation } from "react-router";
 
 export default function SmoothScrolling({
 	children,
 }: { children: React.ReactNode }) {
 	const lenisRef = useRef<Lenis | null>(null);
+	const { pathname } = useLocation();
 
 	useEffect(() => {
 		const prefersNativeScroll =
@@ -36,8 +38,20 @@ export default function SmoothScrolling({
 		return () => {
 			cancelAnimationFrame(rafId);
 			lenis.destroy();
+			lenisRef.current = null;
 		};
 	}, []);
+
+	// Pindah halaman → scroll ke paling atas. Lenis aktif → pakai lenis.scrollTo;
+	// native scroll (mobile/reduced-motion) → window.scrollTo. immediate agar
+	// tidak ada animasi sisa dari posisi lama.
+	useEffect(() => {
+		if (lenisRef.current) {
+			lenisRef.current.scrollTo(0, { immediate: true, force: true });
+		}
+		window.scrollTo(0, 0);
+		ScrollTrigger.refresh();
+	}, [pathname]);
 
 	return <div style={{ willChange: "scroll-position" }}>{children}</div>;
 }
