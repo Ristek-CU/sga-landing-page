@@ -10,8 +10,10 @@ import { type Variants, motion, useReducedMotion } from "framer-motion";
 import {
 	ArrowLeftIcon,
 	CalendarDaysIcon,
+	CheckIcon,
 	ClockIcon,
 	ExternalLinkIcon,
+	LinkIcon,
 	MapPinIcon,
 	UserIcon,
 } from "lucide-react";
@@ -58,6 +60,63 @@ function StatusBadge({ status }: { status: BphEventDetail["status"] }) {
 		>
 			{statusLabels[status] ?? status}
 		</span>
+	);
+}
+
+/** Salin URL halaman ini + share navigasi bila tersedia. */
+function ShareBar({ title }: { title: string }) {
+	const [copied, setCopied] = useState(false);
+	const shareUrl = `${window.location.origin}/events/${window.location.pathname.split("/").pop()}`;
+
+	const copy = async () => {
+		try {
+			await navigator.clipboard.writeText(shareUrl);
+		} catch {
+			// Clipboard API butuh secure context; fallback lama tetap jalan.
+			const el = document.createElement("textarea");
+			el.value = shareUrl;
+			document.body.appendChild(el);
+			el.select();
+			document.execCommand("copy");
+			el.remove();
+		}
+		setCopied(true);
+		setTimeout(() => setCopied(false), 2000);
+	};
+
+	const share = async () => {
+		if (navigator.share) {
+			await navigator.share({ title, url: shareUrl }).catch(() => {});
+		} else {
+			await copy();
+		}
+	};
+
+	return (
+		<div className="flex flex-wrap items-center gap-2">
+			<button
+				type="button"
+				onClick={copy}
+				className="inline-flex items-center gap-2 rounded-lg border border-[#06455B]/20 bg-white px-4 py-3 text-sm font-extrabold text-[#06455B] shadow-sm transition hover:bg-gray-50 sm:text-base"
+				aria-label="Salin link event"
+			>
+				{copied ? (
+					<CheckIcon className="size-4 text-green-600" />
+				) : (
+					<LinkIcon className="size-4" />
+				)}
+				{copied ? "Tersalin!" : "Salin Link"}
+			</button>
+			{typeof navigator !== "undefined" && "share" in navigator && (
+				<button
+					type="button"
+					onClick={share}
+					className="inline-flex items-center gap-2 rounded-lg border border-[#06455B]/20 bg-white px-4 py-3 text-sm font-extrabold text-[#06455B] shadow-sm transition hover:bg-gray-50 sm:text-base"
+				>
+					Bagikan
+				</button>
+			)}
+		</div>
 	);
 }
 
@@ -280,6 +339,8 @@ export default function EventDetailPage() {
 						<CalendarDaysIcon className="size-4" />
 						Google Calendar
 					</a>
+
+					<ShareBar title={event.title} />
 				</motion.div>
 			</motion.main>
 
