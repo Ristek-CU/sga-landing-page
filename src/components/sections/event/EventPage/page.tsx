@@ -5,7 +5,7 @@ import heroPattern from "@/assets/images/hero-pattern.webp";
 import CalendarSection from "@/components/sections/calendar";
 import Particles from "@/components/ui/particles";
 import eventsData from "@/lib/data/events.json";
-import type { LandingEvent } from "@/lib/landing-api";
+import type { BphEventListItem } from "@/lib/bph-api";
 
 type EventJsonItem = (typeof eventsData)[number];
 
@@ -15,18 +15,29 @@ const statusConfig: Record<string, { label: string; bg: string }> = {
 	coming_soon: { label: "Coming Soon", bg: "bg-[#72D5F6]" },
 };
 
-/** Map event.json item → LandingEvent so CalendarSection stays compatible */
-function toLandingEvent(e: EventJsonItem): LandingEvent {
+/** Map event.json item → CalendarEvent (fallback statis kalau CMS kosong/error). */
+function toCalendarEvent(e: EventJsonItem): BphEventListItem {
+	const startsAt =
+		e.date === "Coming Soon" ? null : new Date(`${e.date}T09:00:00+07:00`);
 	return {
 		id: e.id,
-		name: e.title,
+		slug: e.id,
+		title: e.title,
 		description: e.description,
-		start_date: e.date === "Coming Soon" ? null : e.date,
-		end_date: null,
+		cover_image_url: e.imageUrl,
+		starts_at: startsAt ? startsAt.toISOString() : "",
+		ends_at: null,
 		location: e.location,
-		status: e.status,
-		logo_path: e.imageUrl,
-		registration_link: e.registrationUrl ?? null,
+		location_url: null,
+		registration_url: e.registrationUrl ?? null,
+		registration_open: Boolean(e.registrationUrl),
+		organizer: e.organizer,
+		status:
+			e.status === "completed"
+				? "past"
+				: e.status === "ongoing"
+					? "ongoing"
+					: "upcoming",
 	};
 }
 
@@ -155,8 +166,8 @@ export default function EventPage() {
 			? heroPattern
 			: (heroPattern as { src: string }).src;
 
-	// Convert to LandingEvent[] for CalendarSection compatibility
-	const landingEvents: LandingEvent[] = events.map(toLandingEvent);
+	// Fallback statis untuk CalendarSection; kalau CMS live, data remote yang dipakai.
+	const fallbackEvents: BphEventListItem[] = events.map(toCalendarEvent);
 
 	return (
 		<div className="relative min-h-screen bg-[#F8FAFC] font-sans">
@@ -234,7 +245,7 @@ export default function EventPage() {
 						</div>
 
 						<div className="mt-8 flex w-full justify-center">
-							<CalendarSection events={landingEvents} />
+							<CalendarSection events={fallbackEvents} />
 						</div>
 					</div>
 				</section>

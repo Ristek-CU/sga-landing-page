@@ -1,64 +1,152 @@
-import type { LandingEvent } from "@/lib/landing-api";
-import { useEffect, useRef, useState } from "react";
-
-interface EventItem {
-	date: string; // YYYY-MM-DD
-	title: string;
-}
+import {
+	type BphEventListItem,
+	fetchBphCalendar,
+	formatWibRange,
+	formatWibTime,
+	wibDateKey,
+} from "@/lib/bph-api";
+import { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router";
 
 const months = [
-	"January",
-	"February",
-	"March",
+	"Januari",
+	"Februari",
+	"Maret",
 	"April",
-	"May",
-	"June",
-	"July",
-	"August",
+	"Mei",
+	"Juni",
+	"Juli",
+	"Agustus",
 	"September",
-	"October",
+	"Oktober",
 	"November",
-	"December",
+	"Desember",
 ];
 
-const daysHeader = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
+const daysHeader = ["Sen", "Sel", "Rab", "Kam", "Jum", "Sab", "Min"];
 
-// Fungsi menghitung nomor minggu dalam 1 tahun (ISO Week)
-function getWeekNumber(date: Date) {
-	const d = new Date(
-		Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()),
-	);
-	const dayNum = d.getUTCDay() || 7;
-	d.setUTCDate(d.getUTCDate() + 4 - dayNum);
-	const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
-	return Math.ceil(((d.getTime() - yearStart.getTime()) / 86400000 + 1) / 7);
+const statusChip: Record<BphEventListItem["status"], string> = {
+	upcoming: "bg-[#72D5F6]",
+	ongoing: "bg-[#CEAE65]",
+	past: "bg-slate-400",
+};
+
+interface CalendarEvent {
+	slug: string;
+	title: string;
+	starts_at: string;
+	ends_at: string | null;
+	location: string | null;
+	status: BphEventListItem["status"];
+}
+
+/** Grid 7 kolom (Sen–Min) + baris pembatas tipis, gaya Google Calendar bulanan. */
+function generateMonthGrid(year: number, monthIndex: number) {
+	const firstDay = new Date(year, monthIndex, 1);
+	// getDay(): 0=Minggu; geser ke indeks 0=Senin.
+	const startOffset = (firstDay.getDay() + 6) % 7;
+	const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
+
+	const cells: {
+		day: number;
+		fullDateStr: string;
+		isOtherMonth: boolean;
+	}[] = [];
+
+	for (let i = startOffset - 1; i >= 0; i--) {
+		const dateObj = new Date(year, monthIndex, -i);
+		cells.push({
+			day: dateObj.getDate(),
+			fullDateStr: wibDateKey(dateObj.toISOString()),
+			isOtherMonth: true,
+		});
+	}
+	for (let day = 1; day <= daysInMonth; day++) {
+		const dateObj = new Date(year, monthIndex, day);
+		cells.push({
+			day,
+			fullDateStr: wibDateKey(dateObj.toISOString()),
+			isOtherMonth: false,
+		});
+	}
+	while (cells.length % 7 !== 0) {
+		const dateObj = new Date(
+			year,
+			monthIndex + 1,
+			cells.length - startOffset - daysInMonth + 1,
+		);
+		cells.push({
+			day: dateObj.getDate(),
+			fullDateStr: wibDateKey(dateObj.toISOString()),
+			isOtherMonth: true,
+		});
+	}
+	return cells;
 }
 
 export default function CalendarSection({
-	events,
-}: { events: LandingEvent[] }) {
-	const [currentYear, setCurrentYear] = useState<number>(() =>
-		new Date().getFullYear(),
-	);
-	const [currentMonthIndex, setCurrentMonthIndex] = useState<number>(() =>
-		new Date().getMonth(),
-	);
+	events = [],
+}: { events?: CalendarEvent[] }) {
+	const now = new Date();
+	const [currentYear, setCurrentYear] = useState(now.getFullYear());
+	const [currentMonthIndex, setCurrentMonthIndex] = useState(now.getMonth());
 	const [selectedDateStr, setSelectedDateStr] = useState<string | null>(null);
-	const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
-	const dropdownRef = useRef<HTMLDivElement>(null);
+	const [remoteEvents, setRemoteEvents] = useState<CalendarEvent[]>([]);
+	const [loading, setLoading] = useState(false);
+
+	const monthParam = `${currentYear}-${String(currentMonthIndex + 1).padStart(2, "0")}`;
 
 	useEffect(() => {
-		function handleClickOutside(event: MouseEvent) {
-			if (
-				dropdownRef.current &&
-				!dropdownRef.current.contains(event.target as Node)
-			) {
-				setIsDropdownOpen(false);
-			}
+		let alive = true;
+		setLoading(true);
+		fetchBphCalendar(monthParam)
+			.then((items) => {
+				if (!alive) return;
+				setRemoteEvents(
+					items.map((e) => ({
+						slug: e.slug,
+						title: e.title,
+						starts_at: e.starts_at,
+						ends_at: e.ends_at,
+						location: e.location,
+						status: e.status,
+					})),
+				);
+			})
+			.catch(() => alive && setRemoteEvents([]))
+			.finally(() => alive && setLoading(false));
+		return () => {
+			alive = false;
+		};
+	}, [monthParam]);
+
+	// ponytail: prop `events` fallback statis (events.json) dipakai bila CMS kosong/error;
+	// buang setelah semua event live di BPH CMS.
+	const eventsList = useMemo(
+		() =>
+			(remoteEvents.length > 0
+				? remoteEvents
+				: events
+						.filter((e) => e.starts_at)
+						.map((e) => ({ ...e, status: e.status as CalendarEvent["status"] }))
+			).map((e) => ({ ...e, dateKey: wibDateKey(e.starts_at) })),
+		[remoteEvents, events],
+	);
+
+	const calendarCells = useMemo(
+		() => generateMonthGrid(currentYear, currentMonthIndex),
+		[currentYear, currentMonthIndex],
+	);
+
+	const eventsByDate = useMemo(() => {
+		const map = new Map<string, CalendarEvent[]>();
+		for (const e of eventsList) {
+			const list = map.get(e.dateKey) ?? [];
+			list.push(e);
+			map.set(e.dateKey, list);
 		}
-		document.addEventListener("mousedown", handleClickOutside);
-		return () => document.removeEventListener("mousedown", handleClickOutside);
-	}, []);
+		return map;
+	}, [eventsList]);
 
 	const handlePrevMonth = () => {
 		setSelectedDateStr(null);
@@ -80,233 +168,152 @@ export default function CalendarSection({
 		}
 	};
 
-	const handleSelectMonth = (idx: number) => {
-		setCurrentMonthIndex(idx);
-		setSelectedDateStr(null);
-		setIsDropdownOpen(false);
-	};
-
-	const eventsList: EventItem[] = events.flatMap((event) => {
-		if (!event.start_date) return [];
-		const date = new Date(event.start_date);
-		if (Number.isNaN(date.getTime())) return [];
-		const month = String(date.getMonth() + 1).padStart(2, "0");
-		const day = String(date.getDate()).padStart(2, "0");
-		return [
-			{ date: `${date.getFullYear()}-${month}-${day}`, title: event.name },
-		];
-	});
-
-	// Logika pembuatan Grid 7 Hari yang Presisi
-	const generateMonthGrid = () => {
-		const firstDayOfMonth = new Date(currentYear, currentMonthIndex, 1);
-		const lastDayOfMonth = new Date(currentYear, currentMonthIndex + 1, 0);
-
-		// Dapatkan indeks hari pertama (0 = Senin, 6 = Minggu)
-		let startDayOfWeek = firstDayOfMonth.getDay() - 1;
-		if (startDayOfWeek === -1) startDayOfWeek = 6;
-
-		const daysInMonth = lastDayOfMonth.getDate();
-		const daysInPrevMonth = new Date(
-			currentYear,
-			currentMonthIndex,
-			0,
-		).getDate();
-
-		const gridDays = [];
-
-		// Hari bulan sebelumnya
-		for (let i = startDayOfWeek - 1; i >= 0; i--) {
-			const day = daysInPrevMonth - i;
-			const dateObj = new Date(currentYear, currentMonthIndex - 1, day);
-			gridDays.push({
-				day,
-				dateObj,
-				isOtherMonth: true,
-				fullDateStr: dateObj.toISOString().split("T")[0],
-			});
-		}
-
-		// Hari bulan berjalan
-		for (let day = 1; day <= daysInMonth; day++) {
-			const dateObj = new Date(currentYear, currentMonthIndex, day);
-			const yearStr = dateObj.getFullYear();
-			const monthStr = String(dateObj.getMonth() + 1).padStart(2, "0");
-			const dayStr = String(day).padStart(2, "0");
-			gridDays.push({
-				day,
-				dateObj,
-				isOtherMonth: false,
-				fullDateStr: `${yearStr}-${monthStr}-${dayStr}`,
-			});
-		}
-
-		// Hari bulan berikutnya agar pas kelipatan 7
-		const remainingSlots = (7 - (gridDays.length % 7)) % 7;
-		for (let day = 1; day <= remainingSlots; day++) {
-			const dateObj = new Date(currentYear, currentMonthIndex + 1, day);
-			gridDays.push({
-				day,
-				dateObj,
-				isOtherMonth: true,
-				fullDateStr: dateObj.toISOString().split("T")[0],
-			});
-		}
-
-		// Kelompokkan per minggu (baris)
-		const rows = [];
-		for (let i = 0; i < gridDays.length; i += 7) {
-			const weekDays = gridDays.slice(i, i + 7);
-			// Ambil hari Kamis/pertengahan minggu untuk hitung nomor minggu konsisten
-			const midWeekDate = weekDays[3]
-				? weekDays[3].dateObj
-				: weekDays[0].dateObj;
-			const weekNumber = getWeekNumber(midWeekDate);
-			rows.push({ weekNumber, days: weekDays });
-		}
-
-		return rows;
-	};
-
-	const calendarRows = generateMonthGrid();
-
-	const getEventForDate = (dateStr: string | null) => {
-		if (!dateStr) return null;
-		return eventsList.find((e) => e.date === dateStr);
-	};
-
-	const selectedEvent = getEventForDate(selectedDateStr);
+	const todayKey = wibDateKey(now.toISOString());
+	const selectedEvents = selectedDateStr
+		? (eventsByDate.get(selectedDateStr) ?? [])
+		: [];
 
 	return (
-		<div className="w-full flex flex-col items-center py-2 px-2 sm:px-4">
-			<div className="w-full max-w-[340px] sm:max-w-[380px] bg-white rounded-3xl p-5 sm:p-6 shadow-sm border border-gray-100 flex flex-col items-center relative">
+		<div className="w-full flex justify-center px-2 sm:px-4">
+			<div className="w-full max-w-[900px] bg-white rounded-3xl p-5 sm:p-8 shadow-sm border border-gray-100">
 				{/* Header Navigation */}
-				<div
-					className="relative mb-6 flex items-center justify-between w-full px-2"
-					ref={dropdownRef}
-				>
-					<button
-						onClick={handlePrevMonth}
-						className="p-2 text-gray-600 hover:text-[#05445E] transition font-bold text-base sm:text-lg rounded-full hover:bg-gray-100 flex items-center justify-center w-8 h-8"
-						title="Previous Month"
-					>
-						&#10094;
-					</button>
-
-					<div className="relative">
+				<div className="mb-6 flex items-center justify-between gap-3">
+					<div className="flex items-center gap-2">
+						<h3 className="text-lg font-bold text-[#093B4C] sm:text-xl">
+							{months[currentMonthIndex]} {currentYear}
+						</h3>
 						<button
-							onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-							className="bg-[#05445E] hover:bg-[#033144] text-white px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold tracking-wide shadow-sm flex items-center gap-2 transition"
+							onClick={() => {
+								setCurrentYear(now.getFullYear());
+								setCurrentMonthIndex(now.getMonth());
+								setSelectedDateStr(null);
+							}}
+							className="rounded-full border border-gray-200 px-3 py-1 text-[11px] font-semibold text-gray-500 transition hover:bg-gray-50"
 						>
-							<span>
-								{months[currentMonthIndex]} {currentYear}
-							</span>
-							<span className="text-[10px]">▼</span>
+							Hari ini
 						</button>
-
-						{isDropdownOpen && (
-							<div className="absolute top-11 left-1/2 -translate-x-1/2 w-44 bg-white border border-gray-100 rounded-2xl shadow-xl z-50 max-h-48 overflow-y-auto p-1.5 scrollbar-thin">
-								{months.map((monthName, idx) => (
-									<button
-										key={monthName}
-										onClick={() => handleSelectMonth(idx)}
-										className={`w-full text-left px-3 py-1.5 rounded-xl text-xs font-medium transition ${
-											idx === currentMonthIndex
-												? "bg-[#05445E] text-white"
-												: "text-gray-700 hover:bg-gray-100"
-										}`}
-									>
-										{monthName}
-									</button>
-								))}
-							</div>
-						)}
 					</div>
 
-					<button
-						onClick={handleNextMonth}
-						className="p-2 text-gray-600 hover:text-[#05445E] transition font-bold text-base sm:text-lg rounded-full hover:bg-gray-100 flex items-center justify-center w-8 h-8"
-						title="Next Month"
-					>
-						&#10095;
-					</button>
+					<div className="flex items-center gap-1.5">
+						{loading && (
+							<span className="mr-1 text-[11px] text-gray-400">memuat…</span>
+						)}
+						<button
+							onClick={handlePrevMonth}
+							className="flex size-8 items-center justify-center rounded-full text-gray-600 transition hover:bg-gray-100"
+							aria-label="Bulan sebelumnya"
+						>
+							&#10094;
+						</button>
+						<button
+							onClick={handleNextMonth}
+							className="flex size-8 items-center justify-center rounded-full text-gray-600 transition hover:bg-gray-100"
+							aria-label="Bulan berikutnya"
+						>
+							&#10095;
+						</button>
+					</div>
 				</div>
 
-				{/* Layout Tabel Terkunci (8 Kolom) */}
-				<div className="w-full flex flex-col gap-2 text-center text-xs sm:text-sm font-medium">
-					{/* Header Baris Hari */}
-					<div className="grid grid-cols-8 gap-1 items-center">
-						{/* Space Kosong khusus untuk menyelaraskan dengan kolom Week Number */}
-						<div className="w-full" />
-						{daysHeader.map((day, idx) => (
-							<div
-								key={day}
-								className={`font-semibold py-1 ${
-									idx >= 5 ? "text-[#D4B254]" : "text-gray-400"
-								}`}
-							>
-								{day}
-							</div>
-						))}
-					</div>
-
-					{/* Render Baris per Baris (Terkunci Kolom 1 = Week, Kolom 2-8 = Tanggal) */}
-					{calendarRows.map((row) => (
+				{/* Header Hari */}
+				<div className="grid grid-cols-7 border-y border-gray-100 bg-gray-50/60">
+					{daysHeader.map((day, idx) => (
 						<div
-							key={`row-${row.weekNumber}`}
-							className="grid grid-cols-8 gap-1 items-center"
+							key={day}
+							className={`py-2 text-center text-[11px] font-semibold sm:text-xs ${
+								idx >= 5 ? "text-[#D4B254]" : "text-gray-400"
+							}`}
 						>
-							{/* Kolom 1: Selalu Kunci Nomor Minggu di Paling Kiri */}
-							<div className="bg-[#05445E] text-white font-semibold rounded-lg py-1.5 flex items-center justify-center text-[11px] sm:text-xs">
-								{row.weekNumber}
-							</div>
-
-							{/* Kolom 2 s/d 8: Hari (Mo - Su) */}
-							{row.days.map((item, dayIdx) => {
-								const isSelected =
-									item.fullDateStr === selectedDateStr && !item.isOtherMonth;
-								const isWeekend = dayIdx >= 5;
-								const hasEvent = getEventForDate(item.fullDateStr);
-
-								return (
-									<button
-										key={item.fullDateStr}
-										onClick={() => {
-											if (!item.isOtherMonth) {
-												setSelectedDateStr(item.fullDateStr);
-											}
-										}}
-										className={`relative py-1.5 rounded-lg flex flex-col items-center justify-center font-medium transition-all ${
-											isSelected
-												? "bg-[#05445E] text-white font-bold rounded-xl shadow-md"
-												: item.isOtherMonth
-													? "text-gray-300 pointer-events-none"
-													: isWeekend
-														? "text-[#D4B254] hover:bg-gray-50"
-														: "text-gray-700 hover:bg-gray-50"
-										}`}
-									>
-										<span>{item.day}</span>
-										{hasEvent && !item.isOtherMonth && (
-											<span className="w-1.5 h-1.5 rounded-full mt-0.5 bg-[#D4B254]" />
-										)}
-									</button>
-								);
-							})}
+							{day}
 						</div>
 					))}
 				</div>
 
-				{/* Footer Event */}
-				<div className="mt-6 pt-3 border-t border-gray-100 w-full text-center min-h-[44px] flex items-center justify-center">
-					{selectedDateStr && selectedEvent ? (
-						<div className="bg-[#05445E] text-white px-3 py-2 rounded-xl text-xs font-medium flex items-center justify-center gap-2 w-full">
-							<span className="text-[#D4B254]">●</span>
-							<span>{selectedEvent.title}</span>
-						</div>
+				{/* Grid Tanggal */}
+				<div className="grid grid-cols-7">
+					{calendarCells.map((item, idx) => {
+						const dayEvents = eventsByDate.get(item.fullDateStr) ?? [];
+						const isToday = item.fullDateStr === todayKey;
+						const isSelected = item.fullDateStr === selectedDateStr;
+
+						return (
+							<button
+								key={`${item.fullDateStr}-${idx}`}
+								onClick={() => setSelectedDateStr(item.fullDateStr)}
+								className={`min-h-[72px] sm:min-h-[96px] border-b border-r border-gray-100 p-1 text-left align-top transition-colors sm:p-1.5 ${
+									idx % 7 === 6 ? "border-r-0" : ""
+								} ${isSelected ? "bg-[#05445E]/5" : "hover:bg-gray-50"}`}
+							>
+								<span
+									className={`inline-flex size-6 items-center justify-center rounded-full text-xs font-medium sm:text-sm ${
+										isToday
+											? "bg-[#05445E] font-bold text-white"
+											: item.isOtherMonth
+												? "text-gray-300"
+												: "text-gray-700"
+									}`}
+								>
+									{item.day}
+								</span>
+
+								{/* Chip event gaya Google Calendar: maks 2 + indikator sisa */}
+								{dayEvents.slice(0, 2).map((e) => (
+									<span
+										key={e.slug}
+										className={`mt-1 block truncate rounded px-1.5 py-0.5 text-[10px] font-semibold leading-tight text-white sm:text-[11px] ${
+											statusChip[e.status] ?? "bg-[#05445E]"
+										} ${item.isOtherMonth ? "opacity-40" : ""}`}
+										title={e.title}
+									>
+										{formatWibTime(e.starts_at)} · {e.title}
+									</span>
+								))}
+								{dayEvents.length > 2 && (
+									<span className="mt-0.5 block text-[10px] font-medium text-gray-400">
+										+{dayEvents.length - 2} lainnya
+									</span>
+								)}
+							</button>
+						);
+					})}
+				</div>
+
+				{/* Panel Detail Tanggal Terpilih */}
+				<div className="mt-5 min-h-[64px]">
+					{selectedDateStr ? (
+						selectedEvents.length > 0 ? (
+							<div className="space-y-2">
+								{selectedEvents.map((e) => (
+									<Link
+										key={e.slug}
+										to={`/events/${e.slug}`}
+										className="flex items-start gap-3 rounded-2xl border border-gray-100 bg-gray-50/60 p-3 transition hover:border-[#05445E]/30 hover:bg-[#05445E]/5"
+									>
+										<span
+											className={`mt-1 h-2.5 w-2.5 shrink-0 rounded-full ${
+												statusChip[e.status] ?? "bg-[#05445E]"
+											}`}
+										/>
+										<span className="min-w-0">
+											<span className="block truncate text-sm font-bold text-[#093B4C]">
+												{e.title}
+											</span>
+											<span className="block text-xs text-gray-500">
+												{formatWibRange(e.starts_at, e.ends_at)}
+												{e.location ? ` · ${e.location}` : ""}
+											</span>
+										</span>
+									</Link>
+								))}
+							</div>
+						) : (
+							<p className="text-sm text-gray-400 italic">
+								Tidak ada event di tanggal ini.
+							</p>
+						)
 					) : (
-						<p className="text-xs text-gray-400 italic">
-							Tidak ada event di tanggal ini
+						<p className="text-sm text-gray-400">
+							Pilih tanggal untuk melihat detail event.
 						</p>
 					)}
 				</div>
