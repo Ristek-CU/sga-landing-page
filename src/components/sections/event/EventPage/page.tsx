@@ -8,9 +8,13 @@ import Particles from "@/components/ui/particles";
 import { type BphEventListItem, fetchBphEvents } from "@/lib/bph-api";
 import eventsData from "@/lib/data/events.json";
 
+// Keys = status BPH CMS (past/ongoing/upcoming) + legacy events.json
+// (completed/coming_soon) untuk fallback statis.
 const statusConfig: Record<string, { label: string; bg: string }> = {
-	completed: { label: "Completed", bg: "bg-[#F06A6A]" },
+	past: { label: "Completed", bg: "bg-[#F06A6A]" },
 	ongoing: { label: "On Going", bg: "bg-[#CEAE65]" },
+	upcoming: { label: "Coming Soon", bg: "bg-[#72D5F6]" },
+	completed: { label: "Completed", bg: "bg-[#F06A6A]" },
 	coming_soon: { label: "Coming Soon", bg: "bg-[#72D5F6]" },
 };
 
