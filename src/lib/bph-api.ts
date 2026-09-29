@@ -121,13 +121,18 @@ export function formatWibTime(iso: string): string {
 	}).format(new Date(iso));
 }
 
-/** "21 September 2026, 16.10 – 17.00 WIB" */
+/** "21 September 2026, 16.10 – 17.00 WIB"; input invalid/kosong → fallback teks. */
 export function formatWibRange(
 	startsAt: string,
 	endsAt: string | null,
 ): string {
+	if (!startsAt || Number.isNaN(new Date(startsAt).getTime())) {
+		return "Tanggal belum diumumkan";
+	}
 	const start = `${formatWibDate(startsAt)}, ${formatWibTime(startsAt)}`;
-	if (!endsAt) return `${start} WIB`;
+	if (!endsAt || Number.isNaN(new Date(endsAt).getTime())) {
+		return `${start} WIB`;
+	}
 	return `${start} – ${formatWibTime(endsAt)} WIB`;
 }
 

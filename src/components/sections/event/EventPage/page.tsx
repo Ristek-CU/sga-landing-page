@@ -14,6 +14,12 @@ const statusConfig: Record<string, { label: string; bg: string }> = {
 	coming_soon: { label: "Coming Soon", bg: "bg-[#72D5F6]" },
 };
 
+/** Parse tanggal longgar ("15 December 2026", ISO, dll) → ISO string, atau "" bila gagal. */
+function toIsoOrNull(date: string): string {
+	const parsed = new Date(date);
+	return Number.isNaN(parsed.getTime()) ? "" : parsed.toISOString();
+}
+
 function InstagramIcon({ className }: { className?: string }) {
 	return (
 		<svg viewBox="0 0 24 24" fill="currentColor" className={className}>
@@ -164,30 +170,28 @@ export default function EventPage() {
 
 	// CMS hidup → card dari CMS; mati/429 → fallback events.json + pesan error.
 	const useCms = cmsEvents !== null && cmsEvents.length > 0;
-	const fallbackEvents: BphEventListItem[] = eventsData.map((e) => {
-		const startsAt =
-			e.date === "Coming Soon" ? null : new Date(`${e.date}T00:00:00+07:00`);
-		return {
-			id: e.id,
-			slug: e.id,
-			title: e.title,
-			description: e.description,
-			cover_image_url: e.imageUrl,
-			starts_at: startsAt ? startsAt.toISOString() : "",
-			ends_at: null,
-			location: e.location,
-			location_url: null,
-			registration_url: e.registrationUrl ?? null,
-			registration_open: Boolean(e.registrationUrl),
-			organizer: e.organizer,
-			status:
-				e.status === "completed"
-					? "past"
-					: e.status === "ongoing"
-						? "ongoing"
-						: "upcoming",
-		} satisfies BphEventListItem;
-	});
+	const fallbackEvents: BphEventListItem[] = eventsData.map((e) => ({
+		id: e.id,
+		slug: e.id,
+		title: e.title,
+		description: e.description,
+		cover_image_url: e.imageUrl,
+		// date di events.json bisa "15 December 2026" atau "Coming Soon" — parse
+		// defensif, tanpa jam; Invalid Date = starts_at kosong (kalender skip).
+		starts_at: e.date === "Coming Soon" ? "" : toIsoOrNull(e.date),
+		ends_at: null,
+		location: e.location,
+		location_url: null,
+		registration_url: e.registrationUrl ?? null,
+		registration_open: Boolean(e.registrationUrl),
+		organizer: e.organizer,
+		status:
+			e.status === "completed"
+				? "past"
+				: e.status === "ongoing"
+					? "ongoing"
+					: "upcoming",
+	}));
 
 	return (
 		<div className="relative min-h-screen bg-[#F8FAFC] font-sans">
