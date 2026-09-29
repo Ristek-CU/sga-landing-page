@@ -97,9 +97,7 @@ function generateMonthGrid(year: number, monthIndex: number) {
 	return cells;
 }
 
-export default function CalendarSection({
-	events = [],
-}: { events?: CalendarEvent[] }) {
+export default function CalendarSection() {
 	const now = new Date();
 	const [currentYear, setCurrentYear] = useState(now.getFullYear());
 	const [currentMonthIndex, setCurrentMonthIndex] = useState(now.getMonth());
@@ -133,17 +131,9 @@ export default function CalendarSection({
 		};
 	}, [monthParam]);
 
-	// ponytail: prop `events` fallback statis (events.json) dipakai bila CMS kosong/error;
-	// buang setelah semua event live di BPH CMS.
 	const eventsList = useMemo(
-		() =>
-			(remoteEvents.length > 0
-				? remoteEvents
-				: events
-						.filter((e) => e.starts_at)
-						.map((e) => ({ ...e, status: e.status as CalendarEvent["status"] }))
-			).map((e) => ({ ...e, dateKey: wibDateKey(e.starts_at) })),
-		[remoteEvents, events],
+		() => remoteEvents.map((e) => ({ ...e, dateKey: wibDateKey(e.starts_at) })),
+		[remoteEvents],
 	);
 
 	const calendarCells = useMemo(
