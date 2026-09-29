@@ -8,7 +8,10 @@ export interface TextToken {
 	isHighlight: boolean;
 }
 
-export function parseHighlightText(text: string, highlight: string): TextToken[] {
+export function parseHighlightText(
+	text: string,
+	highlight: string,
+): TextToken[] {
 	if (!highlight) return [{ text, isHighlight: false }];
 	const regex = new RegExp(`(${highlight})`, "gi");
 	return text.split(regex).map((part) => ({
@@ -27,9 +30,7 @@ export function processCategories(
 	if (catData) {
 		const formattedCat = catData.map((c) => c.name);
 		return Array.from(
-			new Set(
-				["Semua", ...formattedCat.filter((c) => c && c !== "Semua")],
-			),
+			new Set(["Semua", ...formattedCat.filter((c) => c && c !== "Semua")]),
 		);
 	}
 
@@ -110,8 +111,7 @@ export function normalizeUKMItem(raw: Record<string, unknown>): UKMItem {
 	const rawDocs = raw.documentations || raw.documentation;
 	const documentations = normalizeDocumentations(rawDocs);
 
-	const whatsappNumber =
-		raw.whatsapp || raw.phone || raw.contactPhone;
+	const whatsappNumber = raw.whatsapp || raw.phone || raw.contactPhone;
 	const whatsapp =
 		typeof whatsappNumber === "string" || typeof whatsappNumber === "number"
 			? String(whatsappNumber)
@@ -133,7 +133,9 @@ export function normalizeUKMItem(raw: Record<string, unknown>): UKMItem {
 		vision: String(raw.vision || ""),
 		mission: Array.isArray(raw.mission) ? (raw.mission as string[]) : [],
 		image: String(
-			raw.image || raw.bannerUrl || "https://via.placeholder.com/1200x500?text=No+Image",
+			raw.image ||
+				raw.bannerUrl ||
+				"https://via.placeholder.com/1200x500?text=No+Image",
 		),
 		bannerUrl: (raw.bannerUrl || raw.image) as string | undefined,
 		members: String(raw.members || raw.membersCount || ""),
@@ -151,7 +153,9 @@ export function normalizeUKMItem(raw: Record<string, unknown>): UKMItem {
 
 export function normalizeUKMList(rawList: unknown[]): UKMItem[] {
 	if (!Array.isArray(rawList)) return [];
-	return rawList.map((item) => normalizeUKMItem(item as Record<string, unknown>));
+	return rawList.map((item) =>
+		normalizeUKMItem(item as Record<string, unknown>),
+	);
 }
 
 export function normalizeDocumentations(rawDocs: unknown): UKMDocumentation[] {
@@ -181,7 +185,9 @@ export function normalizeDocumentations(rawDocs: unknown): UKMDocumentation[] {
 				(d.caption as string | undefined) ||
 				`Kegiatan ${idx + 1}`,
 			description:
-				(d.description as string | undefined) || (d.desc as string | undefined) || "",
+				(d.description as string | undefined) ||
+				(d.desc as string | undefined) ||
+				"",
 			date:
 				(d.date as string | undefined) ||
 				(d.period as string | undefined) ||
@@ -191,13 +197,9 @@ export function normalizeDocumentations(rawDocs: unknown): UKMDocumentation[] {
 	});
 }
 
-export function formatWhatsappLink(
-	phone?: string,
-	fallbackUrl = "#",
-): string {
+export function formatWhatsappLink(phone?: string, fallbackUrl = "#"): string {
 	if (!phone) return fallbackUrl;
-	if (phone.startsWith("http://") || phone.startsWith("https://"))
-		return phone;
+	if (phone.startsWith("http://") || phone.startsWith("https://")) return phone;
 	const cleanPhone = phone.replace(/[^0-9]/g, "");
 	return cleanPhone ? `https://wa.me/${cleanPhone}` : fallbackUrl;
 }

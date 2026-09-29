@@ -1,14 +1,9 @@
 import { gsap } from "gsap";
-import {
-	Fragment,
-	useEffect,
-	useRef,
-	useState,
-} from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 
 import ukmPageContent from "@/lib/data/ukm-page-content.json";
-import { cn } from "@/lib/utils";
 import { parseHighlightText } from "@/lib/ukm-utils";
+import { cn } from "@/lib/utils";
 
 interface HeroData {
 	tagline?: string;
@@ -77,8 +72,7 @@ export default function HeroSection() {
 	}, []);
 
 	const tagline = data?.tagline || "Halo Cakranians!";
-	const titleText =
-		data?.title || "Temukan UKM yang\nSesuai dengan\nMinatmu.";
+	const titleText = data?.title || "Temukan UKM yang\nSesuai dengan\nMinatmu.";
 	const highlight = data?.highlightText || "UKM";
 	const description =
 		data?.description ||
@@ -215,12 +209,18 @@ export default function HeroSection() {
 						<div className="relative z-[1] flex justify-end items-start gap-4 w-full max-w-[540px] ml-auto">
 							<div className="w-1/3 flex flex-col gap-4">
 								<div className="gsap-hero-img w-full">
-									<div className={cn(hoverCardClass, "aspect-[161/342]")} style={{ backgroundColor: bgColors[0] }}>
+									<div
+										className={cn(hoverCardClass, "aspect-[161/342]")}
+										style={{ backgroundColor: bgColors[0] }}
+									>
 										<img src={images[0]} alt="Member 1" className={imgClass} />
 									</div>
 								</div>
 								<div className="gsap-hero-img w-full">
-									<div className={cn(hoverCardClass, "aspect-square")} style={{ backgroundColor: bgColors[1] }}>
+									<div
+										className={cn(hoverCardClass, "aspect-square")}
+										style={{ backgroundColor: bgColors[1] }}
+									>
 										<img src={images[1]} alt="Member 2" className={imgClass} />
 									</div>
 								</div>
@@ -228,12 +228,18 @@ export default function HeroSection() {
 
 							<div className="w-1/3 flex flex-col gap-4 pt-10">
 								<div className="gsap-hero-img w-full">
-									<div className={cn(hoverCardClass, "aspect-square")} style={{ backgroundColor: bgColors[2] }}>
+									<div
+										className={cn(hoverCardClass, "aspect-square")}
+										style={{ backgroundColor: bgColors[2] }}
+									>
 										<img src={images[2]} alt="Member 3" className={imgClass} />
 									</div>
 								</div>
 								<div className="gsap-hero-img w-full">
-									<div className={cn(hoverCardClass, "aspect-[161/342]")} style={{ backgroundColor: bgColors[3] }}>
+									<div
+										className={cn(hoverCardClass, "aspect-[161/342]")}
+										style={{ backgroundColor: bgColors[3] }}
+									>
 										<img src={images[3]} alt="Member 4" className={imgClass} />
 									</div>
 								</div>
@@ -241,7 +247,10 @@ export default function HeroSection() {
 
 							<div className="w-1/3 flex flex-col justify-center pt-6">
 								<div className="gsap-hero-img w-full">
-									<div className={cn(hoverCardClass, "aspect-[161/342]")} style={{ backgroundColor: bgColors[4] }}>
+									<div
+										className={cn(hoverCardClass, "aspect-[161/342]")}
+										style={{ backgroundColor: bgColors[4] }}
+									>
 										<img src={images[4]} alt="Member 5" className={imgClass} />
 									</div>
 								</div>

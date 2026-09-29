@@ -21,46 +21,59 @@ import EventPage from "./components/sections/event/EventPage/page.tsx";
 const ReportingPage = lazy(() => import("./pages/reporting.tsx"));
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <AppLayout />,
-    children: [
-      {
-        index: true,
-        element: <HomePage />,
-      },
-      {
-        path: "/student-voice",
-        element: <ReportingPage />,
-      },
-      // 2. TAMBAHKAN ROUTE EVENT DI SINI:
-      {
-        path: "/events",
-        element: <EventPage />,
-      },
-    ],
-  },
-  {
-    path: "/events/:id",
-    element: <EventDetailPage />,
-  },
-  {
-    path: "/student-voice/:campaignSlug",
-    element: (
-      <>
-        <Toaster position="top-center" />
-        <ReportingPage />
-      </>
-    ),
-  },
-  {
-    path: "/student-societes",
-    element: <UkmPage />,
-  },
-  {
-    path: "/student-societes/:id",
-    element: <UKMDetailPage />,
-  },
+	{
+		path: "/",
+		element: <AppLayout />,
+		children: [
+			{
+				index: true,
+				element: <HomePage />,
+			},
+			{
+				path: "/student-voice",
+				element: <ReportingPage />,
+			},
+			{
+				path: "/events",
+				element: <EventPage />,
+			},
+		],
+	},
+	{
+		path: "/events/:id",
+		element: <EventDetailPage />,
+	},
+	{
+		// Halaman isi form: standalone tanpa navigasi (mirip /lapor di dashboard
+		// Advocation) — link dibagikan dari CMS Hub, bukan dari menu situs.
+		// Toaster tetap dipasang karena ReportingForm memakai toast.
+		path: "/student-voice/:campaignSlug",
+		element: (
+			<>
+				<Toaster position="top-center" />
+				<ReportingPage />
+			</>
+		),
+	},
+	{
+		path: "/student-societes",
+		element: <UkmPage />,
+	},
+	{
+		path: "/student-societes/:id",
+		element: <UKMDetailPage />,
+	},
+	{
+		// Form reguler CMS Hub hidup di root domain: sga-cakrawala.org/<slug>.
+		// Static routes dideklarasi lebih dulu sehingga menang; path ini hanya menangkap slug form yang tersisa.
+		path: "/:formSlug",
+		element: (
+			<>
+				<Toaster position="top-center" />
+				<ReportingPage />
+			</>
+		),
+	},
 ]);
 
 createRoot(document.getElementById("root")!).render(

@@ -1,4 +1,4 @@
-{ 
+{
 	"Executive Board": [
 		{
 			"name": "Aguini Providensia Tjandra",
@@ -363,8 +363,8 @@
 			"linkedInUrl": "https://www.linkedin.com/in/",
 			"imagePath": "https://ik.imagekit.io/farhandev/sga-members/PUBLIC%20AND%20COMMUNITY%20RELATIONS/14.png"
 		}
-  ],
-  "UKM Development": [
+	],
+	"UKM Development": [
 		{
 			"name": "Sachiko Alexandra Zaida Kendra",
 			"role": "Head",
@@ -421,8 +421,8 @@
 			"linkedInUrl": "https://www.linkedin.com/in/",
 			"imagePath": "https://ik.imagekit.io/farhandev/sga-members/UKM%20DEVELOPMENT/8.png"
 		}
-  ],
-  "Business And Partnership": [
+	],
+	"Business And Partnership": [
 		{
 			"name": "Rakha Ariya Pratama",
 			"role": "Head",
@@ -535,7 +535,7 @@
 			"linkedInUrl": "https://www.linkedin.com/in/",
 			"imagePath": "https://ik.imagekit.io/farhandev/sga-members/BUSINESS%20AND%20PARTNERSHIP/"
 		}
-  ],
+	],
 	"Intellectual And Career Development": [
 		{
 			"name": "Uswatun Hasanah",
@@ -570,7 +570,7 @@
 			"role": "Staff",
 			"division": "Intelectual And Career Development",
 			"linkedInUrl": "https://www.linkedin.com/in/jazz-khalid-matsal-a86559322",
-			"imagePath":"https://ik.imagekit.io/gkjx3vjvi/Intelectual%20And%20Career%20Development/5.png"
+			"imagePath": "https://ik.imagekit.io/gkjx3vjvi/Intelectual%20And%20Career%20Development/5.png"
 		},
 		{
 			"name": "Azka Abdillah",
