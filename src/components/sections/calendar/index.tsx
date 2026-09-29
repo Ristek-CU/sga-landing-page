@@ -232,8 +232,25 @@ export default function CalendarSection() {
 					))}
 				</div>
 
+				{/* Skeleton selama fetch bulan — bentuk sama dengan grid asli */}
+				{loading && (
+					<div className="grid grid-cols-7" aria-busy="true">
+						{Array.from({ length: 35 }, (_, i) => (
+							<div
+								key={i}
+								className="min-h-[72px] animate-pulse border-b border-r border-gray-100 p-1 sm:min-h-[96px] sm:p-1.5"
+							>
+								<div
+									className={`mb-2 size-6 rounded-full bg-gray-100 ${i % 7 === 6 ? "ml-auto" : ""}`}
+								/>
+								<div className="h-3 w-full rounded bg-gray-100" />
+							</div>
+						))}
+					</div>
+				)}
+
 				{/* Grid Tanggal */}
-				<div className="grid grid-cols-7">
+				<div className={loading ? "hidden" : "grid grid-cols-7"}>
 					{calendarCells.map((item, idx) => {
 						const dayEvents = eventsByDate.get(item.fullDateStr) ?? [];
 						const isToday = item.fullDateStr === todayKey;

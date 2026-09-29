@@ -1,5 +1,3 @@
-import arvanaLogo from "@/assets/images/Logo-Arvana.png";
-import sgaLogo from "@/assets/images/Logomark.webp";
 import heroPattern from "@/assets/images/hero-pattern.webp";
 import Footer from "@/components/layout/footer";
 import {
@@ -266,48 +264,24 @@ export default function EventDetailPage() {
 
 	return (
 		<div className="min-h-screen bg-[#F4F4F4] font-sans text-[#06455B]">
-			{/* Top bar: kembali + logo SGA & Arvana (kanan) — sticky, bg solid tanpa transisi */}
-			<nav
-				className="sticky top-0 z-30 flex items-center justify-between bg-[#06455B] px-4 py-3 shadow-lg sm:px-6"
-				aria-label="Navigasi event"
-			>
-				<Link
-					to="/events"
-					className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-bold text-[#20BEE4] ring-1 ring-white/15 transition hover:bg-white/20 active:scale-[0.98] sm:text-base"
-				>
-					<ArrowLeftIcon className="size-4" />
-					Kembali
-				</Link>
-				<Link
-					to="/"
-					aria-label="Beranda SGA"
-					className="flex shrink-0 items-center gap-2.5"
-				>
-					<img
-						src={sgaLogo}
-						alt="SGA Cakrawala University"
-						className="size-8 shrink-0 object-contain sm:size-10"
-					/>
-					<div className="h-7 w-px shrink-0 bg-white/30 sm:h-10" />
-					<img
-						src={arvanaLogo}
-						alt="Arvana"
-						className="h-7 shrink-0 object-contain sm:h-10"
-					/>
-				</Link>
-			</nav>
-
 			<motion.header
 				initial={initialMotion}
 				animate="show"
 				variants={fadeUpVariants}
-				className="relative -mt-[52px] flex min-h-[320px] flex-col justify-end overflow-hidden bg-[#1B1A24] bg-cover bg-center pt-24 sm:min-h-[420px]"
+				className="relative flex min-h-[320px] flex-col justify-end overflow-hidden bg-[#1B1A24] bg-cover bg-center pt-28 sm:min-h-[420px]"
 				style={{ backgroundImage: `url(${heroImage})` }}
 			>
 				<div className="absolute inset-0 bg-[#120F18]/75" />
 				<div className="absolute inset-0 bg-linear-to-b from-black/35 via-[#261526]/45 to-[#120F18]/80" />
 
 				<div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-4 px-4 pb-8 sm:px-8 sm:pb-12">
+					<Link
+						to="/events"
+						className="inline-flex w-fit items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-bold text-white ring-1 ring-white/15 backdrop-blur transition hover:bg-white/20 active:scale-[0.98] sm:text-sm"
+					>
+						<ArrowLeftIcon className="size-4" />
+						Kembali
+					</Link>
 					<motion.div variants={fadeUpVariants}>
 						<StatusBadge status={event.status} />
 						<h1 className="mt-3 max-w-4xl text-2xl font-extrabold leading-snug text-[#F4C95D] drop-shadow sm:text-4xl sm:leading-tight lg:text-5xl">
