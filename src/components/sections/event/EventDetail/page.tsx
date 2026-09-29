@@ -1,13 +1,9 @@
-import Footer from "@/components/layout/footer";
-import {
-	ArrowLeftIcon,
-	CalendarDaysIcon,
-	MapPinIcon,
-} from "lucide-react";
-import { motion, type Variants, useReducedMotion } from "framer-motion";
-import { Link, useParams } from "react-router";
 import heroPattern from "@/assets/images/hero-pattern.webp";
+import Footer from "@/components/layout/footer";
 import eventsData from "@/lib/data/events.json";
+import { type Variants, motion, useReducedMotion } from "framer-motion";
+import { ArrowLeftIcon, CalendarDaysIcon, MapPinIcon } from "lucide-react";
+import { Link, useParams } from "react-router";
 
 type EventJsonItem = (typeof eventsData)[number];
 
@@ -67,9 +63,12 @@ function NotFoundEvent({ message }: { message?: string }) {
 	return (
 		<div className="min-h-screen bg-[#F4F4F4] text-[#06455B]">
 			<main className="mx-auto flex min-h-[70vh] max-w-4xl flex-col items-center justify-center px-6 text-center">
-				<h1 className="text-3xl font-bold sm:text-5xl">Event tidak ditemukan</h1>
+				<h1 className="text-3xl font-bold sm:text-5xl">
+					Event tidak ditemukan
+				</h1>
 				<p className="mt-4 max-w-xl text-sm leading-relaxed text-[#06455B]/70 sm:text-base">
-					{message || "Event yang kamu buka belum tersedia atau sudah dipindahkan."}
+					{message ||
+						"Event yang kamu buka belum tersedia atau sudah dipindahkan."}
 				</p>
 				<Link
 					to="/events"
@@ -88,7 +87,9 @@ export default function EventDetailPage() {
 	const { id } = useParams();
 	const shouldReduceMotion = useReducedMotion();
 
-	const event: EventJsonItem | undefined = eventsData.find((item) => item.id === id);
+	const event: EventJsonItem | undefined = eventsData.find(
+		(item) => item.id === id,
+	);
 
 	if (!event) {
 		return <NotFoundEvent />;
@@ -174,7 +175,9 @@ export default function EventDetailPage() {
 						{event.aboutTitle || "Tentang Acara"}
 					</h2>
 					<p className="mt-3 text-xs leading-relaxed text-white/85 sm:text-sm">
-						{event.about || event.description || "Informasi acara belum tersedia."}
+						{event.about ||
+							event.description ||
+							"Informasi acara belum tersedia."}
 					</p>
 				</motion.section>
 
@@ -236,14 +239,18 @@ export default function EventDetailPage() {
 
 					{event.organizer && (
 						<p className="mt-3 text-xs text-white/50">
-							Diselenggarakan oleh: <span className="font-semibold text-white/70">{event.organizer}</span>
+							Diselenggarakan oleh:{" "}
+							<span className="font-semibold text-white/70">
+								{event.organizer}
+							</span>
 						</p>
 					)}
 				</motion.section>
 
 				{/* Registration Button */}
 				<motion.div variants={fadeUpVariants}>
-					{event.registrationUrl && event.registrationUrl.toLowerCase() !== "none" ? (
+					{event.registrationUrl &&
+					event.registrationUrl.toLowerCase() !== "none" ? (
 						<a
 							href={event.registrationUrl}
 							target="_blank"

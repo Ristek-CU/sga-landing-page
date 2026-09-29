@@ -63,7 +63,9 @@ function EventCard({ event }: { event: EventJsonItem }) {
 				</div>
 			)}
 
-			<div className={`flex flex-1 flex-col ${isComingSoon ? "opacity-40 blur-[2px]" : ""}`}>
+			<div
+				className={`flex flex-1 flex-col ${isComingSoon ? "opacity-40 blur-[2px]" : ""}`}
+			>
 				{/* Image + Status Badge */}
 				<div className="relative h-44 w-full overflow-hidden bg-slate-200">
 					<img
@@ -185,11 +187,17 @@ export default function EventPage() {
 					<div className="mx-auto flex max-w-5xl flex-col items-center">
 						<h1 className="mb-4 max-w-4xl text-3xl font-bold leading-tight tracking-tight text-[#F4F4F4] drop-shadow-md sm:text-5xl lg:text-[69px] lg:leading-[82px]">
 							Eksplorasi{" "}
-							<span className="text-[#EBC05F]">Event Student Government Association</span>
+							<span className="text-[#EBC05F]">
+								Event Student Government Association
+							</span>
 						</h1>
 						<p className="max-w-2xl text-xs leading-relaxed text-[#F4F4F4]/80 drop-shadow sm:text-sm lg:text-base">
 							Temukan event terbaru dari{" "}
-							<span className="font-medium text-[#EBC05F]"> SGA Cakrawala University</span>.
+							<span className="font-medium text-[#EBC05F]">
+								{" "}
+								SGA Cakrawala University
+							</span>
+							.
 						</p>
 					</div>
 				</section>

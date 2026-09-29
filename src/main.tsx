@@ -77,9 +77,9 @@ const router = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <MobileMenuContextProvider>
-      <RouterProvider router={router} />
-    </MobileMenuContextProvider>
-  </StrictMode>,
+	<StrictMode>
+		<MobileMenuContextProvider>
+			<RouterProvider router={router} />
+		</MobileMenuContextProvider>
+	</StrictMode>,
 );

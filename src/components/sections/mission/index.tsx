@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 
 import SectionLabel from "@/components/ui/section-label";
+import { type LandingMission, fetchLandingContent } from "@/lib/landing-api";
 import CapacityIcon from "../../../assets/images/capacity.svg";
 import CareerPreparedIcon from "../../../assets/images/careerprepared.svg";
 import CollaborationIcon from "../../../assets/images/collaboration.svg";
 import CoordinationIcon from "../../../assets/images/coordination.svg";
-import { fetchLandingContent, type LandingMission } from "@/lib/landing-api";
 import { MissionCard } from "./partials/mission-card";
 
 const missionIcons: Record<string, string> = {
@@ -24,7 +24,9 @@ const MissionSection = () => {
 		fetchLandingContent()
 			.then(({ missions: data }) => {
 				if (active) {
-					setMissions([...data].sort((a, b) => a.display_order - b.display_order));
+					setMissions(
+						[...data].sort((a, b) => a.display_order - b.display_order),
+					);
 				}
 			})
 			.catch((error: unknown) => {
@@ -52,9 +54,15 @@ const MissionSection = () => {
 				</div>
 
 				{/* 3. Penambahan sm:grid-cols-2 dan penyesuaian gap untuk mobile */}
-				{loadError && <p role="alert" className="text-center text-sm text-red-700">{loadError}</p>}
+				{loadError && (
+					<p role="alert" className="text-center text-sm text-red-700">
+						{loadError}
+					</p>
+				)}
 				{missions.length === 0 && !loadError && (
-					<p role="status" className="text-center text-sm text-slate-500">Memuat misi...</p>
+					<p role="status" className="text-center text-sm text-slate-500">
+						Memuat misi...
+					</p>
 				)}
 				<div className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4 lg:gap-8">
 					{missions.map((item) => (
@@ -64,7 +72,10 @@ const MissionSection = () => {
 							description={item.description}
 							icon={
 								<img
-									src={missionIcons[item.title.trim().toLowerCase()] ?? CoordinationIcon}
+									src={
+										missionIcons[item.title.trim().toLowerCase()] ??
+										CoordinationIcon
+									}
 									alt=""
 									className="h-full w-full"
 								/>

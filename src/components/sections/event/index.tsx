@@ -6,7 +6,10 @@ export default function EventSection() {
 	const navigate = useNavigate();
 
 	return (
-		<section id="event" className="flex w-full flex-col items-center justify-center bg-[#F8F9FA] px-4 py-16 font-['Plus_Jakarta_Sans',sans-serif]">
+		<section
+			id="event"
+			className="flex w-full flex-col items-center justify-center bg-[#F8F9FA] px-4 py-16 font-['Plus_Jakarta_Sans',sans-serif]"
+		>
 			<div className="mb-10 flex max-w-4xl flex-col items-center text-center">
 				<div className="mb-8 flex justify-center">
 					<div className="inline-flex items-center justify-center rounded-[30px] bg-gradient-to-r from-[#CEAE65] to-[#685833] p-[2px] shadow-sm">

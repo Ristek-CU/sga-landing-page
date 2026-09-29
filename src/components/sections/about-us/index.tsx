@@ -1,8 +1,8 @@
-// Import gambar-gambar Anda di sini
-import SectionLabel from "@/components/ui/section-label";
 import sgaAbout1 from "@/assets/images/sga-about-1.jpg";
 import sgaAbout2 from "@/assets/images/sga-about-2.jpg";
 import sgaAbout3 from "@/assets/images/sga-about-3.jpg";
+// Import gambar-gambar Anda di sini
+import SectionLabel from "@/components/ui/section-label";
 
 export default function AboutUsSection() {
 	return (

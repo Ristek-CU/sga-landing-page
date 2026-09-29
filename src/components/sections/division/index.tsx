@@ -1,7 +1,7 @@
 import heroPattern from "@/assets/images/sga-pattern.webp";
 import { Badge } from "@/components/ui/badge";
 import Particles from "@/components/ui/particles";
-import { fetchLandingContent, type LandingDivision } from "@/lib/landing-api";
+import { type LandingDivision, fetchLandingContent } from "@/lib/landing-api";
 import { useEffect, useRef, useState } from "react";
 import DivisionSelectButton from "./partials/division-select-button";
 import MemberCard from "./partials/member-card";
@@ -22,9 +22,9 @@ export default function DivisionSection() {
 	const [selectedDivision, setSelectedDivision] = useState(divisionOrder[0]);
 	const [isLoading, setIsLoading] = useState(true);
 	const [loadError, setLoadError] = useState("");
-	const currentMembers = divisions.find(
-		(division) => division.division_name === selectedDivision,
-	)?.members ?? [];
+	const currentMembers =
+		divisions.find((division) => division.division_name === selectedDivision)
+			?.members ?? [];
 
 	useEffect(() => {
 		let active = true;
@@ -38,12 +38,16 @@ export default function DivisionSection() {
 					divisionOrder.flatMap((name) => {
 						const division = byName.get(name);
 						return division
-							? [{
-								...division,
-								members: [...division.members].sort(
-									(a, b) => (a.role?.hierarchy_level ?? 0) - (b.role?.hierarchy_level ?? 0),
-								),
-							}]
+							? [
+									{
+										...division,
+										members: [...division.members].sort(
+											(a, b) =>
+												(a.role?.hierarchy_level ?? 0) -
+												(b.role?.hierarchy_level ?? 0),
+										),
+									},
+								]
 							: [];
 					}),
 				);
@@ -145,8 +149,16 @@ export default function DivisionSection() {
 						onMouseMove={handleMouseMove}
 						className={`flex flex-row flex-1 w-full gap-4 lg:gap-6 pb-8 pl-1 overflow-x-auto select-none [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] ${isDragging ? "cursor-grabbing snap-none" : "cursor-grab snap-x snap-mandatory"}`}
 					>
-						{isLoading && <p role="status" className="text-white">Memuat anggota...</p>}
-						{loadError && <p role="alert" className="text-white">{loadError}</p>}
+						{isLoading && (
+							<p role="status" className="text-white">
+								Memuat anggota...
+							</p>
+						)}
+						{loadError && (
+							<p role="alert" className="text-white">
+								{loadError}
+							</p>
+						)}
 						{currentMembers.map((member) => (
 							<div
 								key={member.id}
@@ -156,7 +168,9 @@ export default function DivisionSection() {
 									name={member.fullname}
 									position={member.role?.name ?? "Anggota"}
 									image={member.image_path}
-									linkedinUrl={member.linkedin_url ?? "https://www.linkedin.com/"}
+									linkedinUrl={
+										member.linkedin_url ?? "https://www.linkedin.com/"
+									}
 								/>
 							</div>
 						))}

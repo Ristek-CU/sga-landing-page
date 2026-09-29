@@ -62,7 +62,9 @@ export function fetchLandingContent(): Promise<LandingContent> {
 		headers: { Accept: "application/json" },
 	})
 		.then(async (response) => {
-			const payload = (await response.json().catch(() => null)) as LandingApiResponse | null;
+			const payload = (await response
+				.json()
+				.catch(() => null)) as LandingApiResponse | null;
 			const { missions, members, events } = payload?.data ?? {};
 
 			if (
@@ -72,7 +74,9 @@ export function fetchLandingContent(): Promise<LandingContent> {
 				!Array.isArray(members) ||
 				!Array.isArray(events)
 			) {
-				throw new Error(payload?.message || `Gagal memuat landing (${response.status}).`);
+				throw new Error(
+					payload?.message || `Gagal memuat landing (${response.status}).`,
+				);
 			}
 
 			return { missions, members, events };
