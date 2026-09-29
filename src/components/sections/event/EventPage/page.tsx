@@ -2,6 +2,8 @@ import { ArrowLeftIcon, CalendarDays, Users } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
 
+import arvanaLogo from "@/assets/images/Logo-Arvana.png";
+import sgaLogo from "@/assets/images/Logomark.webp";
 import heroPattern from "@/assets/images/hero-pattern.webp";
 import CalendarSection from "@/components/sections/calendar";
 import Particles from "@/components/ui/particles";
@@ -119,17 +121,39 @@ export default function EventPage() {
 
 	return (
 		<div className="relative min-h-screen bg-[#F8FAFC] font-sans">
-			{/* Back Button */}
-			<Link
-				to="/#event"
-				className="absolute left-5 top-5 z-20 inline-flex items-center gap-2 rounded-full bg-[#06455B]/90 px-4 py-2 text-sm font-bold text-[#20BEE4] shadow-lg ring-1 ring-white/10 backdrop-blur transition hover:bg-[#07556D] sm:left-8 sm:top-7 sm:text-base"
+			{/* Top bar: kembali + logo SGA & Arvana — sticky, bg solid tanpa transisi */}
+			<nav
+				className="sticky top-0 z-30 flex items-center justify-between bg-[#07303F] px-4 py-3 shadow-lg sm:px-6"
+				aria-label="Navigasi event"
 			>
-				<ArrowLeftIcon className="size-5" />
-				Kembali
-			</Link>
+				<Link
+					to="/#event"
+					className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-bold text-[#20BEE4] ring-1 ring-white/15 transition hover:bg-white/20 active:scale-[0.98] sm:text-base"
+				>
+					<ArrowLeftIcon className="size-4" />
+					Kembali
+				</Link>
+				<Link
+					to="/"
+					aria-label="Beranda SGA"
+					className="flex shrink-0 items-center gap-2.5"
+				>
+					<img
+						src={sgaLogo}
+						alt="SGA Cakrawala University"
+						className="size-8 shrink-0 object-contain sm:size-10"
+					/>
+					<div className="h-7 w-px shrink-0 bg-white/30 sm:h-10" />
+					<img
+						src={arvanaLogo}
+						alt="Arvana"
+						className="h-7 shrink-0 object-contain sm:h-10"
+					/>
+				</Link>
+			</nav>
 
 			<div
-				className="sticky top-0 z-0 h-[420px] w-full overflow-hidden bg-[#07303F] bg-cover bg-center bg-no-repeat"
+				className="h-[420px] w-full overflow-hidden bg-[#07303F] bg-cover bg-center bg-no-repeat"
 				style={{ backgroundImage: `url(${bgImageUrl})` }}
 			>
 				<Particles
@@ -142,7 +166,7 @@ export default function EventPage() {
 			</div>
 
 			<div className="relative z-10 -mt-[420px]">
-				<section className="flex h-[420px] flex-col items-center justify-center px-4 pb-12 pt-24 text-center">
+				<section className="flex h-[420px] flex-col items-center justify-center px-4 pb-12 pt-20 text-center">
 					<div className="mx-auto flex max-w-5xl flex-col items-center">
 						<h1 className="mb-4 max-w-4xl text-3xl font-bold leading-tight tracking-tight text-[#F4F4F4] drop-shadow-md sm:text-5xl lg:text-[69px] lg:leading-[82px]">
 							Eksplorasi{" "}

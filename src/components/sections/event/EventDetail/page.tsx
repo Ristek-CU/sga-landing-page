@@ -1,3 +1,4 @@
+import arvanaLogo from "@/assets/images/Logo-Arvana.png";
 import sgaLogo from "@/assets/images/Logomark.webp";
 import heroPattern from "@/assets/images/hero-pattern.webp";
 import Footer from "@/components/layout/footer";
@@ -265,9 +266,9 @@ export default function EventDetailPage() {
 
 	return (
 		<div className="min-h-screen bg-[#F4F4F4] font-sans text-[#06455B]">
-			{/* Top bar: kembali + logo SGA (kanan) — sticky agar selalu terjangkau */}
+			{/* Top bar: kembali + logo SGA & Arvana (kanan) — sticky, bg solid tanpa transisi */}
 			<nav
-				className="sticky top-0 z-30 flex items-center justify-between bg-[#06455B]/92 px-4 py-3 shadow-lg backdrop-blur sm:px-6"
+				className="sticky top-0 z-30 flex items-center justify-between bg-[#06455B] px-4 py-3 shadow-lg sm:px-6"
 				aria-label="Navigasi event"
 			>
 				<Link
@@ -277,11 +278,21 @@ export default function EventDetailPage() {
 					<ArrowLeftIcon className="size-4" />
 					Kembali
 				</Link>
-				<Link to="/" aria-label="Beranda SGA">
+				<Link
+					to="/"
+					aria-label="Beranda SGA"
+					className="flex shrink-0 items-center gap-2.5"
+				>
 					<img
 						src={sgaLogo}
 						alt="SGA Cakrawala University"
-						className="size-9 object-contain sm:size-10"
+						className="size-8 shrink-0 object-contain sm:size-10"
+					/>
+					<div className="h-7 w-px shrink-0 bg-white/30 sm:h-10" />
+					<img
+						src={arvanaLogo}
+						alt="Arvana"
+						className="h-7 shrink-0 object-contain sm:h-10"
 					/>
 				</Link>
 			</nav>
