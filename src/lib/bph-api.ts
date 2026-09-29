@@ -6,10 +6,11 @@ const BASE_URL = (
 
 export interface BphEventSession {
 	id: string;
-	title: string;
+	name: string;
 	starts_at: string;
 	ends_at: string | null;
 	speaker: string | null;
+	location: string | null;
 	description: string | null;
 }
 
@@ -58,9 +59,16 @@ async function bphGet<T>(path: string): Promise<T> {
 
 	if (!body?.success || body.data === undefined) {
 		const err = new Error(
-			body?.message || `Gagal memuat ${path} (${response.status}).`,
+			response.status === 429
+				? "Terlalu banyak permintaan. Coba lagi beberapa saat."
+				: body?.message || `Gagal memuat ${path} (${response.status}).`,
 		);
-		err.name = response.status === 404 ? "NotFoundError" : "ApiError";
+		err.name =
+			response.status === 404
+				? "NotFoundError"
+				: response.status === 429
+					? "RateLimitError"
+					: "ApiError";
 		throw err;
 	}
 
@@ -121,16 +129,6 @@ export function formatWibRange(
 	const start = `${formatWibDate(startsAt)}, ${formatWibTime(startsAt)}`;
 	if (!endsAt) return `${start} WIB`;
 	return `${start} – ${formatWibTime(endsAt)} WIB`;
-}
-
-/** "Sen, 21 Sep" untuk chip kalender. */
-export function formatShortDate(iso: string): string {
-	return new Intl.DateTimeFormat("id-ID", {
-		weekday: "short",
-		day: "numeric",
-		month: "short",
-		timeZone: "Asia/Jakarta",
-	}).format(new Date(iso));
 }
 
 /** Tanggal kalender (YYYY-MM-DD) menurut WIB — bukan timezone browser. */

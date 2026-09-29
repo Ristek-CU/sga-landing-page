@@ -1,45 +1,18 @@
 import { ArrowLeftIcon, CalendarDays, Users } from "lucide-react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router";
 
 import heroPattern from "@/assets/images/hero-pattern.webp";
 import CalendarSection from "@/components/sections/calendar";
 import Particles from "@/components/ui/particles";
+import { type BphEventListItem, fetchBphEvents } from "@/lib/bph-api";
 import eventsData from "@/lib/data/events.json";
-import type { BphEventListItem } from "@/lib/bph-api";
-
-type EventJsonItem = (typeof eventsData)[number];
 
 const statusConfig: Record<string, { label: string; bg: string }> = {
 	completed: { label: "Completed", bg: "bg-[#F06A6A]" },
 	ongoing: { label: "On Going", bg: "bg-[#CEAE65]" },
 	coming_soon: { label: "Coming Soon", bg: "bg-[#72D5F6]" },
 };
-
-/** Map event.json item → CalendarEvent (fallback statis kalau CMS kosong/error). */
-function toCalendarEvent(e: EventJsonItem): BphEventListItem {
-	const startsAt =
-		e.date === "Coming Soon" ? null : new Date(`${e.date}T09:00:00+07:00`);
-	return {
-		id: e.id,
-		slug: e.id,
-		title: e.title,
-		description: e.description,
-		cover_image_url: e.imageUrl,
-		starts_at: startsAt ? startsAt.toISOString() : "",
-		ends_at: null,
-		location: e.location,
-		location_url: null,
-		registration_url: e.registrationUrl ?? null,
-		registration_open: Boolean(e.registrationUrl),
-		organizer: e.organizer,
-		status:
-			e.status === "completed"
-				? "past"
-				: e.status === "ongoing"
-					? "ongoing"
-					: "upcoming",
-	};
-}
 
 function InstagramIcon({ className }: { className?: string }) {
 	return (
@@ -57,11 +30,18 @@ function TiktokIcon({ className }: { className?: string }) {
 	);
 }
 
-function EventCard({ event }: { event: EventJsonItem }) {
-	const isComingSoon = event.status === "coming_soon";
-	const image = event.imageUrl || heroPattern;
-	const logo = event.logoUrl || heroPattern;
-	const status = statusConfig[event.status] ?? statusConfig.coming_soon;
+function EventCard({
+	event,
+	social,
+}: {
+	event: BphEventListItem;
+	social?: { instagramUrl?: string; tiktokUrl?: string };
+}) {
+	const isComingSoon = event.status === "upcoming";
+	const [imageFailed, setImageFailed] = useState(false);
+	const image =
+		!imageFailed && event.cover_image_url ? event.cover_image_url : heroPattern;
+	const status = statusConfig[event.status] ?? statusConfig.upcoming;
 
 	return (
 		<article className="relative flex flex-col overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-md transition-all hover:-translate-y-1 hover:shadow-xl">
@@ -80,6 +60,9 @@ function EventCard({ event }: { event: EventJsonItem }) {
 				{/* Image + Status Badge */}
 				<div className="relative h-44 w-full overflow-hidden bg-slate-200">
 					<img
+						onError={() => {
+							setImageFailed(true);
+						}}
 						src={image}
 						alt={event.title}
 						className="h-full w-full object-cover"
@@ -97,7 +80,7 @@ function EventCard({ event }: { event: EventJsonItem }) {
 					<div className="flex items-start gap-3">
 						<div className="flex size-11 shrink-0 items-center justify-center overflow-hidden rounded-[10px] border border-slate-100 bg-slate-50">
 							<img
-								src={logo}
+								src={image}
 								alt={`${event.title} logo`}
 								className="h-full w-full object-cover"
 							/>
@@ -108,7 +91,7 @@ function EventCard({ event }: { event: EventJsonItem }) {
 							</h2>
 							<div className="mt-1 flex items-center gap-1.5 text-[11px] font-medium text-slate-500">
 								<Users className="size-3.5 shrink-0 text-slate-500" />
-								<span>{event.membersCount}</span>
+								<span>{event.organizer ?? "SGA Cakrawala"}</span>
 							</div>
 						</div>
 					</div>
@@ -121,9 +104,9 @@ function EventCard({ event }: { event: EventJsonItem }) {
 					{/* Bottom: Social Icons + Discover Button */}
 					<div className="mt-auto flex items-center justify-between pt-5">
 						<div className="flex items-center gap-2.5">
-							{event.instagramUrl && (
+							{social?.instagramUrl && (
 								<a
-									href={event.instagramUrl}
+									href={social.instagramUrl}
 									target="_blank"
 									rel="noreferrer"
 									className="text-slate-500 transition-colors hover:text-[#E1306C]"
@@ -132,9 +115,9 @@ function EventCard({ event }: { event: EventJsonItem }) {
 									<InstagramIcon className="size-4.5" />
 								</a>
 							)}
-							{event.tiktokUrl && (
+							{social?.tiktokUrl && (
 								<a
-									href={event.tiktokUrl}
+									href={social.tiktokUrl}
 									target="_blank"
 									rel="noreferrer"
 									className="text-slate-500 transition-colors hover:text-black"
@@ -145,12 +128,14 @@ function EventCard({ event }: { event: EventJsonItem }) {
 							)}
 						</div>
 
-						<Link
-							to={`/events/${event.id}`}
-							className="inline-flex items-center justify-center rounded-lg bg-[#0B3B4F] px-4 py-2 text-xs font-bold text-white shadow-sm transition hover:bg-[#062c3b] active:scale-[0.98]"
-						>
-							Discover Event
-						</Link>
+						{event.slug ? (
+							<Link
+								to={`/events/${event.slug}`}
+								className="inline-flex items-center justify-center rounded-lg bg-[#0B3B4F] px-4 py-2 text-xs font-bold text-white shadow-sm transition hover:bg-[#062c3b] active:scale-[0.98]"
+							>
+								Discover Event
+							</Link>
+						) : null}
 					</div>
 				</div>
 			</div>
@@ -159,15 +144,50 @@ function EventCard({ event }: { event: EventJsonItem }) {
 }
 
 export default function EventPage() {
-	const events: EventJsonItem[] = eventsData;
+	const [cmsEvents, setCmsEvents] = useState<BphEventListItem[] | null>(null);
+	const [cmsError, setCmsError] = useState<string | null>(null);
+
+	useEffect(() => {
+		let alive = true;
+		fetchBphEvents({ limit: 50 })
+			.then((items) => alive && setCmsEvents(items))
+			.catch((e: Error) => alive && setCmsError(e.message));
+		return () => {
+			alive = false;
+		};
+	}, []);
 
 	const bgImageUrl =
 		typeof heroPattern === "string"
 			? heroPattern
 			: (heroPattern as { src: string }).src;
 
-	// Fallback statis untuk CalendarSection; kalau CMS live, data remote yang dipakai.
-	const fallbackEvents: BphEventListItem[] = events.map(toCalendarEvent);
+	// CMS hidup → card dari CMS; mati/429 → fallback events.json + pesan error.
+	const useCms = cmsEvents !== null && cmsEvents.length > 0;
+	const fallbackEvents: BphEventListItem[] = eventsData.map((e) => {
+		const startsAt =
+			e.date === "Coming Soon" ? null : new Date(`${e.date}T00:00:00+07:00`);
+		return {
+			id: e.id,
+			slug: e.id,
+			title: e.title,
+			description: e.description,
+			cover_image_url: e.imageUrl,
+			starts_at: startsAt ? startsAt.toISOString() : "",
+			ends_at: null,
+			location: e.location,
+			location_url: null,
+			registration_url: e.registrationUrl ?? null,
+			registration_open: Boolean(e.registrationUrl),
+			organizer: e.organizer,
+			status:
+				e.status === "completed"
+					? "past"
+					: e.status === "ongoing"
+						? "ongoing"
+						: "upcoming",
+		} satisfies BphEventListItem;
+	});
 
 	return (
 		<div className="relative min-h-screen bg-[#F8FAFC] font-sans">
@@ -223,13 +243,28 @@ export default function EventPage() {
 							</div>
 						</div>
 
+						{cmsError && (
+							<p className="mb-6 text-center text-xs text-amber-600">
+								Gagal memuat event terbaru ({cmsError}). Menampilkan event
+								arsip.
+							</p>
+						)}
+
 						<div className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
-							{events.map((event) => (
-								<EventCard key={event.id} event={event} />
+							{(useCms ? cmsEvents : fallbackEvents).map((event) => (
+								<EventCard
+									key={event.id}
+									event={event}
+									social={
+										!useCms
+											? eventsData.find((d) => d.id === event.id)
+											: undefined
+									}
+								/>
 							))}
 						</div>
 
-						{events.length === 0 && (
+						{!useCms && fallbackEvents.length === 0 && (
 							<p className="py-8 text-center text-sm text-slate-500">
 								Belum ada event yang tersedia.
 							</p>

@@ -217,7 +217,7 @@ export default function EventDetailPage() {
 										{formatWibRange(session.starts_at, session.ends_at)}
 									</div>
 									<p className="mt-1 text-sm font-bold text-[#F4C95D]">
-										{session.title}
+										{session.name}
 									</p>
 									{session.speaker && (
 										<p className="mt-0.5 text-xs text-white/70">

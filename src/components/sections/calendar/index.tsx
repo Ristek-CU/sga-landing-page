@@ -53,19 +53,28 @@ function generateMonthGrid(year: number, monthIndex: number) {
 		isOtherMonth: boolean;
 	}[] = [];
 
+	// YYYY-MM-DD dari komponen tanggal lokal — tanpa lewat Date/toISOString agar
+	// tidak bergeser oleh timezone (cell grid = tanggal dilihat, bukan momen).
+	const keyOf = (y: number, m: number, d: number) =>
+		`${y}-${String(m + 1).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
+
+	// Hari bulan sebelumnya (tanggal negatif aman di Date constructor)
 	for (let i = startOffset - 1; i >= 0; i--) {
 		const dateObj = new Date(year, monthIndex, -i);
 		cells.push({
 			day: dateObj.getDate(),
-			fullDateStr: wibDateKey(dateObj.toISOString()),
+			fullDateStr: keyOf(
+				dateObj.getFullYear(),
+				dateObj.getMonth(),
+				dateObj.getDate(),
+			),
 			isOtherMonth: true,
 		});
 	}
 	for (let day = 1; day <= daysInMonth; day++) {
-		const dateObj = new Date(year, monthIndex, day);
 		cells.push({
 			day,
-			fullDateStr: wibDateKey(dateObj.toISOString()),
+			fullDateStr: keyOf(year, monthIndex, day),
 			isOtherMonth: false,
 		});
 	}
@@ -77,7 +86,11 @@ function generateMonthGrid(year: number, monthIndex: number) {
 		);
 		cells.push({
 			day: dateObj.getDate(),
-			fullDateStr: wibDateKey(dateObj.toISOString()),
+			fullDateStr: keyOf(
+				dateObj.getFullYear(),
+				dateObj.getMonth(),
+				dateObj.getDate(),
+			),
 			isOtherMonth: true,
 		});
 	}
@@ -265,7 +278,10 @@ export default function CalendarSection({
 										} ${item.isOtherMonth ? "opacity-40" : ""}`}
 										title={e.title}
 									>
-										{formatWibTime(e.starts_at)} · {e.title}
+										{/* 00.00 = tanggal tanpa jam (fallback statis) → jangan render jam ngarang */}
+										{formatWibTime(e.starts_at) === "00.00"
+											? e.title
+											: `${formatWibTime(e.starts_at)} · ${e.title}`}
 									</span>
 								))}
 								{dayEvents.length > 2 && (
