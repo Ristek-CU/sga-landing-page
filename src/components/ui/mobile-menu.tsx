@@ -39,6 +39,8 @@ export default function MobileMenu() {
 		};
 	}, [isMobileMenuOpen, setIsMobileMenuOpen]);
 
+	if (pathname.startsWith("/events")) return null;
+
 	return (
 		<nav
 			id="mobile-navigation"

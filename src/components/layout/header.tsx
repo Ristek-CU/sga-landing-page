@@ -25,6 +25,8 @@ export default function Header() {
 		return () => window.removeEventListener("scroll", handleScroll);
 	}, []);
 
+	if (pathname.startsWith("/events")) return null;
+
 	const HashLink = pathname === "/" ? "a" : Link;
 
 	return (
@@ -89,7 +91,7 @@ export default function Header() {
 
 				<Button
 					variant="secondary"
-					className="hidden lg:block bg-[#D4B254] hover:bg-[#c29f45] text-white border-none rounded-full px-8 py-2 transition-all font-medium"
+					className="hidden lg:block bg-[#D4B254] hover:bg-[#c29f45] text-white border-none rounded-full px-8 py-2 transition-all font-semibold"
 				>
 					Contact us
 				</Button>
