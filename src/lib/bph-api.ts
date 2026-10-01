@@ -1,3 +1,5 @@
+import { z } from "zod";
+
 // Konsumsi API publik BPH CMS Hub. Contract: docs/API.md di repo Ristek-CU/bph-cms
 // (§1 wrapper seragam, §2 endpoint publik, §6 error, §7 rate limit).
 const BASE_URL = (
@@ -57,7 +59,7 @@ async function bphGet<T>(path: string): Promise<T> {
 		.json()
 		.catch(() => null)) as BphResponse<T> | null;
 
-	if (!body?.success || body.data === undefined) {
+	if (!response.ok || !body?.success || body.data === undefined) {
 		const err = new Error(
 			response.status === 429
 				? "Terlalu banyak permintaan. Coba lagi beberapa saat."
@@ -79,7 +81,7 @@ async function bphGet<T>(path: string): Promise<T> {
 /** GET /events/calendar?month=YYYY-MM — ringkas, untuk komponen kalender. */
 export function fetchBphCalendar(month: string): Promise<BphEventListItem[]> {
 	return bphGet<{ items: BphEventListItem[] }>(
-		`/events/calendar?month=${month}`,
+		`/events/calendar?month=${encodeURIComponent(month)}`,
 	).then((d) => d.items);
 }
 
@@ -96,12 +98,14 @@ export function fetchBphEvents(params?: {
 	const qs = query.toString();
 	return bphGet<{ items: BphEventListItem[] }>(
 		`/events${qs ? `?${qs}` : ""}`,
-	).then((d) => d.items);
+	).then((d) => z.array(EventSchema).parse(d.items));
 }
 
 /** GET /events/:slug — detail + sessions runsheet. 404 = draft/tidak ada. */
 export function fetchBphEventDetail(slug: string): Promise<BphEventDetail> {
-	return bphGet<BphEventDetail>(`/events/${encodeURIComponent(slug)}`);
+	return bphGet<unknown>(`/events/${encodeURIComponent(slug)}`).then((data) =>
+		EventDetailSchema.parse(data),
+	);
 }
 
 // ---- Formatter WIB (docs: render selalu WIB, timestamp ISO 8601 offset) ----
@@ -133,7 +137,11 @@ export function formatWibRange(
 	if (!endsAt || Number.isNaN(new Date(endsAt).getTime())) {
 		return `${start} WIB`;
 	}
-	return `${start} – ${formatWibTime(endsAt)} WIB`;
+	const end =
+		wibDateKey(startsAt) === wibDateKey(endsAt)
+			? formatWibTime(endsAt)
+			: `${formatWibDate(endsAt)}, ${formatWibTime(endsAt)}`;
+	return `${start} – ${end} WIB`;
 }
 
 /** Tanggal kalender (YYYY-MM-DD) menurut WIB — bukan timezone browser. */
@@ -162,3 +170,51 @@ export function googleCalendarUrl(event: {
 	if (event.description) params.set("details", event.description);
 	return `https://calendar.google.com/calendar/render?${params.toString()}`;
 }
+
+const safeUrl = z
+	.string()
+	.max(2048)
+	.transform((value) => {
+		try {
+			const url = new URL(value);
+			return ["https:", "http:"].includes(url.protocol) &&
+				!url.username &&
+				!url.password
+				? url.href
+				: null;
+		} catch {
+			return null;
+		}
+	})
+	.nullable();
+const timestamp = z
+	.string()
+	.refine((value) => Number.isFinite(Date.parse(value)), "Invalid date");
+const EventSchema = z.object({
+	id: z.string(),
+	slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
+	title: z.string(),
+	description: z.string().nullable(),
+	cover_image_url: safeUrl,
+	starts_at: timestamp,
+	ends_at: timestamp.nullable(),
+	location: z.string().nullable(),
+	location_url: safeUrl,
+	registration_url: safeUrl,
+	registration_open: z.boolean(),
+	organizer: z.string().nullable(),
+	status: z.enum(["ongoing", "upcoming", "past"]),
+});
+const EventDetailSchema = EventSchema.extend({
+	sessions: z.array(
+		z.object({
+			id: z.string(),
+			name: z.string(),
+			starts_at: timestamp,
+			ends_at: timestamp.nullable(),
+			speaker: z.string().nullable(),
+			location: z.string().nullable(),
+			description: z.string().nullable(),
+		}),
+	),
+});

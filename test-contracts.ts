@@ -152,3 +152,23 @@ assert.ok(studentVoiceUkm, "UKM nav must link to /student-voice");
 console.log("✓ Navigation definitions are unified and consistent");
 
 console.log("\nAll architecture contract tests passed successfully!");
+
+// Upcoming event countdown respects absolute WIB timestamps and boundary cases.
+const { formatEventCountdown } = await import("./src/lib/event-time.ts");
+const now = Date.parse("2026-10-01T08:00:00+07:00");
+assert.equal(
+	formatEventCountdown("2026-10-03T11:25:00+07:00", now),
+	"Dimulai 2 hari 3 jam 25 menit lagi",
+);
+assert.equal(
+	formatEventCountdown("2026-10-01T08:00:30+07:00", now),
+	"Dimulai kurang dari 1 menit lagi",
+);
+assert.equal(
+	formatEventCountdown("2026-10-01T01:00:00Z", now),
+	"Waktu mulai telah tiba",
+);
+assert.equal(formatEventCountdown("invalid", now), "Jadwal akan diumumkan");
+console.log(
+	"✓ Event countdown handles days, hours, minutes, WIB and start boundaries",
+);

@@ -73,7 +73,13 @@ function Countdown({ startsAt }: { startsAt: string }) {
 	}, []);
 
 	const diff = target - now;
-	if (Number.isNaN(target) || diff <= 0) return null;
+	if (Number.isNaN(target)) return null;
+	if (diff <= 0)
+		return (
+			<p className="text-sm font-semibold text-white">
+				Waktu mulai telah tiba. Cek jadwal acara di bawah.
+			</p>
+		);
 
 	const days = Math.floor(diff / 86_400_000);
 	const hours = Math.floor((diff % 86_400_000) / 3_600_000);
@@ -115,49 +121,52 @@ function Countdown({ startsAt }: { startsAt: string }) {
 	);
 }
 
-/** Satu tombol share: Web Share API di mobile, fallback salin link di desktop. */
-function ShareButton({ title }: { title: string }) {
-	const [copied, setCopied] = useState(false);
-	const shareUrl = window.location.href;
-
+function ShareButton({ event }: { event: BphEventDetail }) {
+	const [feedback, setFeedback] = useState("");
+	const shareUrl = `${window.location.origin}/events/${encodeURIComponent(event.slug)}`;
+	const text = `${event.title}\n${formatWibRange(event.starts_at, event.ends_at)}${event.location ? `\n${event.location}` : ""}`;
 	const copy = async () => {
 		try {
 			await navigator.clipboard.writeText(shareUrl);
+			setFeedback("Link tersalin. Siap dibagikan!");
 		} catch {
-			// Clipboard API butuh secure context; fallback lama tetap jalan.
-			const el = document.createElement("textarea");
-			el.value = shareUrl;
-			document.body.appendChild(el);
-			el.select();
-			document.execCommand("copy");
-			el.remove();
-		}
-		setCopied(true);
-		setTimeout(() => setCopied(false), 2000);
-	};
-
-	const handleShare = async () => {
-		if ("share" in navigator) {
-			await navigator.share({ title, url: shareUrl }).catch(() => {});
-		} else {
-			await copy();
+			setFeedback(
+				"Link belum tersalin. Gunakan tombol WhatsApp atau salin alamat halaman.",
+			);
 		}
 	};
-
+	const share = async () => {
+		if (!navigator.share) return copy();
+		try {
+			await navigator.share({ title: event.title, text, url: shareUrl });
+		} catch (error) {
+			if (!(error instanceof DOMException && error.name === "AbortError"))
+				await copy();
+		}
+	};
+	const buttonClass =
+		"inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/30 bg-white px-4 py-3 text-sm font-bold text-[#06455B] transition hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F4C95D]";
 	return (
-		<button
-			type="button"
-			onClick={handleShare}
-			className={`inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3.5 text-sm font-extrabold shadow-sm transition active:scale-[0.98] sm:px-8 sm:text-base ${
-				copied
-					? "bg-green-600 text-white"
-					: "border border-[#06455B]/20 bg-white text-[#06455B] hover:bg-gray-50"
-			}`}
-			aria-label="Bagikan event"
-		>
-			<Share2Icon className="size-4" />
-			{copied ? "Tersalin!" : "Bagikan"}
-		</button>
+		<div className="flex flex-wrap items-center gap-2">
+			<button type="button" onClick={share} className={buttonClass}>
+				<Share2Icon className="size-4" />
+				Bagikan
+			</button>
+			<a
+				href={`https://wa.me/?text=${encodeURIComponent(`${text}\n${shareUrl}`)}`}
+				target="_blank"
+				rel="noopener noreferrer"
+				className={buttonClass}
+			>
+				WhatsApp
+			</a>
+			<button type="button" onClick={copy} className={buttonClass}>
+				Salin Link
+			</button>
+			<p role="status" className="w-full text-sm text-white">
+				{feedback}
+			</p>
+		</div>
 	);
 }
 
@@ -259,7 +268,9 @@ export default function EventDetailPage() {
 
 	const heroImage = event.cover_image_url || heroPattern;
 	const canRegister =
-		event.registration_url && event.registration_open !== false;
+		event.registration_url &&
+		event.registration_open &&
+		event.status !== "past";
 	const isUpcoming = event.status === "upcoming";
 
 	return (
@@ -291,6 +302,9 @@ export default function EventDetailPage() {
 
 					{isUpcoming && (
 						<motion.div variants={fadeUpVariants}>
+							<p className="mb-2 text-sm font-semibold text-white">
+								Acara dimulai dalam
+							</p>
 							<Countdown startsAt={event.starts_at} />
 						</motion.div>
 					)}
@@ -310,7 +324,7 @@ export default function EventDetailPage() {
 								Daftar Sekarang
 							</a>
 						)}
-						<ShareButton title={event.title} />
+						<ShareButton event={event} />
 					</motion.div>
 				</div>
 			</motion.header>

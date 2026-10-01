@@ -7,7 +7,13 @@ import sgaLogo from "@/assets/images/Logomark.webp";
 import heroPattern from "@/assets/images/hero-pattern.webp";
 import CalendarSection from "@/components/sections/calendar";
 import Particles from "@/components/ui/particles";
-import { type BphEventListItem, fetchBphEvents } from "@/lib/bph-api";
+import {
+	type BphEventListItem,
+	fetchBphEvents,
+	formatWibRange,
+} from "@/lib/bph-api";
+
+import { formatEventCountdown } from "@/lib/event-time";
 
 // Keys = status BPH CMS (past/ongoing/upcoming).
 const statusConfig: Record<string, { label: string; bg: string }> = {
@@ -16,8 +22,7 @@ const statusConfig: Record<string, { label: string; bg: string }> = {
 	upcoming: { label: "Coming Soon", bg: "bg-[#72D5F6]" },
 };
 
-function EventCard({ event }: { event: BphEventListItem }) {
-	const isComingSoon = event.status === "upcoming";
+function EventCard({ event, now }: { event: BphEventListItem; now: number }) {
 	const [imageFailed, setImageFailed] = useState(false);
 	const image =
 		!imageFailed && event.cover_image_url ? event.cover_image_url : heroPattern;
@@ -25,18 +30,7 @@ function EventCard({ event }: { event: BphEventListItem }) {
 
 	return (
 		<article className="relative flex flex-col overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-md transition-all hover:-translate-y-1 hover:shadow-xl">
-			{/* Coming Soon overlay */}
-			{isComingSoon && (
-				<div className="absolute inset-0 z-20 flex items-center justify-center bg-white/40 backdrop-blur-sm">
-					<span className="rounded-full bg-[#72D5F6] px-8 py-3 text-lg font-bold tracking-wide text-white shadow-lg sm:text-xl">
-						Coming Soon
-					</span>
-				</div>
-			)}
-
-			<div
-				className={`flex flex-1 flex-col ${isComingSoon ? "opacity-40 blur-[2px]" : ""}`}
-			>
+			<div className="flex flex-1 flex-col">
 				{/* Image + Status Badge */}
 				<div className="relative h-44 w-full overflow-hidden bg-slate-200">
 					<img
@@ -48,7 +42,7 @@ function EventCard({ event }: { event: BphEventListItem }) {
 						className="h-full w-full object-cover"
 					/>
 					<span
-						className={`absolute left-3 top-3 rounded-full px-4 py-1 text-[11px] font-bold text-white shadow ${status.bg}`}
+						className={`absolute left-3 top-3 rounded-full px-4 py-1 text-[11px] font-bold text-[#06455B] shadow ${status.bg}`}
 					>
 						{status.label}
 					</span>
@@ -81,7 +75,15 @@ function EventCard({ event }: { event: BphEventListItem }) {
 						{event.description || "Informasi acara belum tersedia."}
 					</p>
 
-					{/* Bottom: Social Icons + Discover Button */}
+					<p className="mt-3 text-xs font-semibold text-[#06455B]">
+						{formatWibRange(event.starts_at, event.ends_at)}
+					</p>
+					{event.status === "upcoming" && (
+						<p className="mt-2 text-xs font-bold text-[#06455B]">
+							{formatEventCountdown(event.starts_at, now)}
+						</p>
+					)}
+					{/* Event detail */}
 					<div className="mt-auto flex items-center justify-between pt-5">
 						<div className="flex items-center gap-2.5" />
 
@@ -89,7 +91,7 @@ function EventCard({ event }: { event: BphEventListItem }) {
 							to={`/events/${event.slug}`}
 							className="inline-flex items-center justify-center rounded-lg bg-[#0B3B4F] px-4 py-2 text-xs font-bold text-white shadow-sm transition hover:bg-[#062c3b] active:scale-[0.98]"
 						>
-							Discover Event
+							Lihat Detail
 						</Link>
 					</div>
 				</div>
@@ -99,6 +101,11 @@ function EventCard({ event }: { event: BphEventListItem }) {
 }
 
 export default function EventPage() {
+	const [now, setNow] = useState(() => Date.now());
+	useEffect(() => {
+		const timer = setInterval(() => setNow(Date.now()), 60_000);
+		return () => clearInterval(timer);
+	}, []);
 	const [cmsEvents, setCmsEvents] = useState<BphEventListItem[]>([]);
 	const [loading, setLoading] = useState(true);
 	const [cmsError, setCmsError] = useState<string | null>(null);
@@ -210,7 +217,7 @@ export default function EventPage() {
 						{!loading && !cmsError && (
 							<div className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
 								{cmsEvents.map((event) => (
-									<EventCard key={event.id} event={event} />
+									<EventCard key={event.id} event={event} now={now} />
 								))}
 							</div>
 						)}
