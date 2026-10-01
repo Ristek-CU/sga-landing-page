@@ -1,0 +1,12 @@
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Strict-Transport-Security: max-age=31536000
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://bph-cms.sga-cakrawala.org https://cms.sga-cakrawala.org https://superapp.sga-cakrawala.org https://satgas.sga-cakrawala.org; frame-src https://www.google.com; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; form-action 'self'
+
+/index.html
+  Cache-Control: no-cache, no-store, no-transform
+
+/
+  Cache-Control: no-cache, no-store, no-transform

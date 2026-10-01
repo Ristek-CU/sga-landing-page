@@ -1,0 +1,12 @@
+{
+	"permissions": {
+		"allow": [
+			"Read(//Users/mekari/ristek/bph-cms/src/modules/events/**)",
+			"Bash(pnpm test)",
+			"Bash(git checkout *)",
+			"Bash(./node_modules/.bin/tsc *)",
+			"Bash(./node_modules/.bin/vite *)"
+		]
+	},
+	"$version": 4
+}

@@ -1,59 +1,180 @@
-import { useMemo, useState } from "react";
-
+import heroPattern from "@/assets/images/sga-pattern.webp";
 import { Badge } from "@/components/ui/badge";
-// TODO: Should be from API / CMS
-import membersData from "@/lib/data/members.json";
+import Particles from "@/components/ui/particles";
+import { type LandingDivision, fetchLandingContent } from "@/lib/landing-api";
+import { useEffect, useRef, useState } from "react";
 import DivisionSelectButton from "./partials/division-select-button";
 import MemberCard from "./partials/member-card";
 
-type Division = keyof typeof membersData;
-const divisions = Object.keys(membersData) as Division[];
+const divisionOrder = [
+	"Executive Board",
+	"Media And Information",
+	"Research And Technology",
+	"Public And Community Relations",
+	"UKM Development",
+	"Business And Partnership",
+	"Intellectual And Career Development",
+	"Student Advocacy And Welfare",
+];
 
 export default function DivisionSection() {
-	const [selectedDivision, setSelectedDivision] =
-		useState<Division>("Executive");
+	const [divisions, setDivisions] = useState<LandingDivision[]>([]);
+	const [selectedDivision, setSelectedDivision] = useState(divisionOrder[0]);
+	const [isLoading, setIsLoading] = useState(true);
+	const [loadError, setLoadError] = useState("");
+	const currentMembers =
+		divisions.find((division) => division.division_name === selectedDivision)
+			?.members ?? [];
 
-	const currentMembers = useMemo(
-		() => membersData[selectedDivision],
-		[selectedDivision],
-	);
+	useEffect(() => {
+		let active = true;
+		fetchLandingContent()
+			.then(({ members }) => {
+				if (!active) return;
+				const byName = new Map(
+					members.map((division) => [division.division_name, division]),
+				);
+				setDivisions(
+					divisionOrder.flatMap((name) => {
+						const division = byName.get(name);
+						return division
+							? [
+									{
+										...division,
+										members: [...division.members].sort(
+											(a, b) =>
+												(a.role?.hierarchy_level ?? 0) -
+												(b.role?.hierarchy_level ?? 0),
+										),
+									},
+								]
+							: [];
+					}),
+				);
+			})
+			.catch((error: unknown) => {
+				if (active) {
+					setLoadError(
+						error instanceof Error ? error.message : "Gagal memuat anggota.",
+					);
+				}
+			})
+			.finally(() => {
+				if (active) setIsLoading(false);
+			});
+
+		return () => {
+			active = false;
+		};
+	}, []);
+
+	const scrollRef = useRef<HTMLDivElement>(null);
+	const [isDragging, setIsDragging] = useState(false);
+	const [startX, setStartX] = useState(0);
+	const [scrollLeft, setScrollLeft] = useState(0);
+
+	const handleMouseDown = (e: React.MouseEvent) => {
+		if (!scrollRef.current) return;
+		setIsDragging(true);
+		setStartX(e.pageX - scrollRef.current.offsetLeft);
+		setScrollLeft(scrollRef.current.scrollLeft);
+	};
+
+	const handleMouseLeave = () => {
+		setIsDragging(false);
+	};
+	const handleMouseUp = () => {
+		setIsDragging(false);
+	};
+
+	const handleMouseMove = (e: React.MouseEvent) => {
+		if (!isDragging || !scrollRef.current) return;
+		e.preventDefault();
+		const x = e.pageX - scrollRef.current.offsetLeft;
+		const walk = (x - startX) * 1.5;
+		scrollRef.current.scrollLeft = scrollLeft - walk;
+	};
 
 	return (
 		<section
 			id="division"
-			className="container w-full h-full px-5 mx-auto bg-white py-25 xl:py-30"
+			className="relative w-full scroll-mt-24 py-20 overflow-hidden bg-[#0f3d44] xl:py-28"
 		>
-			<div className="space-y-6 text-center md:text-left">
-				<Badge>Division</Badge>
-				<h1 className="text-2xl font-semibold leading-tight text-center xl:text-4xl md:text-left">
-					SGA terdiri dari berbagai divisi yang bekerja sama untuk menciptakan{" "}
-					<span className="text-blue-500">
-						lingkungan kampus yang dinamis dan mendukung.
-					</span>
-				</h1>
-			</div>
-			<div className="grid w-full grid-flow-row gap-5 mt-5 md:grid-flow-col xl:gap-20 md:gap-10 lg:mt-14">
-				<div className="flex flex-col gap-4 xl:gap-10 w-max shrink-0">
-					{divisions.map((division) => (
-						<DivisionSelectButton
-							key={division}
-							isActive={selectedDivision === division}
-							onClick={() => setSelectedDivision(division)}
-						>
-							{division}
-						</DivisionSelectButton>
-					))}
+			{/* Background & Particles tetap sama */}
+			<div
+				className="absolute inset-0 z-0 bg-fixed bg-center bg-cover opacity-50 pointer-events-none"
+				style={{ backgroundImage: `url(${heroPattern})` }}
+			/>
+			<Particles
+				className="absolute inset-0 z-[1] pointer-events-none"
+				quantity={100}
+				ease={80}
+				color="#F4CE6A"
+				refresh
+			/>
+
+			<div className="container relative z-10 flex flex-col items-center w-full h-full px-5 mx-auto">
+				<div className="flex justify-center w-full mb-12 lg:mb-16">
+					<Badge
+						variant="special"
+						className="px-8 py-2.5 sm:px-9 sm:py-3 [&_span]:text-xl sm:[&_span]:text-2xl"
+					>
+						Meet The Team
+					</Badge>
 				</div>
-				<div className="grid items-start content-start justify-start gap-3 lg:gap-5 grid-flow-col grid-rows-2 xl:grid-flow-row xl:grid-cols-4 xl:max-h-[1200px] overflow-y-auto overflow-x-auto w-full">
-					{currentMembers.map(({ name, role, imagePath, linkedInUrl }) => (
-						<MemberCard
-							key={name}
-							name={name}
-							position={role}
-							image={imagePath}
-							linkedinUrl={linkedInUrl}
-						/>
-					))}
+
+				{/* Layout: flex-col on mobile (Tags on top), flex-row on desktop (Sidebar left) */}
+				<div className="flex flex-col lg:flex-row w-full gap-x-4 lg:gap-x-16 gap-y-8 lg:gap-y-10 items-stretch">
+					{/* Sidebar Menu Divisi */}
+					<div className="flex flex-row lg:flex-col gap-3 w-full lg:w-64 shrink-0 overflow-x-auto lg:overflow-visible pb-2 lg:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+						<div className="flex flex-row lg:flex-col gap-3 lg:gap-6 w-max lg:w-full px-1">
+							{divisions.map((division) => (
+								<DivisionSelectButton
+									key={division.division_id}
+									isActive={selectedDivision === division.division_name}
+									onClick={() => setSelectedDivision(division.division_name)}
+								>
+									{division.division_name}
+								</DivisionSelectButton>
+							))}
+						</div>
+					</div>
+
+					{/* Area Card Member (Kanan/Bawah) */}
+					<div
+						ref={scrollRef}
+						onMouseDown={handleMouseDown}
+						onMouseLeave={handleMouseLeave}
+						onMouseUp={handleMouseUp}
+						onMouseMove={handleMouseMove}
+						className={`flex flex-row flex-1 w-full gap-4 lg:gap-6 pb-8 pl-1 overflow-x-auto select-none [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] ${isDragging ? "cursor-grabbing snap-none" : "cursor-grab snap-x snap-mandatory"}`}
+					>
+						{isLoading && (
+							<p role="status" className="text-white">
+								Memuat anggota...
+							</p>
+						)}
+						{loadError && (
+							<p role="alert" className="text-white">
+								{loadError}
+							</p>
+						)}
+						{currentMembers.map((member) => (
+							<div
+								key={member.id}
+								className="shrink-0 snap-start w-[160px] sm:w-[240px] lg:w-auto h-[320px] lg:h-full"
+							>
+								<MemberCard
+									name={member.fullname}
+									position={member.role?.name ?? "Anggota"}
+									image={member.image_path}
+									linkedinUrl={
+										member.linkedin_url ?? "https://www.linkedin.com/"
+									}
+								/>
+							</div>
+						))}
+					</div>
 				</div>
 			</div>
 		</section>
