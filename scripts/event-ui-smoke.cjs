@@ -23,7 +23,21 @@ const event = {
         const path = new URL(route.request().url()).pathname;
         return route.fulfill({ json: { success: true, data: path.endsWith('/festival-kampus') ? event : { items: [event] } } });
       });
-      await page.goto(`${base}/events`);
+      await page.goto(base);
+      const ticket = page.locator('#event');
+      await ticket.scrollIntoViewIfNeeded();
+      const ticketFits = await ticket.evaluate(section => {
+        const link = section.querySelector('a[href="/events"]');
+        const button = link.getBoundingClientRect();
+        const body = link.parentElement.getBoundingClientRect();
+        return button.height >= 44 && button.bottom <= body.bottom && button.right <= body.right
+          && section.scrollWidth <= section.clientWidth
+          && [...section.querySelectorAll('h2,h3,p,a')].every(el => el.scrollWidth <= el.clientWidth + 1);
+      });
+      assert.ok(ticketFits, `Ticket content and CTA must fit at ${width}px`);
+      await ticket.screenshot({ path: `/tmp/ticket-after-${width}.png` });
+      await ticket.getByRole('link', { name: 'Jelajahi acara' }).click();
+      await page.waitForURL(`${base}/events`);
       await page.getByRole('heading', { name: event.title }).waitFor();
       await page.screenshot({ path: `/tmp/events-after-${width}.png`, fullPage: true });
       const clipped = await page.locator('main').evaluate(main => [...main.querySelectorAll('h1,h2,h3,a,button')].filter(el => {
