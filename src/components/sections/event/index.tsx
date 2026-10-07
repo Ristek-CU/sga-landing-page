@@ -1,65 +1,76 @@
+import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router";
 
-import ticketBg from "@/assets/images/ticketevet-bg.png";
+import sgaLogo from "@/assets/images/Logomark.webp";
+import heroPattern from "@/assets/images/hero-pattern.webp";
 
 export default function EventSection() {
 	return (
 		<section
 			id="event"
-			className="flex w-full flex-col items-center justify-center bg-[#F8F9FA] px-4 py-16 font-['Plus_Jakarta_Sans',sans-serif]"
+			aria-labelledby="event-section-heading"
+			className="scroll-mt-24 bg-[#F8F9FA] px-4 py-12 sm:px-6 sm:py-16"
 		>
-			<div className="mb-10 flex max-w-4xl flex-col items-center text-center">
-				<div className="mb-8 flex justify-center">
-					<div className="inline-flex items-center justify-center rounded-[30px] bg-gradient-to-r from-[#CEAE65] to-[#685833] p-[2px] shadow-sm">
-						<div className="inline-flex items-center justify-center gap-[10px] rounded-[28px] bg-white px-[30px] py-[6px]">
-							<span className="text-sm font-semibold text-[#CEAE65] sm:text-base">
-								Event &amp; Kegiatan
-							</span>
-						</div>
-					</div>
-				</div>
-
-				<h2 className="max-w-[1235px] text-2xl font-semibold leading-[40px] text-[#093B4C] sm:text-[37px] sm:leading-[48px]">
+			<div className="mx-auto mb-8 max-w-3xl text-center sm:mb-10">
+				<p className="mb-5 text-sm font-semibold text-[#80631D] sm:text-base">
+					Event &amp; Kegiatan
+				</p>
+				<h2
+					id="event-section-heading"
+					className="text-balance text-2xl font-semibold leading-snug text-[#093B4C] sm:text-4xl"
+				>
 					An experience beyond the ordinary. Be part of something truly
-					<span className="-mt-1 block font-italianno text-5xl font-normal leading-[60px] text-[#DDA835] sm:-mt-2 sm:text-[80px] sm:leading-[66px]">
+					<span className="mt-1 block font-italianno text-6xl font-normal leading-none text-[#9A701C] sm:text-7xl">
 						remarkable
 					</span>
 				</h2>
 			</div>
 
-			<div className="relative mx-auto overflow-hidden rounded-2xl bg-[#06455B] sm:rounded-none sm:bg-transparent sm:aspect-[760/260] w-full max-w-[980px] drop-shadow-2xl transition-transform duration-300 hover:scale-[1.01]">
-				<img
-					src={ticketBg}
-					alt="SGA Event Ticket"
-					className="pointer-events-none absolute hidden sm:block inset-0 z-0 h-full w-full object-contain"
-				/>
+			<div className="mx-auto grid w-full max-w-4xl overflow-hidden rounded-2xl bg-[#06455B] text-white shadow-lg sm:grid-cols-[minmax(0,1fr)_10rem] lg:grid-cols-[minmax(0,1fr)_12rem]">
+				<div
+					className="min-w-0 bg-cover bg-center p-6 sm:p-8 lg:p-10"
+					style={{
+						backgroundImage: `linear-gradient(90deg, #06455Bee, #06455Bcc), url(${heroPattern})`,
+					}}
+				>
+					<h3 className="text-2xl font-bold leading-tight sm:text-3xl lg:text-4xl">
+						Eksplorasi <span className="text-[#EEBA41]">Event</span>
+					</h3>
+					<p className="mt-3 max-w-sm text-base font-semibold leading-relaxed text-[#F0D899] sm:text-lg">
+						Student Government Association
+					</p>
+					<p className="mt-1 text-sm leading-relaxed text-white/90 sm:text-base">
+						Cakrawala University
+					</p>
+					<Link
+						to="/events"
+						className="mt-6 inline-flex min-h-12 w-full items-center justify-between gap-4 rounded-xl bg-[#EEBA41] px-5 py-3 text-sm font-bold text-[#06455B] transition-colors hover:bg-[#F0C65D] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:w-auto sm:gap-8 sm:text-base"
+					>
+						Jelajahi acara
+						<ArrowUpRight aria-hidden="true" className="size-5 shrink-0" />
+					</Link>
+				</div>
 
-				<div className="relative z-10 flex h-full w-full">
-					{/* Left Section (Ticket Body) */}
-					<div className="box-border flex h-full w-full sm:w-[74%] flex-col justify-center p-6 sm:p-0 sm:px-[6%]">
-						<div className="space-y-[2px] sm:space-y-1 pl-[2%]">
-							<h3 className="text-xl font-bold tracking-wide text-white sm:text-2xl md:text-[32px]">
-								Eksplorasi <span className="text-[#E3AF35]">Event</span>
-							</h3>
-							<p className="text-sm font-semibold text-[#E3AF35] sm:text-base md:text-[20px]">
-								Student Government Association
-							</p>
-							<p className="text-sm font-medium text-white/90 sm:text-sm md:text-[17px]">
-								Cakrawala University
-							</p>
-						</div>
-
-						<div className="mt-[6%] sm:mt-[10%] w-full">
-							<Link
-								to="/events"
-								className="ml-[2%] flex min-h-11 md:h-12 w-full sm:w-[85%] cursor-pointer items-center justify-center rounded-[4px] sm:rounded-xl bg-[#EEBA41] text-sm md:text-base font-bold text-[#06455B] shadow-md transition-all duration-200 hover:bg-[#D4A230] active:scale-[0.98]"
-							>
-								Jelajahi acara
-							</Link>
-						</div>
-					</div>
-
-					<div className="hidden h-full w-[26%] sm:block" />
+				<div className="relative flex items-center justify-center gap-3 border-t-2 border-dashed border-white/30 px-6 py-5 sm:flex-col sm:gap-4 sm:border-l-2 sm:border-t-0 sm:p-6">
+					<span
+						aria-hidden="true"
+						className="absolute -left-3 -top-3 size-6 rounded-full bg-[#F8F9FA]"
+					/>
+					<span
+						aria-hidden="true"
+						className="absolute -right-3 -top-3 size-6 rounded-full bg-[#F8F9FA] sm:-bottom-3 sm:-left-3 sm:right-auto sm:top-auto"
+					/>
+					<img
+						src={sgaLogo}
+						alt="SGA"
+						width={48}
+						height={48}
+						loading="lazy"
+						className="size-10 object-contain sm:size-12"
+					/>
+					<p className="text-sm font-semibold tracking-wide text-[#F0D899] sm:text-center">
+						Event &amp; Kegiatan
+					</p>
 				</div>
 			</div>
 		</section>
