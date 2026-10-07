@@ -1,4 +1,4 @@
-import sgaMembersFilter from "@/assets/images/sga-members-filter.jpg";
+import sgaMembersFilter from "@/assets/images/sga-members-filter.webp";
 import Particles from "@/components/ui/particles";
 
 export default function MeetOurTeamSection() {
