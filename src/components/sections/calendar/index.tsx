@@ -28,7 +28,7 @@ const daysHeader = ["Sen", "Sel", "Rab", "Kam", "Jum", "Sab", "Min"];
 const statusChip: Record<BphEventListItem["status"], string> = {
 	upcoming: "bg-[#72D5F6]",
 	ongoing: "bg-[#CEAE65]",
-	past: "bg-slate-400",
+	past: "bg-slate-200",
 };
 
 interface CalendarEvent {
@@ -37,7 +37,7 @@ interface CalendarEvent {
 	starts_at: string;
 	ends_at: string | null;
 	location: string | null;
-	status: BphEventListItem["status"];
+	status: BphEventListItem["status"] | undefined;
 }
 
 /** Grid 7 kolom (Sen–Min) + baris pembatas tipis, gaya Google Calendar bulanan. */
@@ -98,18 +98,22 @@ function generateMonthGrid(year: number, monthIndex: number) {
 }
 
 export default function CalendarSection() {
-	const now = new Date();
+	const todayKey = wibDateKey(new Date().toISOString());
+	const now = new Date(`${todayKey}T12:00:00`);
 	const [currentYear, setCurrentYear] = useState(now.getFullYear());
 	const [currentMonthIndex, setCurrentMonthIndex] = useState(now.getMonth());
 	const [selectedDateStr, setSelectedDateStr] = useState<string | null>(null);
 	const [remoteEvents, setRemoteEvents] = useState<CalendarEvent[]>([]);
-	const [loading, setLoading] = useState(false);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState<string | null>(null);
+	const [attempt, setAttempt] = useState(0);
 
 	const monthParam = `${currentYear}-${String(currentMonthIndex + 1).padStart(2, "0")}`;
 
 	useEffect(() => {
 		let alive = true;
 		setLoading(true);
+		setError(null);
 		fetchBphCalendar(monthParam)
 			.then((items) => {
 				if (!alive) return;
@@ -124,17 +128,21 @@ export default function CalendarSection() {
 					})),
 				);
 			})
-			.catch(() => alive && setRemoteEvents([]))
+			.catch((error: Error) => {
+				if (alive) {
+					setRemoteEvents([]);
+					setError(
+						error.name === "RateLimitError"
+							? error.message
+							: "Kalender belum bisa dimuat. Periksa koneksi lalu coba lagi.",
+					);
+				}
+			})
 			.finally(() => alive && setLoading(false));
 		return () => {
 			alive = false;
 		};
-	}, [monthParam]);
-
-	const eventsList = useMemo(
-		() => remoteEvents.map((e) => ({ ...e, dateKey: wibDateKey(e.starts_at) })),
-		[remoteEvents],
-	);
+	}, [monthParam, attempt]);
 
 	const calendarCells = useMemo(
 		() => generateMonthGrid(currentYear, currentMonthIndex),
@@ -143,13 +151,33 @@ export default function CalendarSection() {
 
 	const eventsByDate = useMemo(() => {
 		const map = new Map<string, CalendarEvent[]>();
-		for (const e of eventsList) {
-			const list = map.get(e.dateKey) ?? [];
-			list.push(e);
-			map.set(e.dateKey, list);
+		for (const event of remoteEvents) {
+			const start = wibDateKey(event.starts_at);
+			// The end timestamp is exclusive, including for events ending at midnight.
+			const end = event.ends_at
+				? wibDateKey(
+						new Date(
+							Math.max(
+								Date.parse(event.starts_at),
+								Date.parse(event.ends_at) - 1,
+							),
+						).toISOString(),
+					)
+				: start;
+			for (const cell of calendarCells) {
+				if (
+					cell.isOtherMonth ||
+					cell.fullDateStr < start ||
+					cell.fullDateStr > end
+				)
+					continue;
+				const list = map.get(cell.fullDateStr) ?? [];
+				list.push(event);
+				map.set(cell.fullDateStr, list);
+			}
 		}
 		return map;
-	}, [eventsList]);
+	}, [remoteEvents, calendarCells]);
 
 	const handlePrevMonth = () => {
 		setSelectedDateStr(null);
@@ -171,17 +199,16 @@ export default function CalendarSection() {
 		}
 	};
 
-	const todayKey = wibDateKey(now.toISOString());
 	const selectedEvents = selectedDateStr
 		? (eventsByDate.get(selectedDateStr) ?? [])
 		: [];
 
 	return (
-		<div className="w-full flex justify-center px-2 sm:px-4">
-			<div className="w-full max-w-[900px] bg-white rounded-3xl p-5 sm:p-8 shadow-sm border border-gray-100">
+		<div className="w-full">
+			<div className="w-full bg-white rounded-2xl p-2 sm:p-6 border border-slate-200">
 				{/* Header Navigation */}
-				<div className="mb-6 flex items-center justify-between gap-3">
-					<div className="flex items-center gap-2">
+				<div className="mb-4 flex flex-wrap items-center justify-between gap-2 px-2 pt-2">
+					<div className="flex flex-wrap items-center gap-2">
 						<h3 className="text-lg font-bold text-[#093B4C] sm:text-xl">
 							{months[currentMonthIndex]} {currentYear}
 						</h3>
@@ -191,26 +218,23 @@ export default function CalendarSection() {
 								setCurrentMonthIndex(now.getMonth());
 								setSelectedDateStr(null);
 							}}
-							className="rounded-full border border-gray-200 px-3 py-1 text-[11px] font-semibold text-gray-500 transition hover:bg-gray-50"
+							className="rounded-full border border-gray-200 min-h-11 px-3 py-2 text-xs font-semibold text-gray-500 transition hover:bg-gray-50"
 						>
 							Hari ini
 						</button>
 					</div>
 
 					<div className="flex items-center gap-1.5">
-						{loading && (
-							<span className="mr-1 text-[11px] text-gray-400">memuat…</span>
-						)}
 						<button
 							onClick={handlePrevMonth}
-							className="flex size-8 items-center justify-center rounded-full text-gray-600 transition hover:bg-gray-100"
+							className="flex size-11 items-center justify-center rounded-full text-gray-600 transition hover:bg-gray-100"
 							aria-label="Bulan sebelumnya"
 						>
 							&#10094;
 						</button>
 						<button
 							onClick={handleNextMonth}
-							className="flex size-8 items-center justify-center rounded-full text-gray-600 transition hover:bg-gray-100"
+							className="flex size-11 items-center justify-center rounded-full text-gray-600 transition hover:bg-gray-100"
 							aria-label="Bulan berikutnya"
 						>
 							&#10095;
@@ -224,7 +248,7 @@ export default function CalendarSection() {
 						<div
 							key={day}
 							className={`py-2 text-center text-[11px] font-semibold sm:text-xs ${
-								idx >= 5 ? "text-[#D4B254]" : "text-gray-400"
+								idx >= 5 ? "text-[#80631D]" : "text-slate-600"
 							}`}
 						>
 							{day}
@@ -235,10 +259,10 @@ export default function CalendarSection() {
 				{/* Skeleton selama fetch bulan — bentuk sama dengan grid asli */}
 				{loading && (
 					<div className="grid grid-cols-7" aria-busy="true">
-						{Array.from({ length: 35 }, (_, i) => (
+						{Array.from({ length: calendarCells.length }, (_, i) => (
 							<div
 								key={i}
-								className="min-h-[72px] animate-pulse border-b border-r border-gray-100 p-1 sm:min-h-[96px] sm:p-1.5"
+								className="min-h-[64px] motion-safe:animate-pulse border-b border-r border-gray-100 p-1 sm:min-h-[96px] sm:p-1.5"
 							>
 								<div
 									className={`mb-2 size-6 rounded-full bg-gray-100 ${i % 7 === 6 ? "ml-auto" : ""}`}
@@ -250,7 +274,7 @@ export default function CalendarSection() {
 				)}
 
 				{/* Grid Tanggal */}
-				<div className={loading ? "hidden" : "grid grid-cols-7"}>
+				<div className={loading || error ? "hidden" : "grid grid-cols-7"}>
 					{calendarCells.map((item, idx) => {
 						const dayEvents = eventsByDate.get(item.fullDateStr) ?? [];
 						const isToday = item.fullDateStr === todayKey;
@@ -260,9 +284,13 @@ export default function CalendarSection() {
 							<button
 								key={`${item.fullDateStr}-${idx}`}
 								onClick={() => setSelectedDateStr(item.fullDateStr)}
-								className={`min-h-[72px] sm:min-h-[96px] border-b border-r border-gray-100 p-1 text-left align-top transition-colors sm:p-1.5 ${
+								aria-label={`${new Intl.DateTimeFormat("id-ID", { dateStyle: "full" }).format(new Date(`${item.fullDateStr}T12:00:00`))}, ${dayEvents.length} acara`}
+								aria-pressed={isSelected}
+								aria-current={isToday ? "date" : undefined}
+								disabled={item.isOtherMonth}
+								className={`min-w-0 min-h-[64px] sm:min-h-[96px] border-b border-r border-gray-100 p-1 text-left align-top transition-colors focus-visible:relative focus-visible:z-10 focus-visible:outline-2 focus-visible:outline-[#06455B] disabled:cursor-default sm:p-1.5 ${
 									idx % 7 === 6 ? "border-r-0" : ""
-								} ${isSelected ? "bg-[#05445E]/5" : "hover:bg-gray-50"}`}
+								} ${isSelected ? "bg-[#05445E]/10 ring-2 ring-inset ring-[#05445E]" : "hover:bg-gray-50"}`}
 							>
 								<span
 									className={`inline-flex size-6 items-center justify-center rounded-full text-xs font-medium sm:text-sm ${
@@ -276,12 +304,21 @@ export default function CalendarSection() {
 									{item.day}
 								</span>
 
-								{/* Chip event gaya Google Calendar: maks 2 + indikator sisa */}
+								{dayEvents.length > 0 && (
+									<span
+										aria-hidden="true"
+										className="mt-1 block text-center text-xs font-bold text-[#06455B] sm:hidden"
+									>
+										{dayEvents.length}
+										<span className="sr-only"> acara</span>
+									</span>
+								)}
+								{/* Full titles remain available in the selected-date panel. */}
 								{dayEvents.slice(0, 2).map((e) => (
 									<span
 										key={e.slug}
-										className={`mt-1 block truncate rounded px-1.5 py-0.5 text-[10px] font-semibold leading-tight text-white sm:text-[11px] ${
-											statusChip[e.status] ?? "bg-[#05445E]"
+										className={`mt-1 hidden truncate rounded px-1.5 py-0.5 text-xs font-semibold leading-tight text-[#06455B] sm:block ${
+											e.status ? statusChip[e.status] : "bg-slate-200"
 										} ${item.isOtherMonth ? "opacity-40" : ""}`}
 										title={e.title}
 									>
@@ -292,7 +329,7 @@ export default function CalendarSection() {
 									</span>
 								))}
 								{dayEvents.length > 2 && (
-									<span className="mt-0.5 block text-[10px] font-medium text-gray-400">
+									<span className="mt-0.5 hidden sm:block text-xs font-medium text-slate-600">
 										+{dayEvents.length - 2} lainnya
 									</span>
 								)}
@@ -302,42 +339,62 @@ export default function CalendarSection() {
 				</div>
 
 				{/* Panel Detail Tanggal Terpilih */}
-				<div className="mt-5 min-h-[64px]">
-					{selectedDateStr ? (
-						selectedEvents.length > 0 ? (
-							<div className="space-y-2">
-								{selectedEvents.map((e) => (
-									<Link
-										key={e.slug}
-										to={`/events/${e.slug}`}
-										className="flex items-start gap-3 rounded-2xl border border-gray-100 bg-gray-50/60 p-3 transition hover:border-[#05445E]/30 hover:bg-[#05445E]/5"
-									>
-										<span
-											className={`mt-1 h-2.5 w-2.5 shrink-0 rounded-full ${
-												statusChip[e.status] ?? "bg-[#05445E]"
-											}`}
-										/>
-										<span className="min-w-0">
-											<span className="block truncate text-sm font-bold text-[#093B4C]">
-												{e.title}
-											</span>
-											<span className="block text-xs text-gray-500">
-												{formatWibRange(e.starts_at, e.ends_at)}
-												{e.location ? ` · ${e.location}` : ""}
-											</span>
-										</span>
-									</Link>
-								))}
-							</div>
-						) : (
-							<p className="text-sm text-gray-400 italic">
-								Tidak ada event di tanggal ini.
-							</p>
-						)
+				<div
+					className="mt-4 min-h-[64px] border-t border-slate-200 px-2 pt-4"
+					aria-live="polite"
+				>
+					{error ? (
+						<div role="alert">
+							<p className="text-sm text-slate-700">{error}</p>
+							<button
+								type="button"
+								onClick={() => setAttempt((value) => value + 1)}
+								className="mt-3 min-h-11 rounded-lg bg-[#06455B] px-4 py-2 text-sm font-semibold text-white"
+							>
+								Coba lagi
+							</button>
+						</div>
+					) : loading ? (
+						<p className="text-sm text-slate-600">Memuat kalender…</p>
 					) : (
-						<p className="text-sm text-gray-400">
-							Pilih tanggal untuk melihat detail event.
-						</p>
+						<>
+							{selectedDateStr ? (
+								selectedEvents.length > 0 ? (
+									<div className="space-y-2">
+										{selectedEvents.map((e) => (
+											<Link
+												key={e.slug}
+												to={`/events/${e.slug}`}
+												className="flex items-start gap-3 rounded-2xl border border-gray-100 bg-gray-50/60 p-3 transition hover:border-[#05445E]/30 hover:bg-[#05445E]/5"
+											>
+												<span
+													className={`mt-1 h-2.5 w-2.5 shrink-0 rounded-full ${
+														e.status ? statusChip[e.status] : "bg-slate-200"
+													}`}
+												/>
+												<span className="min-w-0">
+													<span className="block [overflow-wrap:anywhere] text-sm font-bold text-[#093B4C]">
+														{e.title}
+													</span>
+													<span className="block [overflow-wrap:anywhere] text-sm text-slate-600">
+														{formatWibRange(e.starts_at, e.ends_at)}
+														{e.location ? ` · ${e.location}` : ""}
+													</span>
+												</span>
+											</Link>
+										))}
+									</div>
+								) : (
+									<p className="text-sm text-slate-600 italic">
+										Tidak ada event di tanggal ini.
+									</p>
+								)
+							) : (
+								<p className="text-sm text-slate-600">
+									Pilih tanggal untuk melihat detail event.
+								</p>
+							)}
+						</>
 					)}
 				</div>
 			</div>

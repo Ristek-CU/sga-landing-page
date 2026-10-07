@@ -1,10 +1,8 @@
-import { useNavigate } from "react-router";
+import { Link } from "react-router";
 
 import ticketBg from "@/assets/images/ticketevet-bg.png";
 
 export default function EventSection() {
-	const navigate = useNavigate();
-
 	return (
 		<section
 			id="event"
@@ -29,40 +27,39 @@ export default function EventSection() {
 				</h2>
 			</div>
 
-			<div className="relative mx-auto aspect-[760/260] w-full max-w-[980px] drop-shadow-2xl transition-transform duration-300 hover:scale-[1.01]">
+			<div className="relative mx-auto overflow-hidden rounded-2xl bg-[#06455B] sm:rounded-none sm:bg-transparent sm:aspect-[760/260] w-full max-w-[980px] drop-shadow-2xl transition-transform duration-300 hover:scale-[1.01]">
 				<img
 					src={ticketBg}
 					alt="SGA Event Ticket"
-					className="pointer-events-none absolute inset-0 z-0 h-full w-full object-contain"
+					className="pointer-events-none absolute hidden sm:block inset-0 z-0 h-full w-full object-contain"
 				/>
 
 				<div className="relative z-10 flex h-full w-full">
 					{/* Left Section (Ticket Body) */}
-					<div className="box-border flex h-full w-[74%] flex-col justify-center px-[4%] sm:px-[6%]">
+					<div className="box-border flex h-full w-full sm:w-[74%] flex-col justify-center p-6 sm:p-0 sm:px-[6%]">
 						<div className="space-y-[2px] sm:space-y-1 pl-[2%]">
-							<h3 className="text-[11px] font-bold tracking-wide text-white sm:text-2xl md:text-[32px]">
+							<h3 className="text-xl font-bold tracking-wide text-white sm:text-2xl md:text-[32px]">
 								Eksplorasi <span className="text-[#E3AF35]">Event</span>
 							</h3>
-							<p className="text-[9px] font-semibold text-[#E3AF35] sm:text-base md:text-[20px]">
+							<p className="text-sm font-semibold text-[#E3AF35] sm:text-base md:text-[20px]">
 								Student Government Association
 							</p>
-							<p className="text-[8px] font-medium text-white/90 sm:text-sm md:text-[17px]">
+							<p className="text-sm font-medium text-white/90 sm:text-sm md:text-[17px]">
 								Cakrawala University
 							</p>
 						</div>
 
 						<div className="mt-[6%] sm:mt-[10%] w-full">
-							<button
-								type="button"
-								onClick={() => navigate("/events")}
-								className="ml-[2%] flex h-[26px] sm:h-10 md:h-12 w-[85%] cursor-pointer items-center justify-center rounded-[4px] sm:rounded-xl bg-[#EEBA41] text-[9px] sm:text-sm md:text-base font-bold text-white shadow-md transition-all duration-200 hover:bg-[#D4A230] active:scale-[0.98]"
+							<Link
+								to="/events"
+								className="ml-[2%] flex min-h-11 md:h-12 w-full sm:w-[85%] cursor-pointer items-center justify-center rounded-[4px] sm:rounded-xl bg-[#EEBA41] text-sm md:text-base font-bold text-[#06455B] shadow-md transition-all duration-200 hover:bg-[#D4A230] active:scale-[0.98]"
 							>
-								Discover Now
-							</button>
+								Jelajahi acara
+							</Link>
 						</div>
 					</div>
 
-					<div className="h-full w-[32%]" />
+					<div className="hidden h-full w-[26%] sm:block" />
 				</div>
 			</div>
 		</section>

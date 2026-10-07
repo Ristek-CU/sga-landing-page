@@ -21,8 +21,8 @@ import { Link, useParams } from "react-router";
 
 const statusLabels: Record<BphEventDetail["status"], string> = {
 	past: "Selesai",
-	ongoing: "On Going",
-	upcoming: "Coming Soon",
+	ongoing: "Berlangsung",
+	upcoming: "Akan datang",
 };
 
 const statusColors: Record<BphEventDetail["status"], string> = {
@@ -112,7 +112,7 @@ function Countdown({ startsAt }: { startsAt: string }) {
 					<span className="text-lg font-extrabold tabular-nums text-[#F4C95D] sm:text-xl">
 						{String(cell.v).padStart(2, "0")}
 					</span>
-					<span className="text-[10px] font-semibold tracking-wide text-white/60">
+					<span className="text-xs font-semibold tracking-wide text-white/80">
 						{cell.l}
 					</span>
 				</div>
@@ -163,7 +163,7 @@ function ShareButton({ event }: { event: BphEventDetail }) {
 			<button type="button" onClick={copy} className={buttonClass}>
 				Salin Link
 			</button>
-			<p role="status" className="w-full text-sm text-white">
+			<p role="status" className="w-full text-sm text-white empty:hidden">
 				{feedback}
 			</p>
 		</div>
@@ -181,7 +181,7 @@ function SkeletonPage() {
 			<div className="relative min-h-[360px] bg-[#1B1A24] sm:min-h-[420px]">
 				<div className="absolute inset-0 bg-linear-to-b from-black/35 to-[#120F18]/80" />
 				<div className="relative z-10 mx-auto flex min-h-[360px] w-full max-w-6xl items-end px-4 pb-9 pt-24 sm:min-h-[420px] sm:px-8 sm:pb-12">
-					<div className="w-full animate-pulse space-y-4">
+					<div className="w-full motion-safe:animate-pulse space-y-4">
 						<div className="h-8 w-28 rounded-full bg-white/10" />
 						<div className="h-10 w-3/4 rounded-lg bg-white/10 sm:h-14" />
 						<div className="h-10 w-1/2 rounded-lg bg-white/10 sm:h-14" />
@@ -192,7 +192,7 @@ function SkeletonPage() {
 				{[0, 1].map((i) => (
 					<div
 						key={i}
-						className="animate-pulse space-y-3 rounded-lg bg-white px-5 py-5 shadow-sm sm:px-7 sm:py-6"
+						className="motion-safe:animate-pulse space-y-3 rounded-lg bg-white px-5 py-5 shadow-sm sm:px-7 sm:py-6"
 					>
 						<div className="h-6 w-40 rounded bg-[#06455B]/10" />
 						<div className="h-3 w-full rounded bg-[#06455B]/10" />
@@ -205,17 +205,30 @@ function SkeletonPage() {
 	);
 }
 
-function NotFoundEvent({ message }: { message?: string }) {
+function NotFoundEvent({
+	message,
+	notFound,
+	onRetry,
+}: { message?: string; notFound: boolean; onRetry: () => void }) {
 	return (
 		<div className="min-h-screen bg-[#F4F4F4] text-[#06455B]">
 			<main className="mx-auto flex min-h-[70vh] max-w-4xl flex-col items-center justify-center px-6 text-center">
 				<h1 className="text-3xl font-bold sm:text-5xl">
-					Event tidak ditemukan
+					{notFound ? "Event tidak ditemukan" : "Event belum bisa dimuat"}
 				</h1>
 				<p className="mt-4 max-w-xl text-sm leading-relaxed text-[#06455B]/70 sm:text-base">
 					{message ||
 						"Event yang kamu buka belum tersedia, draft, atau sudah dipindahkan."}
 				</p>
+				{!notFound && (
+					<button
+						type="button"
+						onClick={onRetry}
+						className="mt-6 min-h-11 rounded-xl bg-[#06455B] px-5 py-3 font-semibold text-white"
+					>
+						Coba lagi
+					</button>
+				)}
 				<Link
 					to="/events"
 					className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#06455B] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#05384A]"
@@ -235,22 +248,26 @@ export default function EventDetailPage() {
 	const initialMotion = shouldReduceMotion ? false : "hidden";
 
 	const [event, setEvent] = useState<BphEventDetail | null>(null);
-	const [error, setError] = useState<string | null>(null);
+	const [error, setError] = useState<Error | null>(null);
+	const [attempt, setAttempt] = useState(0);
+	const [imageFailed, setImageFailed] = useState(false);
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		if (!slug) return;
 		let alive = true;
 		setLoading(true);
+		setEvent(null);
+		setImageFailed(false);
 		setError(null);
 		fetchBphEventDetail(slug)
 			.then((data) => alive && setEvent(data))
-			.catch((e: Error) => alive && setError(e.message))
+			.catch((e: Error) => alive && setError(e))
 			.finally(() => alive && setLoading(false));
 		return () => {
 			alive = false;
 		};
-	}, [slug]);
+	}, [slug, attempt]);
 
 	// Halaman ini di luar AppLayout (tanpa Lenis) — scroll manual ke atas saat
 	// ganti event/pindah ke sini.
@@ -263,10 +280,22 @@ export default function EventDetailPage() {
 	}
 
 	if (!event) {
-		return <NotFoundEvent message={error ?? undefined} />;
+		return (
+			<NotFoundEvent
+				notFound={error?.name === "NotFoundError"}
+				message={
+					error?.name === "NotFoundError"
+						? undefined
+						: error?.name === "RateLimitError"
+							? error.message
+							: "Periksa koneksi internet lalu coba lagi."
+				}
+				onRetry={() => setAttempt((value) => value + 1)}
+			/>
+		);
 	}
 
-	const heroImage = event.cover_image_url || heroPattern;
+	const heroImage = (!imageFailed && event.cover_image_url) || heroPattern;
 	const canRegister =
 		event.registration_url &&
 		event.registration_open &&
@@ -279,23 +308,28 @@ export default function EventDetailPage() {
 				initial={initialMotion}
 				animate="show"
 				variants={fadeUpVariants}
-				className="relative flex min-h-[320px] flex-col justify-end overflow-hidden bg-[#1B1A24] bg-cover bg-center pt-28 sm:min-h-[420px]"
-				style={{ backgroundImage: `url(${heroImage})` }}
+				className="relative flex min-h-[320px] flex-col justify-end overflow-hidden bg-[#1B1A24] bg-cover bg-center pt-8 sm:pt-12 sm:min-h-[420px]"
 			>
+				<img
+					src={heroImage}
+					alt=""
+					onError={() => setImageFailed(true)}
+					className="absolute inset-0 h-full w-full object-cover"
+				/>
 				<div className="absolute inset-0 bg-[#120F18]/75" />
 				<div className="absolute inset-0 bg-linear-to-b from-black/35 via-[#261526]/45 to-[#120F18]/80" />
 
 				<div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-4 px-4 pb-8 sm:px-8 sm:pb-12">
 					<Link
 						to="/events"
-						className="inline-flex w-fit items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-bold text-white ring-1 ring-white/15 backdrop-blur transition hover:bg-white/20 active:scale-[0.98] sm:text-sm"
+						className="inline-flex min-h-11 w-fit items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-bold text-white ring-1 ring-white/15 backdrop-blur transition hover:bg-white/20 active:scale-[0.98] sm:text-sm"
 					>
 						<ArrowLeftIcon className="size-4" />
 						Kembali
 					</Link>
 					<motion.div variants={fadeUpVariants}>
 						<StatusBadge status={event.status} />
-						<h1 className="mt-3 max-w-4xl text-2xl font-extrabold leading-snug text-[#F4C95D] drop-shadow sm:text-4xl sm:leading-tight lg:text-5xl">
+						<h1 className="mt-3 max-w-4xl [overflow-wrap:anywhere] text-2xl font-extrabold leading-snug text-[#F4C95D] drop-shadow sm:text-4xl sm:leading-tight lg:text-5xl">
 							{event.title}
 						</h1>
 					</motion.div>
@@ -333,7 +367,7 @@ export default function EventDetailPage() {
 				initial={initialMotion}
 				animate="show"
 				variants={contentGroupVariants}
-				className="mx-auto flex max-w-3xl flex-col gap-4 px-4 py-6 sm:gap-5 sm:px-6 sm:py-8"
+				className="mx-auto flex max-w-3xl flex-col gap-4 px-4 py-6 [overflow-wrap:anywhere] sm:gap-5 sm:px-6 sm:py-8"
 			>
 				{/* Info utama */}
 				<motion.section
@@ -343,7 +377,7 @@ export default function EventDetailPage() {
 					<h2 className="text-lg font-extrabold leading-tight sm:text-2xl">
 						Tentang Acara
 					</h2>
-					<p className="mt-3 text-sm leading-relaxed text-white/85 sm:text-base">
+					<p className="mt-3 whitespace-pre-line text-base leading-relaxed text-white/90 sm:text-base">
 						{event.description || "Informasi acara belum tersedia."}
 					</p>
 
@@ -373,7 +407,7 @@ export default function EventDetailPage() {
 								href={event.location_url}
 								target="_blank"
 								rel="noreferrer"
-								className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-bold text-white ring-1 ring-white/15 transition hover:bg-white/20 active:scale-[0.98] sm:text-sm"
+								className="inline-flex min-h-11 items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-bold text-white ring-1 ring-white/15 transition hover:bg-white/20 active:scale-[0.98] sm:text-sm"
 							>
 								<MapPinIcon className="size-3.5" />
 								Lihat Lokasi
@@ -384,7 +418,7 @@ export default function EventDetailPage() {
 							href={googleCalendarUrl(event)}
 							target="_blank"
 							rel="noreferrer"
-							className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-bold text-white ring-1 ring-white/15 transition hover:bg-white/20 active:scale-[0.98] sm:text-sm"
+							className="inline-flex min-h-11 items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-bold text-white ring-1 ring-white/15 transition hover:bg-white/20 active:scale-[0.98] sm:text-sm"
 						>
 							<CalendarDaysIcon className="size-3.5" />
 							Simpan ke Google Calendar
@@ -414,13 +448,18 @@ export default function EventDetailPage() {
 									<p className="mt-1.5 text-sm font-bold text-[#F4C95D] sm:text-base">
 										{session.name}
 									</p>
+									{session.location && (
+										<p className="mt-2 text-sm text-white/90">
+											Lokasi: {session.location}
+										</p>
+									)}
 									{session.speaker && (
 										<p className="mt-1 text-xs text-white/70 sm:text-sm">
 											Pemateri: {session.speaker}
 										</p>
 									)}
 									{session.description && (
-										<p className="mt-1 text-xs leading-relaxed text-white/70 sm:text-sm">
+										<p className="mt-1 whitespace-pre-line text-sm leading-relaxed text-white/90 sm:text-sm">
 											{session.description}
 										</p>
 									)}

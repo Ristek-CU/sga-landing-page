@@ -89,14 +89,7 @@ export default function Header() {
 
 				<Button
 					variant="secondary"
-					className="hidden lg:block bg-[#D4B254] hover:bg-[#c29f45] text-white border-none rounded-full px-8 py-2 transition-all font-semibold"
-				>
-					Contact us
-				</Button>
-
-				<Button
-					variant="secondary"
-					className="relative size-10 shrink-0 overflow-hidden rounded-full border-none bg-[#D4B254] p-0 text-white hover:bg-[#c29f45] lg:hidden"
+					className="relative size-11 shrink-0 overflow-hidden rounded-full border-none bg-[#D4B254] p-0 text-[#06455B] hover:bg-[#c29f45] lg:hidden"
 					onClick={toggleMobileMenu}
 					aria-label={isMobileMenuOpen ? "Tutup navigasi" : "Buka navigasi"}
 					aria-controls="mobile-navigation"

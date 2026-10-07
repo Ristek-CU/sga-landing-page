@@ -1,15 +1,15 @@
 import { ArrowUpRight } from "lucide-react";
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { useLocation } from "react-router";
 
 import { useMobileMenuContext } from "@/contexts/mobile-menu-context";
 import { MAIN_NAV_LINKS } from "@/lib/navigation";
 import { cn } from "@/lib/utils";
-import Button from "./button";
 
 export default function MobileMenu() {
 	const { isMobileMenuOpen, setIsMobileMenuOpen } = useMobileMenuContext();
 	const { pathname } = useLocation();
+	const menuRef = useRef<HTMLElement>(null);
 
 	const onLinkClick = useCallback(() => {
 		setIsMobileMenuOpen(false);
@@ -27,22 +27,49 @@ export default function MobileMenu() {
 		document.body.style.overflow = "hidden";
 		document.documentElement.style.overflow = "hidden";
 
+		const trigger = document.querySelector<HTMLButtonElement>(
+			'[aria-controls="mobile-navigation"]',
+		);
+		menuRef.current?.querySelector<HTMLAnchorElement>("a")?.focus();
 		const closeOnEscape = (event: KeyboardEvent) => {
 			if (event.key === "Escape") setIsMobileMenuOpen(false);
+			if (event.key !== "Tab") return;
+			const links = Array.from(
+				menuRef.current?.querySelectorAll<HTMLAnchorElement>("a[href]") ?? [],
+			);
+			const controls = [trigger, ...links].filter(
+				(node): node is HTMLButtonElement | HTMLAnchorElement => node !== null,
+			);
+			const first = controls[0];
+			const last = controls[controls.length - 1];
+			if (event.shiftKey && document.activeElement === first) {
+				event.preventDefault();
+				last?.focus();
+			} else if (!event.shiftKey && document.activeElement === last) {
+				event.preventDefault();
+				first?.focus();
+			}
 		};
+		const desktop = window.matchMedia("(min-width: 1024px)");
+		const closeOnDesktop = () => {
+			if (desktop.matches) setIsMobileMenuOpen(false);
+		};
+		desktop.addEventListener("change", closeOnDesktop);
 		window.addEventListener("keydown", closeOnEscape);
 
 		return () => {
 			document.body.style.overflow = previousBodyOverflow;
 			document.documentElement.style.overflow = previousHtmlOverflow;
 			window.removeEventListener("keydown", closeOnEscape);
+			desktop.removeEventListener("change", closeOnDesktop);
+			trigger?.focus();
 		};
 	}, [isMobileMenuOpen, setIsMobileMenuOpen]);
 
-	if (pathname.startsWith("/events")) return null;
-
 	return (
 		<nav
+			ref={menuRef}
+			data-lenis-prevent
 			id="mobile-navigation"
 			aria-label="Navigasi utama"
 			aria-hidden={!isMobileMenuOpen}
@@ -87,13 +114,6 @@ export default function MobileMenu() {
 						);
 					})}
 				</div>
-				<Button
-					variant="secondary"
-					className="relative mt-6 w-full rounded-full bg-[#CEAE65] py-3 text-[#06455B] hover:bg-[#dcc47f]"
-					tabIndex={isMobileMenuOpen ? 0 : -1}
-				>
-					Contact Us
-				</Button>
 				<p className="relative mt-auto pt-8 text-center text-[10px] uppercase tracking-[0.18em] text-white/40">
 					SGA Cakrawala · Student Government Association
 				</p>

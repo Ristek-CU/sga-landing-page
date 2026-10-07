@@ -1,9 +1,7 @@
-import { ArrowLeftIcon, CalendarDays, Users } from "lucide-react";
+import { ArrowLeftIcon, ArrowUpRight, CalendarDays, Users } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
 
-import arvanaLogo from "@/assets/images/Logo-Arvana.png";
-import sgaLogo from "@/assets/images/Logomark.webp";
 import heroPattern from "@/assets/images/hero-pattern.webp";
 import CalendarSection from "@/components/sections/calendar";
 import Particles from "@/components/ui/particles";
@@ -12,88 +10,65 @@ import {
 	fetchBphEvents,
 	formatWibRange,
 } from "@/lib/bph-api";
-
 import { formatEventCountdown } from "@/lib/event-time";
 
-// Keys = status BPH CMS (past/ongoing/upcoming).
-const statusConfig: Record<string, { label: string; bg: string }> = {
-	past: { label: "Completed", bg: "bg-[#F06A6A]" },
-	ongoing: { label: "On Going", bg: "bg-[#CEAE65]" },
-	upcoming: { label: "Coming Soon", bg: "bg-[#72D5F6]" },
+const statusConfig = {
+	past: { label: "Selesai", bg: "bg-slate-100" },
+	ongoing: { label: "Berlangsung", bg: "bg-[#CEAE65]" },
+	upcoming: { label: "Akan datang", bg: "bg-[#72D5F6]" },
 };
 
 function EventCard({ event, now }: { event: BphEventListItem; now: number }) {
 	const [imageFailed, setImageFailed] = useState(false);
 	const image =
 		!imageFailed && event.cover_image_url ? event.cover_image_url : heroPattern;
-	const status = statusConfig[event.status] ?? statusConfig.upcoming;
+	const status = statusConfig[event.status];
 
 	return (
-		<article className="relative flex flex-col overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-md transition-all hover:-translate-y-1 hover:shadow-xl">
-			<div className="flex flex-1 flex-col">
-				{/* Image + Status Badge */}
-				<div className="relative h-44 w-full overflow-hidden bg-slate-200">
-					<img
-						onError={() => {
-							setImageFailed(true);
-						}}
-						src={image}
-						alt={event.title}
-						className="h-full w-full object-cover"
-					/>
-					<span
-						className={`absolute left-3 top-3 rounded-full px-4 py-1 text-[11px] font-bold text-[#06455B] shadow ${status.bg}`}
+		<article className="flex min-w-0 flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white">
+			<div className="relative aspect-video overflow-hidden bg-slate-100">
+				<img
+					src={image}
+					alt=""
+					loading="lazy"
+					onError={() => setImageFailed(true)}
+					className="h-full w-full object-cover"
+				/>
+				<span
+					className={`absolute left-4 top-4 rounded-full px-3 py-1.5 text-xs font-bold text-[#06455B] ${status.bg}`}
+				>
+					{status.label}
+				</span>
+			</div>
+			<div className="flex flex-1 flex-col p-5 [overflow-wrap:anywhere]">
+				<h3 className="text-lg font-bold leading-snug text-[#06455B]">
+					{event.title}
+				</h3>
+				<p className="mt-2 flex items-start gap-2 text-sm text-slate-600">
+					<Users aria-hidden="true" className="mt-0.5 size-4 shrink-0" />
+					{event.organizer ?? "SGA Cakrawala"}
+				</p>
+				<p className="mt-4 line-clamp-2 text-sm leading-relaxed text-slate-600">
+					{event.description || "Informasi acara belum tersedia."}
+				</p>
+				<p className="mt-4 flex items-start gap-2 text-sm font-medium leading-relaxed text-[#06455B]">
+					<CalendarDays aria-hidden="true" className="mt-0.5 size-4 shrink-0" />
+					{formatWibRange(event.starts_at, event.ends_at)}
+				</p>
+				{event.status === "upcoming" && (
+					<p className="mt-2 text-sm text-slate-600">
+						{formatEventCountdown(event.starts_at, now)}
+					</p>
+				)}
+				<div className="mt-auto pt-5">
+					<Link
+						to={`/events/${event.slug}`}
+						aria-label={`Lihat detail ${event.title}`}
+						className="inline-flex min-h-11 w-full items-center justify-between gap-3 rounded-xl bg-[#06455B] px-4 py-3 text-sm font-bold text-white transition-colors hover:bg-[#05384A] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#06455B]"
 					>
-						{status.label}
-					</span>
-				</div>
-
-				{/* Card Body */}
-				<div className="flex flex-1 flex-col px-5 pb-5 pt-4">
-					{/* Logo + Title + Members Row */}
-					<div className="flex items-start gap-3">
-						<div className="flex size-11 shrink-0 items-center justify-center overflow-hidden rounded-[10px] border border-slate-100 bg-slate-50">
-							<img
-								src={image}
-								alt={`${event.title} logo`}
-								className="h-full w-full object-cover"
-							/>
-						</div>
-						<div className="flex flex-col pt-0.5">
-							<h2 className="line-clamp-1 text-sm font-extrabold leading-snug text-[#333333]">
-								{event.title}
-							</h2>
-							<div className="mt-1 flex items-center gap-1.5 text-[11px] font-medium text-slate-500">
-								<Users className="size-3.5 shrink-0 text-slate-500" />
-								<span>{event.organizer ?? "SGA Cakrawala"}</span>
-							</div>
-						</div>
-					</div>
-
-					{/* Description */}
-					<p className="mt-3.5 line-clamp-2 text-xs leading-relaxed text-slate-500">
-						{event.description || "Informasi acara belum tersedia."}
-					</p>
-
-					<p className="mt-3 text-xs font-semibold text-[#06455B]">
-						{formatWibRange(event.starts_at, event.ends_at)}
-					</p>
-					{event.status === "upcoming" && (
-						<p className="mt-2 text-xs font-bold text-[#06455B]">
-							{formatEventCountdown(event.starts_at, now)}
-						</p>
-					)}
-					{/* Event detail */}
-					<div className="mt-auto flex items-center justify-between pt-5">
-						<div className="flex items-center gap-2.5" />
-
-						<Link
-							to={`/events/${event.slug}`}
-							className="inline-flex items-center justify-center rounded-lg bg-[#0B3B4F] px-4 py-2 text-xs font-bold text-white shadow-sm transition hover:bg-[#062c3b] active:scale-[0.98]"
-						>
-							Lihat Detail
-						</Link>
-					</div>
+						Lihat detail
+						<ArrowUpRight aria-hidden="true" className="size-4 shrink-0" />
+					</Link>
 				</div>
 			</div>
 		</article>
@@ -102,147 +77,144 @@ function EventCard({ event, now }: { event: BphEventListItem; now: number }) {
 
 export default function EventPage() {
 	const [now, setNow] = useState(() => Date.now());
+	const [cmsEvents, setCmsEvents] = useState<BphEventListItem[]>([]);
+	const [loading, setLoading] = useState(true);
+	const [cmsError, setCmsError] = useState<string | null>(null);
+	const [attempt, setAttempt] = useState(0);
+
 	useEffect(() => {
 		const timer = setInterval(() => setNow(Date.now()), 60_000);
 		return () => clearInterval(timer);
 	}, []);
-	const [cmsEvents, setCmsEvents] = useState<BphEventListItem[]>([]);
-	const [loading, setLoading] = useState(true);
-	const [cmsError, setCmsError] = useState<string | null>(null);
 
 	useEffect(() => {
 		let alive = true;
+		setLoading(true);
+		setCmsError(null);
 		fetchBphEvents({ limit: 50 })
 			.then((items) => alive && setCmsEvents(items))
-			.catch((e: Error) => alive && setCmsError(e.message))
+			.catch(
+				(error: Error) =>
+					alive &&
+					setCmsError(
+						error.name === "RateLimitError"
+							? error.message
+							: "Daftar event belum bisa dimuat. Periksa koneksi lalu coba lagi.",
+					),
+			)
 			.finally(() => alive && setLoading(false));
 		return () => {
 			alive = false;
 		};
-	}, []);
-
-	const bgImageUrl =
-		typeof heroPattern === "string"
-			? heroPattern
-			: (heroPattern as { src: string }).src;
+	}, [attempt]);
 
 	return (
-		<div className="relative min-h-screen bg-[#F8FAFC] font-sans">
-			{/* Top bar: kembali + logo SGA & Arvana — sticky, bg solid tanpa transisi */}
-			<nav
-				className="sticky top-0 z-30 flex items-center justify-between bg-[#07303F] px-4 py-3 shadow-lg sm:px-6"
-				aria-label="Navigasi event"
-			>
-				<Link
-					to="/#event"
-					className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-bold text-[#20BEE4] ring-1 ring-white/15 transition hover:bg-white/20 active:scale-[0.98] sm:text-base"
-				>
-					<ArrowLeftIcon className="size-4" />
-					Kembali
-				</Link>
-				<Link
-					to="/"
-					aria-label="Beranda SGA"
-					className="flex shrink-0 items-center gap-2.5"
-				>
-					<img
-						src={sgaLogo}
-						alt="SGA Cakrawala University"
-						className="size-8 shrink-0 object-contain sm:size-10"
-					/>
-					<div className="h-7 w-px shrink-0 bg-white/30 sm:h-10" />
-					<img
-						src={arvanaLogo}
-						alt="Arvana"
-						className="h-7 shrink-0 object-contain sm:h-10"
-					/>
-				</Link>
-			</nav>
-
-			<div
-				className="h-[420px] w-full overflow-hidden bg-[#07303F] bg-cover bg-center bg-no-repeat"
-				style={{ backgroundImage: `url(${bgImageUrl})` }}
+		<div className="min-h-screen bg-[#F8FAFC] text-[#06455B]">
+			<section
+				className="relative isolate overflow-hidden bg-[#07303F] bg-cover bg-center px-4 pb-10 pt-28 sm:px-6 sm:pb-16 sm:pt-36"
+				style={{ backgroundImage: `url(${heroPattern})` }}
 			>
 				<Particles
-					className="pointer-events-none absolute inset-0 z-0"
-					quantity={80}
+					className="pointer-events-none absolute inset-0 -z-10"
+					quantity={40}
 					ease={80}
 					color="#EBC05F"
 					refresh={false}
 				/>
-			</div>
-
-			<div className="relative z-10 -mt-[420px]">
-				<section className="flex h-[420px] flex-col items-center justify-center px-4 pb-12 pt-20 text-center">
-					<div className="mx-auto flex max-w-5xl flex-col items-center">
-						<h1 className="mb-4 max-w-4xl text-3xl font-bold leading-tight tracking-tight text-[#F4F4F4] drop-shadow-md sm:text-5xl lg:text-[69px] lg:leading-[82px]">
-							Eksplorasi{" "}
-							<span className="text-[#EBC05F]">
-								Event Student Government Association
-							</span>
-						</h1>
-						<p className="max-w-2xl text-xs leading-relaxed text-[#F4F4F4]/80 drop-shadow sm:text-sm lg:text-base">
-							Temukan event terbaru dari{" "}
-							<span className="font-medium text-[#EBC05F]">
-								{" "}
-								SGA Cakrawala University
-							</span>
-							.
-						</p>
-					</div>
-				</section>
-
-				<section className="bg-[#F8FAFC] pb-24 pt-8 shadow-[0_-15px_30px_rgba(0,0,0,0.12)]">
-					<div className="mx-auto max-w-6xl px-4 sm:px-6">
-						<div className="mb-8 flex justify-center">
-							<div className="rounded-[30px] bg-gradient-to-r from-[#CEAE65] to-[#685833] p-[2px] shadow-sm">
-								<div className="rounded-[28px] bg-white px-[30px] py-[6px] text-sm font-semibold text-[#CEAE65] sm:text-base">
-									Events
+				<div className="mx-auto max-w-6xl">
+					<Link
+						to="/#event"
+						className="inline-flex min-h-11 items-center gap-2 rounded-lg text-sm font-semibold text-white underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4"
+					>
+						<ArrowLeftIcon aria-hidden="true" className="size-4" />
+						Kembali ke beranda
+					</Link>
+					<h1 className="mt-5 text-3xl font-bold leading-tight text-white sm:text-5xl">
+						Student <span className="text-[#EBC05F]">Event</span>
+					</h1>
+					<p className="mt-4 max-w-xl text-base leading-relaxed text-white/90">
+						Temukan kegiatan SGA Cakrawala University. Lihat jadwal, kenali
+						acaranya, dan ikut berpartisipasi.
+					</p>
+				</div>
+			</section>
+			<main className="mx-auto max-w-6xl space-y-12 px-4 py-8 sm:space-y-16 sm:px-6 sm:py-12">
+				<section aria-labelledby="events-heading">
+					<h2
+						id="events-heading"
+						className="mb-6 text-xl font-bold sm:text-2xl"
+					>
+						Jelajahi acara
+					</h2>
+					{loading && (
+						<div
+							role="status"
+							aria-label="Memuat event"
+							className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+						>
+							{[0, 1, 2].map((i) => (
+								<div
+									key={i}
+									aria-hidden="true"
+									className="overflow-hidden rounded-2xl border border-slate-200 bg-white motion-safe:animate-pulse"
+								>
+									<div className="aspect-video bg-slate-200" />
+									<div className="space-y-4 p-5">
+										<div className="h-6 w-3/4 rounded bg-slate-200" />
+										<div className="h-4 rounded bg-slate-100" />
+										<div className="h-4 w-2/3 rounded bg-slate-100" />
+										<div className="h-11 rounded bg-slate-100" />
+									</div>
 								</div>
-							</div>
+							))}
 						</div>
-
-						{loading && (
-							<p className="py-12 text-center text-sm text-slate-500">
-								Memuat event…
+					)}
+					{!loading && cmsError && (
+						<div
+							role="alert"
+							className="rounded-2xl border border-slate-200 bg-white p-6"
+						>
+							<p className="text-sm leading-relaxed text-slate-700">
+								{cmsError}
 							</p>
-						)}
-
-						{!loading && cmsError && (
-							<p className="py-12 text-center text-sm text-amber-600">
-								Gagal memuat event ({cmsError}). Coba lagi nanti.
-							</p>
-						)}
-
-						{!loading && !cmsError && (
-							<div className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
+							<button
+								type="button"
+								onClick={() => setAttempt((value) => value + 1)}
+								className="mt-4 min-h-11 rounded-lg bg-[#06455B] px-4 py-2 text-sm font-semibold text-white"
+							>
+								Coba lagi
+							</button>
+						</div>
+					)}
+					{!loading &&
+						!cmsError &&
+						(cmsEvents.length ? (
+							<div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
 								{cmsEvents.map((event) => (
 									<EventCard key={event.id} event={event} now={now} />
 								))}
 							</div>
-						)}
-
-						{!loading && !cmsError && cmsEvents.length === 0 && (
-							<p className="py-12 text-center text-sm text-slate-500">
-								Belum ada event yang tersedia.
+						) : (
+							<p
+								role="status"
+								className="rounded-2xl border border-slate-200 bg-white p-6 text-slate-600"
+							>
+								Belum ada event yang tersedia. Cek kembali nanti untuk kegiatan
+								berikutnya.
 							</p>
-						)}
-
-						<div className="mt-12 flex justify-center">
-							<div className="inline-flex items-center gap-[10px] rounded-[28px] bg-white px-[30px] py-[6px]">
-								<CalendarDays className="size-4 text-[#CEAE65]" />
-								<span className="text-sm font-semibold text-[#CEAE65] sm:text-base">
-									Calendar
-								</span>
-							</div>
-						</div>
-
-						<div className="mt-8 flex w-full justify-center">
-							<CalendarSection />
-						</div>
-					</div>
+						))}
 				</section>
-			</div>
+				<section aria-labelledby="calendar-heading">
+					<h2 id="calendar-heading" className="text-xl font-bold sm:text-2xl">
+						Kalender acara
+					</h2>
+					<p className="mb-6 mt-2 text-sm leading-relaxed text-slate-600">
+						Pilih tanggal untuk melihat jadwal. Semua waktu ditampilkan dalam
+						WIB.
+					</p>
+					<CalendarSection />
+				</section>
+			</main>
 		</div>
 	);
 }

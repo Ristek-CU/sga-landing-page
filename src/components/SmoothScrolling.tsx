@@ -7,7 +7,7 @@ export default function SmoothScrolling({
 	children,
 }: { children: React.ReactNode }) {
 	const lenisRef = useRef<Lenis | null>(null);
-	const { pathname } = useLocation();
+	const { pathname, hash } = useLocation();
 
 	useEffect(() => {
 		const prefersNativeScroll =
@@ -42,16 +42,25 @@ export default function SmoothScrolling({
 		};
 	}, []);
 
-	// Pindah halaman → scroll ke paling atas. Lenis aktif → pakai lenis.scrollTo;
-	// native scroll (mobile/reduced-motion) → window.scrollTo. immediate agar
-	// tidak ada animasi sisa dari posisi lama.
 	useEffect(() => {
-		if (lenisRef.current) {
-			lenisRef.current.scrollTo(0, { immediate: true, force: true });
-		}
-		window.scrollTo(0, 0);
-		ScrollTrigger.refresh();
-	}, [pathname]);
+		const frame = requestAnimationFrame(() => {
+			let target: HTMLElement | null = null;
+			try {
+				target = hash
+					? document.getElementById(decodeURIComponent(hash.slice(1)))
+					: null;
+			} catch {
+				// An invalid URL fragment should not prevent navigation.
+			}
+			const top = target
+				? Math.max(0, target.getBoundingClientRect().top + window.scrollY - 96)
+				: 0;
+			lenisRef.current?.scrollTo(top, { immediate: true, force: true });
+			window.scrollTo({ top, behavior: "instant" });
+			ScrollTrigger.refresh();
+		});
+		return () => cancelAnimationFrame(frame);
+	}, [pathname, hash]);
 
 	return <div style={{ willChange: "scroll-position" }}>{children}</div>;
 }

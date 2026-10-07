@@ -79,10 +79,22 @@ async function bphGet<T>(path: string): Promise<T> {
 }
 
 /** GET /events/calendar?month=YYYY-MM — ringkas, untuk komponen kalender. */
-export function fetchBphCalendar(month: string): Promise<BphEventListItem[]> {
+export function fetchBphCalendar(month: string) {
 	return bphGet<{ items: BphEventListItem[] }>(
 		`/events/calendar?month=${encodeURIComponent(month)}`,
-	).then((d) => d.items);
+	).then((d) =>
+		z
+			.array(
+				EventSchema.pick({
+					slug: true,
+					title: true,
+					starts_at: true,
+					ends_at: true,
+					location: true,
+				}).extend({ status: EventSchema.shape.status.optional() }),
+			)
+			.parse(d.items),
+	);
 }
 
 /** GET /events?status=&limit=&page= — list publik untuk section/portal LP. */
